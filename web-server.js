@@ -28,7 +28,6 @@ var graphenedbPass = process.env.GRAPHENEDB_BOLT_PASSWORD;
 
 var driver = neo4j.driver(graphenedbURL, neo4j.auth.basic(graphenedbUser, graphenedbPass));
 
-console.log('after neo4j 33');
 
 
 var session = driver.session();
@@ -46,8 +45,6 @@ session
     });
 
 
-
-console.log('after neo4j 22');
 
 
 
