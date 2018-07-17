@@ -1,10 +1,18 @@
 
 
 param (
-[string]$WorkDir
+[string]$systemTeamcityBuildCheckoutDir 
 )
 
 echo 'AAAAAAAAAAAAAAAAAA'
-echo $WorkDir
+echo $systemTeamcityBuildCheckoutDir 
+
+$sourceRoot = ".\node_modules"
+$destinationRoot = $systemTeamcityBuildCheckoutDir + "\node_modules"
+echo $sourceRoot 
+echo $destinationRoot 
+
 echo 'BBBBBBBBBBBBBBBBBBBBB'
 
+
+##Copy-Item -Path $sourceRoot -Filter "*.txt" -Recurse -Destination $destinationRoot -Container
