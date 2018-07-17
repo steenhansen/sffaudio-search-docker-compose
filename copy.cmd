@@ -1,3 +1,10 @@
-echo 'BBBBBBBBBBBBBBBBBBBBB'
-echo $env:agent_work_dir
+
+
+param (
+[string]$WorkDir
+)
+
 echo 'AAAAAAAAAAAAAAAAAA'
+echo $WorkDir
+echo 'BBBBBBBBBBBBBBBBBBBBB'
+
