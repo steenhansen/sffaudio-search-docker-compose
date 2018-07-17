@@ -1,3 +1,3 @@
 echo 'BBBBBBBBBBBBBBBBBBBBB'
-echo "$WorkDir"
+echo $env:agent_work_dir
 echo 'AAAAAAAAAAAAAAAAAA'
