@@ -15,6 +15,8 @@ echo $destinationRoot
 echo 'BBBBBBBBBBBBBBBBBBBBB'
 
 
+mkdir $destinationRoot
+
 Copy-Item -Path $sourceRoot -Recurse -Destination $destinationRoot -Container
 
 
