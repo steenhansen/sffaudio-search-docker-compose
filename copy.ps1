@@ -15,4 +15,7 @@ echo $destinationRoot
 echo 'BBBBBBBBBBBBBBBBBBBBB'
 
 
-##Copy-Item -Path $sourceRoot -Filter "*.txt" -Recurse -Destination $destinationRoot -Container
+Copy-Item -Path $sourceRoot -Recurse -Destination $destinationRoot -Container
+
+
+echo 'CCCCCCCCCCC'
