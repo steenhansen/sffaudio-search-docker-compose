@@ -1,3 +1,3 @@
 echo 'BBBBBBBBBBBBBBBBBBBBB'
-echo $WorkDir
+echo "$WorkDir"
 echo 'AAAAAAAAAAAAAAAAAA'
