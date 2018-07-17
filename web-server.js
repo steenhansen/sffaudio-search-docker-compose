@@ -4,7 +4,9 @@
 
 /// GraphRepository
 
-var express = require('express')
+var express = require('express');
+
+console.log('team city should see this...');
 
 /*
 
