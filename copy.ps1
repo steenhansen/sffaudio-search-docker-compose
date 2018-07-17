@@ -15,9 +15,15 @@ echo $destinationRoot
 echo 'BBBBBBBBBBBBBBBBBBBBB'
 
 
-mkdir $destinationRoot
 
-Copy-Item -Path $sourceRoot -Recurse -Destination $destinationRoot -Container
+
+if(!(Test-Path -Path $destinationRoot )){
+    New-Item -ItemType directory -Path $destinationRoot
+    Copy-Item -Path $sourceRoot -Recurse -Destination $destinationRoot -Container
+}
+
+
+
 
 
 echo 'CCCCCCCCCCC'
