@@ -2,12 +2,19 @@
 'use strict'
 
 
+/// GraphRepository
+
 var express = require('express')
 
 /*
 
 	> /podcast-neo4j/
-	node web-server ../test-config-env
+	node web-server ../test-config-env       // start webserver
+
+    npm test
+
+
+    C:\Users\admin\Documents\GitHub\_real_sffaudio_\sffaudio\test\call-tests.js
 
 */
 const setCheckHerokuEnvVars = require('./heroku-config-vars');
@@ -16,21 +23,14 @@ let env_filename = process.argv[2]
 setCheckHerokuEnvVars(CONFIG_ENV_KEYS, env_filename);
 
 
+//
+/// maybe we should have 'v1'  for the neo4j version as a constant
 
-
-var neo4j = require('neo4j-driver').v1;
-
-
-
-var graphenedbURL = process.env.GRAPHENEDB_BOLT_URL;
-var graphenedbUser = process.env.GRAPHENEDB_BOLT_USER;
-var graphenedbPass = process.env.GRAPHENEDB_BOLT_PASSWORD;
-
-var driver = neo4j.driver(graphenedbURL, neo4j.auth.basic(graphenedbUser, graphenedbPass));
+const neo4jSession = require('./neo4j-session');
+var session = neo4jSession('v1');                      // this should be a local constant, NOT process.env, as never changes
 
 
 
-var session = driver.session();
 session
     .run("CREATE (n {hello: 'World'}) RETURN n.name")
     .then(function(result) {
