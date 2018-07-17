@@ -7,7 +7,7 @@ param (
 echo 'AAAAAAAAAAAAAAAAAA'
 echo $systemTeamcityBuildCheckoutDir 
 
-$sourceRoot = "D:\github\podcast_neo4j_conf\podcast-neo4j\node_modules"
+$sourceRoot = "D:\github\podcast_neo4j_conf\podcast-neo4j\node_modules\*"
 $destinationRoot = $systemTeamcityBuildCheckoutDir + "\node_modules"
 echo $sourceRoot 
 echo $destinationRoot 
