@@ -1,9 +1,21 @@
 echo 'set-up-node.ps1 start'
 
-$teamcity_dir = (Get-Item -Path ".\").FullName
-$podcast_neo4j_dir = (Get-Item -Path ".\").parent.FullName
-$config_dir = (Get-Item -Path ".\").parent.parent.FullName
+# N.B. This file must be run from podcast-neo4j directory. NOT teamcity directory
+
+# run in teamcity then below === teamcity
+# testing runs in podcast-neo4j === podcast-neo4j
+
+#$teamcity_dir = (Get-Item -Path ".\").FullName
+#$podcast_neo4j_dir = (Get-Item -Path ".\").parent.FullName
+#$config_dir = (Get-Item -Path ".\").parent.parent.FullName
+
+$teamcity_dir = (Get-Item -Path ".\").FullName + '/teamcity'
+$podcast_neo4j_dir = (Get-Item -Path ".\").FullName
+$config_dir = (Get-Item -Path ".\").parent.FullName
+
+
 	echo 'teamcity_dir ::::::::::::::::::' + $teamcity_dir
+	echo 'podcast_neo4j_dir ++++++++++++++++++ ' + $podcast_neo4j_dir
 	echo 'config_dir ================= ' + $config_dir
 
 $node_modules_config = $config_dir + '/node-modules-config/'
