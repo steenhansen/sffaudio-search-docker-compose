@@ -4,6 +4,7 @@ $teamcity_dir = (Get-Item -Path ".\").FullName
 $podcast_neo4j_dir = (Get-Item -Path ".\").parent.FullName
 $config_dir = (Get-Item -Path ".\").parent.parent.FullName
 
+	echo 'config_dir ================= ' + $config_dir
 
 $node_modules_config = $config_dir + '/node-modules-config/'
 $exist_node_modules_config = Test-Path -Path $node_modules_config
