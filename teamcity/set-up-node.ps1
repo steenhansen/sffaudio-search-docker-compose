@@ -30,7 +30,7 @@ if( $exist_node_modules_config ){
     Copy-Item -Path $config_node_modules_wild -Recurse -Destination $podcast_neo4j_node_modules -Container
 } else {
 	echo 'set-up-node.ps1 NOT exists'
-	$build_node_modules = Start-Job -FilePath './build-node-modules.ps1' -ArgumentList $podcast_neo4j_dir
+	$build_node_modules = Start-Job -FilePath './teamcity/build-node-modules.ps1' -ArgumentList $podcast_neo4j_dir
 	Wait-Job $build_node_modules
 	Receive-Job $build_node_modules
 
