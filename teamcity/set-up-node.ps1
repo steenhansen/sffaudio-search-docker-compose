@@ -3,7 +3,7 @@ echo 'set-up-node.ps1 start'
 $teamcity_dir = (Get-Item -Path ".\").FullName
 $podcast_neo4j_dir = (Get-Item -Path ".\").parent.FullName
 $config_dir = (Get-Item -Path ".\").parent.parent.FullName
-
+	echo 'teamcity_dir ::::::::::::::::::' + $teamcity_dir
 	echo 'config_dir ================= ' + $config_dir
 
 $node_modules_config = $config_dir + '/node-modules-config/'
