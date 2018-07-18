@@ -1,13 +1,17 @@
 {
   "name": "neo_sff_audio",
   "version": "1.0.0",
-  "description": "",
+  "description": "SFFaudio Podcast Graph",
   "main": "index.js",
   "scripts": {
     "test": "node test/testrunner.js"
   },
   "keywords": [],
   "author": "Steen Hansen <steen_hansen@yahoo.com> (https://www.jerkersearcher.com/)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steenhansen/podcast-neo4j.git"
+  },
   "license": "ISC",
   "dependencies": {
     "express": "4.16.3",
