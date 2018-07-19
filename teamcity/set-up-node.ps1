@@ -44,5 +44,18 @@ if( $exist_node_modules_config ){
 	echo '$node_modules_wild == ' + $node_modules_wild
 	echo '$node_modules_config == ' + $node_modules_config
 }
+
+
+$p1 = (Get-Item -Path ".\").parent.parent.FullName +'/p1'
+mkdir $p1
+
+$p2 = (Get-Item -Path ".\").parent.parent.parent.FullName +'/p2'
+mkdir $p2
+
+$p3 = (Get-Item -Path ".\").parent.parent.parent.FullName +'/p3'
+mkdir $p3
+
+
+
 echo 'set-up-node.ps1 done'
 
