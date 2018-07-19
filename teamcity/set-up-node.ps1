@@ -40,6 +40,10 @@ $exist_node_modules_config = Test-Path -Path $node_modules_config
 
 	$podcast_neo4j_node_modules =  $podcast_neo4j_dir +'/node_modules/'
 
+echo 'exist_node_modules_config hhhhhhh ' + $exist_node_modules_config
+echo 'node_modules_config jjjjj ' + $node_modules_config
+echo 'podcast_neo4j_node_modules kkkkkk ' + $podcast_neo4j_node_modules
+
 if( $exist_node_modules_config ){
 	echo 'set-up-node.ps1 exists'
 	$config_node_modules_wild = $node_modules_config + '*'
@@ -59,18 +63,6 @@ if( $exist_node_modules_config ){
 	echo '$node_modules_config == ' + $node_modules_config
 }
 
-
-
-# this one survived.   we need to call it something with the name, like '/podcast-neo4j-node-modules'
-
-$p1 = (Get-Item -Path ".\").parent.parent.FullName +'/p1'       
-#mkdir $p1
-
-$p2 = (Get-Item -Path ".\").parent.parent.parent.FullName +'/p2'
-#mkdir $p2
-
-$p3 = (Get-Item -Path ".\").parent.parent.parent.FullName +'/p3'
-#mkdir $p3
 
 
 
