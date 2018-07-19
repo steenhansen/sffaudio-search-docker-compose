@@ -2,7 +2,7 @@ echo 'set-up-node.ps1 start'
 
 
 
-# say what is being built where so it can make sense .....
+# say what is being built where so it can make sense
 
 
 
@@ -40,27 +40,30 @@ $exist_node_modules_config = Test-Path -Path $node_modules_config
 
 	$podcast_neo4j_node_modules =  $podcast_neo4j_dir +'/node_modules/'
 
+
+$exist_node_modules = Test-Path -Path $podcast_neo4j_node_modules
+
 echo 'exist_node_modules_config hhhhhhh ' + $exist_node_modules_config
 echo 'node_modules_config jjjjj ' + $node_modules_config
 echo 'podcast_neo4j_node_modules kkkkkk ' + $podcast_neo4j_node_modules
 
-if( $exist_node_modules_config ){
-	echo 'set-up-node.ps1 exists'
-	$config_node_modules_wild = $node_modules_config + '*'
-	mkdir $podcast_neo4j_node_modules
-    Copy-Item -Path $config_node_modules_wild -Recurse -Destination $podcast_neo4j_node_modules -Container
-} else {
+if( ! $exist_node_modules ){
+#	echo 'set-up-node.ps1 exists'
+#	$config_node_modules_wild = $node_modules_config + '*'
+#	mkdir $podcast_neo4j_node_modules
+#    Copy-Item -Path $config_node_modules_wild -Recurse -Destination $podcast_neo4j_node_modules -Container
+#} else {
 	echo 'set-up-node.ps1 NOT exists'
 	$build_node_modules = Start-Job -FilePath './teamcity/build-node-modules.ps1' -ArgumentList $podcast_neo4j_dir
 	Wait-Job $build_node_modules
 	Receive-Job $build_node_modules
 
-	$node_modules_wild = $podcast_neo4j_node_modules +'*'
+	#$node_modules_wild = $podcast_neo4j_node_modules +'*'
 
-    mkdir $node_modules_config
-	Copy-Item -Path $node_modules_wild -Recurse -Destination $node_modules_config -Container
-	echo '$node_modules_wild == ' + $node_modules_wild
-	echo '$node_modules_config == ' + $node_modules_config
+   # mkdir $node_modules_config
+	#Copy-Item -Path $node_modules_wild -Recurse -Destination $node_modules_config -Container
+	#echo '$node_modules_wild == ' + $node_modules_wild
+	#echo '$node_modules_config == ' + $node_modules_config
 }
 
 
