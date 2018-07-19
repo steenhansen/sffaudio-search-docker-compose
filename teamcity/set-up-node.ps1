@@ -15,13 +15,16 @@ echo 'set-up-node.ps1 start'
 $teamcity_dir = (Get-Item -Path ".\").FullName + '/teamcity'
 $podcast_neo4j_dir = (Get-Item -Path ".\").FullName
 $config_dir = (Get-Item -Path ".\").parent.FullName
+$config_dir_parent = (Get-Item -Path ".\").parent.parent.FullName
 
 
 	echo 'teamcity_dir ::::::::::::::::::' + $teamcity_dir
 	echo 'podcast_neo4j_dir ++++++++++++++++++ ' + $podcast_neo4j_dir
 	echo 'config_dir ================= ' + $config_dir
 
-$node_modules_config = $config_dir + '/node-modules-config/'
+#$node_modules_config = $config_dir + '/node-modules-config/'
+$node_modules_config = $config_dir_parent + '/podcast-neo4j-node-modules/'
+
 $exist_node_modules_config = Test-Path -Path $node_modules_config
 
 	$podcast_neo4j_node_modules =  $podcast_neo4j_dir +'/node_modules/'
@@ -46,14 +49,17 @@ if( $exist_node_modules_config ){
 }
 
 
-$p1 = (Get-Item -Path ".\").parent.parent.FullName +'/p1'
-mkdir $p1
+
+# this one survived.   we need to call it something with the name, like '/podcast-neo4j-node-modules'
+
+$p1 = (Get-Item -Path ".\").parent.parent.FullName +'/p1'       
+#mkdir $p1
 
 $p2 = (Get-Item -Path ".\").parent.parent.parent.FullName +'/p2'
-mkdir $p2
+#mkdir $p2
 
 $p3 = (Get-Item -Path ".\").parent.parent.parent.FullName +'/p3'
-mkdir $p3
+#mkdir $p3
 
 
 
