@@ -2,6 +2,9 @@ echo 'set-up-node.ps1 start'
 
 # N.B. This file must be run from podcast-neo4j directory. NOT teamcity directory
 
+
+#  /podcast-neo4j/ .\teamcity/setup-up-node.ps1
+
 # run in teamcity then below === teamcity
 # testing runs in podcast-neo4j === podcast-neo4j
 
@@ -35,8 +38,11 @@ if( $exist_node_modules_config ){
 	Receive-Job $build_node_modules
 
 	$node_modules_wild = $podcast_neo4j_node_modules +'*'
+
     mkdir $node_modules_config
 	Copy-Item -Path $node_modules_wild -Recurse -Destination $node_modules_config -Container
+	echo '$node_modules_wild == ' + $node_modules_wild
+	echo '$node_modules_config == ' + $node_modules_config
 }
 echo 'set-up-node.ps1 done'
 
