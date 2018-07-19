@@ -2,7 +2,7 @@ echo 'set-up-node.ps1 start'
 
 
 
-# say what is being built where so it can make sense
+# say what is being built where so it can make sense .....
 
 
 
