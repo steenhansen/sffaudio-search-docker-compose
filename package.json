@@ -4,7 +4,7 @@
   "description": "SFFaudio Podcast Graph",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --reporter mocha-teamcity-reporter test"
   },
   "keywords": [],
   "author": "Steen Hansen <steen_hansen@yahoo.com> (https://www.jerkersearcher.com/)",
