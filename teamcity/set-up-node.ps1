@@ -1,9 +1,20 @@
 echo 'set-up-node.ps1 start'
 
+
+
+# say what is being built where so it can make sense
+
+
+
 # N.B. This file must be run from podcast-neo4j directory. NOT teamcity directory
 
 
 #  /podcast-neo4j/ .\teamcity/setup-up-node.ps1
+
+
+
+
+
 
 # run in teamcity then below === teamcity
 # testing runs in podcast-neo4j === podcast-neo4j

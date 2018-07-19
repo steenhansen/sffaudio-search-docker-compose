@@ -4,7 +4,7 @@
   "description": "SFFaudio Podcast Graph",
   "main": "index.js",
   "scripts": {
-    "test": "node test/testrunner.js"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "Steen Hansen <steen_hansen@yahoo.com> (https://www.jerkersearcher.com/)",
@@ -15,6 +15,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "4.16.3",
+    "mocha-teamcity-reporter": "2.4.0",
     "neo4j-driver": "1.6.2"
+  },
+  "devDependencies": {
+    "mocha": "5.2.0"
   }
 }
