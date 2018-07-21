@@ -19,6 +19,7 @@ console.log('team city should see this... s #48');
     C:\Users\admin\Documents\GitHub\_real_sffaudio_\sffaudio\test\call-tests.js
 
 */
+require('./rootAppRequire')
 const setCheckHerokuEnvVars = require('./heroku-config-vars');
 const CONFIG_ENV_KEYS = ['PORT', 'GRAPHENEDB_BOLT_URL', 'GRAPHENEDB_BOLT_USER', 'GRAPHENEDB_BOLT_PASSWORD'];
 let env_filename = process.argv[2]
@@ -31,16 +32,17 @@ setCheckHerokuEnvVars(CONFIG_ENV_KEYS, env_filename);
 const neo4jSession = require('./neo4j-session');
 var session = neo4jSession('v1');                      // this should be a local constant, NOT process.env, as never changes
 
+var getPodcastData=rootAppRequire('mediaServer/read-podcast-data')
+getPodcastData(session);
 
 
-session
-    .run("CREATE (n {hello: 'World'}) RETURN n.name")
-    .then(function(result) {
-        result.records.forEach(function(record) {
+//CREATE (n:Person { name: 'Andres', title: 'Developer' })
+session.run("CREATE (n {hello: 'World'}) RETURN n.name")
+       .then(function(result) {
+           result.records.forEach(function(record) {
             console.log(record)
-        });
-
-        session.close();
+            });
+         //  session.close();
     })
     .catch(function(error) {
         console.log(error);
