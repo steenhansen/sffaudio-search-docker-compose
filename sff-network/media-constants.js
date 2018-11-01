@@ -64,8 +64,8 @@ var media_constants = {
 
 	POST_LINK: "http://www.sffaudio.com/", 
 
-	MEDIA_LINK_DIR: "http://www.sffaudio.com/podcasts/", 
-	PODCAST_LINK: "http://www.sffaudio.com/?p=", 
+	MEDIA_LINK_DIR: "https://www.sffaudio.com/podcasts/", 
+	PODCAST_LINK: "https://www.sffaudio.com/?p=", 
 
 //	NODE_SERVER: "http://localhost/node/", 
 	NODE_SERVER: "https://sffaudio-test-neo4j.herokuapp.com/", 
