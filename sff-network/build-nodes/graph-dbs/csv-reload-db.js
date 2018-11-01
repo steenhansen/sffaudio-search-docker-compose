@@ -21,6 +21,7 @@ var VersionRepository2 = rootAppRequire('sff-network/build-nodes/graph-dbs/versi
 function massage_data(new_db_version) {
 
 
+
     return data_repository.getSortedAuthors()
     .then((sorted_authors)=>cached_authors.makeCache(sorted_authors, new_db_version))
         .then(()=>cached_authors.deleteCache(new_db_version - 1))
@@ -29,13 +30,12 @@ function massage_data(new_db_version) {
         .then(()=>cached_books.deleteCache(new_db_version - 1))
         .then(()=>VersionRepository2.deleteUnused())
         .then((db_version_counts)=> {
-        
-                console.log('Graph DB version : ', new_db_version);
-                console.log('Graph DB records : ', db_version_counts);
-                process.exit();
+                return new_db_version;
+              //  console.log('Graph DB version : ', new_db_version);
+               // console.log('Graph DB records : ', db_version_counts);
+                //process.exit();
             }
         )
-
 }
 
 module.exports = massage_data;

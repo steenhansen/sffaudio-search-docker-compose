@@ -238,6 +238,18 @@ app.get('/widget', function (req, res) {
     })
 })
 
+app.get('/load', function (req, res) {
+    console.log('servering load')
+    
+     var url_update = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-url-db.js');
+    url_update()
+            .then(
+        //       (widget_html)=> console.log(widget_html)
+            (new_db_version)=> res.send(new_db_version)
+            
+            );
+})
+
 // http://localhost:5000/
 app.get('/', function (req, res) {
     console.log('servering /')
