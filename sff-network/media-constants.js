@@ -67,7 +67,8 @@ var media_constants = {
 	MEDIA_LINK_DIR: "http://www.sffaudio.com/podcasts/", 
 	PODCAST_LINK: "http://www.sffaudio.com/?p=", 
 
-	NODE_SERVER: "http://localhost/node/", 
+//	NODE_SERVER: "http://localhost/node/", 
+	NODE_SERVER: "https://sffaudio-test-neo4j.herokuapp.com/", 
 
   RSD_GOOGLE_DATA: "https://docs.google.com/spreadsheets/d/1VFMgWy6wmTkFIpeNW-NkZdWmpz5iZcuULgMpjn8_QgU/export?format=tsv",
     RSD_GOOGLE_VARIABLES: "https://docs.google.com/spreadsheets/d/19SV8Dk5yc49gMBoUVSE6aGOigdTWJ0cgggFo3AdQl6Y/export?format=tsv&gid=1799638635",       // test rsd
