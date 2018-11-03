@@ -8,9 +8,15 @@ function setHerokuProcessEnvVars(windows_env_filename) {
     if (!windows_env_filename.includes('../')) {
         console.log('Warning a config file inside program folder ' + windows_env_filename);
     }
+    
+    clog('aa', fromAppRoot(windows_env_filename))
+    clog('ddd', fromAppRoot("../" +windows_env_filename))
+
+    var cv2 = fromAppRoot("../" +windows_env_filename);
 
 //	let config_vars = require(windows_env_filename);
-    let config_vars = require("../" + windows_env_filename);
+//    let config_vars = require("../" + windows_env_filename);
+    let config_vars = require(cv2);
 
     for (const config_key in config_vars) {
         const config_value = config_vars[config_key];

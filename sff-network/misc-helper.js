@@ -1,3 +1,5 @@
+var request = require('request');
+
 function theLastNameFirst(full_name, split_char) {
     var name_trimmed = full_name.trim();
     var aka_brackets = name_trimmed.split(' (');
@@ -31,4 +33,24 @@ function alphaUnderscore(book_or_author) {
     return lower_underscored;
 }
 
-module.exports = {theLastNameFirst, spacesToUnderscore, stripToLower, alphaUnderscore};
+
+
+function getRedirects(a_node, field_name) {
+    return new Promise(function (fulfill, reject) {
+        request.get({
+            url: a_node[field_name],
+            method: "HEAD",
+            headers: {}
+        }, function (error, response, body) {
+            if (error) {
+                reject(error)
+            }
+            var node_id = a_node.id
+            var end_redirect_url = response.request.uri.href;
+            fulfill({end_redirect_url, node_id, field_name})
+        })
+    })
+
+}
+
+module.exports = {theLastNameFirst, spacesToUnderscore, stripToLower, alphaUnderscore, getRedirects};

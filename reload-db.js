@@ -13,6 +13,17 @@ node reload-db local-default-config-env.js /sff-network/build-nodes/csv-data/pkd
 
 node reload-db /sff-network/build-nodes/csv-data/full-csv-data/  
 
+
+
+// use graphenedb with test data
+    
+    
+    node reload-db test-config-env.js /sff-network/build-nodes/csv-data/pkd-plus-2-authors/
+    
+    
+    
+    node web-server test-config-env.js
+
  */
 
 function environmentCvsArgv(process_argv){
@@ -40,6 +51,7 @@ const setCheckHerokuEnvVars = rootAppRequire('sff-network/heroku-config-vars');
 const CONFIG_ENV_KEYS = ['PORT', 'GRAPHENEDB_BOLT_URL', 'GRAPHENEDB_BOLT_USER', 'GRAPHENEDB_BOLT_PASSWORD'];
 let [environment_file, csv_directory] = environmentCvsArgv(process.argv);
 
+clog('ffffffff', environment_file, csv_directory)
 
 setCheckHerokuEnvVars(CONFIG_ENV_KEYS, environment_file);
 
@@ -47,7 +59,7 @@ if (csv_directory!=='no_csv_dir'){
      var csv_update = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-file-db.js')(csv_directory);
      csv_update();
 }else{
-    var url_update = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-url-db.js');
+    var url_update = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-url-db.js')(csv_directory);
     url_update();
 }
 

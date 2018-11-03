@@ -1,0 +1,5 @@
+
+
+
+
+set up CORS at digital ocean

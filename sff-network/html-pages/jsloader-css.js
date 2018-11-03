@@ -18,7 +18,7 @@ const history_state = rootAppRequire('sff-network/html-pages/history-state')(nod
 
 
 
-    const popup_pdf = rootAppRequire('sff-network/show-nodes/media-nodes/popup-pdf')(process.env.DEVELOP_USE_PROXIES);
+    const popup_pdf = rootAppRequire('sff-network/show-nodes/media-nodes/popup-pdf')();
     const popup_podcast = rootAppRequire('sff-network/show-nodes/media-nodes/popup-podcast')('3466666');
     const popup_rsd = rootAppRequire('sff-network/show-nodes/media-nodes/popup-rsd')('23423423')
     const popup_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup-post')('9998988');

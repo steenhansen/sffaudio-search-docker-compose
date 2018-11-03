@@ -9,7 +9,11 @@ module.exports = class BuildRepository {
         this.quality_author_count = 0;
         this.quality_book_count = 0;
     }
-
+// deleteEverything
+    deleteAll() {
+        var delete_all_sql = 'MATCH (n) DETACH DELETE n'
+        return this.addVersionSql(delete_all_sql, {});
+    }
 
     insertAPdf(new_info, new_link, book_title, under_title, strip_1_author, strip_2_author) {
         var sql = `WITH {db_version} AS v_db_version

@@ -1,17 +1,13 @@
-module.exports = function (develop_use_proxies) {
-    //   process.env.DEVELOP_USE_PROXIES
+module.exports = function () {
     var load_css_external = `
     
 window.sff_pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
 
     var my = {
-        develop_use_proxies: ${develop_use_proxies},
         pdf_proxy_url: pdf_proxy_url,
         canvas_id: canvas_id,
         pdf_canvas_height: '0px',
         pdf_js_lib: window['pdfjs-dist/build/pdf'],
-        pdf_url: '',
-        proxied_pdf: '',
         pdf_document: '',
         current_page: 0,
         last_page: 0
@@ -25,24 +21,14 @@ window.sff_pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
 
     my.loadPdf = function (pdf_url, book_title, label,strip_author, under_title) {
         sff_history_state.pushBook(strip_author, under_title);
-        //console.log('my.loadPdf ==', strip_author, under_title);
         sff_helpers.setDisplay("media--title", 'block');
         my.clearCanvas(my.canvas_id);
         sff_helpers.setDisplay(my.canvas_id, 'block');
         document.getElementById('close--icon').src = pdf_close_svg;     
         document.getElementById('media--title').innerHTML = book_title + ' - ' + label;
         sff_blur_procs.blockPage('popup--container');
-        my.pdf_url = pdf_url;
-        if (my.develop_use_proxies){
-             my.proxied_pdf = my.pdf_proxy_url + pdf_url;
-        }else{
-                my.proxied_pdf = pdf_url; 
-        }
-        
-        //console.log('ddddddddawr42343', pdf_url);
-        
         sff_helpers.setDisplay('pdf--loading', 'block');
-        my.pdf_js_lib.getDocument(my.proxied_pdf)
+        my.pdf_js_lib.getDocument(pdf_url)
             .then(function (loaded_pdf) {
                 my.pdf_document = loaded_pdf;
                 my.last_page = loaded_pdf.numPages;
@@ -52,11 +38,11 @@ window.sff_pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
             }).catch(function (e) {
                 var error_name = e.name;
                 if (error_name === "MissingPDFException") {
-                    console.log('Missing PDF :', my.proxied_pdf);
+                    console.log('Missing PDF :', pdf_url);
                 } else if (error_name = "UnknownErrorException") {
-                    console.log('CORS Access-Control-Allow-Origin missing :', my.proxied_pdf);
+                    console.log('CORS Access-Control-Allow-Origin missing :', pdf_url);
                 } else {
-                    console.log('Unknown PDF error :', my.proxied_pdf, e)
+                    console.log('Unknown PDF error :', pdf_url, e)
                 }
         })
     }

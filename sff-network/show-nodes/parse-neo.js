@@ -63,8 +63,20 @@ module.exports = function (graph_repository) {
               delete this.nodes_2string['EMPTY_ICON']
             }
             let nodes_string = Object.values(this.nodes_2string)   /// strip_author == ok??????????
-            var book_data = BookData.setUpBook2(strip_author, nodes_string)
-            return book_data;
+           // return BookData.showBook(strip_author, nodes_string)
+                
+                clog('getBookGraph start')
+           return BookData.showBook(strip_author, nodes_string)
+                .then ( (data)=>{
+                
+                clog('getBookGraph done')
+                return data
+                });
+        //    return book_data;
+
+
+//            var book_data = BookData.showBook(strip_author, nodes_string)
+  //          return book_data;
         }
 
 

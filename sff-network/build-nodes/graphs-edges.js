@@ -10,28 +10,16 @@
     var author_build = new AuthorBuild();
     var book_build = rootAppRequire('./sff-network/build-nodes/media-types/book-build')(build_repository)
     var post_build = rootAppRequire('./sff-network/build-nodes/media-types/post-build')(build_repository)
-    var unlisted_author_posts = rootAppRequire('./sff-network/build-nodes/authors-to-posts');                        /// qbert ** 3
-
-// clog('-----------------------------------------')
-// clog(author_book_obj)
-// clog('::::::::::::::::::::::::::::::::::::::::::')
-// clog(unlisted_author_posts)
-//
-// clog('++++++++++++++++++++++++++++++++++++++++++')
 
     let {book_list, author_list, story_wikis, author_wikis, podcast_info, pdf_info, rsd_info} = media_items;
     var book_nodes = book_build.addBooksNew(book_list);
     var author_nodes = author_build.addAuthors(author_list);
     var author_wiki_nodes = author_build.addAuthorWiki(author_wikis);
     var story_wiki_nodes = book_build.addStoryWiki(story_wikis);
-    var added_authors = author_build.addedAuthors();
-    var post_nodes = post_build.addPosts(unlisted_author_posts, added_authors, author_book_obj);
-
+    var post_nodes = post_build.addPosts(author_book_obj);
     var add_pdf_page = book_build.addPdfsPage();
-
     var add_rsd_page = rsd_build.addRsdsPage();
     var add_podcasts_page = podcast_build.addPodcastsPage();
-
 
     var first_promises = [add_pdf_page, add_rsd_page, add_podcasts_page, book_nodes, author_nodes, author_wiki_nodes, story_wiki_nodes, post_nodes];
    return Promise.all(first_promises).then(

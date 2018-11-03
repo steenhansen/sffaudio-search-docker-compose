@@ -1,27 +1,19 @@
 
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+https://sffaudio-test-neo4j.herokuapp.com/
+
 maybe call the csv should be tsv!!!!!!!
 all parsers are tsv
 //   hey q*bert should be urlTsv or getTsv
 
-
-
-
-
-
-problem is that relod-url-db uses
-    media_constants.POST_GOOGLE_DATA
-AND we need the same thing in reload-file-db.js
-
-authors-to-posts.js is now used ...
-
-function getCsv(the_information) {   //   urlCsv
-  var parser_tsv = di_factory.ParserTsvUrlCreate(the_information.google_media_tab);
-                                                https://docs.google.com/spreadsheets/d/1C18lpo5-Dj4G0tGfq1AlodPcM4AX_6ITUL3mjsTQ3b0/edit#gid=0
- 
- 
- 
- 
 
 
 start php/apache 

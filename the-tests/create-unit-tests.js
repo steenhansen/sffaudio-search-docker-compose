@@ -63,7 +63,7 @@ function saveTestData(str_items, dir_name, params_arr = []) {
 
 function saveBookTestData(graph_db, strip_author, under_title) {
     var book_node = rootAppRequire('sff-network/node-types/book-node')(graph_db)
-    return book_node.sendBook(strip_author, under_title)
+    return book_node.sendBooksOfAuthor(strip_author, under_title)
         .then(function (nodes_and_edges) {
             let {graph_collection, nodes_string, edges_string} = nodes_and_edges
             var str_collection = JSON.stringify(graph_collection[0], null, ' ')

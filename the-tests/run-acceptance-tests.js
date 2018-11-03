@@ -10,7 +10,7 @@ var author_node = rootAppRequire('sff-network/node-types/author-node')(graph_db)
 var book_node = rootAppRequire('sff-network/node-types/book-node')(graph_db)
 
 
-var test_1 = book_node.sendBook(PHILIP_K_DICK_AUTHOR, ADJUSTMENT_TEAM_BOOK)
+var test_1 = book_node.sendBooksOfAuthor(PHILIP_K_DICK_AUTHOR, ADJUSTMENT_TEAM_BOOK)
     .then(function (nodes_and_edges) {
         let {nodes_string, edges_string} =nodes_and_edges;      
         var nodes_and_edges_str = misc_functions.concatStrArrays(nodes_string, edges_string);

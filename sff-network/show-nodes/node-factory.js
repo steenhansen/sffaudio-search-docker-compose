@@ -32,6 +32,10 @@ module.exports = function (data_repository) {
         } else if (node_group === 'L_PDF') {
             const {pdf_title, book_title, under_title, pdf_url, strip_1_author, strip_2_author} = media_node.properties;
             new_node = new PdfNode(node_id, db_version, pdf_title, book_title, under_title, pdf_url, strip_1_author, strip_2_author);
+            
+            console.log('node factory, new_node', new_node)
+            
+            
         } else if (node_group === 'L_PODCAST') {
             const {under_title, podcast_title, podcast_url,podcast_id, strip_1_author} = media_node.properties;
             new_node = new PodcastNode(node_id, db_version, podcast_title, podcast_url, podcast_id, under_title, strip_1_author);

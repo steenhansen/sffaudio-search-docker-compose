@@ -7,6 +7,8 @@
  node web-server 
 
 
+node web-server ./test-config-env.js
+
  http://localhost:5000/author/book/philip_k_dick/adjustment_team
 
  */
@@ -157,7 +159,7 @@ app.get('/json-proxies/thru-proxy', function (req, res_express) {
 app.get('/author/book/:strip_author/:under_title', function (req, res) {
    console.log('servering /author/book/:strip_author/:under_title')
     let {strip_author, under_title}=req.params
-    book_data.sendBook(strip_author, under_title, ParseNeo)
+    book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo)
         .then(function (nodes_and_edges) {
             let {nodes_object, edges_object} =nodes_and_edges
             var nodes_string = JSON.stringify(nodes_object);
@@ -218,7 +220,7 @@ function authorOrBook(req) {
         var strip_author = misc_helper.alphaUnderscore(random_author);
     }
     if (typeof under_title !== 'undefined') {
-        return book_data.sendBook(strip_author, under_title, ParseNeo);
+        return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
     } else {
         return author_data.sendAuthor(strip_author, ParseNeo);
     }
@@ -249,6 +251,7 @@ app.get('/load', function (req, res) {
             
             );
 })
+
 
 // http://localhost:5000/
 app.get('/', function (req, res) {
