@@ -28,7 +28,7 @@ var media_constants = {
     POST_COLOR:"#019CCD",
     WIKI_COLOR: '#FF7F01',
     
-    // sff_graph_vars.edge_options
+    // sff_vars.graph_vars.edge_options
     EDGE_OPTIONS: {
     edges: {
         color: {

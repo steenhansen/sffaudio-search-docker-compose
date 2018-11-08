@@ -34,23 +34,50 @@ function alphaUnderscore(book_or_author) {
 }
 
 
-
 function getRedirects(a_node, field_name) {
     return new Promise(function (fulfill, reject) {
-        request.get({
-            url: a_node[field_name],
-            method: "HEAD",
-            headers: {}
-        }, function (error, response, body) {
-            if (error) {
-                reject(error)
-            }
-            var node_id = a_node.id
-            var end_redirect_url = response.request.uri.href;
+        var get_url = a_node[field_name];
+         var node_id = a_node.id;
+        if (get_url === '') {
+            var end_redirect_url ='';
             fulfill({end_redirect_url, node_id, field_name})
-        })
+        } else {
+            request.get({
+                url: get_url,
+                method: "HEAD",
+                headers: {}
+            }, function (error, response, body) {
+                if (error) {
+                    reject(error)
+                }
+                var end_redirect_url = response.request.uri.href;
+                fulfill({end_redirect_url, node_id, field_name})
+            })
+        }
     })
 
 }
 
-module.exports = {theLastNameFirst, spacesToUnderscore, stripToLower, alphaUnderscore, getRedirects};
+
+function resolveRedirects(get_url) {
+    console.log('resolveRedirects ', get_url)
+
+    return new Promise(function (fulfill, reject) {
+
+            request.get({
+                url: get_url,
+                method: "HEAD",
+                headers: {}
+            }, function (error, response, body) {
+                if (error) {
+                    reject(error)
+                }
+                var end_redirect_url = response.request.uri.href;
+                console.log('resolveRedirects', end_redirect_url)
+                fulfill(end_redirect_url)
+            })
+ })
+}
+
+
+module.exports = {theLastNameFirst, spacesToUnderscore, stripToLower, alphaUnderscore, getRedirects, resolveRedirects};

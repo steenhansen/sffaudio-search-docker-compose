@@ -101,9 +101,9 @@ class MediaShow {
         let icon_pdf = svg_icons.pdf_icon(ICON_COLORS.L_PDF);
         let icon_podcast = svg_icons.podcast_icon(ICON_COLORS.L_PODCAST);
 
-        let icon_rsd_solid = svg_icons.rsd_icon('#fffeff');  
+        let icon_rsd_video = svg_icons.rsd_video(media_constants.RSD_COLOR);  
   
-
+  let icon_rsd_solid = svg_icons.rsd_icon('#fffeff');  
 
         const icons_string = `{ 
     L_VERSION: ${empty_set},
@@ -127,6 +127,8 @@ class MediaShow {
             L_PODCAST: ${icon_podcast},
               
               L_RSD: ${icon_rsd_solid},
+              
+              L_RSD_VIDEO: ${icon_rsd_video},
               
               
               

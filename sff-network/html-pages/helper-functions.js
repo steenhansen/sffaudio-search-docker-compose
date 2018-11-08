@@ -1,7 +1,7 @@
 
 var sff_helpers_js = `
       <script>
-             window.sff_helpers = (function () {
+             sff_vars.helpers = (function () {
             
                 var my = {};
                 

@@ -24,7 +24,7 @@ var edge_options = JSON.stringify(edge_options_json);
 
     var media_html = `
 <script>
-    window.sff_graph_vars={  
+    sff_vars.graph_vars={  
         graph_id:"${graph_id}",
         nodes_string:${nodes_string},
         edges_string:${edges_string},
@@ -34,13 +34,14 @@ var edge_options = JSON.stringify(edge_options_json);
         node_icons:${icons_string}  
 }    
 
-window.sff_pdf_vars={  
+sff_vars.pdf_vars={  
         pdf_proxy_url:"http://localhost:5000/pdf-proxies/pdf-proxy?absolute_url=",
         canvas_id:'pdf--canvas',
         pdf_scale: 1.5 
 }    
 
-window.sff_post_vars={  
+// delete me q*bert
+sff_vars.post_vars={  
         post_proxy:"http://localhost:5000/post-proxy?absolute_url="
 }    
 

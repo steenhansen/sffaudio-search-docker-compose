@@ -1,7 +1,44 @@
 
-fix load
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+
+
+http://localhost:5000/?book=beyond_lies_the_wub&view=pdf
+
+
+
+2 /?book=beyond_the_web&show=rsd
+
+///////////////////////////////
  
  
+   pdf_proxy_url:"http://localhost:5000/pdf-proxies/pdf-proxy?absolute_url=",
+        canvas_id:'pdf--canvas',
+        pdf_scale: 1.5 
+}    
+
+sff_vars.post_vars={  
+        post_proxy:"http://localhost:5000/post-proxy?absolute_url="
+        
+/////////////////////////////////////////        
  
  
  
@@ -9,12 +46,6 @@ fix load
  
  
 https://sffaudio-test-neo4j.herokuapp.com/
-
-maybe call the csv should be tsv!!!!!!!
-all parsers are tsv
-//   hey q*bert should be urlTsv or getTsv
-
-
 
 start php/apache 
     for http://www.sff_test.com/
@@ -37,7 +68,7 @@ http://www.sff_test.com/?author=ray_bradbury
 
 these two::
     popup-podcast.js
-        needs a  sff_history_state.pushBook(strip_author, under_title);
+        needs a  sff_vars.history_state.pushBook(strip_author, under_title);
             we need the book title in the podcast info
             
                          } else if (node_group === 'L_PODCAST') {
@@ -339,7 +370,7 @@ var load_author_json_proxy = '/proxies/load_author.php'
 my.loadAuthorNew=function(strip_author) {
     if (selectMedia(strip_author)) {
         const author_json = load_author_json_proxy + '?strip_author=' + strip_author;
-        network.loadNew(author_json);
+        network.loadAuthorOrBook(author_json);
     }
 }
 

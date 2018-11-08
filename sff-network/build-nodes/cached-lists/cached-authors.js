@@ -64,9 +64,9 @@ class CachedAuthors extends CachedBooksAuthors {
 
 </style>
 <script>
-window.sff__a = sff_graph_procs.loadAuthorNew;
-window.sff__v = sff_helpers.setVisible;
-window.sff__h = sff_helpers.setHidden; 
+window.sff__a = sff_vars.graph_procs.loadAuthorNew;
+window.sff__v = sff_vars.helpers.setVisible;
+window.sff__h = sff_vars.helpers.setHidden; 
 </script>
 
 `;

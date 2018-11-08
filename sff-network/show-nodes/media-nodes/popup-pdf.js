@@ -1,7 +1,7 @@
 module.exports = function () {
     var load_css_external = `
     
-window.sff_pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
+sff_vars.pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
 
     var my = {
         pdf_proxy_url: pdf_proxy_url,
@@ -19,22 +19,29 @@ window.sff_pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
         pdf_context.clearRect(0, 0, pdf_canvas.width, pdf_canvas.height);
     }
 
-    my.loadPdf = function (pdf_url, book_title, label,strip_author, under_title) {
-        sff_history_state.pushBook(strip_author, under_title);
-        sff_helpers.setDisplay("media--title", 'block');
+    my.setupPdf= function (book_title, label,strip_author, under_title){   /// make it more clear in loadPdf what we are doing
+        sff_vars.helpers.setDisplay("video--container", 'none');
+        sff_vars.history_state.pushBook(strip_author, under_title);
+        sff_vars.helpers.setDisplay("media--title", 'block');
         my.clearCanvas(my.canvas_id);
-        sff_helpers.setDisplay(my.canvas_id, 'block');
+        sff_vars.helpers.setDisplay(my.canvas_id, 'block');
         document.getElementById('close--icon').src = pdf_close_svg;     
         document.getElementById('media--title').innerHTML = book_title + ' - ' + label;
-        sff_blur_procs.blockPage('popup--container');
-        sff_helpers.setDisplay('pdf--loading', 'block');
-        my.pdf_js_lib.getDocument(pdf_url)
+        sff_vars.blur_procs.blockPage('popup--container');
+        sff_vars.helpers.setDisplay('pdf--loading', 'block');
+    }
+
+
+ my.readPdf = function (pdf_url) {
+     fetch(pdf_url)    
+        .then( function(end_pdf_url){
+        my.pdf_js_lib.getDocument(end_pdf_url)
             .then(function (loaded_pdf) {
                 my.pdf_document = loaded_pdf;
                 my.last_page = loaded_pdf.numPages;
                 my.loadOnePage(1);
-                sff_blur_procs.postPdfWidth('pdf--controller');
-                sff_helpers.setDisplay('pdf--controller', 'block');
+                sff_vars.blur_procs.postPdfWidth('pdf--controller');
+                sff_vars.helpers.setDisplay('pdf--controller', 'block');
             }).catch(function (e) {
                 var error_name = e.name;
                 if (error_name === "MissingPDFException") {
@@ -45,6 +52,26 @@ window.sff_pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
                     console.log('Unknown PDF error :', pdf_url, e)
                 }
         })
+        })
+    }
+
+    my.loadPdf = function (pdf_url, book_title, label,strip_author, under_title) {
+        my.setupPdf(book_title, label,strip_author, under_title);
+        if (window.location.hostname==='www.sffaudio.com'){
+            // no cors worry
+            my.readPdf(pdf_url);
+        }else{
+               var url_type3 = sff_vars.ajax_url + sff_vars.SFF_RESOLVE_PDF + pdf_url;
+               fetch(url_type3)    
+                    .then( function(response){
+                        var text_promise = response.text();
+                         return text_promise;
+                    })
+                    .then( function(resolved_pdf_url) {
+                         my.readPdf(resolved_pdf_url);
+                    });
+        }
+
     }
 
     my.changePage = function (page_change) {
@@ -78,7 +105,7 @@ window.sff_pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
         document.getElementById("popup--container").style.height = pop_cont_height + 'px';
         document.getElementById("pdf--canvas").style.top = pager_height + pager_top + 'px'
 
-         sff_helpers.setDisplay('pdf--loading', 'none');
+         sff_vars.helpers.setDisplay('pdf--loading', 'none');
     }
 
     my.renderOnePage = function (pdf_page) {
@@ -112,9 +139,9 @@ window.sff_pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
     };
     return my;
 
-}(sff_pdf_vars.pdf_proxy_url,
-    sff_pdf_vars.canvas_id,
-    sff_graph_vars.node_icons.I_CLOSE_PDF.image
+}(sff_vars.pdf_vars.pdf_proxy_url,
+    sff_vars.pdf_vars.canvas_id,
+    sff_vars.graph_vars.node_icons.I_CLOSE_PDF.image
 )) 
 
 

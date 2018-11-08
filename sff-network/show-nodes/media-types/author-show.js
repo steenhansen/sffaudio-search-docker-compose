@@ -51,8 +51,6 @@ module.exports = function (data_repository) {
             return data_repository.getAuthorNodes(strip_author)
                 .then(function (graph_collection) {
                     var parse_neo = new ParseNeo(graph_collection, 'author');
-                    
-                       
                        
                     var nodes_object = parse_neo.getAuthorGraph(strip_author);
                 

@@ -427,6 +427,7 @@ function allPdfs(w_color) {
        return iconShape(svg_all);
    }
    
+   
 
 //http://localhost:5000/?book=beyond_lies_the_wub
 function rsd_icon(w_color) {
@@ -467,6 +468,48 @@ function rsd_icon(w_color) {
 
     return iconShape(svg_all);
 }
+
+
+function rsd_video(w_color) {
+
+
+
+    var svg_all = `<svg width="601" height="624" xmlns="http://www.w3.org/2000/svg">
+
+ <metadata id="metadata1700">image/svg+xmlimage/svg+xmlimage/svg+xml</metadata>
+ <g display="inline" id="g3751">
+  <title>Layer 1</title>
+  <g display="inline" id="svg_9" stroke="null">
+   <g id="svg_10" stroke="null">
+    <path d="m10.48937,63.26275c0,-22.0918 17.9082,-40 40,-40l500,0c22.0918,0 40,17.9082 40,40l0,500c0,22.0918 -17.9082,40 -40,40l-500,0c-22.0918,0 -40,-17.9082 -40,-40l0,-500z" id="svg_11" stroke="null"/>
+   </g>
+  </g>
+  <g display="inline" id="svg_14" stroke="null">
+   <path fill="#ffffff" id="svg_15" d="m42.48938,78.58094c0,-12.87783 10.43944,-23.31818 23.31818,-23.31818l466.36362,0c12.87783,0 23.31818,10.44035 23.31818,23.31818l0,466.36363c0,12.87874 -10.44035,23.31818 -23.31818,23.31818l-466.36362,0c-12.87874,0 -23.31818,-10.43944 -23.31818,-23.31818l0,-466.36363z" stroke="null"/>
+   <path fill="#ffffff" id="svg_16" d="m298.98937,311.76275" stroke="null"/>
+  </g>
+ </g>
+ <g display="inline" id="g3758" transform="matrix(1.416492,0,0,1.416492,-139.29265,-61.398739) ">
+  <title>Layer 1</title>
+  <g id="g5360" stroke="null">
+   <g transform="matrix(9.6803165,0,0,9.6803165,796.11203,-1375.3257) " id="g4167" stroke="null">
+    <path fill="${w_color}" fill-rule="nonzero" d="m-50.43373,156.87287c0,0 -10.71028,0.00001 -13.39842,0.69851c-1.43932,0.40216 -2.62449,1.58734 -3.02666,3.04783c-0.6985,2.68814 -0.69851,8.25506 -0.69851,8.25506c0,0 0.00002,5.58805 0.69851,8.23388c0.40216,1.46047 1.56617,2.62449 3.02666,3.02666c2.70931,0.71966 13.39842,0.71969 13.39842,0.71969c0,0 10.73152,-0.00001 13.4196,-0.69851c1.4605,-0.40216 2.62448,-1.54502 3.00548,-3.02666c0.71967,-2.667 0.71969,-8.23388 0.71969,-8.23388c0,0 0.02115,-5.58809 -0.71969,-8.27623c-0.381,-1.46049 -1.54498,-2.62448 -3.00548,-3.00548c-2.68808,-0.74083 -13.4196,-0.74086 -13.4196,-0.74086l0,-0.00001zm-3.40784,6.85804l8.91121,5.14336l-8.91121,5.12219l0,-10.26555z" id="path4156" stroke="null"/>
+   </g>
+  </g>
+ </g>
+ <g id="g3817">
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="626" width="603" y="-1" x="-1"/>
+ </g>
+</svg>
+`;
+
+
+
+    return iconShape(svg_all);
+}
+
+
 
 
 
@@ -635,4 +678,4 @@ function podcast_icon(w_color) {
 
 
 module.exports = {first_icon, last_icon, prev_icon, next_icon, close_icon, no_such_book, no_such_author,  allPodcasts, allRsds, allPdfs, wikipedia_icon, author_icon, 
- pdf_icon, post_icon, book_icon, podcast_icon, rsd_icon}
+ pdf_icon, post_icon, book_icon, podcast_icon, rsd_icon, rsd_video}

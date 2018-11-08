@@ -21,6 +21,10 @@ module.exports = function (build_repository) {
             let rsd_books = {};
             let rsd_authors = {};
             for (let rsd_object of rsd_csv) {
+            
+            
+           
+            
                let rsd_pdf_link = rsd_object['pdf link'];          /// rsd_pdf !!!
                 let {full_1_author, full_2_author, strip_1_author, strip_2_author}=MediaBuild.split2Authors(rsd_object['book author']);
                 var rsd_number = rsd_object['episode number'];
@@ -33,7 +37,11 @@ module.exports = function (build_repository) {
                 rsd_authors[strip_2_author] = full_2_author;
 
                 var rsd_link = media_constants.MEDIA_LINK_DIR + rsd_object['file name']
-                var small_rsd = {rsd_number, rsd_post, rsd_description, under_title, rsd_link, rsd_pdf_link};
+                var video_link = rsd_object['video link'];
+                var strip_author = strip_1_author;
+              
+                
+                var small_rsd = {rsd_number, rsd_post, rsd_description, under_title, rsd_link, rsd_pdf_link,video_link,strip_author};
                 rsd_descriptions.push(small_rsd);
             }
             return {rsd_books, rsd_descriptions, rsd_authors};
@@ -43,8 +51,8 @@ module.exports = function (build_repository) {
         static findRsdBooks(rsd_csv) {
             let rsd_books = {};
             for (let rsd_object of rsd_csv) {
-                let {rsd_number, rsd_post, rsd_description, under_title, rsd_link, rsd_pdf_link}=rsd_object;
-                rsd_books[under_title] = {rsd_number, rsd_post, rsd_description, under_title, rsd_link, rsd_pdf_link};
+                let {rsd_number, rsd_post, rsd_description, under_title, rsd_link, rsd_pdf_link,video_link,strip_author}=rsd_object;
+                rsd_books[under_title] = {rsd_number, rsd_post, rsd_description, under_title, rsd_link, rsd_pdf_link,video_link,strip_author};
             }
             return rsd_books;
         }
@@ -53,10 +61,13 @@ module.exports = function (build_repository) {
         static addRsds(rsd_books) {
             var my_promises = [];
             for (let under_title in rsd_books) {
-                let {rsd_number, rsd_post, rsd_description, rsd_link, rsd_pdf_link}  = rsd_books[under_title];
+                let {rsd_number, rsd_post, rsd_description, rsd_link, rsd_pdf_link,video_link, strip_author}  = rsd_books[under_title];
+                
+                 //    clog('fasdf000009', video_link)
+                
                 var rsd_title = 'RSD # ' + rsd_number;
 
-                const rsd_promise = build_repository.insertAnRsd(rsd_title, under_title, rsd_description, rsd_link, rsd_pdf_link);
+                const rsd_promise = build_repository.insertAnRsd(rsd_title, under_title, rsd_description, rsd_link, rsd_pdf_link,video_link, strip_author);
 
 
                 my_promises.push(rsd_promise);

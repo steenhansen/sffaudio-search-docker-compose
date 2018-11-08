@@ -3,7 +3,7 @@ module.exports =  function (server_var) {
 var load_css_external = `
 
 
-window.sff_filter_names = (function (graph_id  ) {
+sff_vars.filter_names = (function (graph_id  ) {
     var my = {
         last_selected_media: '',
          select_colors_or_css_from_server: ${server_var}
@@ -76,15 +76,15 @@ window.sff_filter_names = (function (graph_id  ) {
 
     function showHideFiltered(showing_type) {   // filtered_media / all_media
         if (showing_type === 'all_media') {
-             sff_helpers.setDisplay("all--authors", 'block');
-             sff_helpers.setDisplay("all--books", 'block');
-             sff_helpers.setDisplay('filter--authors', 'none');
-             sff_helpers.setDisplay('filter--books', 'none');
+             sff_vars.helpers.setDisplay("all--authors", 'block');
+             sff_vars.helpers.setDisplay("all--books", 'block');
+             sff_vars.helpers.setDisplay('filter--authors', 'none');
+             sff_vars.helpers.setDisplay('filter--books', 'none');
         } else {
-             sff_helpers.setDisplay("all--authors", 'none');
-             sff_helpers.setDisplay("all--books", 'none');
-             sff_helpers.setDisplay('filter--authors', 'block');
-             sff_helpers.setDisplay('filter--books', 'block');
+             sff_vars.helpers.setDisplay("all--authors", 'none');
+             sff_vars.helpers.setDisplay("all--books", 'none');
+             sff_vars.helpers.setDisplay('filter--authors', 'block');
+             sff_vars.helpers.setDisplay('filter--books', 'block');
         }
     }
 
@@ -121,7 +121,7 @@ window.sff_filter_names = (function (graph_id  ) {
   
     
     return my;
-}(sff_graph_vars.graph_id)) 
+}(sff_vars.graph_vars.graph_id)) 
 
 
 

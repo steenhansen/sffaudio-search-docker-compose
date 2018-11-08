@@ -4,38 +4,52 @@
 
 var popup_blur_js = `
       <script>
-             window.sff_blur_procs = (function (pop_up_id) {
+             sff_vars.blur_procs = (function (pop_up_id) {
             
                 var my = {};
                 
  my.keyDowns = function (event) {
         var key_code = event.keyCode;
         if ( key_code == 27 ) {
-           sff_blur_procs.closePopUp();
+           sff_vars.blur_procs.closePopUp();
         } else  if ( key_code == 37) {
-           sff_pdf_procs.loadOnePage('-');
+           sff_vars.pdf_procs.loadOnePage('-');
         } else  if ( key_code == 39) {
-           sff_pdf_procs.loadOnePage('+');
+           sff_vars.pdf_procs.loadOnePage('+');
         }
   };
                 
                 my.closePopUp = function () {
+                 var search_str = window.location.search;
+                 var author_or_book_views = search_str.split('=');
+                 var name_and_view = author_or_book_views[1];
+                 var author_or_books = name_and_view.split('&');
+                  var author_or_book = author_or_books[0];
+                 if (search_str.indexOf('?author=')>=0){
+                   sff_vars.history_state.replaceAuthor(author_or_book);
+                }else{
+                   sff_vars.history_state.replaceBook('philip_k_dick');
+                }
+                
                  if (window.location.search == '') {
-                    window.history.forward();
+                   console.log('History  forward')
+                   window.history.forward();
                  }
-                   sff_helpers.setDisplay(pop_up_id, 'none');
-                  sff_helpers.setDisplay('media--title', 'none');
-                   sff_helpers.setDisplay('mp3--player', 'none');
-                    sff_helpers.setDisplay('post--container', 'none');
+                   sff_vars.helpers.setDisplay(pop_up_id, 'none');
+                  sff_vars.helpers.setDisplay('media--title', 'none');
+                   sff_vars.helpers.setDisplay('mp3--player', 'none');
+                    sff_vars.helpers.setDisplay('post--container', 'none');
                    document.getElementById('post--container').innerHTML = '';
-                   sff_helpers.setDisplay('pdf--controller', 'none');
-                   sff_helpers.setDisplay('pdf--canvas', 'none');
-                    sff_pdf_procs.clearCanvas('pdf--canvas');
-                   sff_helpers.setDisplay('pdf--loading', 'none');
+                   sff_vars.helpers.setDisplay('pdf--controller', 'none');
+                   sff_vars.helpers.setDisplay('pdf--canvas', 'none');
+                    sff_vars.pdf_procs.clearCanvas('pdf--canvas');
+                   sff_vars.helpers.setDisplay('pdf--loading', 'none');
+                   sff_vars.helpers.setDisplay('video--container', 'none');
+                    document.getElementById('video--player').src ='';
                 }
 
                 my.postPdfWidth = function(post_pdf_container){
-                     sff_helpers.setDisplay(post_pdf_container, 'block');
+                     sff_vars.helpers.setDisplay(post_pdf_container, 'block');
                     var post_container = document.getElementById(post_pdf_container);
                     var screen_width =  window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
                     post_container.style.left = screen_width * 0.05 + "px";
@@ -44,7 +58,7 @@ var popup_blur_js = `
 
                 my.mp3load = function (goto_url) {
                     var mp3_player = document.getElementById("mp3--player");
-                     sff_helpers.setDisplay("mp3--player", 'block');
+                     sff_vars.helpers.setDisplay("mp3--player", 'block');
                     mp3_player.src = goto_url;
                     mp3_player.load();
                     var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -64,8 +78,8 @@ var popup_blur_js = `
                     document.getElementById(container_id).style.width = window.screen.width+'px';
                     var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
                     document.getElementById('close--icon').style.left = (screen_width*0.9)+'px';
-                    sff_helpers.setDisplay(container_id, 'block');
-                    sff_helpers.setDisplay('close--icon', 'block');
+                    sff_vars.helpers.setDisplay(container_id, 'block');
+                    sff_vars.helpers.setDisplay('close--icon', 'block');
                 }
            
                 return my;
@@ -88,7 +102,7 @@ var popup_blur_html = `
     
 
 
-    <div id="close--enclosure" onclick="sff_blur_procs.closePopUp();">
+    <div id="close--enclosure" onclick="sff_vars.blur_procs.closePopUp();">
         <img id="close--icon" src="" alt="Smiley face">
     </div>
 
@@ -106,22 +120,27 @@ var popup_blur_html = `
          style="  ">
     </div>
 
+   <div id="video--container" style=" "> 
+         <iframe id="video--player" type="text/html" width="640" height="360" src=""
+  frameborder="0"></iframe>
+  
+    </div>
 
 <div id="pdf--controller" >
 
-    <div  onclick="sff_pdf_procs.loadOnePage(1);" class="control--boxes" >
+    <div  onclick="sff_vars.pdf_procs.loadOnePage(1);" class="control--boxes" >
         <img id="first--icon" src="${first_page}"  class="control--symbols">
     </div>
 
-    <div  onclick="sff_pdf_procs.loadOnePage('-');" class="control--boxes" >
+    <div  onclick="sff_vars.pdf_procs.loadOnePage('-');" class="control--boxes" >
         <img id="first--icon"  src="${prev_page}" class="control--symbols">
   </div>
 
-    <div  onclick="sff_pdf_procs.loadOnePage('+');" class="control--boxes">
+    <div  onclick="sff_vars.pdf_procs.loadOnePage('+');" class="control--boxes">
         <img id="first--icon" src="${next_page}"  class="control--symbols">
   </div>
 
-    <div  onclick="sff_pdf_procs.loadOnePage(0);" class="control--boxes" >
+    <div  onclick="sff_vars.pdf_procs.loadOnePage(0);" class="control--boxes" >
         <img id="first--icon"  src="${last_page}" class="control--symbols">
           </div>
           
@@ -141,7 +160,7 @@ var popup_blur_html = `
          
     `;
 
-// sff_graph_vars.node_icons.I_CLOSE_PDF.image
+// sff_vars.graph_vars.node_icons.I_CLOSE_PDF.image
 
 
 
@@ -273,11 +292,15 @@ background-color:white;
 }
 
         
-        
-
+#video--container{
+  position:absolute; 
+  top:100px;
+   width:100%; 
+   text-align:center;
+}
     </style>`;
 
-pop_up_js_html_css = popup_blur_js + popup_blur_html + popup_blur_css;
+pop_up_js_html_css =  popup_blur_css+  popup_blur_html + popup_blur_js ;
 
 
 module.exports = pop_up_js_html_css;

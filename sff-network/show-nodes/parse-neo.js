@@ -1,7 +1,7 @@
+var VersionShow = rootAppRequire('sff-network/show-nodes/media-types/version-show')
 
 
 
-   var VersionShow = rootAppRequire('sff-network/show-nodes/media-types/version-show')
 
 
 function sortByValues(node_hash) {
@@ -44,8 +44,8 @@ module.exports = function (graph_repository) {
 
         getAuthorGraph(strip_author) {
             let nodes_2string = this.nodes_2string
-            if (Object.keys(nodes_2string).length>1) {
-              delete this.nodes_2string['EMPTY_ICON']
+            if (Object.keys(nodes_2string).length > 1) {
+                delete this.nodes_2string['EMPTY_ICON']
             }
             const ordered = {};
             Object.keys(nodes_2string).sort().forEach(function (key) {           // sort the authors!!
@@ -53,30 +53,18 @@ module.exports = function (graph_repository) {
             });
 
             this.books_posts = ordered;         /// this.book_posts ==> this.books_posts_wikiAuthors
-            var author_data = AuthorNode.setUpAuthor2(strip_author, ordered,800,800)
+            var author_data = AuthorNode.setUpAuthor2(strip_author, ordered, 800, 800)
             return author_data;
         }
 
 
         getBookGraph(strip_author) {
-            if (Object.keys(this.nodes_2string).length>1) {
-              delete this.nodes_2string['EMPTY_ICON']
+            if (Object.keys(this.nodes_2string).length > 1) {
+                delete this.nodes_2string['EMPTY_ICON']
             }
             let nodes_string = Object.values(this.nodes_2string)   /// strip_author == ok??????????
-           // return BookData.showBook(strip_author, nodes_string)
-                
-                clog('getBookGraph start')
-           return BookData.showBook(strip_author, nodes_string)
-                .then ( (data)=>{
-                
-                clog('getBookGraph done')
-                return data
-                });
-        //    return book_data;
-
-
-//            var book_data = BookData.showBook(strip_author, nodes_string)
-  //          return book_data;
+            var book_data = BookData.showBook(strip_author, nodes_string)
+            return book_data;
         }
 
 
@@ -98,19 +86,20 @@ module.exports = function (graph_repository) {
                 var key_name = this.neo_keys[i];
                 if (this.isNode(key_name)) {
                     var field_data = this.data_fields[i];
-                     if ( (field_data !== null) && (typeof field_data.identity !== 'undefined') ) {
-                 //    console.log('getNOdes, == ', field_data)
+                    if ((field_data !== null) && (typeof field_data.identity !== 'undefined')) {
+                        //    console.log('getNOdes, == ', field_data)
                         var identity_int = field_data.identity.low;
                         var node_2object = nodeFactory(field_data, this.author_or_book);
-                        if (node_2object instanceof VersionShow){
-                            this.nodes_2string['EMPTY_ICON'] =node_2object;
+                        if (node_2object instanceof VersionShow) {
+                            this.nodes_2string['EMPTY_ICON'] = node_2object;
                         } else if (node_2object !== null) {
-                                this.nodes_2string[node_2object.sorted_label + identity_int] = node_2object;
-                            }
-                        
+                            this.nodes_2string[node_2object.sorted_label + identity_int] = node_2object;
+                        }
+
                     }
                 }
             }
+            // console.log('dddddddddddddd', this.nodes_2string)
         }
 
         isRelationship(key_name) {
@@ -144,7 +133,7 @@ module.exports = function (graph_repository) {
                 var key_name = this.neo_keys[i]
                 if (this.isRelationship(key_name)) {
                     var field_data = this.data_fields[i]
-                    if ( (field_data !== null) && (typeof field_data.identity !== 'undefined') ) {
+                    if ((field_data !== null) && (typeof field_data.identity !== 'undefined')) {
                         var id = field_data.identity.low
                         var from = field_data.start.low
                         var to = field_data.end.low
@@ -154,7 +143,7 @@ module.exports = function (graph_repository) {
                     }
                 }
             }
-            
+
         }
 
 

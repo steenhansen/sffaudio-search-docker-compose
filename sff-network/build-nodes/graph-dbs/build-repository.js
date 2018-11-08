@@ -88,14 +88,14 @@ module.exports = class BuildRepository {
     }
 
                                                        // rsd_url??
-    insertAnRsd(rsd_title, under_title, rsd_description, rsd_link, rsd_pdf_link) {
+    insertAnRsd(rsd_title, under_title, rsd_description, rsd_link, rsd_pdf_link, video_link, strip_author) {
         var sql = ` WITH {db_version} AS v_db_version
           MATCH (n_page_rsds:L_PAGE_RSDS)
           WHERE n_page_rsds.db_version = v_db_version
               MERGE (n_rsd:L_RSD { rsd_title: {rsd_title}, 	under_title : {under_title}, 	rsd_description : {rsd_description}, rsd_url : {rsd_link}, 
-              rsd_pdf_link : {rsd_pdf_link},db_version: v_db_version})
+              rsd_pdf_link : {rsd_pdf_link},  video_link : {video_link},  strip_author : {strip_author}, db_version: v_db_version})
                  -[r_podcasts_to_rsds:L_RSDS_TO_PAGES]->(n_page_rsds)`;
-        var params = {rsd_title, under_title, rsd_description,  rsd_link, rsd_pdf_link};
+        var params = {rsd_title, under_title, rsd_description,  rsd_link, rsd_pdf_link, video_link,strip_author};
         return this.addVersionSql(sql, params);
     }
 
@@ -157,7 +157,7 @@ module.exports = class BuildRepository {
                                                         sorted_label: v_sorted_label, db_version:v_db_version})
                      `;
         var params = {strip_author, under_title, post_slug, post_title, sorted_label};
-        clog('params...')
+        //clog('params...')
     return this.addVersionSql(sql, params);
     }
         books_to_posts() {

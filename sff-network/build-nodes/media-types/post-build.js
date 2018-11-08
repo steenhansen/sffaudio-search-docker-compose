@@ -23,7 +23,7 @@ module.exports = function (build_repository) {
                     var post_promise = build_repository.savePosts(strip_author, sff_post_url, graph_title, graph_title);
                 } else {
                     var post_promise = build_repository.saveBookPost(strip_author, under_title, sff_post_url, graph_title, graph_title);
-                    clog('a book ', strip_author, under_title)
+                    //clog('a book ', strip_author, under_title)
                 }
                 post_promises.push(post_promise);
             }

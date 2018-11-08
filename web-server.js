@@ -3,6 +3,52 @@
 
 /*
 
+ node web-server localDb-testData-every-type.config.js
+
+
+ node web-server localDb-googleData.config.js
+
+
+node web-server grapheneDb-testData-every-type.config.js
+
+
+ node web-server grapheneDb-googleData.config.js
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
 
  node web-server 
 
@@ -20,18 +66,18 @@ node web-server ./test-config-env.js
 require('./sff-network/global-require');
 
 
+
 const setCheckHerokuEnvVars = rootAppRequire('sff-network/heroku-config-vars');
-const CONFIG_ENV_KEYS = ['PORT', 'GRAPHENEDB_BOLT_URL', 'GRAPHENEDB_BOLT_USER', 'GRAPHENEDB_BOLT_PASSWORD'];
 
 if (process.argv[2]){
-    var env_filename = process.argv[2];
+    var config_file = process.argv[2];
 }else{
-    var env_filename = 'no_config_file';
+    var config_file = 'NO_CONFIG_FILE';
 
 }
 
 //let env_filename = process.argv[2];
-setCheckHerokuEnvVars(CONFIG_ENV_KEYS, env_filename);
+setCheckHerokuEnvVars(config_file);
 
 
 var media_constants = rootAppRequire('sff-network/media-constants');
@@ -54,6 +100,9 @@ var CachedBooksAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/ca
  C:\Users\admin\Documents\GitHub\_real_sffaudio_\sffaudio\test\call-tests.js
 
  */
+ 
+ var misc_helper = rootAppRequire('sff-network/misc-helper')
+ 
 var the_widget = rootAppRequire('sff-network/html-pages/jsloader-css')
 var request = require('request');
 var express = require('express');
@@ -64,8 +113,28 @@ var book_data = rootAppRequire('sff-network/show-nodes/media-types/book-show')(d
 var media_page = rootAppRequire('./sff-network/html-pages/web-page')
 var ParseNeo = rootAppRequire('sff-network/show-nodes/parse-neo')(data_repository);
 
+ const program_constants = rootAppRequire('sff-network/program-constants.js');
+
+
 var app = express();
 app.use(express.static('public', {maxAge: '1y'}))
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
+
+app.get(program_constants.ROUTE_RESOLVE_PDF, function (req, res_express) {
+  console.log('/ROUTE_RESOLVE_PDF-proxy')
+    const start_pdf_url =  req.query[program_constants.SFF_START_PDF_URL];
+    misc_helper.resolveRedirects(start_pdf_url)
+        .then( (end_pdf_url)=>{
+         res_express.send(end_pdf_url)
+        } )
+})
 
 
 app.get('/post-proxy', function (req, res_express) {
@@ -75,7 +144,7 @@ app.get('/post-proxy', function (req, res_express) {
         uri: absolute_url,
         method: "GET",
         headers: {
-          "Content-type": "applcation/text"
+          "Content-type": "application/text"
         }
       };
     request(optionsStart, (err, res_request, body) => {
@@ -86,9 +155,6 @@ app.get('/post-proxy', function (req, res_express) {
       var content_footer = all_html[1];
       var good_bad = content_footer.split('<h3>Similar Posts:</h3>');
       var the_post = good_bad[0];
-      // <div id="contentleft">
-      // <h3>Similar Posts:</h3>
-        //    console.log('eeeeeeeeeeeeeeeeeeeeee', the_post);
             res_express.send(the_post)
     });
 })
@@ -97,7 +163,7 @@ app.get('/post-proxy', function (req, res_express) {
 app.get('/mp3-proxy', function (req, res_express) {
    console.log('/mp3-proxy')
     const absolute_url =  req.query.absolute_url;
-  clog('mp3 proxy', absolute_url)
+ // clog('mp3 proxy', absolute_url)
     const optionsStart = {
         uri: absolute_url,
         method: "GET",
@@ -107,7 +173,7 @@ app.get('/mp3-proxy', function (req, res_express) {
           "Content-type": "audio/mpeg"
         }
       };
-       clog('before mp3 start')
+       //clog('before mp3 start')
     request(optionsStart, (err, res_request, body) => {
         if (err) {
             return console.log(err);
@@ -156,8 +222,9 @@ app.get('/json-proxies/thru-proxy', function (req, res_express) {
 })
 
 
+//  http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=pdf
 app.get('/author/book/:strip_author/:under_title', function (req, res) {
-   console.log('servering /author/book/:strip_author/:under_title')
+   console.log('servering /author/book/:strip_author/:under_title', req.params)
     let {strip_author, under_title}=req.params
     book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo)
         .then(function (nodes_and_edges) {
@@ -187,7 +254,13 @@ app.get('/author/book/:strip_author/:under_title', function (req, res) {
 
 //   http://localhost:5000/author/philip_k_dick
 //   http://localhost:5000/author/martin_caidin
-app.get('/author/:strip_author', function (req, res) {
+
+
+//   http://localhost:5000/?author=philip_k_dick&view=post
+
+// GET JSON!
+//app.get('/author/:strip_author', function (req, res) {
+app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
    console.log('servering /author/:strip_author')
     const strip_author = req.params.strip_author
     //clog('ddddddddd333333333333', strip_author)
@@ -209,29 +282,14 @@ app.get('/author/:strip_author', function (req, res) {
 })
 
 
-function authorOrBook(req) {
-    console.log('servering authorOrBook')
-    if (CachedBooksAuthors.urlGetAuthorBook(req.query, 'book')) {
-        var under_title = req.query.book;
-    }else if (CachedBooksAuthors.urlGetAuthorBook(req.query, 'author')) {
-        var strip_author = req.query.author;
-    } else {
-        var random_author = author_data.randomGoodAuthor();
-        var strip_author = misc_helper.alphaUnderscore(random_author);
-    }
-    if (typeof under_title !== 'undefined') {
-        return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
-    } else {
-        return author_data.sendAuthor(strip_author, ParseNeo);
-    }
-}
+
 
 
 app.get('/widget', function (req, res) {
     console.log('servering widget')
     authorOrBook(req).then(function (nodes_and_edges) {
         let {nodes_object, edges_object, graph_info} =nodes_and_edges
-        the_widget(nodes_object, edges_object, graph_info, media_constants.NODE_SERVER)
+        the_widget(nodes_object, edges_object, graph_info)
             .then(
         //       (widget_html)=> console.log(widget_html)
             (widget_html)=> res.send(widget_html)
@@ -252,17 +310,53 @@ app.get('/load', function (req, res) {
             );
 })
 
+function authorOrBook(req) {
+   console.log('servering authorOrBook')
+    if (CachedBooksAuthors.urlGetAuthorBook(req.query, 'book')) {
+        var under_title = req.query.book;
+             var strip_author = req.query.author;
+    }else if (CachedBooksAuthors.urlGetAuthorBook(req.query, 'author')) {
+        var strip_author = req.query.author;
+    } else {
+        var random_author = author_data.randomGoodAuthor();
+        var strip_author = misc_helper.alphaUnderscore(random_author);
+    }
+    if (typeof under_title !== 'undefined') {
+        return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
+    } else {
+        console.log('authororBook ', strip_author, '__')
+        return author_data.sendAuthor(strip_author, ParseNeo);
+    }
+}
 
 // http://localhost:5000/
+//   http://localhost:5000/?author=philip_k_dick&view=post
 app.get('/', function (req, res) {
-    console.log('servering /')
+    console.log('servering / ==', req.query)
     authorOrBook(req).then(function (nodes_and_edges) {
-        let {nodes_object, edges_object, graph_info} =nodes_and_edges
-        media_page(nodes_object, edges_object, graph_info, media_constants.NODE_SERVER)
+        let {nodes_object, edges_object, graph_info} =nodes_and_edges;
+                console.log('view', req.query.view)
+        if (typeof req.query.view === 'undefined'){
+            var query_view = '';
+        }else{
+            var query_view = req.query.view;
+        }        
+        media_page(nodes_object, edges_object, graph_info, query_view)
             .then((book_html)=> res.send(book_html));
     })
 
 })
+
+app.get('', function (req, res) {
+    console.log('servering {}==', req.query)
+    authorOrBook(req).then(function (nodes_and_edges) {
+        let {nodes_object, edges_object, graph_info} =nodes_and_edges;
+        media_page(nodes_object, edges_object, graph_info)
+            .then((book_html)=> res.send(book_html));
+    })
+
+})
+
 
 app.set('port', process.env.PORT)
 var node_port = app.get('port')

@@ -32,16 +32,14 @@ module.exports = function (data_repository) {
         } else if (node_group === 'L_PDF') {
             const {pdf_title, book_title, under_title, pdf_url, strip_1_author, strip_2_author} = media_node.properties;
             new_node = new PdfNode(node_id, db_version, pdf_title, book_title, under_title, pdf_url, strip_1_author, strip_2_author);
-            
-            console.log('node factory, new_node', new_node)
-            
-            
         } else if (node_group === 'L_PODCAST') {
             const {under_title, podcast_title, podcast_url,podcast_id, strip_1_author} = media_node.properties;
             new_node = new PodcastNode(node_id, db_version, podcast_title, podcast_url, podcast_id, under_title, strip_1_author);
         } else if (node_group === 'L_RSD') {
-            const {under_title, rsd_title, rsd_url, rsd_pdf_link, rsd_description} = media_node.properties;
-            new_node = new RsdNode(node_id, db_version, rsd_title, rsd_url, rsd_pdf_link, rsd_description);
+           // console.log('node factory, L_RSD',  media_node.properties)
+
+            const {under_title, strip_author, rsd_title, rsd_url, rsd_pdf_link, rsd_description, video_link} = media_node.properties;
+            new_node = new RsdNode(node_id, db_version, rsd_title, rsd_url, rsd_pdf_link, rsd_description,video_link, under_title, strip_author);
         } else if (node_group === 'L_POST') {       // L_AUTHOR_POST
             const {post_title, sorted_label, post_slug, strip_author} = media_node.properties;
             new_node = new PostNode(node_id, db_version, post_title, sorted_label, post_slug, strip_author);

@@ -2,18 +2,13 @@ var the_widget = rootAppRequire('sff-network/html-pages/jsloader-css')
 
 //about:blank
 //  http://www.sffaudio.com/podcasts/rsd141TheSmell.mp3
-module.exports = function build_page(nodes_object, edges_object, graph_object, node_server) {
+module.exports = function build_page(nodes_object, edges_object, graph_object, req_query_view) {
 
-    return the_widget(nodes_object, edges_object, graph_object, node_server)
+    return the_widget(nodes_object, edges_object, graph_object, req_query_view)
         .then(widget_html=> {
-                return `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  
-</head>
-<body >
+                return `
 
+1111111111
 
 
  ${widget_html}
@@ -21,10 +16,12 @@ module.exports = function build_page(nodes_object, edges_object, graph_object, n
 
 
 
+2222222222222222
+${req_query_view}
 
+3333333333333333
   
-  </body>
-</html>`;
+`;
             }
         )
 

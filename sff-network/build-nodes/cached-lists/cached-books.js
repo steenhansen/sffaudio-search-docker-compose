@@ -65,9 +65,9 @@ class CachedBooks extends CachedBooksAuthors {
     
 </style>
 <script>
-window.sff__b = sff_graph_procs.loadBookNew;
-window.sff__38 = sff_helpers.setHeight38;
-window.sff__16 = sff_helpers.setHeight16;
+window.sff__b = sff_vars.graph_procs.loadBookNew;
+window.sff__38 = sff_vars.helpers.setHeight38;
+window.sff__16 = sff_vars.helpers.setHeight16;
 </script>
 
 
