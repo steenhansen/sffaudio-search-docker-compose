@@ -341,6 +341,7 @@ app.get('/', function (req, res) {
         }else{
             var query_view = req.query.view;
         }        
+        console.log('...........', query_view)
         media_page(nodes_object, edges_object, graph_info, query_view)
             .then((book_html)=> res.send(book_html));
     })

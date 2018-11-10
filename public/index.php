@@ -29,7 +29,7 @@ if ($get_book){
 	$media_author_book= $media_widget;
 }
 
-// eoln
+print "x $get_view y $media_author_book z";
 
 
 //$media_author_book= "$media_widget?book=$get_book&author=$get_author";

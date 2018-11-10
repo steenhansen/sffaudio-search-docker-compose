@@ -73,8 +73,15 @@ module.exports = function (build_repository) {
 
 
         addWrittenBy() {
-            var neo4j_promise = build_repository.insertWrittenBy();
-            return neo4j_promise;
+            var author_1 = build_repository.insertWrittenBy_author_1();
+            var author_2 = build_repository.insertWrittenBy_author_2();
+            return Promise.all([author_1, author_2]).then(
+                ()=> {
+                    //console.log('done saveWrittenBy_d_1')
+                }
+            )
+   
+
         }
 
         addWikiAuthors() {

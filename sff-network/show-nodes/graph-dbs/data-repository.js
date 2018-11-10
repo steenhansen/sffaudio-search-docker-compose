@@ -16,6 +16,11 @@ MATCH (n_author)
 WHERE n_author.strip_author contains "poe" 
 RETURN n_author
 
+MATCH (n) RETURN COUNT(n)
+
+MATCH (n:L_PDF) RETURN n LIMIT 25
+
+MATCH (n) DETACH DELETE n
 
 MATCH (n_book)
 WHERE n_book.book_title contains "Odyssey (" 

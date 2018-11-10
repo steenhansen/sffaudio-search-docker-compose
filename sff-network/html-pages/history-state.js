@@ -20,7 +20,7 @@
             
             
             my.replaceBook= function (strip_author, under_title) {
-                     console.log('replaceAuthor', strip_author)
+                     console.log('replaceBookreplaceBook', strip_author, under_title)
                  var page_type = 't::book';
                  var page_query = '/?book='+under_title + '&author='+strip_author;
                 var author_colons_book = strip_author + '::' + under_title;
@@ -98,7 +98,7 @@
                     var page_type = event.state.page_type;
                     var url_type = event.state.url_type;
                     var page_name = event.state.page_name;
-                    if (page_type === 't::author') {
+                    if ( page_type === 't::author') {
                         //console.log('onPopState author', url_type)
                         sff_vars.graph_procs.network_graph.loadAuthorOrBook(url_type);
                         sff_vars.filter_names.selectMedia(page_name);
@@ -106,7 +106,7 @@
            
                         sff_vars.graph_procs.network_graph.loadAuthorOrBook(url_type);
                         sff_vars.filter_names.selectMedia(page_name);
-                    } else if (page_type === 't::book') {
+                    } else if ( (page_type === 't::book') || (page_type === 't::book::view')) {
                        //console.log('onPopState book', url_type)
                         sff_vars.graph_procs.network_graph.loadAuthorOrBook(url_type);
                         sff_vars.filter_names.selectMedia(page_name);

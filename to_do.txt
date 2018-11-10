@@ -1,5 +1,94 @@
 
+
+
+
+tecksavvy bill
+
+
+
+
+
+
+
+
+A. put   TEST_DATA: "/sff-network/build-nodes/test-obj-data/every-type/" into environment
+
+B. have check-heroku tell us that Google or TEST_DATA  will be used, if test_data TEST_DATA =='' then google
+
+C. check-heroku, first checks current dir for config.js, if none the moves up on dir
+   and we must tell user this
+   
+////
+D. save google sheet data in files in step 1
+
+   reloadStep1 ....20 thus we can time and control these
+   
+   
+
+have getAllCsv save all data in folder
+   sff-network/real-obj-data/google-sheet-data
+THEN we use function csvFromFiles() just like test data in obj-form
+
+
+function getAllCsv(podcast_information, rsd_information, pdf_information) {   //  urlAllCsv
+        var podcast_promise = getCsv(podcast_information);
+        var rsd_promise = getCsv(rsd_information);
+        var pdf_promise = getCsv(pdf_information);
+        return Promise.all([podcast_promise, rsd_promise, pdf_promise])
+            .spread(function (podcast_csv, rsd_csv, pdf_csv) {
+            let {podcast_books, podcast_descriptions, podcast_au
+
+
+function getTsvRsd(rsd_information) { 
+        var rsd_promise = getCsv(rsd_information)
+                        .then( rsd_info
+        return Promise.all([podcast_promise, rsd_promise, pdf_promise])
+            .spread(function (podcast_csv, rsd_csv, pdf_csv) {
+                let {rsd_books, rsd_descriptions, rsd_authors} = rsd_build.rsdRead(rsd_csv);
+                        THEN SAVE DATA AS OBJ FILE...
+///////////////
+                        
+
+makeEdgesNodes keep same since no saving ... 
+
+ saveToGraph Books, Authors
+ 
+        then savePodcastsGraph_1
+             save_Rsd_2
+             save-Pdf_3
+             
+        then             
+
+
+
+
+
+
+
+
+
+
+ node reload-db grapheneDb-testData-every-type.config.js
+
+make this work when in server. We need to change heroku-config-vars.js so that if the config file exists in main
+directory, then it ignores the env
+
+https://stackoverflow.com/questions/12666799/what-text-editor-is-available-in-heroku-bash-shell
+
+heroku plugins:install https://github.com/naaman/heroku-vim
+
+/////////////////////////////////////////
+
+
+
+https://neo4j.com/docs/developer-manual/current/cypher/schema/index/#schema-index-get-a-list-of-all-indexes-in-the-database
         
+CALL db.indexes
+
+
+/////////////////////////////////////////
+
+in graphs-edges.saveToGraph(
 
 
 

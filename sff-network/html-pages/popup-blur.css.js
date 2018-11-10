@@ -18,18 +18,32 @@ var popup_blur_js = `
            sff_vars.pdf_procs.loadOnePage('+');
         }
   };
+  
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    return '';
+}
+
                 
                 my.closePopUp = function () {
-                 var search_str = window.location.search;
-                 var author_or_book_views = search_str.split('=');
-                 var name_and_view = author_or_book_views[1];
-                 var author_or_books = name_and_view.split('&');
-                  var author_or_book = author_or_books[0];
-                 if (search_str.indexOf('?author=')>=0){
-                   sff_vars.history_state.replaceAuthor(author_or_book);
+                
+                var under_title = getQueryVariable('book');
+                var strip_author = getQueryVariable('author');
+                   console.log('closePopUp', strip_author, under_title)
+                 if (under_title){
+                   sff_vars.history_state.replaceBook(strip_author, under_title);
                 }else{
-                   sff_vars.history_state.replaceBook('philip_k_dick');
+                   sff_vars.history_state.replaceAuthor(strip_author);
                 }
+                
+
                 
                  if (window.location.search == '') {
                    console.log('History  forward')

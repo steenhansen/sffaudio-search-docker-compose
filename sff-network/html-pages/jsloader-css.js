@@ -13,6 +13,8 @@ const readFilePromise = require('fs-readfile-promise');
 
 module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view) {
 
+    console.log('the_widget req_query_view ', req_query_view)
+  
     if (graph_object.under_title){
         var under_title =  graph_object.under_title;
     }else{
@@ -36,8 +38,7 @@ const js_constants = readFilePromise(program_constants, 'utf8')
     const popup_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup-post')('9998988');
 
     const popup_book_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup-book-post')('9998988');
-
-
+    
     const sff_helpers_js = rootAppRequire('sff-network/html-pages/helper-functions');
     var widget_html = server_to_browser('my-graph_', nodes_object, edges_object, graph_object);
     const author_links = cached_authors.getCache(graph_object.db_version);
@@ -142,10 +143,11 @@ ${popup_blur_css}
                 if ('${under_title}'){
                     sff_vars.history_state.pushBook('${strip_author}', '${under_title}');
                     
+                    //http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=post
                     if ('${req_query_view}'==='post'){
                             for (let graph_node of sff_vars.graph_vars.nodes_string) {
                                 if (graph_node.group==='L_BOOK_POST'){
-                                    sff_vars.post_procs.loadBookPost(graph_node.goto_url, graph_node.strip_author,'${req_query_view}');
+                                    sff_vars.book_post_procs.loadBookPost(graph_node.goto_url, graph_node.strip_author, graph_node.under_title,'${req_query_view}');
                                     break;
                                 }
                              }
@@ -168,6 +170,17 @@ ${popup_blur_css}
         
         }else  if (sff_php_vars.php_book!==''){
              sff_vars.history_state.pushBook(sff_php_vars.php_author, sff_php_vars.php_book);
+             
+                if ('${req_query_view}'==='post'){
+                            for (let graph_node of sff_vars.graph_vars.nodes_string) {
+                                if (graph_node.group==='L_BOOK_POST'){
+                                    sff_vars.book_post_procs.loadBookPost(graph_node.goto_url, graph_node.strip_author, graph_node.under_title,'${req_query_view}');
+                                    break;
+                                }
+                             }
+                      }
+             
+             
         }else if (sff_php_vars.php_author!==''){
             console.log('werwerwerew view post ', '${req_query_view}', sff_php_vars.php_author)
              sff_vars.history_state.pushAuthor(sff_php_vars.php_author);

@@ -27,6 +27,7 @@ module.exports = class BuildRepository {
                                      strip_1_author:{strip_1_author},
                                      strip_2_author:{strip_2_author} ,
                                       db_version:v_db_version    })-[r_pdf_to_pages:L_PDF_TO_PAGES]->(n_page_pdfs)`;
+                                   //   console.log('pdf sql == ', sql)
         var params = {new_info, new_link, book_title, under_title, strip_1_author, strip_2_author};
         return this.addVersionSql(sql, params);
     }
@@ -204,19 +205,31 @@ module.exports = class BuildRepository {
     }
 
 
-    insertWrittenBy() {
+
+    insertWrittenBy_author_1() {
         var sql = `	WITH  {db_version} AS v_db_version
           MATCH (n_author:L_AUTHOR),(n_book:L_BOOK)
-            WHERE (   n_author.strip_author = n_book.strip_1_author 
-                      OR  n_author.strip_author =  n_book.strip_2_author   )
-            
+            WHERE    n_author.strip_author = n_book.strip_1_author 
              AND n_author.db_version = v_db_version
 			  AND n_book.db_version = v_db_version
-            
             CREATE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
-
         return this.addVersionSql(sql, {});
     }
+
+    insertWrittenBy_author_2() {
+        var sql = `	WITH  {db_version} AS v_db_version
+          MATCH (n_author:L_AUTHOR),(n_book:L_BOOK)
+            WHERE n_author.strip_author =  n_book.strip_2_author 
+             AND n_author.db_version = v_db_version
+			  AND n_book.db_version = v_db_version
+            CREATE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
+        return this.addVersionSql(sql, {});
+    }
+
+
+
+
+
 
 
     insertWikiAuthors() {
@@ -231,31 +244,7 @@ module.exports = class BuildRepository {
     }
 
 
-    makeIndexes() {
-        var db_version = this.db_version;
-        var params = {db_version};
-        var author_index = `CREATE INDEX ON :L_AUTHOR(strip_author)`;
-        var author_promise = this.graph_db.sqlParams(author_index, params)
 
-
-        var wiki_index = `CREATE INDEX ON :L_AUTHOR_WIKI(strip_author)`;
-        var wiki_promise = this.graph_db.sqlParams(wiki_index, params)
-
-
-        var book_1_index = `CREATE INDEX ON :L_BOOK(strip_1_author)`;
-        var book_1_promise = this.graph_db.sqlParams(book_1_index, params)
-
-        var book_2_index = `CREATE INDEX ON :L_BOOK(strip_2_author)`;
-        var book_2_promise = this.graph_db.sqlParams(book_2_index, params)
-
-
-        var post_index = `CREATE INDEX ON :L_BOOK(sorted_label)`;
-        var post_promise = this.graph_db.sqlParams(post_index, params)
-
-
-        var all_indexes = [author_promise, wiki_promise, book_1_promise, book_2_promise, post_promise];
-        return Promise.all(all_indexes);
-    }
 
 
     insertRsdsOfBook() {           //EDGE!!!
@@ -300,17 +289,9 @@ module.exports = class BuildRepository {
     }
 
 
-    insertPdfsOfBookOLD() {
-        var sql = `WITH {db_version} AS v_db_version
-        MATCH (n_book:L_BOOK),(n_pdf:L_PDF)
-		WHERE n_book.under_title =  n_pdf.under_title
-			         AND n_book.db_version = v_db_version
-			  AND n_pdf.db_version = v_db_version
-		CREATE (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf)		`;
-        return this.addVersionSql(sql, {});
-    }
 
 
+//    match (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf) return *
     // linkPdfsToBooks()   or  pdfsToBooksEdges()
     insertPdfsOfBook() {
         var sql = ` // BuildRepository.linkPdfsToBooks()
@@ -327,7 +308,113 @@ module.exports = class BuildRepository {
                     )
                   
 		  CREATE (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf)		`;
+		  
         return this.addVersionSql(sql, {});
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ makeIndexes_a() {   /// 80751
+        var db_version = this.db_version;
+        var params = {db_version};
+        var author_index = `CREATE INDEX ON :L_AUTHOR(strip_author)`;
+        var author_promise = this.graph_db.sqlParams(author_index, params)
+
+
+        var wiki_index = `CREATE INDEX ON :L_AUTHOR_WIKI(strip_author)`;
+        var wiki_promise = this.graph_db.sqlParams(wiki_index, params)
+
+
+        var book_1_index = `CREATE INDEX ON :L_BOOK(under_title)`;
+        var book_1_promise = this.graph_db.sqlParams(book_1_index, params)
+
+      //  var book_2_index = `CREATE INDEX ON :L_BOOK(strip_author_1)`;
+      // var book_2_promise = this.graph_db.sqlParams(book_2_index, params)
+
+
+      //  var book_3_index = `CREATE INDEX ON :L_BOOK(strip_author_2)`;
+      //  var book_3_promise = this.graph_db.sqlParams(book_3_index, params)
+
+
+		 var podcast_index = `CREATE INDEX ON :L_PODCAST( under_title)`;
+        var podcast_promise = this.graph_db.sqlParams(podcast_index, params)
+		
+		// var podcast_index2 = `CREATE INDEX ON :L_PODCAST(db_version)`;
+        //var podcast_promise2 = this.graph_db.sqlParams(podcast_index2, params)
+		
+		var pdf_index = `CREATE INDEX ON :L_PDF(db_version,under_title)`;
+        var pdf_promise = this.graph_db.sqlParams(pdf_index, params)
+		
+		var rsd_index = `CREATE INDEX ON :L_RSD(db_version,under_title)`;
+        var rsd_promise = this.graph_db.sqlParams(rsd_index, params)
+		
+		var post_index = `CREATE INDEX ON :L_POST(db_version,under_title)`;
+        var post_promise = this.graph_db.sqlParams(post_index, params)
+		
+		
+		
+        var all_indexes = [author_promise, wiki_promise, 
+		book_1_promise, //book_2_promise, book_3_promise, 
+		podcast_promise,  //podcast_promise2 
+			pdf_promise,rsd_promise,post_promise];
+        return Promise.all(all_indexes);
+    }
+    
+    
+
+    makeIndexes() {   /// 80751
+        var db_version = this.db_version;
+        var params = {db_version};
+        var author_index = `CREATE INDEX ON :L_AUTHOR(strip_author)`;
+        var author_promise = this.graph_db.sqlParams(author_index, params)
+
+
+        var wiki_index = `CREATE INDEX ON :L_AUTHOR_WIKI(strip_author)`;
+        var wiki_promise = this.graph_db.sqlParams(wiki_index, params)
+
+
+        var book_1_index = `CREATE INDEX ON :L_BOOK(under_title)`;
+        var book_1_promise = this.graph_db.sqlParams(book_1_index, params)
+
+        var book_2_index = `CREATE INDEX ON :L_BOOK(strip_author_1)`;
+       var book_2_promise = this.graph_db.sqlParams(book_2_index, params)
+
+
+        var book_3_index = `CREATE INDEX ON :L_BOOK(strip_author_2)`;
+        var book_3_promise = this.graph_db.sqlParams(book_3_index, params)
+
+
+		 var podcast_index = `CREATE INDEX ON :L_PODCAST( under_title)`;
+        var podcast_promise = this.graph_db.sqlParams(podcast_index, params)
+		
+		
+		var pdf_index = `CREATE INDEX ON :L_PDF(under_title)`;  
+        var pdf_promise = this.graph_db.sqlParams(pdf_index, params)
+		
+		var rsd_index = `CREATE INDEX ON :L_RSD(under_title)`;
+        var rsd_promise = this.graph_db.sqlParams(rsd_index, params)
+		
+		var post_index = `CREATE INDEX ON :L_POST(under_title)`;
+        var post_promise = this.graph_db.sqlParams(post_index, params)
+		
+		
+		
+        var all_indexes = [author_promise, wiki_promise, 
+		book_1_promise, book_2_promise, book_3_promise, 
+		podcast_promise,  
+			pdf_promise,rsd_promise,post_promise];
+        return Promise.all(all_indexes);
     }
 
 

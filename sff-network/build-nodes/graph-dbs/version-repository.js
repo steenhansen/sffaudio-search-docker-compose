@@ -4,6 +4,52 @@ module.exports = function (graph_db) {
 
     class VersionRepository {
 
+
+//   we need a update tracker,,,,
+//   L_UPDATE_STATE
+//    STEP 1,2,3,4....   THIS WILL GIVE US AN ARRAY INDEX OF THENABLES
+
+
+//
+
+// if we store the update_steps inside the L_VERSION, then we can
+// to an atomic update of 'update_step=0' and 'db_version=+1' in one shot
+
+
+        /*
+         VersionRepository.updateDbVersion()
+         .then( (new_db_version)=>console.log('new_version==', new_db_version));
+         */
+        static updateDbVersion() {
+            var update_sql = ` // VersionRepository.updateDbVersion.update           
+                        MATCH (n_version:L_VERSION) 
+                         WITH n_version.current_version+1 as v_new_db_version
+                        MERGE (n_version:L_VERSION)
+                 ON MATCH SET n_version.current_version = v_new_db_version ,
+                              n_version.update_step = 0 `;
+            return graph_db.sqlParams(update_sql, {});
+        }
+
+        //
+        // static endOfUpdate() {
+        //     var update_sql = ` // VersionRepository.endOfUpdate           
+        //                MERGE (n_version:L_VERSION)
+        //          ON MATCH SET n_version.update_step = 0  `;
+        //     return graph_db.sqlParams(update_sql, {});
+        // }
+        //
+
+     static startOfUpdate() {
+            var update_sql = ` // VersionRepository.endOfUpdate           
+                       MERGE (n_version:L_VERSION)
+                 ON MATCH SET n_version.update_step = 1  `;
+            return graph_db.sqlParams(update_sql, {});
+        }
+
+
+
+
+
         static currentDbVersion() {
             var current_sql = ` // VersionRepository.currentDbVersion        
                                 MATCH (n_version:L_VERSION )
@@ -19,37 +65,18 @@ module.exports = function (graph_db) {
                 )
         }
 
-        /*
-         VersionRepository.updateDbVersion()
-         .then( (new_db_version)=>console.log('new_version==', new_db_version));
-         */
-        static updateDbVersion() {
-            var update_sql = ` // VersionRepository.updateDbVersion.update           
-                        MATCH (n_version:L_VERSION) 
-                         WITH n_version.current_version+1 as v_new_db_version
+        static createDbVersion1() {
+            var create_sql = ` // VersionRepository.createDbVersion        
                         MERGE (n_version:L_VERSION)
-                 ON MATCH SET n_version.current_version = v_new_db_version 
-                       RETURN v_new_db_version `;
-            return graph_db.sqlParams(update_sql, {})
-                .then((current_version_record)=> {
-                    if (typeof current_version_record.records[0] === 'undefined') {
-
-                        var create_sql = ` // VersionRepository.updateDbVersion.create          
-                      
-                        MERGE (n_version:L_VERSION)
-                ON CREATE SET n_version.current_version = 1, n_version.quality_books=2
+                ON CREATE SET n_version.current_version = 1,
+                              n_version.update_step = 0,
+                              n_version.quality_books=2
                     `;
-                        return graph_db.sqlParams(create_sql, {})
-                            .then(()=> {
-                                return 1;
-                            })
-                    } else {
-                        var current_version = current_version_record.records[0]._fields[0].low;
-                        return current_version;
-                    }
-
-                })
+            return graph_db.sqlParams(create_sql, {});
         }
+
+
+
 
         /*
          VersionRepository.deleteUnused(123)
