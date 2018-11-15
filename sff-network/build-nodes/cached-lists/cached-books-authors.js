@@ -53,10 +53,10 @@ class CachedBooksAuthors {
     }
 
     getCache(db_version) {
-      //  clog('getCache', db_version)
        var self=this;
         var cache_dir = fromAppRoot(`sff-network/media-cache/`);
         var file_name = cache_dir + self.cache_name + db_version + '.html';
+       console.log('getCache', db_version, file_name)
          return readFilePromise(file_name, 'utf8')
              .catch(function (e) {
                          console.log('CachedBooksAuthors.getCache() :',  e)
