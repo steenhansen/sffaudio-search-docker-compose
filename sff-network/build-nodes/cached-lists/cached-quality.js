@@ -1,25 +1,26 @@
 require('../../../sff-network/global-require')
 
-var write = require('fs-writefile-promise');
 
+
+
+
+var media_constants = rootAppRequire('sff-network/media-constants');
+var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
+var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 
 class CachedQuality {
 
     constructor(cache_name) {
-        this.cache_name = `${cache_name}_`;
+       // this.cache_name = `${cache_name}_`;
     }
 
-    makeCache(sorted_media) {
-        var my_save = JSON.stringify(sorted_media, null, ' ');
-        var js_code = ` const my_media_array = ${my_save}; module.exports = my_media_array;`
-        var file_name = fromAppRoot(`sff-network/media-cache/` + this.cache_name + `.js`);
-        return write(file_name, js_code)
+    makeCache(db_version, sorted_media) {
+        var js_code = JSON.stringify(sorted_media, null, ' ');
+       return  VersionRepository.saveQuality(db_version, js_code );
     }
 
     getCache() {
-        var file_name = fromAppRoot(`sff-network/media-cache/` + this.cache_name + `.js`);
-        var quality_authors = require(file_name);
-        return quality_authors;
+        return  VersionRepository.getQuality();
     }
 }
 

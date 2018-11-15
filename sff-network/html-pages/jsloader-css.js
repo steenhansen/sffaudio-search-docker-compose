@@ -36,8 +36,8 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     var strip_author = graph_object.strip_author;
     const js_constants = readFilePromise(program_constants, 'utf8')
     var widget_vars = server_to_browser.widgetVars(graph_container_id, nodes_object, edges_object, graph_object);
-    const author_links = cached_authors.getCache(graph_object.db_version);
-    const book_links = cached_books.getCache(graph_object.db_version);
+    const author_links = cached_authors.getCache();
+    const book_links = cached_books.getCache();
     return Promise.all([js_constants, author_links, book_links])
         .then(([js_constants,  author_links, book_links])=> {
 

@@ -16,11 +16,11 @@ var cached_quality = new CachedQuality('quality_books_authors_')
 
 
 
-function makeNewCaches_d_0(obj_dir) {
+function makeNewCaches_d_0(next_db_version, obj_dir) {
     console.time("makeNewCaches_d_0");
     var quality_obj_file = obj_dir + 'quality-obj.js';
     var quality_books_authors = require(quality_obj_file);
-    return cached_quality.makeCache(quality_books_authors)
+    return cached_quality.makeCache(next_db_version, quality_books_authors)
        .then( ()=> { console.timeEnd("makeNewCaches_d_0");})
    
 }
@@ -36,15 +36,10 @@ function makeNewCaches_d_1(new_db_version) {
 }
 
 
-function deleteOldCaches_d_3(new_db_version) {
-    cached_authors.deleteCache(new_db_version - 1);
-    cached_books.deleteCache(new_db_version - 1);
-}
-
 module.exports =
 {
     makeNewCaches_d_0,
-    makeNewCaches_d_1, deleteOldCaches_d_3
+    makeNewCaches_d_1
 };
  
 

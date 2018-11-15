@@ -1,11 +1,10 @@
 var media_constants = rootAppRequire('sff-network/media-constants');
 var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
-
 var BuildRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/build-repository');
-const read_csv_google = rootAppRequire('sff-network/build-nodes/read-csv-google')(BuildRepository);
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 var author_book_caches = rootAppRequire(`sff-network/build-nodes/graph-dbs/author-book-caches`);
 
+const read_csv_google = rootAppRequire('sff-network/build-nodes/read-csv-google')(BuildRepository);
 
 class reloadBase {
 
@@ -56,11 +55,10 @@ class reloadBase {
 
 
 
-                        .then(()=> author_book_caches.makeNewCaches_d_0( data_dir))
+                        .then(()=> author_book_caches.makeNewCaches_d_0(next_db_version,  data_dir))
 
                         .then(()=> author_book_caches.makeNewCaches_d_1(next_db_version))
                         .then(()=> VersionRepository.updateDbVersion_d_2(next_db_version))
-                        .then(()=> author_book_caches.deleteOldCaches_d_3(next_db_version))
                         .then(()=> VersionRepository.deleteUnused_d_4(next_db_version))
 
                         .catch(function (e) {

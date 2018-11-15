@@ -5,6 +5,10 @@ require('../../../sff-network/global-require')
 
 var CachedBooksAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books-authors');
 
+var media_constants = rootAppRequire('sff-network/media-constants');
+var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
+var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
+
 
 class CachedBooks extends CachedBooksAuthors {
 
@@ -76,7 +80,9 @@ window.sff__16 = sff_vars.helpers.setHeight16;
  }
 
  
-
+   repositoryCall(new_db_version, all_links){
+      return  VersionRepository.saveBooks(new_db_version, all_links );
+    }
 
     shrinkAAnThe(book_title, sorted_label) {
         var start_articles_reg_ex = /^(a |an |the )/i;
@@ -118,6 +124,16 @@ window.sff__16 = sff_vars.helpers.setHeight16;
              </div> `;
         return book_html;
     }
+    
+      getCache() {
+        return VersionRepository.getBooks()
+            .then((book_list)=> {
+                var book_list_string = book_list.records[0]._fields[0];
+                return book_list_string;
+            })
+    }
+    
+    
 
 
 }

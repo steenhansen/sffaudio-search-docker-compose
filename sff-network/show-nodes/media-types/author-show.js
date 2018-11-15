@@ -13,15 +13,16 @@ module.exports = function (data_repository) {
         static randomGoodAuthor() {
             var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
             var cached_quality = new CachedQuality('quality_books_authors_');
-            var quality_authors = cached_quality.getCache();
-            var rand_index = Math.floor((Math.random() * quality_authors.length));
-            var random_author = quality_authors[rand_index];
-            //   var random_author = media_constants.QUALITY_AUTHORS[rand_index];
-            var random_name = random_author.authors;
-            return random_name;
-
+           return  cached_quality.getCache()
+                .then(    (quality_authors)=> {
+                    var my_quality_string =quality_authors.records[0]._fields[0];
+                    var my_quality_authors = JSON.parse(my_quality_string);
+                    var rand_index = Math.floor((Math.random() * my_quality_authors.length));
+                    var random_author = my_quality_authors[rand_index];
+                    var random_name = random_author.authors;
+                    return random_name;
+                })
         }
-
 
         constructor(node_id, db_version, author_name, strip_author) {
             const sorted_label = misc_helper.theLastNameFirst(author_name, ' ');

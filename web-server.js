@@ -9,7 +9,7 @@
  node web-server localDb-googleData.config.js
 
 
-node web-server grapheneDb-testData-every-type.config.js
+ node web-server grapheneDb-testData-every-type.config.js
 
 
  node web-server grapheneDb-googleData.config.js
@@ -53,27 +53,21 @@ node web-server grapheneDb-testData-every-type.config.js
  node web-server 
 
 
-node web-server ./test-config-env.js
+ node web-server ./test-config-env.js
 
  http://localhost:5000/author/book/philip_k_dick/adjustment_team
 
  */
 
 
-
-
-
 require('./sff-network/global-require');
-
-
-
 
 
 const setCheckHerokuEnvVars = rootAppRequire('sff-network/heroku-config-vars');
 
-if (process.argv[2]){
+if (process.argv[2]) {
     var config_file = process.argv[2];
-}else{
+} else {
     var config_file = 'NO_CONFIG_FILE';
 
 }
@@ -102,9 +96,9 @@ var CachedBooksAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/ca
  C:\Users\admin\Documents\GitHub\_real_sffaudio_\sffaudio\test\call-tests.js
 
  */
- 
- var misc_helper = rootAppRequire('sff-network/misc-helper')
- 
+
+var misc_helper = rootAppRequire('sff-network/misc-helper')
+
 var the_widget = rootAppRequire('sff-network/html-pages/jsloader-css')
 var request = require('request');
 var express = require('express');
@@ -115,90 +109,89 @@ var book_data = rootAppRequire('sff-network/show-nodes/media-types/book-show')(d
 var media_page = rootAppRequire('./sff-network/html-pages/web-page')
 var ParseNeo = rootAppRequire('sff-network/show-nodes/parse-neo')(data_repository);
 
- const program_constants = rootAppRequire('sff-network/program-constants.js');
+const program_constants = rootAppRequire('sff-network/program-constants.js');
 
 
 var app = express();
 app.use(express.static('public', {maxAge: '1y'}))
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
 });
 
 
-
 app.get(program_constants.ROUTE_RESOLVE_PDF, function (req, res_express) {
-    const start_pdf_url =  req.query[program_constants.SFF_START_PDF_URL];
+    const start_pdf_url = req.query[program_constants.SFF_START_PDF_URL];
     misc_helper.resolveRedirects(start_pdf_url)
-        .then( (end_pdf_url)=>{
-         res_express.send(end_pdf_url)
-        } )
+        .then((end_pdf_url)=> {
+            res_express.send(end_pdf_url)
+        })
 })
 
 
 app.get('/post-proxy', function (req, res_express) {
-    const absolute_url =  req.query.absolute_url;
+    const absolute_url = req.query.absolute_url;
     const optionsStart = {
         uri: absolute_url,
         method: "GET",
         headers: {
-          "Content-type": "application/text"
+            "Content-type": "application/text"
         }
-      };
+    };
     request(optionsStart, (err, res_request, body) => {
         if (err) {
             return console.log(err);
         }
-      var all_html =  body.split('<div id="contentleft">');
-      var content_footer = all_html[1];
-      var good_bad = content_footer.split('<h3>Similar Posts:</h3>');
-      var the_post = good_bad[0];
-            res_express.send(the_post)
+        var all_html = body.split('<div id="contentleft">');
+        var content_footer = all_html[1];
+        var good_bad = content_footer.split('<h3>Similar Posts:</h3>');
+        var the_post = good_bad[0];
+        res_express.send(the_post)
     });
 })
 
 
 app.get('/mp3-proxy', function (req, res_express) {
-    const absolute_url =  req.query.absolute_url;
+    const absolute_url = req.query.absolute_url;
     const optionsStart = {
         uri: absolute_url,
         method: "GET",
         encoding: "binary",
         headers: {
             "Content-Disposition": "attachment; filename=rsd.mp3;",
-          "Content-type": "audio/mpeg"
+            "Content-type": "audio/mpeg"
         }
-      };
+    };
     request(optionsStart, (err, res_request, body) => {
         if (err) {
             return console.log(err);
         }
         res_express.type('audio/mpeg');
-       res_express.end(body, 'binary');
+        res_express.end(body, 'binary');
     });
 
 })
 
 
 app.get('/pdf-proxies/pdf-proxy', function (req, res_express) {
-    const absolute_url =  req.query.absolute_url;
+    const absolute_url = req.query.absolute_url;
     const optionsStart = {
         uri: absolute_url,
         method: "GET",
         encoding: "binary",
         headers: {
-          "Content-type": "application/pdf"
+            "Content-type": "application/pdf"
         }
-      };
+    };
     request(optionsStart, (err, res_request, body) => {
         if (err) {
             return console.log(err);
         }
-       // res_express.send(body);
+        // res_express.send(body);
         res_express.type('application/pdf');
-       res_express.end(body, 'binary');
+        res_express.end(body, 'binary');
     });
 
 })
@@ -260,7 +253,7 @@ app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
             if (nodes_object.length > 10) {
                 var graph_physics = false;
             } else {
-                var graph_physics = {"barnesHut": {"avoidOverlap": 1 }};
+                var graph_physics = {"barnesHut": {"avoidOverlap": 1}};
             }
             var graph_info = {strip_author: strip_author, graph_type: 'author_page', graph_physics: graph_physics};
             var nodes_string = JSON.stringify(nodes_object);
@@ -272,16 +265,12 @@ app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
 })
 
 
-
-
-
 app.get('/widget', function (req, res) {
     authorOrBook(req).then(function (nodes_and_edges) {
         let {nodes_object, edges_object, graph_info} =nodes_and_edges
         the_widget(nodes_object, edges_object, graph_info)
             .then(
-            (widget_html)=> res.send(widget_html)
-            
+                (widget_html)=> res.send(widget_html)
             );
     })
 })
@@ -299,34 +288,40 @@ app.get('/widget', function (req, res) {
 function authorOrBook(req) {
     if (CachedBooksAuthors.urlGetAuthorBook(req.query, 'book')) {
         var under_title = req.query.book;
-             var strip_author = req.query.author;
-    }else if (CachedBooksAuthors.urlGetAuthorBook(req.query, 'author')) {
         var strip_author = req.query.author;
-    } else {
-        var random_author = author_data.randomGoodAuthor();
-        var strip_author = misc_helper.alphaUnderscore(random_author);
-    }
-    if (typeof under_title !== 'undefined') {
         return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
-    } else {
+    } else if (CachedBooksAuthors.urlGetAuthorBook(req.query, 'author')) {
+        var strip_author = req.query.author;
         return author_data.sendAuthor(strip_author, ParseNeo);
+    } else {
+        return author_data.randomGoodAuthor()
+        .then((random_author)=> {
+            strip_author= misc_helper.alphaUnderscore(random_author);
+            return author_data.sendAuthor(strip_author, ParseNeo);
+        })
+       
     }
+    // if (typeof under_title !== 'undefined') {
+    //     return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
+    // } else {
+    //     return author_data.sendAuthor(strip_author, ParseNeo);
+    // }
 }
 
 // http://localhost:5000/
 //   http://localhost:5000/?author=philip_k_dick&view=post
 app.get('/', function (req, res) {
     authorOrBook(req)
-    .then(function (nodes_and_edges) {
-        let {nodes_object, edges_object, graph_info} =nodes_and_edges;
-        if (typeof req.query.view === 'undefined'){
-            var query_view = '';
-        }else{
-            var query_view = req.query.view;
-        }        
-        media_page(nodes_object, edges_object, graph_info, query_view)
-            .then((book_html)=> res.send(book_html));
-    })
+        .then(function (nodes_and_edges) {
+            let {nodes_object, edges_object, graph_info} =nodes_and_edges;
+            if (typeof req.query.view === 'undefined') {
+                var query_view = '';
+            } else {
+                var query_view = req.query.view;
+            }
+            media_page(nodes_object, edges_object, graph_info, query_view)
+                .then((book_html)=> res.send(book_html));
+        })
 
 })
 
