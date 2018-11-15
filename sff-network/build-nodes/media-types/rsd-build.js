@@ -63,7 +63,6 @@ module.exports = function (build_repository) {
             for (let under_title in rsd_books) {
                 let {rsd_number, rsd_post, rsd_description, rsd_link, rsd_pdf_link,video_link, strip_author}  = rsd_books[under_title];
                 
-                 //    clog('fasdf000009', video_link)
                 
                 var rsd_title = 'RSD # ' + rsd_number;
 
@@ -72,7 +71,8 @@ module.exports = function (build_repository) {
 
                 my_promises.push(rsd_promise);
             }
-            return my_promises;
+             return Promise.all(my_promises)
+           // return my_promises;
         }
 
         static addRsdsPage() {

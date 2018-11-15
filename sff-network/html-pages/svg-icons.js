@@ -6,6 +6,32 @@
 var background_color=media_constants.GRAPH_BACKGROUND;
 
 
+
+
+
+
+
+
+
+
+function iconShape(svg_icon) {
+    var uri_icon = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg_icon);
+    var icon_shape = {
+        shape: 'image',
+        image: uri_icon
+    }
+    var icon_json = JSON.stringify(icon_shape);
+    return icon_json;
+}
+
+
+
+
+
+
+
+
+
 function iconShape2(svg_icon) {
     var uri_icon = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg_icon);
     return uri_icon;
@@ -90,16 +116,6 @@ function last_icon(w_color) {
 
 
 
-
-function iconShape(svg_icon) {
-    var uri_icon = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg_icon);
-    var icon_shape = {
-        shape: 'image',
-        image: uri_icon
-    }
-    var icon_json = JSON.stringify(icon_shape);
-    return icon_json;
-}
 
 function no_such_book(w_color) {      //wikipedia_icon
 
@@ -286,7 +302,7 @@ function allPodcasts(w_color) {
 </svg>
    `;
    
-       return iconShape(svg_all);
+       return iconShape(svg_all);      // q*bert
    }
    
 function allPdfs(w_color) {

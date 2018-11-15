@@ -33,41 +33,49 @@ function objDataToCode(media_values, file_name){
  return write(file_name, js_code);
 }
 
-    function reloadDb_PostRead_a_0(post_file) {
+    function startMakeIndexes_a_0(build_repository) {
+      console.time("startMakeIndexes_a_0");
+      return build_repository.makeIndexes()
+              .then( ()=> console.timeEnd("startMakeIndexes_a_0") )
+    }
+    
+   
+   
+   
+    function googlePostTsvToLocal_a_1(post_obj_file) {
+      console.time("googlePostTsvToLocal_a_1");
       return read_tsv_url(media_constants.POST_GOOGLE_DATA)
             .then(author_book_obj=> {
-                var file_name = fromAppRoot(post_file);
+                var file_name = fromAppRoot(post_obj_file);
                 return objDataToCode(author_book_obj, file_name);
             })
-              .then( ()=> {
-              // console.log('done reloadDb_PostRead_a_0')
-            })
+              .then( ()=> console.timeEnd("googlePostTsvToLocal_a_1") )
     }
 
-    function reloadDb_RsdRead_a_1(rsd_file, rsd_information) {
+
+
+    function googleQualityTsvToLocal_a_2(quality_obj_file) {
+      console.time("googleQualityTsvToLocal_a_2");
+      return read_tsv_url(media_constants.QUALITY_GOOGLE_DATA)
+            .then(quality_obj=> {
+                var file_name = fromAppRoot(quality_obj_file);
+                return objDataToCode(quality_obj, file_name);
+            })
+              .then( ()=> console.timeEnd("googleQualityTsvToLocal_a_2") )
+    }
+
+   
+   function googlePdfRsdPodcastToLocal_a_3(rsd_file, rsd_information, media_type) {
+      console.time("googlePdfRsdPodcastToLocal_a_3" + media_type);
       return  getCsv(rsd_information)
             .then(rsd_obj=> {
                 var file_name = fromAppRoot(rsd_file);
                 return objDataToCode(rsd_obj, file_name);
             })
+             .then( ()=> console.timeEnd("googlePdfRsdPodcastToLocal_a_3"+media_type) )
     }
-    
-    function reloadDb_PodcastRead_a_2(podcast_file, podcast_information) {
-      return  getCsv(podcast_information)
-            .then(podcast_obj=> {
-                var file_name = fromAppRoot(podcast_file);
-                return objDataToCode(podcast_obj, file_name);
-            })
-    }
-
-    function reloadDb_PdfRead_a_3(pdf_file, pdf_information) {
-      return  getCsv(pdf_information)
-            .then(podcast_obj=> {
-                var file_name = fromAppRoot(pdf_file);
-                return objDataToCode(podcast_obj, file_name);
-            })
-    }
-
+   
+  
 /////////////////////////////////////////////////////////////////////
 
     function saveGoogle(podcast_information, rsd_information, pdf_information) {      // mediaToTestData/File
@@ -148,7 +156,13 @@ function objDataToCode(media_values, file_name){
 
     return {
         csvFromFiles, csvFromUrl,
-        reloadDb_PostRead_a_0, reloadDb_RsdRead_a_1,reloadDb_PodcastRead_a_2,reloadDb_PdfRead_a_3,
+        
+        startMakeIndexes_a_0,
+        googlePostTsvToLocal_a_1, 
+        googleQualityTsvToLocal_a_2, 
+        
+        
+         googlePdfRsdPodcastToLocal_a_3, 
         getAllCsv, saveGoogle, getFromCsvFile
     };
 

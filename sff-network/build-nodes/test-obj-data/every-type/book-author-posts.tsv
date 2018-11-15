@@ -1,9 +1,0 @@
-const author_books_text = 
-`Graph Title	Author	Book	SFF Post Url
-Lethem & Robinson video	Philip K. Dick		jonathan-lethem-and-kim-stanley-robinson-discuss-philip-k-dick
-rsd of beyond lies the wub!	Philip K. Dick	Beyond Lies The Wub	cbc-ideas-wired-for-culture`;
-
-module.exports = author_books_text;
-
-
-

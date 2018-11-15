@@ -16,7 +16,6 @@ function read_g(tsv_url) {
 
 
 
-   // clog('ful', parser_tsv_url._getTsvText())
 
 
 }

@@ -25,7 +25,8 @@ module.exports = function (build_repository) {
                 var podcast_promise = build_repository.insertAPodcast(podcast_title, under_title, podcast_link, podcast_id, strip_1_author)
                 my_promises.push(podcast_promise);
             }
-            return my_promises;
+             return Promise.all(my_promises)
+         //   return my_promises;
         }
 
         static podcastRead(podcast_csv) {

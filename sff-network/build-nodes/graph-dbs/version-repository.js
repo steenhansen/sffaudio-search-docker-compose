@@ -30,21 +30,15 @@ module.exports = function (graph_db) {
             return graph_db.sqlParams(update_sql, {});
         }
 
-        //
-        // static endOfUpdate() {
-        //     var update_sql = ` // VersionRepository.endOfUpdate           
-        //                MERGE (n_version:L_VERSION)
-        //          ON MATCH SET n_version.update_step = 0  `;
-        //     return graph_db.sqlParams(update_sql, {});
-        // }
-        //
 
-     static startOfUpdate() {
-            var update_sql = ` // VersionRepository.endOfUpdate           
-                       MERGE (n_version:L_VERSION)
-                 ON MATCH SET n_version.update_step = 1  `;
-            return graph_db.sqlParams(update_sql, {});
+       static updateDbVersion_d_2(next_db_version) {
+            var update_sql = ` // VersionRepository.updateDbVersion.update           
+                    
+                        MATCH  (n_version:L_VERSION)
+                        SET n_version.current_version = {next_db_version} `;
+            return graph_db.sqlParams(update_sql, {next_db_version});
         }
+    
 
 
 
@@ -68,10 +62,7 @@ module.exports = function (graph_db) {
         static createDbVersion1() {
             var create_sql = ` // VersionRepository.createDbVersion        
                         MERGE (n_version:L_VERSION)
-                ON CREATE SET n_version.current_version = 1,
-                              n_version.update_step = 0,
-                              n_version.quality_books=2
-                    `;
+                ON CREATE SET n_version.current_version = 1                `;
             return graph_db.sqlParams(create_sql, {});
         }
 
@@ -82,35 +73,18 @@ module.exports = function (graph_db) {
          VersionRepository.deleteUnused(123)
          .then( (db_version_counts)=>console.log('db_version_counts==', db_version_counts));
          */
-        static deleteUnused(limit_records = DELETE_UNUSED_RECORDS) {
-            var before_count, after_count;
-            var count_sql = ` // VersionRepository.count_sql.count_sql      
-                      MATCH (n) 
-                    RETURN COUNT(n)                                  `;
-            return graph_db.sqlParams(count_sql, {})
-                .then((before_records)=> {
-                    before_count = before_records.records[0]._fields[0].low;
-                    return;
-                })
-                .then(()=> {
-                    var unused_sql = ` // VersionRepository.deleteUnused.unused_sql        
-                         MATCH (n_version:L_VERSION) 
-                          WITH n_version.current_version as v_new_db_version
-                         MATCH (n_media) 
-                         WHERE (NOT n_media:L_VERSION)
-                           AND n_media.db_version<>v_new_db_version
-                          WITH n_media LIMIT ${limit_records}
-                 DETACH DELETE n_media  `;
-                    return graph_db.sqlParams(unused_sql, {});
-                })
-                .then(()=> {
-                    return graph_db.sqlParams(count_sql, {})
-                        .then((after_records)=> {
-                            after_count = after_records.records[0]._fields[0].low;
-                            return {limit_records, before_count, after_count};
-                        })
-                })
+        static deleteUnused_d_4(next_db_version, limit_records = DELETE_UNUSED_RECORDS) {
 
+                    var unused_sql = ` // VersionRepository.deleteUnused.unused_sql        
+                         MATCH (n_nodes) 
+                         WHERE (NOT n_nodes:L_VERSION)
+                           AND n_nodes.db_version<{next_db_version}
+                          WITH n_nodes LIMIT ${limit_records}
+                 DETACH DELETE n_nodes  `;
+                 
+                  var params = {next_db_version};
+                    return graph_db.sqlParams(unused_sql, params);
+                
         }
 
 

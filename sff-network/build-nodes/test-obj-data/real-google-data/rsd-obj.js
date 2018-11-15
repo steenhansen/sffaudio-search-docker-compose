@@ -1,5 +1,20 @@
  const my_media_array = [
  {
+  "episode number": "145",
+  "publish date": "2018-11-14 00:01",
+  "post link": "http://www.sffaudio.com/reading-short-and-deep-145-crypt-of-the-jealous-queen-by-jack-bennett/",
+  "hh:mm:ss": "0:34:02",
+  "file name": "rsd145CryptOfTheJealousQueen.mp3",
+  "byte size": "33,487,380",
+  "podcast participants": "Eric S. Rabkin and Jesse Willis",
+  "book title": "Crypt Of The Jealous Queen",
+  "book author": "Jack Bennett",
+  "genre type": "Story",
+  "pdf link": "http://www.sffaudio.com/podcasts/CryptOfTheJealousQueenByJackBennett.pdf",
+  "video link": "",
+  "podcast description": "Crypt Of The Jealous Queen by Jack Bennett"
+ },
+ {
   "episode number": "144",
   "publish date": "2018-11-07 00:01",
   "post link": "http://www.sffaudio.com/reading-short-and-deep-144-the-revolt-of-the-by-robert-barr/",

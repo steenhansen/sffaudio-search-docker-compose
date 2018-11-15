@@ -11,6 +11,7 @@ node reload-db localDb-googleData.config.js
 node reload-db grapheneDb-googleData.config.js
 
   */
+require('./sff-network/global-require');
 
 
 
@@ -40,9 +41,10 @@ const setCheckHerokuEnvVars = rootAppRequire('sff-network/heroku-config-vars');
 var test_data = setCheckHerokuEnvVars(config_file);
 
 if (test_data) {
-    var csv_update = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-file-db.js')(test_data);
-    csv_update();
+    var reload_file = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-file-db.js')(test_data);
+    reload_file.buildData();
 } else {
-   var url_read = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-url-db.js');
-  url_read();
+    var reload_url = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-url-db');
+   //var url_read = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-url-db.js');
+  reload_url.buildData();
 }

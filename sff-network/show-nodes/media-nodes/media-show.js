@@ -92,9 +92,9 @@ class MediaShow {
 
         let icon_wikipedia = svg_icons.wikipedia_icon(ICON_COLORS.L_AUTHOR_WIKI);
         let icon_author = svg_icons.author_icon(ICON_COLORS.L_AUTHOR);
-        let icon_post = svg_icons.post_icon(ICON_COLORS.L_POST);
+        let icon_post = svg_icons.post_icon(ICON_COLORS.L_AUTHOR_POST);
 
-        let icon_book_post = svg_icons.post_icon(ICON_COLORS.L_POST);
+        let icon_book_post = svg_icons.post_icon(ICON_COLORS.L_AUTHOR_POST);
 
 
         let icon_book = svg_icons.book_icon(ICON_COLORS.L_BOOK);
@@ -132,7 +132,7 @@ class MediaShow {
               
               
               
-            L_POST: ${icon_post},
+            L_AUTHOR_POST: ${icon_post},
             L_BOOK_POST: ${icon_book_post},
             
 

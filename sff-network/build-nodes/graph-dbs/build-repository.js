@@ -6,34 +6,38 @@ module.exports = class BuildRepository {
     constructor(graph_db, db_version) {
         this.graph_db = graph_db;
         this.db_version = db_version;
-        this.quality_author_count = 0;
-        this.quality_book_count = 0;
+
     }
+
 // deleteEverything
-    deleteAll() {
+    deleteAll()  {
+    
+    // delete rsds  MATCH (n_rsd:L_RSD) DETACH DELETE n_rsd
+    
         var delete_all_sql = 'MATCH (n) DETACH DELETE n'
         return this.addVersionSql(delete_all_sql, {});
     }
 
-    insertAPdf(new_info, new_link, book_title, under_title, strip_1_author, strip_2_author) {
+    insertAPdf(new_info, new_link, book_title, under_title, strip_1_author, strip_2_author,pdf_country) {
         var sql = `WITH {db_version} AS v_db_version
           MATCH (n_page_pdfs:L_PAGE_PDFS)
           WHERE n_page_pdfs.db_version = v_db_version
-        CREATE ( n_pdf:L_PDF   
+        MERGE ( n_pdf:L_PDF   
                                     {pdf_title:{new_info},
                                      pdf_url:{new_link}, 
                                      book_title:{book_title},
                                      under_title:{under_title}, 
                                      strip_1_author:{strip_1_author},
                                      strip_2_author:{strip_2_author} ,
+                                     pdf_country:{pdf_country} ,
+                                     
                                       db_version:v_db_version    })-[r_pdf_to_pages:L_PDF_TO_PAGES]->(n_page_pdfs)`;
-                                   //   console.log('pdf sql == ', sql)
-        var params = {new_info, new_link, book_title, under_title, strip_1_author, strip_2_author};
+        var params = {new_info, new_link, book_title, under_title, strip_1_author, strip_2_author,pdf_country};
         return this.addVersionSql(sql, params);
     }
 
 
-    insertABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author, is_quality = false) {
+    insertABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author) {
         var sql = `   // BuildRepository.insertABook()
             WITH {db_version} AS v_db_version,
               {sorted_label} AS v_sorted_label,
@@ -41,16 +45,10 @@ module.exports = class BuildRepository {
               {under_title} AS v_under_title,
               {strip_1_author} AS v_strip_1_author,
               {strip_2_author} AS v_strip_2_author
-               , {quality_count} AS v_quality_count
         MERGE (n_book:L_BOOK  { sorted_label: v_sorted_label, book_title: v_esc_book_title, 
-        	under_title : v_under_title, strip_1_author:v_strip_1_author, strip_2_author:v_strip_2_author, db_version:v_db_version, quality_count:v_quality_count})`;
+        	under_title : v_under_title, strip_1_author:v_strip_1_author, strip_2_author:v_strip_2_author, db_version:v_db_version})`;
         var params = {sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author};
-        if (is_quality) {
-            this.quality_book_count++;
-            params.quality_count = this.quality_book_count;
-        } else {
-            params.quality_count = 0;
-        }
+
         return this.addVersionSql(sql, params);
     }
 
@@ -88,7 +86,7 @@ module.exports = class BuildRepository {
         return this.addVersionSql(sql, params);
     }
 
-                                                       // rsd_url??
+    // rsd_url??
     insertAnRsd(rsd_title, under_title, rsd_description, rsd_link, rsd_pdf_link, video_link, strip_author) {
         var sql = ` WITH {db_version} AS v_db_version
           MATCH (n_page_rsds:L_PAGE_RSDS)
@@ -96,12 +94,12 @@ module.exports = class BuildRepository {
               MERGE (n_rsd:L_RSD { rsd_title: {rsd_title}, 	under_title : {under_title}, 	rsd_description : {rsd_description}, rsd_url : {rsd_link}, 
               rsd_pdf_link : {rsd_pdf_link},  video_link : {video_link},  strip_author : {strip_author}, db_version: v_db_version})
                  -[r_podcasts_to_rsds:L_RSDS_TO_PAGES]->(n_page_rsds)`;
-        var params = {rsd_title, under_title, rsd_description,  rsd_link, rsd_pdf_link, video_link,strip_author};
+        var params = {rsd_title, under_title, rsd_description, rsd_link, rsd_pdf_link, video_link, strip_author};
         return this.addVersionSql(sql, params);
     }
 
 
-    insertAuthor(full_author, strip_author, sorted_label, is_quality = false) {
+    insertAuthor(full_author, strip_author, sorted_label) {
         var sql = `	
         
         // BuildRepository.insertAuthor()
@@ -109,16 +107,10 @@ module.exports = class BuildRepository {
                  {full_author} AS v_full_author,
                              {sorted_label} AS v_sorted_label, 
                              {db_version} AS v_db_version
-                             , {quality_count} AS v_quality_count
-            MERGE (n_author:L_AUTHOR { author_name: v_full_author, strip_author: v_strip_author,
-                                       sorted_label:v_sorted_label, db_version:v_db_version, quality_count:v_quality_count})`;
+               MERGE (n_author:L_AUTHOR { author_name: v_full_author, strip_author: v_strip_author,
+                                       sorted_label:v_sorted_label, db_version:v_db_version})`;
         var params = {full_author, strip_author, sorted_label};
-        if (is_quality) {
-            this.quality_author_count++;
-            params.quality_count = this.quality_author_count;
-        } else {
-            params.quality_count = 0;
-        }
+
         return this.addVersionSql(sql, params);
     }
 
@@ -134,7 +126,7 @@ module.exports = class BuildRepository {
 
     authors_to_posts() {
         var sql = ` WITH {db_version} AS v_db_version
-        MATCH (n_author:L_AUTHOR), (n_post:L_POST)
+        MATCH (n_author:L_AUTHOR), (n_post:L_AUTHOR_POST)
             WHERE n_author.strip_author = n_post.strip_author
             			  AND n_author.db_version = v_db_version
 			  AND n_post.db_version = v_db_version
@@ -158,10 +150,10 @@ module.exports = class BuildRepository {
                                                         sorted_label: v_sorted_label, db_version:v_db_version})
                      `;
         var params = {strip_author, under_title, post_slug, post_title, sorted_label};
-        //clog('params...')
-    return this.addVersionSql(sql, params);
+        return this.addVersionSql(sql, params);
     }
-        books_to_posts() {
+
+    books_to_posts() {
         var sql = ` WITH {db_version} AS v_db_version
          MATCH (n_book:L_BOOK), (n_post_book:L_BOOK_POST)
             WHERE n_book.strip_1_author = n_post_book.strip_author
@@ -185,16 +177,14 @@ module.exports = class BuildRepository {
                                               {post_title} AS v_post_title,
                                                {sorted_label} AS v_sorted_label,
                                                 {db_version} AS v_db_version
-                                CREATE (n_post:L_POST { strip_author: v_strip_author,
+                                CREATE (n_post:L_AUTHOR_POST { strip_author: v_strip_author,
                                                         post_slug: v_post_slug, 
                                                         post_title: v_post_title,
                                                         sorted_label: v_sorted_label, db_version:v_db_version})
                      `;
         var params = {strip_author, post_slug, post_title, sorted_label};
-    return this.addVersionSql(sql, params);
+        return this.addVersionSql(sql, params);
     }
-    
-
 
 
     insertAWikiAuthor(author_wiki, strip_author) {
@@ -203,7 +193,6 @@ module.exports = class BuildRepository {
         var params = {author_wiki, strip_author};
         return this.addVersionSql(sql, params);
     }
-
 
 
     insertWrittenBy_author_1() {
@@ -227,11 +216,6 @@ module.exports = class BuildRepository {
     }
 
 
-
-
-
-
-
     insertWikiAuthors() {
         var sql = `	WITH  {db_version} AS v_db_version
               MATCH (n_author:L_AUTHOR),(n_author_wiki:L_AUTHOR_WIKI)
@@ -242,9 +226,6 @@ module.exports = class BuildRepository {
 
         return this.addVersionSql(sql, {});
     }
-
-
-
 
 
     insertRsdsOfBook() {           //EDGE!!!
@@ -289,10 +270,44 @@ module.exports = class BuildRepository {
     }
 
 
-
-
 //    match (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf) return *
     // linkPdfsToBooks()   or  pdfsToBooksEdges()
+    insertPdfsOfBookOld() {
+        var sql = ` // BuildRepository.linkPdfsToBooks()
+            WITH {db_version} AS v_db_version
+           MATCH (n_book:L_BOOK),(n_pdf:L_PDF)
+		   WHERE n_book.under_title =  n_pdf.under_title
+			 AND n_book.db_version = v_db_version
+			 AND n_pdf.db_version = v_db_version
+			 AND  n_pdf.strip_1_author = n_book.strip_1_author 
+		  CREATE (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf)		`;
+
+        var strip_1_1_author = this.addVersionSql(sql, {});
+
+        var sql = ` // BuildRepository.linkPdfsToBooks()
+            WITH {db_version} AS v_db_version
+           MATCH (n_book:L_BOOK),(n_pdf:L_PDF)
+		   WHERE n_book.under_title =  n_pdf.under_title
+			 AND n_book.db_version = v_db_version
+			 AND n_pdf.db_version = v_db_version
+			 AND  n_pdf.strip_1_author = n_book.strip_2_author
+		  CREATE (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf)		`;
+        var strip_1_2_author = this.addVersionSql(sql, {});
+
+        var sql = ` // BuildRepository.linkPdfsToBooks()
+            WITH {db_version} AS v_db_version
+           MATCH (n_book:L_BOOK),(n_pdf:L_PDF)
+		   WHERE n_book.under_title =  n_pdf.under_title
+			 AND n_book.db_version = v_db_version
+			 AND n_pdf.db_version = v_db_version
+			 AND n_pdf.strip_2_author = n_book.strip_1_author
+		  CREATE (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf)		`;
+        var strip_2_1_author = this.addVersionSql(sql, {});
+
+        var all_indexes = [strip_1_1_author, strip_1_2_author, strip_2_1_author];
+        return Promise.all(all_indexes);
+    }
+
     insertPdfsOfBook() {
         var sql = ` // BuildRepository.linkPdfsToBooks()
             WITH {db_version} AS v_db_version
@@ -300,32 +315,13 @@ module.exports = class BuildRepository {
 		   WHERE n_book.under_title =  n_pdf.under_title
 			 AND n_book.db_version = v_db_version
 			 AND n_pdf.db_version = v_db_version
-			 AND ( 
-			     n_pdf.strip_1_author = n_book.strip_1_author 
-             OR  n_pdf.strip_1_author = n_book.strip_2_author
-             OR  n_pdf.strip_2_author = n_book.strip_1_author
-             //      OR  n_pdf.strip_2_author = n_book.strip_2_author
-                    )
-                  
-		  CREATE (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf)		`;
-		  
-        return this.addVersionSql(sql, {});
+			 AND  n_pdf.strip_1_author = n_book.strip_1_author 
+		  CREATE (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf)`;
+       return this.addVersionSql(sql, {})
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- makeIndexes_a() {   /// 80751
+   
+    
+    makeIndexes_a() {   /// 80751
         var db_version = this.db_version;
         var params = {db_version};
         var author_index = `CREATE INDEX ON :L_AUTHOR(strip_author)`;
@@ -339,39 +335,37 @@ module.exports = class BuildRepository {
         var book_1_index = `CREATE INDEX ON :L_BOOK(under_title)`;
         var book_1_promise = this.graph_db.sqlParams(book_1_index, params)
 
-      //  var book_2_index = `CREATE INDEX ON :L_BOOK(strip_author_1)`;
-      // var book_2_promise = this.graph_db.sqlParams(book_2_index, params)
+        //  var book_2_index = `CREATE INDEX ON :L_BOOK(strip_author_1)`;
+        // var book_2_promise = this.graph_db.sqlParams(book_2_index, params)
 
 
-      //  var book_3_index = `CREATE INDEX ON :L_BOOK(strip_author_2)`;
-      //  var book_3_promise = this.graph_db.sqlParams(book_3_index, params)
+        //  var book_3_index = `CREATE INDEX ON :L_BOOK(strip_author_2)`;
+        //  var book_3_promise = this.graph_db.sqlParams(book_3_index, params)
 
 
-		 var podcast_index = `CREATE INDEX ON :L_PODCAST( under_title)`;
+        var podcast_index = `CREATE INDEX ON :L_PODCAST( under_title)`;
         var podcast_promise = this.graph_db.sqlParams(podcast_index, params)
-		
-		// var podcast_index2 = `CREATE INDEX ON :L_PODCAST(db_version)`;
+
+        // var podcast_index2 = `CREATE INDEX ON :L_PODCAST(db_version)`;
         //var podcast_promise2 = this.graph_db.sqlParams(podcast_index2, params)
-		
-		var pdf_index = `CREATE INDEX ON :L_PDF(db_version,under_title)`;
+
+        var pdf_index = `CREATE INDEX ON :L_PDF(db_version,under_title)`;
         var pdf_promise = this.graph_db.sqlParams(pdf_index, params)
-		
-		var rsd_index = `CREATE INDEX ON :L_RSD(db_version,under_title)`;
+
+        var rsd_index = `CREATE INDEX ON :L_RSD(db_version,under_title)`;
         var rsd_promise = this.graph_db.sqlParams(rsd_index, params)
-		
-		var post_index = `CREATE INDEX ON :L_POST(db_version,under_title)`;
+
+        var post_index = `CREATE INDEX ON :L_AUTHOR_POST(db_version,under_title)`;
         var post_promise = this.graph_db.sqlParams(post_index, params)
-		
-		
-		
-        var all_indexes = [author_promise, wiki_promise, 
-		book_1_promise, //book_2_promise, book_3_promise, 
-		podcast_promise,  //podcast_promise2 
-			pdf_promise,rsd_promise,post_promise];
+
+
+        var all_indexes = [author_promise, wiki_promise,
+            book_1_promise, //book_2_promise, book_3_promise, 
+            podcast_promise,  //podcast_promise2 
+            pdf_promise, rsd_promise, post_promise];
         return Promise.all(all_indexes);
     }
-    
-    
+
 
     makeIndexes() {   /// 80751
         var db_version = this.db_version;
@@ -388,32 +382,37 @@ module.exports = class BuildRepository {
         var book_1_promise = this.graph_db.sqlParams(book_1_index, params)
 
         var book_2_index = `CREATE INDEX ON :L_BOOK(strip_author_1)`;
-       var book_2_promise = this.graph_db.sqlParams(book_2_index, params)
+        var book_2_promise = this.graph_db.sqlParams(book_2_index, params)
 
 
         var book_3_index = `CREATE INDEX ON :L_BOOK(strip_author_2)`;
         var book_3_promise = this.graph_db.sqlParams(book_3_index, params)
 
 
-		 var podcast_index = `CREATE INDEX ON :L_PODCAST( under_title)`;
+        var podcast_index = `CREATE INDEX ON :L_PODCAST( under_title)`;
         var podcast_promise = this.graph_db.sqlParams(podcast_index, params)
-		
-		
-		var pdf_index = `CREATE INDEX ON :L_PDF(under_title)`;  
+
+
+        var pdf_index = `CREATE INDEX ON :L_PDF(under_title)`;
         var pdf_promise = this.graph_db.sqlParams(pdf_index, params)
-		
-		var rsd_index = `CREATE INDEX ON :L_RSD(under_title)`;
+
+  //    var pdf_index = `CREATE INDEX ON :L_PDF(db_version, under_title)`;
+      //  var pdf_promise11 = this.graph_db.sqlParams(pdf_index, params)   //36sec
+      // var pdf_index = `CREATE INDEX ON :L_PDF(strip_2_author)`;
+      //   var pdf_promise22 = this.graph_db.sqlParams(pdf_index, params)
+        
+        var rsd_index = `CREATE INDEX ON :L_RSD(under_title)`;
         var rsd_promise = this.graph_db.sqlParams(rsd_index, params)
-		
-		var post_index = `CREATE INDEX ON :L_POST(under_title)`;
+
+        var post_index = `CREATE INDEX ON :L_AUTHOR_POST(under_title)`;
         var post_promise = this.graph_db.sqlParams(post_index, params)
-		
-		
-		
-        var all_indexes = [author_promise, wiki_promise, 
-		book_1_promise, book_2_promise, book_3_promise, 
-		podcast_promise,  
-			pdf_promise,rsd_promise,post_promise];
+
+
+        var all_indexes = [author_promise, wiki_promise,
+            book_1_promise, book_2_promise, book_3_promise,
+            podcast_promise,
+            pdf_promise,
+             rsd_promise, post_promise];
         return Promise.all(all_indexes);
     }
 

@@ -1,5 +1,19 @@
  const my_media_array = [
  {
+  "episode number": "499",
+  "post id": "59215",
+  "publish date": "2018-11-12 00:01",
+  "kind": "READALONG",
+  "participants": "Jesse, Paul Weimer, Marissa VU, Evan Lampe",
+  "narrator": "",
+  "file name": "SFFaudioPodcast499.mp3",
+  "byte size": "67,765,034",
+  "hh:mm:ss": "1:47:27",
+  "book title": "The Father-Thing",
+  "book author": "Philip K. Dick",
+  "about": ""
+ },
+ {
   "episode number": "498",
   "post id": "59195",
   "publish date": "2018-11-05 00:01",

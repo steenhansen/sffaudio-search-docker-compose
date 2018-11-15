@@ -40,8 +40,8 @@ class CachedBooksAuthors {
         return write_promise;
     }
 
-    deleteCache(current_db_version) {
-        var file_name = fromAppRoot(`sff-network/media-cache/`+this.cache_name + `${current_db_version}.html`);
+    deleteCache(last_db_version) {
+        var file_name = fromAppRoot(`sff-network/media-cache/`+this.cache_name + `${last_db_version}.html`);
         fs.unlink(file_name, function (err) {
             if (err) {
                 if (err.code != 'ENOENT') {
@@ -53,10 +53,14 @@ class CachedBooksAuthors {
     }
 
     getCache(db_version) {
+      //  clog('getCache', db_version)
        var self=this;
         var cache_dir = fromAppRoot(`sff-network/media-cache/`);
         var file_name = cache_dir + self.cache_name + db_version + '.html';
          return readFilePromise(file_name, 'utf8')
+             .catch(function (e) {
+                         console.log('CachedBooksAuthors.getCache() :',  e)
+                })
     }
 }
 

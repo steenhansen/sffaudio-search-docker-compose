@@ -87,7 +87,6 @@ module.exports = function (graph_repository) {
                 if (this.isNode(key_name)) {
                     var field_data = this.data_fields[i];
                     if ((field_data !== null) && (typeof field_data.identity !== 'undefined')) {
-                        //    console.log('getNOdes, == ', field_data)
                         var identity_int = field_data.identity.low;
                         var node_2object = nodeFactory(field_data, this.author_or_book);
                         if (node_2object instanceof VersionShow) {
@@ -99,7 +98,6 @@ module.exports = function (graph_repository) {
                     }
                 }
             }
-            // console.log('dddddddddddddd', this.nodes_2string)
         }
 
         isRelationship(key_name) {

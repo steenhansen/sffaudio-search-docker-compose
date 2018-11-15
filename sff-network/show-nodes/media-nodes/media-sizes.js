@@ -5,19 +5,19 @@ var media_sizes = {
 
     L_AUTHOR: {
         NODE_SIZES: {
-            L_AUTHOR: 30, L_BOOK: 10, L_POST: 30, L_AUTHOR_WIKI: 30
+            L_AUTHOR: 30, L_BOOK: 10, L_AUTHOR_POST: 30, L_AUTHOR_WIKI: 30
         },
         FONT_COLORS: {
             L_AUTHOR: 'black',
             L_BOOK: 'red',
-            L_POST: 'white',
+            L_AUTHOR_POST: 'white',
             L_AUTHOR_WIKI: 'white'
         },
         FONT_SIZES: {
-            L_AUTHOR: 32, L_BOOK: 16, L_POST: 16, L_AUTHOR_WIKI: 16
+            L_AUTHOR: 32, L_BOOK: 16, L_AUTHOR_POST: 16, L_AUTHOR_WIKI: 16
         },
         ICON_COLORS: {
-            L_AUTHOR: 'pink', L_BOOK: 'bla', L_POST: '#0ff', L_AUTHOR_WIKI: '#f00'         // we 
+            L_AUTHOR: 'pink', L_BOOK: 'bla', L_AUTHOR_POST: '#0ff', L_AUTHOR_WIKI: '#f00'         // we 
         }
     },
     L_BOOK: {

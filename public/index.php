@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 
 print "php - new";
 
-$media_widget='http://localhost/node/';
+$media_widget='http://localhost/node/';       //         http://localhost/node/?author=philip_k_dick
 
 $get_author = @$_GET['author'];
 $get_book = @$_GET['book'];

@@ -1,6 +1,6 @@
 module.exports = function () {
     var load_css_external = `
-    
+//popup-pdf    
 sff_vars.pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
 
     var my = {
@@ -19,60 +19,70 @@ sff_vars.pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
         pdf_context.clearRect(0, 0, pdf_canvas.width, pdf_canvas.height);
     }
 
-    my.setupPdf= function (book_title, label,strip_author, under_title){   /// make it more clear in loadPdf what we are doing
+    my.setupPdf = function (book_title, label) {   
         sff_vars.helpers.setDisplay("video--container", 'none');
-        sff_vars.history_state.pushBook(strip_author, under_title);
         sff_vars.helpers.setDisplay("media--title", 'block');
         my.clearCanvas(my.canvas_id);
         sff_vars.helpers.setDisplay(my.canvas_id, 'block');
-        document.getElementById('close--icon').src = pdf_close_svg;     
+        document.getElementById('close--icon').src = pdf_close_svg;
         document.getElementById('media--title').innerHTML = book_title + ' - ' + label;
         sff_vars.blur_procs.blockPage('popup--container');
         sff_vars.helpers.setDisplay('pdf--loading', 'block');
     }
-
-
- my.readPdf = function (pdf_url) {
-     fetch(pdf_url)    
-        .then( function(end_pdf_url){
-        my.pdf_js_lib.getDocument(end_pdf_url)
-            .then(function (loaded_pdf) {
-                my.pdf_document = loaded_pdf;
-                my.last_page = loaded_pdf.numPages;
-                my.loadOnePage(1);
-                sff_vars.blur_procs.postPdfWidth('pdf--controller');
-                sff_vars.helpers.setDisplay('pdf--controller', 'block');
-            }).catch(function (e) {
-                var error_name = e.name;
-                if (error_name === "MissingPDFException") {
-                    console.log('Missing PDF :', pdf_url);
-                } else if (error_name = "UnknownErrorException") {
-                    console.log('CORS Access-Control-Allow-Origin missing :', pdf_url);
-                } else {
-                    console.log('Unknown PDF error :', pdf_url, e)
-                }
-        })
-        })
-    }
-
-    my.loadPdf = function (pdf_url, book_title, label,strip_author, under_title) {
-        my.setupPdf(book_title, label,strip_author, under_title);
-        if (window.location.hostname==='www.sffaudio.com'){
-            // no cors worry
+    
+    my.loadPdfForRsd = function (pdf_url, book_title, label, strip_author, under_title) {
+        my.setupPdf(book_title, label);
+        if (window.location.hostname === 'www.sffaudio.com') {
             my.readPdf(pdf_url);
-        }else{
-               var url_type3 = sff_vars.ajax_url + sff_vars.SFF_RESOLVE_PDF + pdf_url;
-               fetch(url_type3)    
-                    .then( function(response){
-                        var text_promise = response.text();
-                         return text_promise;
-                    })
-                    .then( function(resolved_pdf_url) {
-                         my.readPdf(resolved_pdf_url);
-                    });
+        } else {
+            var url_type3 = sff_vars.ajax_url + sff_vars.SFF_RESOLVE_PDF + pdf_url;
+            fetch(url_type3)
+                .then(function (response) {
+                    var text_promise = response.text();
+                    return text_promise;
+                })
+                .then(function (resolved_pdf_url) {
+                    my.readPdf(resolved_pdf_url);
+                });
         }
-
     }
+    
+    my.readPdf = function (pdf_url) {
+        fetch(pdf_url)
+            .then(function (end_pdf_url) {
+                my.pdf_js_lib.getDocument(end_pdf_url)
+                    .then(function (loaded_pdf) {
+                        my.pdf_document = loaded_pdf;
+                        my.last_page = loaded_pdf.numPages;
+                        my.loadOnePage(1);
+                        sff_vars.blur_procs.postPdfWidth('pdf--controller');
+                        sff_vars.helpers.setDisplay('pdf--controller', 'block');
+                    }).catch(function (e) {
+                    var error_name = e.name;
+                    if (error_name === "MissingPDFException") {
+                        console.log('Missing PDF :', pdf_url);
+                    } else if (error_name = "UnknownErrorException") {
+                        console.log('CORS Access-Control-Allow-Origin missing :', pdf_url);
+                    } else {
+                        console.log('Unknown PDF error :', pdf_url, e)
+                    }
+                })
+            }).catch(function (e) {
+            console.log('can pdf error ', e);
+            // window.location = pdf_url;        // bypass CORS error SEC7118 on IE 11/Windows 7 bug
+        })
+    }
+
+    my.loadPdf = function (pdf_url, book_title, label, strip_author, under_title, req_query_view) {
+        if (req_query_view) {
+            sff_vars.history_state.pushBookView(strip_author, under_title, req_query_view);
+        } else {
+            sff_vars.history_state.pushBook(strip_author, under_title);
+        }
+        my.loadPdfForRsd(pdf_url, book_title, label, strip_author, under_title);
+    }
+
+
 
     my.changePage = function (page_change) {
         if (page_change === 0) {
@@ -89,23 +99,16 @@ sff_vars.pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
         return new_page;
     }
 
-    my.computedValue = function (element_id, value_name) {
-        var html_element = document.getElementById(element_id);
-        var computed_style = window.getComputedStyle(html_element);
-        var computed_height = parseInt(computed_style.getPropertyValue(value_name), 10);
-        return computed_height;
-    }
 
     my.fixHeights = function (pdf_canvas_height) {
-
-        var media_height = my.computedValue('media--title', 'height');
-        var pager_height = my.computedValue('pdf--controller', 'height');
-        var pager_top = my.computedValue('pdf--controller', 'top');
+        var media_height =sff_vars.helpers.computedHeight('media--title');
+        var pager_height =sff_vars.helpers.computedHeight('pdf--controller');
+        var pager_top =sff_vars.helpers.computedValue('pdf--controller', 'top');
+    
         var pop_cont_height = media_height + pager_height + pdf_canvas_height;
         document.getElementById("popup--container").style.height = pop_cont_height + 'px';
         document.getElementById("pdf--canvas").style.top = pager_height + pager_top + 'px'
-
-         sff_vars.helpers.setDisplay('pdf--loading', 'none');
+        sff_vars.helpers.setDisplay('pdf--loading', 'none');
     }
 
     my.renderOnePage = function (pdf_page) {
@@ -142,9 +145,8 @@ sff_vars.pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
 }(sff_vars.pdf_vars.pdf_proxy_url,
     sff_vars.pdf_vars.canvas_id,
     sff_vars.graph_vars.node_icons.I_CLOSE_PDF.image
-)) 
-
-
+))
+//popup-pdf 
 `;
     return load_css_external;
 

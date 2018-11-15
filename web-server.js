@@ -67,6 +67,8 @@ require('./sff-network/global-require');
 
 
 
+
+
 const setCheckHerokuEnvVars = rootAppRequire('sff-network/heroku-config-vars');
 
 if (process.argv[2]){
@@ -128,7 +130,6 @@ app.use(function(req, res, next) {
 
 
 app.get(program_constants.ROUTE_RESOLVE_PDF, function (req, res_express) {
-  console.log('/ROUTE_RESOLVE_PDF-proxy')
     const start_pdf_url =  req.query[program_constants.SFF_START_PDF_URL];
     misc_helper.resolveRedirects(start_pdf_url)
         .then( (end_pdf_url)=>{
@@ -138,7 +139,6 @@ app.get(program_constants.ROUTE_RESOLVE_PDF, function (req, res_express) {
 
 
 app.get('/post-proxy', function (req, res_express) {
-   console.log('/post-proxy')
     const absolute_url =  req.query.absolute_url;
     const optionsStart = {
         uri: absolute_url,
@@ -161,9 +161,7 @@ app.get('/post-proxy', function (req, res_express) {
 
 
 app.get('/mp3-proxy', function (req, res_express) {
-   console.log('/mp3-proxy')
     const absolute_url =  req.query.absolute_url;
- // clog('mp3 proxy', absolute_url)
     const optionsStart = {
         uri: absolute_url,
         method: "GET",
@@ -173,13 +171,10 @@ app.get('/mp3-proxy', function (req, res_express) {
           "Content-type": "audio/mpeg"
         }
       };
-       //clog('before mp3 start')
     request(optionsStart, (err, res_request, body) => {
         if (err) {
             return console.log(err);
         }
-         // clog('mp3 body', body)
-       //res_express.send(body);
         res_express.type('audio/mpeg');
        res_express.end(body, 'binary');
     });
@@ -188,7 +183,6 @@ app.get('/mp3-proxy', function (req, res_express) {
 
 
 app.get('/pdf-proxies/pdf-proxy', function (req, res_express) {
-   console.log('/pdf-proxies/pdf-proxy    PPPPPPPPPPPPPPPPPPPPPPPPPPPP' )
     const absolute_url =  req.query.absolute_url;
     const optionsStart = {
         uri: absolute_url,
@@ -210,7 +204,6 @@ app.get('/pdf-proxies/pdf-proxy', function (req, res_express) {
 })
 
 app.get('/json-proxies/thru-proxy', function (req, res_express) {
-   console.log('servering /json-proxies/thru-proxy  PPPPPPPPPPPPPPPPPP')
     const absolute_url = 'http://' + req.query.absolute_url;
     request(absolute_url, {json: true}, (err, res_request, body) => {
         if (err) {
@@ -224,7 +217,6 @@ app.get('/json-proxies/thru-proxy', function (req, res_express) {
 
 //  http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=pdf
 app.get('/author/book/:strip_author/:under_title', function (req, res) {
-   console.log('servering /author/book/:strip_author/:under_title', req.params)
     let {strip_author, under_title}=req.params
     book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo)
         .then(function (nodes_and_edges) {
@@ -261,9 +253,7 @@ app.get('/author/book/:strip_author/:under_title', function (req, res) {
 // GET JSON!
 //app.get('/author/:strip_author', function (req, res) {
 app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
-   console.log('servering /author/:strip_author')
     const strip_author = req.params.strip_author
-    //clog('ddddddddd333333333333', strip_author)
     author_data.sendAuthor(strip_author, ParseNeo)
         .then(function (nodes_and_edges) {
             let {nodes_object, edges_object} =nodes_and_edges
@@ -286,32 +276,27 @@ app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
 
 
 app.get('/widget', function (req, res) {
-    console.log('servering widget')
     authorOrBook(req).then(function (nodes_and_edges) {
         let {nodes_object, edges_object, graph_info} =nodes_and_edges
         the_widget(nodes_object, edges_object, graph_info)
             .then(
-        //       (widget_html)=> console.log(widget_html)
             (widget_html)=> res.send(widget_html)
             
             );
     })
 })
 
-app.get('/load', function (req, res) {
-    console.log('servering load')
-    
-     var url_update = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-url-db.js');
-    url_update()
-            .then(
-        //       (widget_html)=> console.log(widget_html)
-            (new_db_version)=> res.send(new_db_version)
-            
-            );
-})
+// app.get('/load', function (req, res) {
+//    
+//      var url_update = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-url-db.js');
+//     url_update()
+//             .then(
+//             (new_db_version)=> res.send(new_db_version)
+//            
+//             );
+// })
 
 function authorOrBook(req) {
-   console.log('servering authorOrBook')
     if (CachedBooksAuthors.urlGetAuthorBook(req.query, 'book')) {
         var under_title = req.query.book;
              var strip_author = req.query.author;
@@ -324,7 +309,6 @@ function authorOrBook(req) {
     if (typeof under_title !== 'undefined') {
         return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
     } else {
-        console.log('authororBook ', strip_author, '__')
         return author_data.sendAuthor(strip_author, ParseNeo);
     }
 }
@@ -332,16 +316,14 @@ function authorOrBook(req) {
 // http://localhost:5000/
 //   http://localhost:5000/?author=philip_k_dick&view=post
 app.get('/', function (req, res) {
-    console.log('servering / ==', req.query)
-    authorOrBook(req).then(function (nodes_and_edges) {
+    authorOrBook(req)
+    .then(function (nodes_and_edges) {
         let {nodes_object, edges_object, graph_info} =nodes_and_edges;
-                console.log('view', req.query.view)
         if (typeof req.query.view === 'undefined'){
             var query_view = '';
         }else{
             var query_view = req.query.view;
         }        
-        console.log('...........', query_view)
         media_page(nodes_object, edges_object, graph_info, query_view)
             .then((book_html)=> res.send(book_html));
     })
@@ -349,7 +331,6 @@ app.get('/', function (req, res) {
 })
 
 app.get('', function (req, res) {
-    console.log('servering {}==', req.query)
     authorOrBook(req).then(function (nodes_and_edges) {
         let {nodes_object, edges_object, graph_info} =nodes_and_edges;
         media_page(nodes_object, edges_object, graph_info)

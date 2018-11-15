@@ -3,7 +3,7 @@ MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show');
  var media_constants = rootAppRequire('sff-network/media-constants');
 
 // build_widget
-function media_widget(graph_id, nodes_object, edges_object, graph_object) {
+function widgetVars(graph_id, nodes_object, edges_object, graph_object) {
 
 var icons_string = MediaShow.authorIconColors();
 
@@ -24,6 +24,7 @@ var edge_options = JSON.stringify(edge_options_json);
 
     var media_html = `
 <script>
+// server-to-browser
     sff_vars.graph_vars={  
         graph_id:"${graph_id}",
         nodes_string:${nodes_string},
@@ -50,4 +51,52 @@ sff_vars.post_vars={
     return media_html;
 }
 
-module.exports = media_widget 
+
+
+
+
+
+
+
+
+function widgetHtml(graph_div_id, author_links, book_links) {
+
+    var media_html = `
+    <div id="my--network">
+    <div>
+    
+         <div id="all--filter--authors" style="height:600px; ">
+         <div id='filter--authors' style='display:none'>
+              </div>
+              
+            <div id='all--authors'>
+                ${author_links}
+            </div>
+             
+        </div>
+  
+        <div id="${graph_div_id}">
+         </div>
+         
+         <div id="all--filter--books" style="height:600px; ">
+         <div id='filter--books' style='display:none'>
+              </div>
+            <div id='all--books'>
+                 ${book_links}
+             </div>
+              
+         </div>
+
+    </div> 
+    
+    <div style='clear:both'> 
+        <button id='clear--filter' onClick='sff_vars.filter_names.stopFiltering()'>Clear Filter</button>
+        <input id='filter--text' type='text' onChange='sff_vars.filter_names.filterMedia(this)' />
+     </div>
+     
+</div>
+ `;
+    return media_html;
+}
+
+module.exports = {widgetVars, widgetHtml} 

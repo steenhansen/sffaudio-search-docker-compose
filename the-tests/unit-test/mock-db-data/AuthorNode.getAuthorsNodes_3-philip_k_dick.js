@@ -28,7 +28,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "jonathan-lethem-and-kim-stanley-robinson-discuss-philip-k-dick",
@@ -90,7 +90,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "jonathan-lethem-and-kim-stanley-robinson-discuss-philip-k-dick0",
@@ -127,7 +127,7 @@ var mock_data_return = ` {
  ],
  "summary": {
   "statement": {
-   "text": " \n            \n                 // AuthorNode.getAuthorsNodes_3 L_POST\n                        WITH {strip_author} AS v_strip_author\n                        MATCH (n_author:L_AUTHOR)-[r_author_to_post:L_AUTHOR_TO_POST]-\t(n_post:L_POST)\n\t                    WHERE n_post.strip_author=v_strip_author\n\t                    RETURN *   ",
+   "text": " \n            \n                 // AuthorNode.getAuthorsNodes_3 L_AUTHOR_POST\n                        WITH {strip_author} AS v_strip_author\n                        MATCH (n_author:L_AUTHOR)-[r_author_to_post:L_AUTHOR_TO_POST]-\t(n_post:L_AUTHOR_POST)\n\t                    WHERE n_post.strip_author=v_strip_author\n\t                    RETURN *   ",
    "parameters": {
     "strip_author": "philip_k_dick"
    }

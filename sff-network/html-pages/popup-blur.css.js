@@ -3,105 +3,97 @@
  var svg_icons = rootAppRequire('./sff-network/html-pages/svg-icons');
 
 var popup_blur_js = `
-      <script>
-             sff_vars.blur_procs = (function (pop_up_id) {
-            
-                var my = {};
-                
- my.keyDowns = function (event) {
+//popup-blur.css.js
+sff_vars.blur_procs = (function (pop_up_id) {
+
+    var my = {};
+
+    my.keyDowns = function (event) {
         var key_code = event.keyCode;
-        if ( key_code == 27 ) {
-           sff_vars.blur_procs.closePopUp();
-        } else  if ( key_code == 37) {
-           sff_vars.pdf_procs.loadOnePage('-');
-        } else  if ( key_code == 39) {
-           sff_vars.pdf_procs.loadOnePage('+');
+        if (key_code == 27) {
+            sff_vars.blur_procs.closePopUp();
+        } else if (key_code == 37) {
+            sff_vars.pdf_procs.loadOnePage('-');
+        } else if (key_code == 39) {
+            sff_vars.pdf_procs.loadOnePage('+');
         }
-  };
-  
-  function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split('&');
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split('=');
-        if (decodeURIComponent(pair[0]) == variable) {
-            return decodeURIComponent(pair[1]);
+    };
+
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split('&');
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split('=');
+            if (decodeURIComponent(pair[0]) == variable) {
+                return decodeURIComponent(pair[1]);
+            }
         }
+        return '';
     }
-    return '';
-}
 
-                
-                my.closePopUp = function () {
-                
-                var under_title = getQueryVariable('book');
-                var strip_author = getQueryVariable('author');
-                   console.log('closePopUp', strip_author, under_title)
-                 if (under_title){
-                   sff_vars.history_state.replaceBook(strip_author, under_title);
-                }else{
-                   sff_vars.history_state.replaceAuthor(strip_author);
-                }
-                
+    my.closePopUp = function () {
+        var under_title = getQueryVariable('book');
+        var strip_author = getQueryVariable('author');
+        if (under_title) {
+            sff_vars.history_state.replaceBook(strip_author, under_title);
+        } else {
+            sff_vars.history_state.replaceAuthor(strip_author);
+        }
+        if (window.location.search == '') {
+            window.history.forward();
+        }
+        sff_vars.helpers.setDisplay(pop_up_id, 'none');
+        sff_vars.helpers.setDisplay('media--title', 'none');
+        sff_vars.helpers.setDisplay('mp3--player', 'none');
+        sff_vars.helpers.setDisplay('post--container', 'none');
+        document.getElementById('post--container').innerHTML = '';
+        sff_vars.helpers.setDisplay('pdf--controller', 'none');
+        sff_vars.helpers.setDisplay('pdf--canvas', 'none');
+        sff_vars.pdf_procs.clearCanvas('pdf--canvas');
+        sff_vars.helpers.setDisplay('pdf--loading', 'none');
+        sff_vars.helpers.setDisplay('video--container', 'none');
+        document.getElementById('video--player').src = '';
+    }
 
-                
-                 if (window.location.search == '') {
-                   console.log('History  forward')
-                   window.history.forward();
-                 }
-                   sff_vars.helpers.setDisplay(pop_up_id, 'none');
-                  sff_vars.helpers.setDisplay('media--title', 'none');
-                   sff_vars.helpers.setDisplay('mp3--player', 'none');
-                    sff_vars.helpers.setDisplay('post--container', 'none');
-                   document.getElementById('post--container').innerHTML = '';
-                   sff_vars.helpers.setDisplay('pdf--controller', 'none');
-                   sff_vars.helpers.setDisplay('pdf--canvas', 'none');
-                    sff_vars.pdf_procs.clearCanvas('pdf--canvas');
-                   sff_vars.helpers.setDisplay('pdf--loading', 'none');
-                   sff_vars.helpers.setDisplay('video--container', 'none');
-                    document.getElementById('video--player').src ='';
-                }
+    my.postPdfWidth = function (post_pdf_container) {
+        sff_vars.helpers.setDisplay(post_pdf_container, 'block');
+        var post_container = document.getElementById(post_pdf_container);
+        var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        post_container.style.left = screen_width * 0.05 + "px";
+        post_container.style.width = screen_width * 0.9 + "px";
+    }
 
-                my.postPdfWidth = function(post_pdf_container){
-                     sff_vars.helpers.setDisplay(post_pdf_container, 'block');
-                    var post_container = document.getElementById(post_pdf_container);
-                    var screen_width =  window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-                    post_container.style.left = screen_width * 0.05 + "px";
-                    post_container.style.width = screen_width * 0.9 + "px";    
-                }
+    my.mp3load = function (goto_url) {
+        var mp3_player = document.getElementById("mp3--player");
+        sff_vars.helpers.setDisplay("mp3--player", 'block');
+        mp3_player.src = goto_url;
+        mp3_player.load();
+        var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var canvas_left_px = screen_width * 0.05;
+        mp3_player.style.left = canvas_left_px + "px";
+        mp3_player.style.width = screen_width * 0.9 + "px";
+    }
 
-                my.mp3load = function (goto_url) {
-                    var mp3_player = document.getElementById("mp3--player");
-                     sff_vars.helpers.setDisplay("mp3--player", 'block');
-                    mp3_player.src = goto_url;
-                    mp3_player.load();
-                    var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-                    var canvas_left_px = screen_width * 0.05;
-                    mp3_player.style.left = canvas_left_px + "px";
-                    mp3_player.style.width = screen_width * 0.9 + "px";
-                }
+    my.screenHeightPx = function () {
+        var screen_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientheight;
+        return screen_height + 'px';
+    }
 
-                my.screenHeightPx = function () {
-                    var screen_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientheight;
-                    return screen_height + 'px';
-                }
-    
-                my.blockPage = function (container_id) {
-                    var screen_height_px = my.screenHeightPx();
-                    document.getElementById(container_id).style.height = screen_height_px;
-                    document.getElementById(container_id).style.width = window.screen.width+'px';
-                    var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-                    document.getElementById('close--icon').style.left = (screen_width*0.9)+'px';
-                    sff_vars.helpers.setDisplay(container_id, 'block');
-                    sff_vars.helpers.setDisplay('close--icon', 'block');
-                }
-           
-                return my;
-            
-            }('popup--container')); 
-        
-     </script>
-    `;
+    my.blockPage = function (container_id) {
+        var screen_height_px = my.screenHeightPx();
+        document.getElementById(container_id).style.height = screen_height_px;
+        document.getElementById(container_id).style.width = window.screen.width + 'px';
+        var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        document.getElementById('close--icon').style.left = (screen_width * 0.9) + 'px';
+        sff_vars.helpers.setDisplay(container_id, 'block');
+        sff_vars.helpers.setDisplay('close--icon', 'block');
+    }
+
+    return my;
+
+}('popup--container')); 
+//popup-blur.css.js end 
+`;
 
 let first_page = svg_icons.first_icon(media_constants.PDF_COLOR);
 let last_page = svg_icons.last_icon(media_constants.PDF_COLOR);
@@ -181,7 +173,7 @@ var popup_blur_html = `
 
 // css classes, and ids ===  my--class,  my__id
 var popup_blur_css = `        
-<style>
+
 
 
 #mp3--player{
@@ -312,9 +304,13 @@ background-color:white;
    width:100%; 
    text-align:center;
 }
-    </style>`;
+    `;
 
-pop_up_js_html_css =  popup_blur_css+  popup_blur_html + popup_blur_js ;
+//pop_up_js_html_css =  popup_blur_css+  popup_blur_html + popup_blur_js ;
 
 
-module.exports = pop_up_js_html_css;
+//module.exports = pop_up_js_html_css;
+
+
+module.exports = {popup_blur_css, popup_blur_html, popup_blur_js};
+

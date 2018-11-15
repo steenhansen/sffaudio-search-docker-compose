@@ -28,7 +28,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "the-smithsonian-collection-of-old-time-radio-science-fiction-featuring-an-essay-by-ray-bradbury",
@@ -90,7 +90,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "review-of-the-martian-chronicles-by-ray-bradbury-2",
@@ -152,7 +152,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "cbc-vanishing-point-the-playground-adapted-from-the-story-by-ray-bradbury",
@@ -214,7 +214,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "marionettes-inc-by-ray-bradbury",
@@ -276,7 +276,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "the-homecoming-by-ray-bradbury",
@@ -338,7 +338,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "ray-bradbury-talks-about-green-shadows-white-whale",
@@ -400,7 +400,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "ray-bradburys-the-flying-machine-and-the-fruit-at-the-bottom-of-the-bowl",
@@ -462,7 +462,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "ray-bradbury-story-of-a-writer-a-1963-tv-documentary",
@@ -524,7 +524,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "bbc-radio-4-extra-pratchett-gaiman-gibson-bradbury",
@@ -586,7 +586,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "reps-podcast-cbc-stage-fahrenheit-451-adapted-from-the-novel-by-ray-bradbury",
@@ -648,7 +648,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "i-mars-by-ray-bradbury",
@@ -710,7 +710,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "the-veldt-by-ray-bradbury-read-by-stephen-colbert",
@@ -772,7 +772,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "the-man-who-forgot-ray-bradbury-by-neil-gaiman",
@@ -834,7 +834,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "radio-drama-revival-bradbury-13-the-veldt",
@@ -896,7 +896,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "pbs-wonderworks-ray-bradburys-all-summer-in-a-day-1982",
@@ -958,7 +958,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "if-only-we-had-taller-been-by-ray-bradbury",
@@ -1020,7 +1020,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "neil-austins-masters-of-fantasy-from-famous-fantastic-mysteries-1947-1950-desktop-wallpaper",
@@ -1082,7 +1082,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "commentary-a-top-100-sci-fi-audiobooks-list",
@@ -1144,7 +1144,7 @@ var mock_data_return = ` {
       "high": 0
      },
      "labels": [
-      "L_POST"
+      "L_AUTHOR_POST"
      ],
      "properties": {
       "post_slug": "tag/ray-bradbury",
@@ -1181,7 +1181,7 @@ var mock_data_return = ` {
  ],
  "summary": {
   "statement": {
-   "text": " \n            \n                 // AuthorNode.getAuthorsNodes_3 L_POST\n                        WITH {strip_author} AS v_strip_author\n                        MATCH (n_author:L_AUTHOR)-[r_author_to_post:L_AUTHOR_TO_POST]-\t(n_post:L_POST)\n\t                    WHERE n_post.strip_author=v_strip_author\n\t                    RETURN *   ",
+   "text": " \n            \n                 // AuthorNode.getAuthorsNodes_3 L_AUTHOR_POST\n                        WITH {strip_author} AS v_strip_author\n                        MATCH (n_author:L_AUTHOR)-[r_author_to_post:L_AUTHOR_TO_POST]-\t(n_post:L_AUTHOR_POST)\n\t                    WHERE n_post.strip_author=v_strip_author\n\t                    RETURN *   ",
    "parameters": {
     "strip_author": "ray_bradbury"
    }

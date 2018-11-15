@@ -6,16 +6,7 @@ var media_constants = rootAppRequire('sff-network/media-constants')
 module.exports = function (build_repository) {
 
     class BookBuild extends MediaBuild {
-            static isQuality(sorted_label) {
-    
-    
-        if (media_constants.QUALITY_BOOKS.includes(sorted_label)) {
-            var is_quality = true;
-        } else {
-            var is_quality = false;
-        }
-        return is_quality;
-    }
+
 
         static findStoryWiki(pdf_csv) {            // findBookWiki
             let story_wikis = {};
@@ -31,8 +22,8 @@ module.exports = function (build_repository) {
         }
 
 
-        static addABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author, is_quality) {
-            return build_repository.insertABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author, is_quality)
+        static addABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author) {
+            return build_repository.insertABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author)
         }
 
         static addBooksNew(book_list) {
@@ -42,9 +33,8 @@ module.exports = function (build_repository) {
 
                 let {sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author}  = book_list[title_auth1_auth2];
 
-                var is_quality = BookBuild.isQuality(sorted_label);
 
-                const book_promise = BookBuild.addABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author, is_quality)
+                const book_promise = BookBuild.addABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author)
                 my_promises.push(book_promise);
             }
             return my_promises;
@@ -63,10 +53,12 @@ module.exports = function (build_repository) {
             return my_promises;
         }
 
-        static addPdfsOfBook() {
+
+static addPdfsOfBook() {
             return build_repository.insertPdfsOfBook();
         }
 
+        
        static addPdfsPage() {
             return build_repository.insertPdfPage();
         }

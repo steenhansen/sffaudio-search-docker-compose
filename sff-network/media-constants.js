@@ -52,7 +52,7 @@ var media_constants = {
     QUALITY_AUTHORS: [ 'Philip K. Dick', 'Ray Bradbury'],        //'ray_bradbury', 'george_rr_martin'],
 	
 	
-	DELETE_UNUSED_RECORDS: 10000,
+	DELETE_UNUSED_RECORDS: 20000,
 	
 	NO_RECORD_LIMIT : 'NO_RECORD_LIMIT',
 
@@ -79,8 +79,9 @@ var media_constants = {
     PDF_GOOGLE_DATA: "https://docs.google.com/spreadsheets/d/1sbQ8NR7hvcm4EjSlyhmte0rYtI_G3vnc1o5KLPAW2lc/export?format=tsv",          
     PDF_GOOGLE_VARIABLES: "https://docs.google.com/spreadsheets/d/17TwPecDRNw5JS9_WT6t3cl40e5M46z8ALwnvFalHDZc/export?format=tsv&gid=1750187409",    // test pdf
     
-    POST_GOOGLE_DATA: "https://docs.google.com/spreadsheets/d/1C18lpo5-Dj4G0tGfq1AlodPcM4AX_6ITUL3mjsTQ3b0/export?format=tsv"
+    POST_GOOGLE_DATA: "https://docs.google.com/spreadsheets/d/1C18lpo5-Dj4G0tGfq1AlodPcM4AX_6ITUL3mjsTQ3b0/export?format=tsv",
     
+    QUALITY_GOOGLE_DATA: "https://docs.google.com/spreadsheets/d/1N2_v3MXhlOz-jxkWVcIVsMPNKqKkTS7POS26SBzxqP0/export?format=tsv"
 
 
 

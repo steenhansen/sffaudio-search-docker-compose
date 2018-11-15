@@ -28,24 +28,13 @@ module.exports = function (build_repository) {
                     this.processed_authors.push(strip_author);
                     const full_author = book_authors[strip_author];
                     const sorted_label = misc_helper.theLastNameFirst(full_author, ' ');
-                    var is_quality = this.isQuality(strip_author);
-                    var neo4j_promise = build_repository.insertAuthor(full_author, strip_author, sorted_label, is_quality);
+                    var neo4j_promise = build_repository.insertAuthor(full_author, strip_author, sorted_label);
                     my_promises.push(neo4j_promise);
                 }
             }
             return my_promises;
         }
 
-        isQuality(strip_author) {
-
-
-            if (media_constants.QUALITY_AUTHORS.includes(strip_author)) {
-                var is_quality = true;
-            } else {
-                var is_quality = false;
-            }
-            return is_quality;
-        }
 
 
         findAuthorWiki(pdf_csv) {

@@ -1,45 +1,38 @@
 module.exports =  function (server_var) {
 
 var load_css_external = `
-
-
-sff_vars.filter_names = (function (graph_id  ) {
+// filter-names
+sff_vars.filter_names = (function (graph_id) {
     var my = {
         last_selected_media: '',
-         select_colors_or_css_from_server: ${server_var}
+        select_colors_or_css_from_server: ${server_var}
     };
 
-
-   my.selectMedia= function (media_id_short, scroll_media) {
- //  console.log(' my.selectMedia --- media_id_short', media_id_short);
+    my.selectMedia = function (media_id_short, scroll_media) {
         if (my.last_selected_media !== '') {
             var elem = document.getElementById(my.last_selected_media);
             if (elem) {
                 elem.classList.remove('current__media');
             }
-                var elem_filter = document.getElementById('filter_'+my.last_selected_media);
-                if (elem_filter != null) {
-                   elem_filter.classList.remove('current__media');
-                }
+            var elem_filter = document.getElementById('filter_' + my.last_selected_media);
+            if (elem_filter != null) {
+                elem_filter.classList.remove('current__media');
+            }
         }
-
         var media_id = media_id_short + '_';
         var elem = document.getElementById(media_id);
-        
         if (elem != null) {
-             elem.classList.add('current__media');
+            elem.classList.add('current__media');
             if (scroll_media == 'yes_scroll') {
                 elem.scrollIntoView();
                 var container = document.getElementById(graph_id);
                 container.scrollIntoView();
             }
         }
-         // console.log(' my.selectMedia --- media_id_short', 'filter_'+media_id);
-           var elem_filter = document.getElementById('filter_'+media_id);
-              if (elem_filter != null) {
+        var elem_filter = document.getElementById('filter_' + media_id);
+        if (elem_filter != null) {
             elem_filter.classList.add('current__media');
         }
-        
         my.last_selected_media = media_id;
         return true;
     }
@@ -56,6 +49,7 @@ sff_vars.filter_names = (function (graph_id  ) {
         clearFiltered('filter--authors');
         clearFiltered('filter--books');
     }
+    
     function makeFilters(search_underscore, all_name, filter_name, div_class_name) {
         clearFiltered(filter_name);
         var all_div = document.getElementById(all_name);
@@ -76,15 +70,15 @@ sff_vars.filter_names = (function (graph_id  ) {
 
     function showHideFiltered(showing_type) {   // filtered_media / all_media
         if (showing_type === 'all_media') {
-             sff_vars.helpers.setDisplay("all--authors", 'block');
-             sff_vars.helpers.setDisplay("all--books", 'block');
-             sff_vars.helpers.setDisplay('filter--authors', 'none');
-             sff_vars.helpers.setDisplay('filter--books', 'none');
+            sff_vars.helpers.setDisplay("all--authors", 'block');
+            sff_vars.helpers.setDisplay("all--books", 'block');
+            sff_vars.helpers.setDisplay('filter--authors', 'none');
+            sff_vars.helpers.setDisplay('filter--books', 'none');
         } else {
-             sff_vars.helpers.setDisplay("all--authors", 'none');
-             sff_vars.helpers.setDisplay("all--books", 'none');
-             sff_vars.helpers.setDisplay('filter--authors', 'block');
-             sff_vars.helpers.setDisplay('filter--books', 'block');
+            sff_vars.helpers.setDisplay("all--authors", 'none');
+            sff_vars.helpers.setDisplay("all--books", 'none');
+            sff_vars.helpers.setDisplay('filter--authors', 'block');
+            sff_vars.helpers.setDisplay('filter--books', 'block');
         }
     }
 
@@ -99,7 +93,6 @@ sff_vars.filter_names = (function (graph_id  ) {
             showHideFiltered('filtered_media');
         }
     }
-
 
     function spacesToUnderscore(author_title) {
         var underscore_author_title = author_title.replace(/ /g, '_');
@@ -118,16 +111,10 @@ sff_vars.filter_names = (function (graph_id  ) {
         return lower_underscored;
     }
 
-  
-    
     return my;
-}(sff_vars.graph_vars.graph_id)) 
-
-
-
-
-
-
+    
+}(sff_vars.graph_vars.graph_id))
+// filter-names end
 `;
 return load_css_external;
 

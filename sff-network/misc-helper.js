@@ -60,10 +60,7 @@ function getRedirects(a_node, field_name) {
 
 
 function resolveRedirects(get_url) {
-    console.log('resolveRedirects ', get_url)
-
     return new Promise(function (fulfill, reject) {
-
             request.get({
                 url: get_url,
                 method: "HEAD",
@@ -73,7 +70,6 @@ function resolveRedirects(get_url) {
                     reject(error)
                 }
                 var end_redirect_url = response.request.uri.href;
-                console.log('resolveRedirects', end_redirect_url)
                 fulfill(end_redirect_url)
             })
  })

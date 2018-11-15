@@ -26,9 +26,6 @@ module.exports = function (version_num) {
         }
         var limited_sql = sql + limit_sql;
         
-        if (sql.includes('DataRepository.qualityBook')) {
-          console.log(' params.db_version  === ', params, limited_sql )
-        }
         var neo4j_promise = neo4j_session.run(limited_sql, params)
             .catch(function (error) {
                 console.log(error);

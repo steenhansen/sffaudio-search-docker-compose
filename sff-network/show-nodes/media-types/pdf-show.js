@@ -4,7 +4,7 @@ module.exports = function (graph_db) {
 
     class PdfData extends MediaShow {
 
-        constructor(node_id, db_version, pdf_title, book_title, under_title, pdf_url, strip_1_author, strip_2_author) {
+        constructor(node_id, db_version, pdf_title, book_title, under_title, pdf_url, strip_1_author, strip_2_author, pdf_country) {
             super(node_id, db_version, pdf_title, under_title);
             this.book_title = book_title;
             this.under_title = under_title;
@@ -13,6 +13,7 @@ module.exports = function (graph_db) {
             this.strip_2_author = strip_2_author;
             this.sorted_label = pdf_url;
             this.node_type = 'L_PDF';
+            this.pdf_country=pdf_country;
         }
 
     }

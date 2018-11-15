@@ -120,7 +120,7 @@ UNION
              WHERE n_author.strip_author=v_strip_author
     OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
                   WITH n_author, n_root, n_letter, n_author_wiki,v_strip_author
-                 MATCH (:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_post:L_POST)
+                 MATCH (:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_post:L_AUTHOR_POST)
                  WHERE n_post.strip_author=v_strip_author
                 RETURN n_root, n_author,   n_letter,n_author_wiki, n_post AS n_book_or_post 
 
@@ -164,7 +164,7 @@ WITH 'ray_bradbury' AS v_strip_author
 	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
 	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
 	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
-	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_post:L_AUTHOR_TO_POST]-(n_post:L_POST)
+	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_post:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
 	RETURN *
 	
 	

@@ -1,0 +1,67 @@
+<style>
+
+            #all--filter--authors {
+            width: 200px;
+            float: left;
+            height: 600px;
+            overflow-y:scroll
+        }
+        
+        
+        
+        .author__choice  {
+            color:black;
+ height:32px;
+
+        }  
+         .auth__first {
+         
+             font-size:100%;
+             width:45%;
+            text-align:right;
+            display:inline-block;
+         }
+  
+
+         .auth__mid{
+
+            font-size:70%;
+             width:45%;
+            text-align:right;
+            display:inline-block;
+            visibility: hidden;
+            vertical-align: 7px;
+        }
+
+         .auth__last{
+            text-decoration: underline;
+            font-size:100%;
+             width:45%;
+            text-align:left;
+            display:inline-block;
+             
+             white-space: nowrap;  
+             hyphens: none; 
+        }
+        
+            
+        .author__choice:hover{
+            cursor:pointer;
+            color:blue;
+        }
+
+
+</style>
+<script>
+window.sff__a = sff_vars.graph_procs.loadAuthorNew;
+window.sff__v = sff_vars.helpers.setVisible;
+window.sff__h = sff_vars.helpers.setHidden; 
+</script>
+
+<div style="clear: both;"></div> <div class='author__choice' id="jorge_luis_borges_" onclick="sff__a('jorge_luis_borges') " onmouseenter="sff__v('jorge_luis_borges_mid');" onmouseleave="sff__h('jorge_luis_borges_mid');" > <div class="auth__first">Jorge</div> <div class="auth__last">Borges</div> <div class="auth__mid" id="jorge_luis_borges_mid" >Luis</div> </div> 
+ <div class='author__choice' id="philip_k_dick_" onclick="sff__a('philip_k_dick') " onmouseenter="sff__v('philip_k_dick_mid');" onmouseleave="sff__h('philip_k_dick_mid');" > <div class="auth__first">Philip</div> <div class="auth__last">Dick</div> <div class="auth__mid" id="philip_k_dick_mid" >K.</div> </div> 
+ <div class='author__choice' id="robert_s_johnson_" onclick="sff__a('robert_s_johnson') " onmouseenter="sff__v('robert_s_johnson_mid');" onmouseleave="sff__h('robert_s_johnson_mid');" > <div class="auth__first">Robert</div> <div class="auth__last">Johnson</div> <div class="auth__mid" id="robert_s_johnson_mid" >S.</div> </div> 
+ <div class='author__choice' id="george_rr_martin_" onclick="sff__a('george_rr_martin') " onmouseenter="sff__v('george_rr_martin_mid');" onmouseleave="sff__h('george_rr_martin_mid');" > <div class="auth__first">George</div> <div class="auth__last">Martin</div> <div class="auth__mid" id="george_rr_martin_mid" >R.R.</div> </div> 
+ <div class='author__choice' id="winsor_mccay_" onclick="sff__a('winsor_mccay') " onmouseenter="sff__v('winsor_mccay_mid');" onmouseleave="sff__h('winsor_mccay_mid');" > <div class="auth__first">Winsor</div> <div class="auth__last">McCay</div> <div class="auth__mid" id="winsor_mccay_mid" ></div> </div> 
+ <div class='author__choice' id="richard_k_morgan_" onclick="sff__a('richard_k_morgan') " onmouseenter="sff__v('richard_k_morgan_mid');" onmouseleave="sff__h('richard_k_morgan_mid');" > <div class="auth__first">Richard</div> <div class="auth__last">Morgan</div> <div class="auth__mid" id="richard_k_morgan_mid" >K.</div> </div> 
+ <div class='author__choice' id="roger_zelazny_" onclick="sff__a('roger_zelazny') " onmouseenter="sff__v('roger_zelazny_mid');" onmouseleave="sff__h('roger_zelazny_mid');" > <div class="auth__first">Roger</div> <div class="auth__last">Zelazny</div> <div class="auth__mid" id="roger_zelazny_mid" ></div> </div> <div style="clear: both;"></div>

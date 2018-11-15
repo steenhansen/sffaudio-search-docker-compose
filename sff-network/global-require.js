@@ -3,6 +3,7 @@
 
 var path = require("path");
 
+global.my_var='asdf'
 
 global.rootAppRequire = function (name) {
     var app_root_dir = path.join(__dirname, '../', name);

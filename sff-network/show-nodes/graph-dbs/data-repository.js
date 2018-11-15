@@ -27,11 +27,48 @@ WHERE n_book.book_title contains "Odyssey ("
 RETURN n_book
 
 
+
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author='philip_k_dick'
+return *
+
+                        MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author='philip_k_dick'
+return *
+
+                        MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+return *
+
+ MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+                         AND (n_book.strip_1_author=v_strip_author OR n_book.strip_2_author=v_strip_author)
+return *
+
+
+
+
+ MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+                         AND (n_book.strip_1_author=v_strip_author OR n_book.strip_2_author=v_strip_author)
+return *
+
+
+
+
 MATCH (n_version:L_VERSION) 
 			            RETURN 1 AS r_author_to__, 2 AS r_author_to_wiki, 3 AS n_author, 4 AS n_author_wiki, n_version AS n_book_or_post
 				UNION
                          MATCH (n_version:L_VERSION) 
-                          WITH n_version.current_version as v_new_db_version, 'homer' AS v_strip_author
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
                          MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
                          WHERE n_author.strip_author=v_strip_author
                            AND (n_book.strip_1_author=v_strip_author OR n_book.strip_2_author=v_strip_author)
@@ -40,8 +77,8 @@ MATCH (n_version:L_VERSION)
                         RETURN r_author_to__, r_author_to_wiki, n_author,  n_author_wiki, n_book AS n_book_or_post
                UNION
                          MATCH (n_version:L_VERSION) 
-                          WITH n_version.current_version as v_new_db_version, 'homer' AS v_strip_author
-                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_POST]-  (n_post:L_POST)
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_POST]-  (n_post:L_AUTHOR_POST)
                          WHERE n_author.strip_author=v_strip_author
                            AND n_post.strip_author=v_strip_author
                            AND n_post.db_version=v_new_db_version
@@ -66,7 +103,7 @@ MATCH (n_version:L_VERSION)
                UNION
                          MATCH (n_version:L_VERSION) 
                           WITH n_version.current_version as v_new_db_version, {strip_author} AS v_strip_author
-                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_POST]-  (n_post:L_POST)
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_POST]-  (n_post:L_AUTHOR_POST)
                          WHERE n_author.strip_author=v_strip_author
                            AND n_post.strip_author=v_strip_author
                            AND n_post.db_version=v_new_db_version

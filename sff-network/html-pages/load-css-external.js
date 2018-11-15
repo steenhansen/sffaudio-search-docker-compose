@@ -1,5 +1,5 @@
 
-module.exports =  function (graph_background) {
+module.exports =  function (graph_background, graph_container_id) {
 
 var load_css_external = `
 
@@ -13,12 +13,12 @@ var load_css_external = `
             font: 12pt arial;
             background-color: #eeffee;
         }
-        #mynetwork {
+        #my--network {
             width: 1000px;
             height: 600px;
         }
      
-         #my-graph_ {
+         #${graph_container_id} {
              width: 600px;
             float: left;
              background-color: ${graph_background};

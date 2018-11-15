@@ -20,6 +20,7 @@
     "express": "4.16.3",
     "follow-redirects": "^1.5.9",
     "fs-access": "1.0.1",
+    "fs-readdir-promise": "^1.0.1",
     "fs-readfile-promise": "^3.0.1",
     "fs-writefile-promise": "^3.0.0",
     "glob-fs": "^0.1.7",

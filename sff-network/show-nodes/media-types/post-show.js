@@ -32,7 +32,7 @@ module.exports = function (graph_repository) {
                 var sorted_labels = Object.keys(sorted_nodes)
                 for (let sorted_label of sorted_labels) {
                     var a_node = sorted_nodes[sorted_label];
-                    if (a_node.node_type == 'L_POST') {            //  if not static then ==this.node_type
+                    if (a_node.node_type == 'L_AUTHOR_POST') {            //  if not static then ==this.node_type
                         var x_y = post_positions.pop();
                         a_node.setPosition2(x_y);
                     }
@@ -53,7 +53,7 @@ module.exports = function (graph_repository) {
             super(node_id, db_version, post_title, sorted_label);
             this.post_slug = post_slug;
             this.strip_author = strip_author;
-            this.node_type = 'L_POST';
+            this.node_type = 'L_AUTHOR_POST';
 
             this.goto_url = media_constants.POST_LINK + post_slug;
  this.sorted_label = post_slug;
