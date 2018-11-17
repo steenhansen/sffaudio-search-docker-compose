@@ -19,7 +19,7 @@ sff_vars.book_post_procs = (function (post_close_svg, post_proxy) {
         document.getElementById('close--icon').src = post_close_svg;     /// q*bert
         sff_vars.helpers.setDisplay('popup--container', 'block');
         sff_vars.helpers.setDisplay('pdf--controller', 'none');
-var proxy_call2 = 'http://' + window.location.host + post_proxy + pdf_url;
+var proxy_call2 = 'https://' + window.location.host + post_proxy + pdf_url;
         
         fetch(proxy_call2)
             .then(function (response) {
