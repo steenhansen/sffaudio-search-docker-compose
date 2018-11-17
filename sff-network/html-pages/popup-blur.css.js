@@ -52,6 +52,10 @@ sff_vars.blur_procs = (function (pop_up_id) {
         sff_vars.pdf_procs.clearCanvas('pdf--canvas');
         sff_vars.helpers.setDisplay('pdf--loading', 'none');
         sff_vars.helpers.setDisplay('video--container', 'none');
+        
+        sff_vars.helpers.setDisplay('downlod--mp3', 'none');
+        
+        
         document.getElementById('video--player').src = '';
     }
 
@@ -97,6 +101,11 @@ sff_vars.blur_procs = (function (pop_up_id) {
 
 let first_page = svg_icons.first_icon(media_constants.PDF_COLOR);
 let last_page = svg_icons.last_icon(media_constants.PDF_COLOR);
+
+
+let download_pdf = svg_icons.download_pdf_icon(media_constants.PDF_COLOR);
+let download_mp3 = svg_icons.download_mp3_icon(media_constants.PDF_COLOR);
+
 let next_page = svg_icons.next_icon(media_constants.PDF_COLOR);
 let prev_page = svg_icons.prev_icon(media_constants.PDF_COLOR);
 
@@ -113,7 +122,14 @@ var popup_blur_html = `
     </div>
 
     <div id="media--title">&nbsp;</div>
+    
+    
 
+ <div  onclick="sff_vars.pdf_procs.downloadPdf();"  id="downlod--mp3"  >
+        <img src="${download_mp3}" class="control--symbols">
+  </div>
+  
+  
 
     <audio id="mp3--player" controls="controls"
            style="  "
@@ -141,6 +157,14 @@ var popup_blur_html = `
     <div  onclick="sff_vars.pdf_procs.loadOnePage('-');" class="control--boxes" >
         <img id="first--icon"  src="${prev_page}" class="control--symbols">
   </div>
+
+
+  <div  onclick="sff_vars.pdf_procs.downloadPdf();" class="control--boxes" >
+        <img id="download--pdf"  src="${download_pdf}" class="control--symbols">
+  </div>
+
+
+
 
     <div  onclick="sff_vars.pdf_procs.loadOnePage('+');" class="control--boxes">
         <img id="first--icon" src="${next_page}"  class="control--symbols">
@@ -196,6 +220,12 @@ text-align:left;
  top:100px;
 }
 
+#downlod--mp3{
+  z-index:3; 
+ position:absolute; 
+top:38px;
+left:8px;
+}
 
 #pdf--controller{
 z-index:3; 
@@ -208,7 +238,7 @@ z-index:3;
 
 .control--boxes{
 display:inline-block;
- width:20%;
+ width:16%;
 }
 
 .control--symbols{

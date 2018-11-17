@@ -1,21 +1,5 @@
 
 
-current problem is that /about is not the history page, / is
-therefore we need to inform the php page of where it is '/about'
-
-
-
-
-
-
-
-
-
-﻿on server!!!
-(index):2417 GET http://localhost:5000/post-proxy?absolute_url=http://www.sffaudio.com/?p=31543 net::ERR_CONNECTION_REFUSED
-
-
-post proxy
 
 
 

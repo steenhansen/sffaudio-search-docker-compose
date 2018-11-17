@@ -41,7 +41,7 @@ var media_constants = {
     }
 },
     
-    
+    GRAPH_CONTAINER_ID : 'my--graph',
     WITH_REGEX : new RegExp(' with | and ', 'i'),
 
 	NEO4J_VERSION : 'v1',

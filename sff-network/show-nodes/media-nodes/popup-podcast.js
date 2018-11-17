@@ -13,6 +13,7 @@ sff_vars.podcast_procs = (function (podcast_close_svg) {
         } else {
             sff_vars.history_state.pushBook(strip_author, under_title);
         }
+         sff_vars.helpers.setDisplay('downlod--mp3', 'block');
         sff_vars.helpers.setDisplay('pdf--controller', 'none');
         document.getElementById('media--title').innerHTML = '';
         sff_vars.blur_procs.blockPage('popup--container');

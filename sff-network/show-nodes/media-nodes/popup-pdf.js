@@ -9,7 +9,8 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         pdf_js_lib: window['pdfjs-dist/build/pdf'],
         pdf_document: '',
         current_page: 0,
-        last_page: 0
+        last_page: 0,
+        pdf_url:''
     };
 
     my.clearCanvas = function (canvas_id) {
@@ -69,6 +70,7 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     }
 
     my.loadPdf = function (pdf_url, book_title, label, strip_author, under_title, req_query_view) {
+        this.pdf_url = pdf_url;
         if (req_query_view) {
             sff_vars.history_state.pushBookView(strip_author, under_title, req_query_view);
         } else {
@@ -135,6 +137,11 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
             console.error(reason);
         };
     };
+    
+    my.downloadPdf = function (){
+        window.location = this.pdf_url;
+    }
+    
     return my;
 
 }(  sff_vars.pdf_vars.canvas_id,

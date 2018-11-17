@@ -72,6 +72,11 @@ class MediaShow {
 
 
     static authorIconColors() {
+ //
+ // let download_rsd_mp3 = svg_icons.download_mp3_icon(media_constants.RSD_COLOR);
+ // let download_podcast_mp3 = svg_icons.download_mp3_icon(media_constants.PODCAST_COLOR);
+ //    
+ // let download_pdf_icon = svg_icons.download_pdf_icon(media_constants.PDF_COLOR);
 
         let empty_set = svg_icons.no_such_author('pink');
 
@@ -107,6 +112,7 @@ class MediaShow {
 
         const icons_string = `{ 
     L_VERSION: ${empty_set},
+    
     
     I_NO_BOOK: ${no_such_book},
     

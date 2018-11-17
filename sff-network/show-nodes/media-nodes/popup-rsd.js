@@ -47,6 +47,7 @@ sff_vars.rsd_procs = (function (rsd_close_svg) {
     }
 
     my.loadVideo = function (video_embed, book_title, label, under_title, strip_author) {
+         sff_vars.helpers.setDisplay('downlod--mp3', 'block');
         sff_vars.helpers.setDisplay("media--title", 'block');
         document.getElementById('close--icon').src = rsd_close_svg;
         document.getElementById('media--title').innerHTML = book_title + ' - ' + label;
