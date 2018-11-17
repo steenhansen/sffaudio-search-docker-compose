@@ -47,10 +47,10 @@ var media_constants = {
 	NEO4J_VERSION : 'v1',
 	
 	
-    QUALITY_BOOKS: [ [  'The Eyes Have It', 'Philip K. Dick'],
-    [  'Altered Carbon', 'Richard K. Morgan']],              // '  of_withered_apples   altered_carbon', 'progeny'],
-    QUALITY_AUTHORS: [ 'Philip K. Dick', 'Ray Bradbury'],        //'ray_bradbury', 'george_rr_martin'],
-	
+    // QUALITY_BOOKS: [ [  'The Eyes Have It', 'Philip K. Dick'],
+    // [  'Altered Carbon', 'Richard K. Morgan']],              // '  of_withered_apples   altered_carbon', 'progeny'],
+    // QUALITY_AUTHORS: [ 'Philip K. Dick', 'Ray Bradbury'],        //'ray_bradbury', 'george_rr_martin'],
+    //
 	
 	DELETE_UNUSED_RECORDS: 20000,
 	
@@ -67,6 +67,7 @@ var media_constants = {
 
 	MEDIA_LINK_DIR: "https://www.sffaudio.com/podcasts/", 
 	PODCAST_LINK: "https://www.sffaudio.com/?p=", 
+
 
 
 

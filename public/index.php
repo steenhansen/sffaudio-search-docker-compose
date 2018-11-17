@@ -7,7 +7,13 @@ error_reporting(E_ALL);
 
 print "php - new";
 
-$media_widget='http://localhost/node/';       //         http://localhost/node/?author=philip_k_dick
+//$media_widget='http://localhost/node/';       //         http://localhost/node/?author=philip_k_dick
+
+
+//   https://sffaudio-test-neo4j.herokuapp.com
+$media_widget='https://sffaudio-test-neo4j.herokuapp.com/';  
+
+
 
 $get_author = @$_GET['author'];
 $get_book = @$_GET['book'];
@@ -33,7 +39,7 @@ print "x $get_view y $media_author_book z";
 
 
 //$media_author_book= "$media_widget?book=$get_book&author=$get_author";
-  $media_json = file_get_contents("$media_author_book");
+  $media_json = file_get_contents($media_author_book);
   print "
     <script>
     window.sff_php_vars={ 

@@ -1,5 +1,14 @@
 
 
+current problem is that /about is not the history page, / is
+therefore we need to inform the php page of where it is '/about'
+
+
+
+
+
+
+
 
 
 ﻿on server!!!
