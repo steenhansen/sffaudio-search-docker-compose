@@ -1,10 +1,9 @@
 module.exports = function () {
     var load_css_external = `
 //popup-pdf    
-sff_vars.pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
+sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
 
     var my = {
-        pdf_proxy_url: pdf_proxy_url,
         canvas_id: canvas_id,
         pdf_canvas_height: '0px',
         pdf_js_lib: window['pdfjs-dist/build/pdf'],
@@ -142,8 +141,7 @@ sff_vars.pdf_procs = (function (pdf_proxy_url, canvas_id, pdf_close_svg) {
     };
     return my;
 
-}(sff_vars.pdf_vars.pdf_proxy_url,
-    sff_vars.pdf_vars.canvas_id,
+}(  sff_vars.pdf_vars.canvas_id,
     sff_vars.graph_vars.node_icons.I_CLOSE_PDF.image
 ))
 //popup-pdf 

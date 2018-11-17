@@ -1,0 +1,435 @@
+
+
+
+
+﻿on server!!!
+(index):2417 GET http://localhost:5000/post-proxy?absolute_url=http://www.sffaudio.com/?p=31543 net::ERR_CONNECTION_REFUSED
+
+
+post proxy
+
+
+
+
+
+
+
+
+
+
+A. put   TEST_DATA: "/sff-network/build-nodes/test-obj-data/every-type/" into environment
+
+
+
+
+
+
+
+did update on server
+
+node reload-db  but for some reason the version stayed the same
+
+
+
+
+
+
+
+
+                
+
+
+
+http://localhost:5000/?book=beyond_lies_the_wub&view=pdf
+
+
+
+2 /?book=beyond_the_web&show=rsd
+
+///////////////////////////////
+ 
+ 
+   pdf_proxy_url:"http://localhost:5000/pdf-proxies/pdf-proxy?absolute_url=",
+        canvas_id:'pdf--canvas',
+        pdf_scale: 1.5 
+}    
+
+sff_vars.post_vars={  
+        post_proxy:"http://localhost:5000/post-proxy?absolute_url="
+        
+/////////////////////////////////////////        
+ 
+ 
+ 
+ 
+ 
+ 
+https://sffaudio-test-neo4j.herokuapp.com/
+
+start php/apache 
+    for http://www.sff_test.com/
+    at c:/xampp/htdocs/www.sff_test.com/index.php
+    
+start node webserver
+    for localhost:5000
+     http://localhost/node
+    make sure there is no proxies!
+
+
+view
+http://www.sff_test.com/?author=ray_bradbury
+
+
+
+
+
+
+
+these two::
+    popup-podcast.js
+        needs a  sff_vars.history_state.pushBook(strip_author, under_title);
+            we need the book title in the podcast info
+            
+                         } else if (node_group === 'L_PODCAST') {
+        
+        
+            // q*bert we need to insert the under_title, into the podcast node, so that we can use back key, 
+            // which needs a book name to go back to     ---- in node-factory!!
+            //
+            
+        
+    popup-post.js
+        needs a pushBook OOORRRR pushAuthor !!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IF BOOK IS BLANK THEN IGNORE??? no author, no book title??
+
+
+styles ....
+
+what if timeout then ... show pdf, or ..
+try finally
+
+
+
+in jsloader-css.js
+
+
+
+
+
+
+
+
+
+chatherine wells
+charles Beaudelaire
+charles P. Beaudelaire
+ernst wurm
+jean Lahor
+ken winney
+lucian 
+mickey spillane
+
+q. patrick
+s carelton
+
+
+
+
+
+
+
+NASA affars
+
+undefined anonymous_
+
+
+undefined anonymous_j_sheridan_le_fanu_ 
+
+
+undefined Abrach
+
+a Barrister
+     fix!!!!!!!!!!!!
+
+
+h_bedfordjones_  [[[ no first name
+
+
+
+
+
+
+- pay visa
+- delete phone mess
+- gary real
+
+
+have flex https://github.com/postcss/autoprefixer
+
+have proxy on/off flag
+reload file or url
+
+
+
+checkDbAlive() does not count nodes anymore, just checks alive ...
+
+
+
+
+
+
+
+STYLES everywhere!!!
+
+
+
+
+http://mozilla.github.io/pdf.js/
+ show pdfs in html
+
+
+
+
+
+
+
+q*bert in csv-reload-db.js    we have google csv data 
+so we don't have to use authors-to-posts.js
+
+
+
+
+
+
+
+
+
+the WereWolf x3 in 
+
+
+
+
+have posts in books too
+
+
+
+
+
+data-repository ---> show-repository
+insertPdfsOfBook --> linkPdfsToBooks  pdfsToBooksEdges
+
+
+
+
+http://localhost:5000/?book=the_werewolf
+
+
+
+
+
+
+
+
+
+
+
+
+only author-data calls  MediaShow.setGroupColor
+
+localhost:5000
+    BUT since we have groups: L_BOOK_0 we never match on group but only on type in authors
+
+    so in author-positions.setUpAuthor()
+    var node_group = a_node.node_type;  
+  
+localhost:5000/?book=deus_irae
+  
+    so in book-positions.setUpBook()
+    var node_group = a_node.group;  
+    
+    BUT in books, we have no node_type, only group  so for some reason
+    this.node_type = 'L_BOOK'; gets erased   ??????
+  
+  
+  
+AUTHORS like pdk, don't use L_BOOK, they use L_BOOK_0  
+  
+  
+  
+
+
+
+
+switch picture back
+
+donate button, tab,  
+
+
+7-10 no talk to elaine
+
+
+only book and author seem to need the data_repo closure, maybe just inject it????
+
+
+
+
+
+
+
+
+
+
+sff-network
+  -->  sffaudio-networks
+
+hide config-constants
+
+show-nodes
+  --> show-nodes
+
+
+graph-dbs
+    --> network-db
+    
+post-data/authors-to-posts  inside network-db    
+
+
+node-types 
+    --> ???????????????
+
+
+
+
+
+
+
+
+
+
+
+
+
+fix media-page.js so that we print the vis.js, css, bluebird.js and unfetch.js to screen
+
+then we can send a widget to
+
+
+
+1. make localhost:5000/media_widget return only widget stuff, no </html>
+2. 
+
+
+
+
+we need a php program that reads 
+localhost:5000
+and then outputs that to the screen.
+
+
+
+
+
+
+<$php
+
+    $my_author_proxy = 'http://proxy/author.php'
+    $the_widget = curl('http:heroku')
+    print "
+        <script> 
+        var my_author_proxy = $my_author_proxy;
+        </script>
+        
+        $the_widget;
+    "
+
+
+
+
+
+
+
+we should have a php server to test it!!!!   or copy already existing sff audio
+
+
+need proxies for when this is on Jesse's site
+//////////////////////////////////////////////////
+var load_author_json_proxy = '/proxies/load_author.php'
+///////////////////////////////////////////////////
+<?php
+
+   $strip_author = $_GET['strip_author'];
+   $json_author = curl("http://heroku/author/$strip_author");
+   print $json_author;
+
+
+
+
+
+my.loadAuthorNew=function(strip_author) {
+    if (selectMedia(strip_author)) {
+        const author_json = load_author_json_proxy + '?strip_author=' + strip_author;
+        network.loadAuthorOrBook(author_json);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BUG
+
+in  http://localhost:5000/author/letter/d
+Peter Grainger (aka Max Dancey) is
+sorted as 'Grainger Peter' eventhough it is regarded as a 'D'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,8 +1,7 @@
 
 var load_css_external = `
 // browser-graph
-sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_info,
-                                  local_json_proxy, edge_options) {
+sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_info, edge_options) {
     var my = {
         network_graph: {},
         last_selected_media: '',
@@ -129,7 +128,6 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
     sff_vars.graph_vars.nodes_string,
     sff_vars.graph_vars.edges_string,
     sff_vars.graph_vars.graph_info,
-    sff_vars.graph_vars.local_json_proxy,
     sff_vars.graph_vars.edge_options
 ))
 

@@ -22,14 +22,15 @@ sff_vars.post_procs = (function (post_close_svg, post_proxy) {
         document.getElementById('close--icon').src = post_close_svg;     /// q*bert
         sff_vars.helpers.setDisplay('popup--container', 'block');
         sff_vars.helpers.setDisplay('pdf--controller', 'none');
-        var proxy_call = post_proxy + pdf_url;
-        return fetch(proxy_call)
+         var proxy_call2 = 'http://' + window.location.host + post_proxy + pdf_url;
+        return fetch(proxy_call2)
             .then(function (response) {
                 var text_promise = response.text();
                 return text_promise;
             })
             .then(function (post_html) {
                 document.getElementById("post--container").innerHTML = post_html;
+                   document.getElementById("post--container").style.display='block';
                 var post_height = document.getElementById("post--container").offsetHeight + 200;
                 document.getElementById('popup--container').style.height = post_height + 'px';
                 sff_vars.blur_procs.blockPage('popup--container');

@@ -153,59 +153,8 @@ app.get('/post-proxy', function (req, res_express) {
 })
 
 
-app.get('/mp3-proxy', function (req, res_express) {
-    const absolute_url = req.query.absolute_url;
-    const optionsStart = {
-        uri: absolute_url,
-        method: "GET",
-        encoding: "binary",
-        headers: {
-            "Content-Disposition": "attachment; filename=rsd.mp3;",
-            "Content-type": "audio/mpeg"
-        }
-    };
-    request(optionsStart, (err, res_request, body) => {
-        if (err) {
-            return console.log(err);
-        }
-        res_express.type('audio/mpeg');
-        res_express.end(body, 'binary');
-    });
-
-})
 
 
-app.get('/pdf-proxies/pdf-proxy', function (req, res_express) {
-    const absolute_url = req.query.absolute_url;
-    const optionsStart = {
-        uri: absolute_url,
-        method: "GET",
-        encoding: "binary",
-        headers: {
-            "Content-type": "application/pdf"
-        }
-    };
-    request(optionsStart, (err, res_request, body) => {
-        if (err) {
-            return console.log(err);
-        }
-        // res_express.send(body);
-        res_express.type('application/pdf');
-        res_express.end(body, 'binary');
-    });
-
-})
-
-app.get('/json-proxies/thru-proxy', function (req, res_express) {
-    const absolute_url = 'http://' + req.query.absolute_url;
-    request(absolute_url, {json: true}, (err, res_request, body) => {
-        if (err) {
-            return console.log(err);
-        }
-        res_express.json(body);
-    });
-
-})
 
 
 //  http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=pdf
