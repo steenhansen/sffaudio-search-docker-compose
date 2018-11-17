@@ -15,7 +15,7 @@ sff_vars.ROUTE_AUTHOR_JSON = '/author/:strip_author';
 sff_vars.GRAPH_CONTAINER_ID = 'my--graph';
 
 
-sff_vars.WP_HOLDING_PAGE = "about/"; 
+sff_vars.WP_HOLDING_PAGE = "/about"; 
 
 
 if (typeof module === 'undefined') {

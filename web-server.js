@@ -126,7 +126,8 @@ app.get(program_constants.ROUTE_RESOLVE_PDF, function (req, res_express) {
     const start_pdf_url = req.query[program_constants.SFF_START_PDF_URL];
     misc_helper.resolveRedirects(start_pdf_url)
         .then((end_pdf_url)=> {
-            res_express.send(end_pdf_url)
+            var secure_pdf_url = end_pdf_url.replace('http://', 'https://')
+            res_express.send(secure_pdf_url)
         })
 })
 
