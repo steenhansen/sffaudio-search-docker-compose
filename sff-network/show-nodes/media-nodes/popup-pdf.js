@@ -31,9 +31,6 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     
     my.loadPdfForRsd = function (pdf_url, book_title, label, strip_author, under_title) {
         my.setupPdf(book_title, label);
-        if (window.location.hostname === 'www.sffaudio.com') {
-            my.readPdf(pdf_url);
-        } else {
             var url_type3 = sff_vars.ajax_url + sff_vars.SFF_RESOLVE_PDF + pdf_url;
             fetch(url_type3)
                 .then(function (response) {
@@ -43,7 +40,6 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                 .then(function (resolved_pdf_url) {
                     my.readPdf(resolved_pdf_url);
                 });
-        }
     }
     
     my.readPdf = function (pdf_url) {
