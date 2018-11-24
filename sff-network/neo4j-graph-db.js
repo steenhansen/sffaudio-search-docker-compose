@@ -27,6 +27,8 @@ module.exports = function (version_num) {
         var limited_sql = sql + limit_sql;
         
         var neo4j_promise = neo4j_session.run(limited_sql, params)
+//            .then( (my_data)=>{console.log(my_data);  neo4j_session.close(); return my_data})
+            .then( (my_data)=>{neo4j_session.close(); return my_data})
             .catch(function (error) {
                 console.log(error);
                 console.log('rrrrrrrrrrrrrrrrrrrrrrrr', params, 'sssssssssssss', sql, 'jjjjjjjjjjj')

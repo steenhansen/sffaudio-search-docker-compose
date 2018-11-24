@@ -1,11 +1,9 @@
-module.exports =  function (server_var) {
 
 var load_css_external = `
 // filter-names
 sff_vars.filter_names = (function (graph_id) {
     var my = {
-        last_selected_media: '',
-        select_colors_or_css_from_server: ${server_var}
+        last_selected_media: ''
     };
 
     my.selectMedia = function (media_id_short, scroll_media) {
@@ -116,9 +114,7 @@ sff_vars.filter_names = (function (graph_id) {
 }(sff_vars.graph_vars.graph_id))
 // filter-names end
 `;
-return load_css_external;
-
-}
+module.exports = load_css_external; 
 
 
 

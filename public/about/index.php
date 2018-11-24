@@ -7,10 +7,10 @@ error_reporting(E_ALL);
 
 print "php - new";
 
-$media_widget='http://localhost/node/';       //         http://localhost/node/?author=philip_k_dick
+$media_widget='http://localhost/node';       //         http://localhost/node/?author=philip_k_dick
 
 
-//$media_widget='https://sffaudio-test-neo4j.herokuapp.com/';  
+//$media_widget='https://sffaudio-test-neo4j.herokuapp.com';  
 
 
 

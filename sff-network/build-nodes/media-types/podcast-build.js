@@ -2,13 +2,15 @@ var media_constants = rootAppRequire('sff-network/media-constants')
 
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 var misc_helper = rootAppRequire('sff-network/misc-helper')
+MultipleMonikers = rootAppRequire('sff-network/multiple-monikers');
+
+var multiple_monikers = new MultipleMonikers();
+
 
 module.exports = function (build_repository) {
 
 
     class PodcastBuild extends MediaBuild {
-
-
 
 
         static addPodcastsOfBook() {
@@ -20,13 +22,14 @@ module.exports = function (build_repository) {
         static addPodcasts(podcast_books) {
             var my_promises = [];
             for (let under_title in podcast_books) {
-                let {podcast_number, podcast_description, podcast_link, podcast_id, strip_1_author}  = podcast_books[under_title];
+            //console.log('55555555555555555',  podcast_books[under_title])
+                let {podcast_number, podcast_description, podcast_link, podcast_id, last_first_underscores}  = podcast_books[under_title];
                 var podcast_title = `Podcast #${podcast_number}`;
-                var podcast_promise = build_repository.insertAPodcast(podcast_title, under_title, podcast_link, podcast_id, strip_1_author)
+                var podcast_promise = build_repository.insertAPodcast(podcast_title, under_title, podcast_link, podcast_id, last_first_underscores)
                 my_promises.push(podcast_promise);
             }
-             return Promise.all(my_promises)
-         //   return my_promises;
+            return Promise.all(my_promises)
+            //   return my_promises;
         }
 
         static podcastRead(podcast_csv) {
@@ -37,22 +40,28 @@ module.exports = function (build_repository) {
                 var podcast_number = podcast_object['episode number'];
                 var podcast_id = podcast_object['post id'];
                 var podcast_description = misc_helper.stripToLower(podcast_object['kind']);
-                let {full_1_author, full_2_author, strip_1_author, strip_2_author}=MediaBuild.split2Authors(podcast_object['book author']);
 
-                let {esc_book_title, under_title, title_auth1_auth2}=MediaBuild.bookAuthor1Author2(podcast_object['book title'], strip_1_author, strip_2_author)
-
+                multiple_monikers.parseNames(podcast_object['book author'])
+                var last_first_underscores = multiple_monikers.lastUnderscore();
+                var {esc_book_title, under_title} =MediaBuild.quoteUnderscoreTitle(podcast_object['book title'])
+                var title_with_authors = multiple_monikers.titleWithAuthors(under_title);
+//var normal_name = multiple_monikers.firstMiddleLast();
                 var podcast_link = media_constants.MEDIA_LINK_DIR + podcast_object['file name']
-                podcast_books[title_auth1_auth2] = {esc_book_title, under_title, strip_1_author, strip_2_author};
-                podcast_authors[strip_1_author] = full_1_author;
-                podcast_authors[strip_2_author] = full_2_author;
-
+                podcast_books[title_with_authors] = {esc_book_title, under_title, last_first_underscores};
+               /// console.log('laksdjlskdjflsdkfj', last_first_underscores)
+                  var underScoreToNormal = multiple_monikers.underScoreToNormal();
+               for (var strip_author in underScoreToNormal) {
+                    var normal_author = underScoreToNormal[strip_author];
+                    podcast_authors[strip_author] = normal_author;
+                }
+   //console.log('eeeeeeeeeeeeeeeeeeeee', title_with_authors)       
                 var small_podcast = {
-                    title_auth1_auth2,
+                    title_with_authors,
                     podcast_number,
                     podcast_description,
                     under_title,
                     podcast_link,
-                    strip_1_author,
+                    last_first_underscores,
                     podcast_id
                 };
                 podcast_descriptions.push(small_podcast);
@@ -64,8 +73,14 @@ module.exports = function (build_repository) {
             let podcast_infos = {};
             for (let podcast_object of podcast_csv) {
 
-                let {podcast_number, podcast_description, under_title, podcast_link, podcast_id, strip_1_author}=podcast_object;
-                podcast_infos[under_title] = {podcast_number, podcast_description, podcast_link, podcast_id, strip_1_author};
+                let {podcast_number, podcast_description, under_title, podcast_link, podcast_id, last_first_underscores}=podcast_object;
+                podcast_infos[under_title] = {
+                    podcast_number,
+                    podcast_description,
+                    podcast_link,
+                    podcast_id,
+                    last_first_underscores
+                };
             }
             return podcast_infos;
         }

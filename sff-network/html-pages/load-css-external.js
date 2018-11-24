@@ -14,15 +14,25 @@ var load_css_external = `
             background-color: #eeffee;
         }
         #my--network {
-            width: 1000px;
-            height: 600px;
+            display: flex;
+            flex-direction: column;
+            width: 570px;
+            height: 800px;
         }
      
+     #my--graph{
+        display: flex;
+        float: left;
+        width:570px;
+        height:600px;
+        
+     }
+     
          #${graph_container_id} {
-             width: 600px;
+            
             float: left;
              background-color: ${graph_background};
-                  height: 600px;
+                  
         }
         #clear--filter{
                width: 20%;

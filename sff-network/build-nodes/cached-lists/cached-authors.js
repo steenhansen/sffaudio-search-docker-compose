@@ -1,75 +1,21 @@
 require('../../../sff-network/global-require')
 
-var CachedBooksAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books-authors');
-var misc_helper = rootAppRequire('sff-network/misc-helper');
-
+var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
+AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 
 var media_constants = rootAppRequire('sff-network/media-constants');
 var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 
+class CachedAuthors extends CachedBase {
 
-class CachedAuthors extends CachedBooksAuthors {
-
-    constructor(cache_name) {
-        super(cache_name);
+    constructor() {
+        super('sff-network/show-nodes/cached-data/author-cache');
+        this.odd_even_class = 'odd__author';
     }
 
     mediaCss() {
-        var author_css = `<style>
-
-            #all--filter--authors {
-            width: 200px;
-            float: left;
-            height: 600px;
-            overflow-y:scroll
-        }
-        
-        
-        
-        .author__choice  {
-            color:black;
- height:32px;
-
-        }  
-         .auth__first {
-         
-             font-size:100%;
-             width:45%;
-            text-align:right;
-            display:inline-block;
-         }
-  
-
-         .auth__mid{
-
-            font-size:70%;
-             width:45%;
-            text-align:right;
-            display:inline-block;
-            visibility: hidden;
-            vertical-align: 7px;
-        }
-
-         .auth__last{
-            text-decoration: underline;
-            font-size:100%;
-             width:45%;
-            text-align:left;
-            display:inline-block;
-             
-             white-space: nowrap;  
-             hyphens: none; 
-        }
-        
-            
-        .author__choice:hover{
-            cursor:pointer;
-            color:blue;
-        }
-
-
-</style>
+        var author_css = `
 <script>
 window.sff__a = sff_vars.graph_procs.loadAuthorNew;
 window.sff__v = sff_vars.helpers.setVisible;
@@ -84,14 +30,30 @@ window.sff__h = sff_vars.helpers.setHidden;
         return VersionRepository.saveAuthors(new_db_version, all_links);
     }
 
+    oddEvenClass() {
+        var odd_even_class = this.odd_even_class;
+        if (odd_even_class === 'odd__author') {
+            this.odd_even_class = 'even__author';
+        } else {
+            this.odd_even_class = 'odd__author';
+
+        }
+        return odd_even_class;
+    }
+
+
     mediaLink(author_names) {
+        var author_moniker = new AuthorMoniker();
         var [strip_author, last_name_first, display_name]= author_names;
-        var names_arr = last_name_first.split(' ');
-        var last_name = names_arr.shift()
-        var first_name = names_arr.shift()
-        var middle_names = names_arr.join(' ');
+        author_moniker.reloadName(display_name);
+        let [first_name, middle_names, last_name] = author_moniker.firstMiddleLastArray();
+        if (middle_names === '') {
+            middle_names = '&nbsp;';
+        }
+        var odd_even_class = this.oddEvenClass();
+
         var author_html = `
-             <div   class='author__choice' 
+             <div   class='author__choice ${odd_even_class}' 
                     id="${strip_author}_"       
                     onclick="sff__a('${strip_author}') "
                     onmouseenter="sff__v('${strip_author}_mid');"
@@ -103,12 +65,20 @@ window.sff__h = sff_vars.helpers.setHidden;
         return author_html;
     }
 
+
     getCache() {
-        return VersionRepository.getAuthors()
-            .then((author_list)=> {
-                var author_list_string = author_list.records[0]._fields[0];
-                return author_list_string;
-            })
+        try {
+            var authors_html_file = rootAppRequire(this.cache_file)
+            return authors_html_file;
+        } catch (e) {
+            return VersionRepository.getAuthors()
+                .then((authors_html_db)=> {
+
+                    return this.writeToFile(this.cache_file, authors_html_db)
+                })
+        }
+
     }
+
 }
 module.exports = CachedAuthors;

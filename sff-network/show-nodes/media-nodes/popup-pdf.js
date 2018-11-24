@@ -1,4 +1,4 @@
-module.exports = function () {
+
     var load_css_external = `
 //popup-pdf    
 sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
@@ -32,7 +32,11 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     
     my.loadPdfForRsd = function (pdf_url, book_title, label, strip_author, under_title) {
         my.setupPdf(book_title, label);
-            var url_type3 = sff_vars.ajax_url + sff_vars.SFF_RESOLVE_PDF + pdf_url;
+            if (sff_php_vars.php_url === 'not a php host') {
+                 var url_type3 =  'http://' + window.location.host + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
+            }else{
+                var url_type3 =  sff_php_vars.ajax_url + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
+            }
             fetch(url_type3)
                 .then(function (response) {
                     var text_promise = response.text();
@@ -64,8 +68,7 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                     }
                 })
             }).catch(function (e) {
-            console.log('can pdf error ', e);
-            // window.location = pdf_url;        // bypass CORS error SEC7118 on IE 11/Windows 7 bug
+                my.downloadPdf();             // bypass CORS error SEC7118 on IE 11, Windows 7&8 bug
         })
     }
 
@@ -149,9 +152,7 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
 ))
 //popup-pdf 
 `;
-    return load_css_external;
-
-}
+module.exports = load_css_external; 
 
 
 

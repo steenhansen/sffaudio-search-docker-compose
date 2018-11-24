@@ -12,9 +12,10 @@ sff_vars.vars_events = (function () {
                 var ajax_url =  window.sff_php_vars.php_url;
            } catch(err) {
                 window.sff_php_vars={ 'php_url':'not a php host'};
-                var ajax_url =  window.location.origin+'/';
+                var ajax_url =  window.location.origin;
            }
            sff_vars.ajax_url=ajax_url;
+           sff_vars.path_name = window.location.pathname;
     };
 
 

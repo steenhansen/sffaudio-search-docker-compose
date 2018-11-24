@@ -13,7 +13,7 @@ module.exports = function (build_repository) {
 
 
             for (let pdf_object of pdf_csv) {
-                let {under_title, full_title, strip_1_author, strip_2_author, story_wiki}=pdf_object;
+                let {under_title, full_title, last_first_underscores, story_wiki}=pdf_object;
                 if (story_wiki) {
                     story_wikis[under_title] = story_wiki;
                 }
@@ -22,19 +22,20 @@ module.exports = function (build_repository) {
         }
 
 
-        static addABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author) {
-            return build_repository.insertABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author)
+        static addABook(sorted_label, esc_book_title, under_title, last_first_underscores) {
+         ///  console.log('jjjjjjjj', sorted_label, esc_book_title, under_title, last_first_underscores)
+            return build_repository.insertABook(sorted_label, esc_book_title, under_title, last_first_underscores)
         }
 
         static addBooksNew(book_list) {
             var my_promises = [];
-            for (let title_auth1_auth2 in book_list) {
+            for (let title_with_authors in book_list) {
 
 
-                let {sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author}  = book_list[title_auth1_auth2];
+                let {sorted_label, esc_book_title, under_title, last_first_underscores}  = book_list[title_with_authors];
 
 
-                const book_promise = BookBuild.addABook(sorted_label, esc_book_title, under_title, strip_1_author, strip_2_author)
+                const book_promise = BookBuild.addABook(sorted_label, esc_book_title, under_title, last_first_underscores)
                 my_promises.push(book_promise);
             }
             return my_promises;

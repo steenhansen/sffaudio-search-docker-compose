@@ -36,6 +36,7 @@
     "save": "^2.3.2",
     "swig": "1.4.2",
     "uglify-js": "2.6.0",
+    "uniqid": "^5.0.3",
     "valid-url": "1.0.9",
     "virtualhost": "0.0.2"
   },

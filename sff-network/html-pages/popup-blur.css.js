@@ -53,7 +53,8 @@ sff_vars.blur_procs = (function (pop_up_id) {
         sff_vars.helpers.setDisplay('pdf--loading', 'none');
         sff_vars.helpers.setDisplay('video--container', 'none');
         
-        sff_vars.helpers.setDisplay('downlod--mp3', 'none');
+        sff_vars.helpers.setDisplay('download--rsd--mp3', 'none');
+        sff_vars.helpers.setDisplay('download--podcast--mp3', 'none');
         
         
         document.getElementById('video--player').src = '';
@@ -104,7 +105,8 @@ let last_page = svg_icons.last_icon(media_constants.PDF_COLOR);
 
 
 let download_pdf = svg_icons.download_pdf_icon(media_constants.PDF_COLOR);
-let download_mp3 = svg_icons.download_mp3_icon(media_constants.PDF_COLOR);
+let download_rsd_mp3 = svg_icons.download_mp3_icon(media_constants.RSD_COLOR);
+let download_podcast_mp3 = svg_icons.download_mp3_icon(media_constants.PODCAST_COLOR);
 
 let next_page = svg_icons.next_icon(media_constants.PDF_COLOR);
 let prev_page = svg_icons.prev_icon(media_constants.PDF_COLOR);
@@ -125,10 +127,13 @@ var popup_blur_html = `
     
     
 
- <div  onclick="sff_vars.pdf_procs.downloadPdf();"  id="downlod--mp3"  >
-        <img src="${download_mp3}" class="control--symbols">
+ <div  onclick="sff_vars.rsd_procs.downloadMp3();"  id="download--rsd--mp3"  >
+        <img src="${download_rsd_mp3}" class="control--symbols">
   </div>
   
+ <div  onclick="sff_vars.podcast_procs.downloadMp3();"  id="download--podcast--mp3"  >
+        <img src="${download_podcast_mp3}" class="control--symbols">
+  </div>
   
 
     <audio id="mp3--player" controls="controls"
@@ -220,12 +225,21 @@ text-align:left;
  top:100px;
 }
 
-#downlod--mp3{
+#download--rsd--mp3{
   z-index:3; 
  position:absolute; 
 top:38px;
 left:8px;
 }
+
+#download--podcast--mp3{
+  z-index:3; 
+ position:absolute; 
+top:38px;
+left:8px;
+}
+
+
 
 #pdf--controller{
 z-index:3; 

@@ -1,5 +1,19 @@
  const my_media_array = [
  {
+  "episode number": "500",
+  "post id": "59229",
+  "publish date": "2018-11-19 00:01",
+  "kind": "READALONG",
+  "participants": "Jesse, Paul Weimer, Maissa Bessada",
+  "narrator": "",
+  "file name": "SFFaudioPodcast500.mp3",
+  "byte size": "222,639,687",
+  "hh:mm:ss": "6:09:07",
+  "book title": "The Word For World Is Forest",
+  "book author": "Ursula K. Le Guin",
+  "about": ""
+ },
+ {
   "episode number": "499",
   "post id": "59215",
   "publish date": "2018-11-12 00:01",

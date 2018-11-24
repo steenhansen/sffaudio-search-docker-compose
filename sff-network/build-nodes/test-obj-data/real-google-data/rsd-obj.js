@@ -1,5 +1,20 @@
  const my_media_array = [
  {
+  "episode number": "146",
+  "publish date": "2018-11-21 00:01",
+  "post link": "http://www.sffaudio.com/reading-short-and-deep-146-the-adventures-of-sherlaw-kombs-by-robert-barr/",
+  "hh:mm:ss": "0:30:13",
+  "file name": "rsd146SherlawKombs.mp3",
+  "byte size": "29,821,148",
+  "podcast participants": "Eric S. Rabkin and Jesse Willis",
+  "book title": "The Adventures Of Sherlaw Kombs",
+  "book author": "Robert Barr",
+  "genre type": "Story",
+  "pdf link": "http://www.sffaudio.com/podcasts/DetectiveStoriesGoneWrongTheAdventuresOfSherlawKombsByRobertBarrIdlerMay1892.pdf",
+  "video link": "",
+  "podcast description": "The Adventures Of Sherlaw Kombs by Robert Barr"
+ },
+ {
   "episode number": "145",
   "publish date": "2018-11-14 00:01",
   "post link": "http://www.sffaudio.com/reading-short-and-deep-145-crypt-of-the-jealous-queen-by-jack-bennett/",

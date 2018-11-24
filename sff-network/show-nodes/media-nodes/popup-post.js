@@ -1,12 +1,10 @@
-module.exports =  function (server_var) {
+
 
 var load_css_external = `
 // popup-post
 sff_vars.post_procs = (function (post_close_svg, post_proxy) {
 
-    var my = {
-        my_var: ${server_var}
-    };
+    var my = {};
 
     my.loadPost = function (pdf_url, strip_author, req_query_view) {
         if (req_query_view === '') {
@@ -22,7 +20,16 @@ sff_vars.post_procs = (function (post_close_svg, post_proxy) {
         document.getElementById('close--icon').src = post_close_svg;     /// q*bert
         sff_vars.helpers.setDisplay('popup--container', 'block');
         sff_vars.helpers.setDisplay('pdf--controller', 'none');
-         var proxy_call2 = 'https://' + window.location.host + post_proxy + pdf_url;
+         
+            if (sff_php_vars.php_url === 'not a php host') {
+                 var proxy_call2 =  'http://' + window.location.host + post_proxy + pdf_url; 
+                  //console.log('popup-post.js window.location.host===', window.location.host);
+                 //  console.log('popup-post.js post_proxy===', post_proxy);
+                    //console.log('popup-post.js pdf_url===', pdf_url);
+            }else{
+                var proxy_call2 =  sff_php_vars.php_url + post_proxy + pdf_url; 
+            }
+            //console.log('popup-post.js proxy_call2===', proxy_call2);
         return fetch(proxy_call2)
             .then(function (response) {
                 var text_promise = response.text();
@@ -44,9 +51,7 @@ sff_vars.post_procs = (function (post_close_svg, post_proxy) {
 }(sff_vars.graph_vars.node_icons.I_CLOSE_POST.image, sff_vars.post_vars.post_proxy))
 // popup-post end
 `;
-return load_css_external;
-
-}
+module.exports = load_css_external; 
 
 
 

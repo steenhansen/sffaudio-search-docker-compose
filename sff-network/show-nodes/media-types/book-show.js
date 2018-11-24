@@ -1,9 +1,10 @@
 var LabelPositions = rootAppRequire('sff-network/show-nodes/label-positions')
 var MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
-var media_constants = rootAppRequire('sff-network/media-constants');
 const {BOTTOM_COLUMNS_Y_OFFSET, HORIZONTAL_COLUMNS, X_NODE_SEPARATION, Y_NODE_SEPARATION, VERTICAL_STAGGER}=LabelPositions
-var build_page = rootAppRequire('./sff-network/html-pages/web-page')
 var misc_helper = rootAppRequire('sff-network/misc-helper')
+var media_constants = rootAppRequire('sff-network/media-constants');
+const program_constants = rootAppRequire('sff-network/program-constants.js');
+
 
 module.exports = function (data_repository) {
 
@@ -37,12 +38,10 @@ module.exports = function (data_repository) {
 
 
 
-        constructor(node_id, db_version, book_title, sorted_label, under_title, strip_1_author, strip_2_author) {
-
+        constructor(node_id, db_version, book_title, sorted_label, under_title, last_first_underscores) {
             super(node_id, db_version, book_title, sorted_label);
             this.under_title = under_title;
-            this.strip_1_author = strip_1_author;
-            this.strip_2_author = strip_2_author;
+            this.last_first_underscores = last_first_underscores;
             this.node_type = 'L_BOOK';
         }
 
@@ -52,7 +51,8 @@ module.exports = function (data_repository) {
         }
 
         bookUrl(strip_author) {
-            this.goto_url = `/author/book/${strip_author}/` + this.under_title;
+///            this.goto_url = `/author/book/${strip_author}/` + this.under_title;
+            this.goto_url =  program_constants.ROUTE_START_BOOK + strip_author + '/' + this.under_title;
         }
 
         setSizesColor(page_type) {     //L_AUTHOR
@@ -61,7 +61,7 @@ module.exports = function (data_repository) {
 
 
 
-        //sendBooksOfAuthor
+      
         static sendBooksOfAuthor(strip_author, under_title, ParseNeo) {
             return data_repository.getBookNodes(under_title)
                 .then(function (graph_collection) {

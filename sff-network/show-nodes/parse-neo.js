@@ -69,6 +69,7 @@ module.exports = function (graph_repository) {
 
 
         getEdges() {          // getStringEdges  --- since for html
+        //console.log('dddddddddd43344444', this.node_relationships)
             let node_relationships = Object.values(this.node_relationships)
             return node_relationships;
         }
@@ -127,21 +128,27 @@ module.exports = function (graph_repository) {
 
 /// maybe call them Edges
         getRelationships() {
+       // console.log('   23423423sdfds any edges ????????????? getRelationshipsgetRelationshipsgetRelationships')
             for (let i = this.data_length - 1; i >= 0; i--) {
                 var key_name = this.neo_keys[i]
+                
+      //   clog('11111111111111', key_name)
+                
                 if (this.isRelationship(key_name)) {
+                    //   clog('3333333333333kkk', key_name)
                     var field_data = this.data_fields[i]
                     if ((field_data !== null) && (typeof field_data.identity !== 'undefined')) {
                         var id = field_data.identity.low
                         var from = field_data.start.low
                         var to = field_data.end.low
                         if (typeof this.node_relationships[id] == 'undefined') {
+                     //   console.log('   23423423sdfds any edges ?????????????')
                             this.node_relationships[id] = {from, to}
                         }
                     }
                 }
             }
-
+    //clog('sdlkfj 34 ', this.node_relationships)
         }
 
 

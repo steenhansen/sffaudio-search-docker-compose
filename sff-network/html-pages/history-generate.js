@@ -20,7 +20,7 @@ sff_vars.history_generate = (function () {
         }
 
         function podcastView(graph_node) {
-            return graph_node.group === 'L_PODCAST';
+            return graph_node.group === 'L_PODCAST'; ///last_first_underscores
         }
 
         sff_vars.history_state.pushBook(strip_author, under_title);
@@ -32,7 +32,7 @@ sff_vars.history_generate = (function () {
         } else if (req_query_view === 'pdf') {
             var pdf_view = sff_vars.graph_vars.nodes_string.find(pdfView);         //             http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=pdf
             if (pdf_view) {
-                sff_vars.pdf_procs.loadPdf(pdf_view.goto_url, pdf_view.book_title, pdf_view.label, pdf_view.strip_1_author, pdf_view.under_title, req_query_view);
+                sff_vars.pdf_procs.loadPdf(pdf_view.goto_url, pdf_view.book_title, pdf_view.label, pdf_view.last_first_underscores, pdf_view.under_title, req_query_view);
             }
         } else if (req_query_view === 'rsd') {
             var rsd_view = sff_vars.graph_vars.nodes_string.find(rsdView);         //             http://www.sff_test.com/?book=beyond_lies_the_wub&author=philip_k_dick&view=rsd
@@ -42,7 +42,8 @@ sff_vars.history_generate = (function () {
         } else if (req_query_view === 'podcast') {
             var podcast_view = sff_vars.graph_vars.nodes_string.find(podcastView);         //             http://www.sff_test.com/?book=beyond_lies_the_wub&author=philip_k_dick&view=podcast
             if (podcast_view) {
-                sff_vars.podcast_procs.loadPodcast(podcast_view.goto_url, podcast_view.podcast_url, podcast_view.under_title, podcast_view.strip_1_author, req_query_view);
+            //console.log('history-generate :', podcast_view.goto_url, podcast_view.podcast_url);
+                sff_vars.podcast_procs.loadPodcast(podcast_view.goto_url, podcast_view.podcast_url, podcast_view.under_title, podcast_view.last_first_underscores, req_query_view);
             }
         }
 

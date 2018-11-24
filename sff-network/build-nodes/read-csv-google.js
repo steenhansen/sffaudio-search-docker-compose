@@ -127,6 +127,11 @@ function objDataToCode(media_values, file_name){
         
         let book_list = Object.assign({}, podcast_books, pdf_books, rsd_books);
         let author_list = Object.assign({}, podcast_authors, pdf_authors, rsd_authors);
+        
+        //console.log('uuuuuuuuuuuuuuuuuuuu 1 ', podcast_authors)
+       // console.log('uuuuuuuuuuuuuuuuuuuu 2 ', pdf_authors)
+       // console.log('uuuuuuuuuuuuuuuuuuuu 3 ', rsd_authors)
+        
         if ('' in author_list) {
             delete author_list[''];
         }

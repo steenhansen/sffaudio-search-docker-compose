@@ -22,7 +22,7 @@ module.exports = function (graph_db) {
          */
 
         static saveAuthors(db_version, all_links) {
-            var sql = ` CREATE ( n_authors_list:L_AUTHOR_LIST  
+            var sql = ` MERGE ( n_authors_list:L_AUTHOR_LIST  
                                  { all_links:{all_links}, db_version:{db_version}  }  ) `;
             var params = {all_links, db_version};
             return graph_db.sqlParams(sql, params);
@@ -41,7 +41,7 @@ module.exports = function (graph_db) {
         
         
                 static saveBooks(db_version, all_links) {
-            var sql = ` CREATE ( n_books_list:L_BOOK_LIST  
+            var sql = ` MERGE ( n_books_list:L_BOOK_LIST  
                                  { all_links:{all_links}, db_version:{db_version}  }  ) `;
             var params = {all_links, db_version};
             return graph_db.sqlParams(sql, params);
@@ -55,7 +55,7 @@ module.exports = function (graph_db) {
             var params = {};
             return graph_db.sqlParams(sql, params);
         }
-
+        
 
 
         static saveQuality(db_version, quality_code) {
@@ -86,12 +86,12 @@ module.exports = function (graph_db) {
         }
 
 
-        static updateDbVersion_d_2(next_db_version) {
+        static updateDbVersion_d_3(next_db_version) {
             var update_sql = ` // VersionRepository.updateDbVersion.update           
-                    
                         MATCH  (n_version:L_VERSION)
                         SET n_version.current_version = {next_db_version} `;
-            return graph_db.sqlParams(update_sql, {next_db_version});
+                     var params = {next_db_version};
+            return graph_db.sqlParams(update_sql, params);
         }
 
 

@@ -27,14 +27,14 @@ module.exports = function (data_repository) {
             const {author_name, strip_author} = media_node.properties;
             new_node = new AuthorData(node_id, db_version, author_name, strip_author);
         } else if (node_group === 'L_BOOK') {
-            const {book_title, sorted_label, under_title, strip_1_author, strip_2_author} = media_node.properties;
-            new_node = new BookNode(node_id, db_version, book_title, sorted_label, under_title, strip_1_author, strip_2_author);
+            const {book_title, sorted_label, under_title, last_first_underscores} = media_node.properties;
+            new_node = new BookNode(node_id, db_version, book_title, sorted_label, under_title, last_first_underscores);
         } else if (node_group === 'L_PDF') {
-            const {pdf_title, book_title, under_title, pdf_url, strip_1_author, strip_2_author, pdf_country} = media_node.properties;
-            new_node = new PdfNode(node_id, db_version, pdf_title, book_title, under_title, pdf_url, strip_1_author, strip_2_author, pdf_country);
+            const {pdf_title, book_title, under_title, pdf_url, last_first_underscores, pdf_country} = media_node.properties;
+            new_node = new PdfNode(node_id, db_version, pdf_title, book_title, under_title, pdf_url, last_first_underscores, pdf_country);
         } else if (node_group === 'L_PODCAST') {
-            const {under_title, podcast_title, podcast_url,podcast_id, strip_1_author} = media_node.properties;
-            new_node = new PodcastNode(node_id, db_version, podcast_title, podcast_url, podcast_id, under_title, strip_1_author);
+            const {under_title, podcast_title, podcast_url,podcast_id, last_first_underscores} = media_node.properties;
+            new_node = new PodcastNode(node_id, db_version, podcast_title, podcast_url, podcast_id, under_title, last_first_underscores);
         } else if (node_group === 'L_RSD') {
             const {under_title, strip_author, rsd_title, rsd_url, rsd_pdf_link, rsd_description, video_link} = media_node.properties;
             new_node = new RsdNode(node_id, db_version, rsd_title, rsd_url, rsd_pdf_link, rsd_description,video_link, under_title, strip_author);

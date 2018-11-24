@@ -1,31 +1,34 @@
 var sff_history_state = `
 //history-state
-sff_vars.history_state = (function (wp_holding_page) {
+sff_vars.history_state = (function (path_name) {
 
     var my = {};
 
     my.pushBook = function (strip_author, under_title) {
         var page_type = 't::book';
-        var page_query = wp_holding_page + '/?book=' + under_title + '&author=' + strip_author;
+        var page_query = path_name + '?book=' + under_title + '&author=' + strip_author;
         var author_colons_book = strip_author + '::' + under_title;
-        var url_type = sff_vars.ajax_url + 'author/book/' + strip_author + '/' + under_title;
+        var url_type = sff_vars.ajax_url + sff_vars.ROUTE_START_BOOK + strip_author + '/' + under_title;
+//        var url_type = sff_vars.ajax_url + '/author/book/' + strip_author + '/' + under_title;
+        
         statePush(page_type, url_type, author_colons_book, page_query);
         return url_type;
     };
 
     my.replaceBook = function (strip_author, under_title) {
         var page_type = 't::book';
-        var page_query = wp_holding_page + '/?book=' + under_title + '&author=' + strip_author;
+        var page_query = path_name + '?book=' + under_title + '&author=' + strip_author;
         var author_colons_book = strip_author + '::' + under_title;
-        var url_type = sff_vars.ajax_url + 'author/book/' + strip_author + '/' + under_title;
+        var url_type = sff_vars.ajax_url + sff_vars.ROUTE_START_BOOK + strip_author + '/' + under_title;
+//        var url_type = sff_vars.ajax_url + '/author/book/' + strip_author + '/' + under_title;
         stateReplace(page_type, url_type, author_colons_book, page_query);
         return url_type;
     };
 
     my.replaceAuthor = function (strip_author) {
         var page_type = 't::author';
-        var page_query = wp_holding_page + '/?author=' + strip_author;
-        var url_type = sff_vars.ajax_url + 'author/' + strip_author;
+        var page_query = path_name + '?author=' + strip_author;
+        var url_type = sff_vars.ajax_url + '/author/' + strip_author;
         stateReplace(page_type, url_type, strip_author, page_query);
         return url_type;
     };
@@ -50,25 +53,26 @@ sff_vars.history_state = (function (wp_holding_page) {
 
     my.pushAuthor = function (strip_author) {
         var page_type = 't::author';
-        var page_query = wp_holding_page + '/?author=' + strip_author;
-        var url_type = sff_vars.ajax_url + 'author/' + strip_author;
+        var page_query = path_name + '?author=' + strip_author;
+        var url_type = sff_vars.ajax_url + '/author/' + strip_author;
         statePush(page_type, url_type, strip_author, page_query);
         return url_type;
     };
 
     my.pushAuthorView = function (strip_author, view_type) {
         var page_type = 't::author::view';
-        var page_query = wp_holding_page + '/?author=' + strip_author + '&view=' + view_type;
-        var url_type = sff_vars.ajax_url + 'author/' + strip_author + '&view=' + view_type;
+        var page_query = path_name + '?author=' + strip_author + '&view=' + view_type;
+        var url_type = sff_vars.ajax_url + '/author/' + strip_author + '&view=' + view_type;
         statePush(page_type, url_type, strip_author, page_query);
         return url_type;
     };
 
     my.pushBookView = function (strip_author, under_title, view_type) {
         var page_type = 't::book::view';
-        var page_query = wp_holding_page + '/?book=' + under_title + '&author=' + strip_author + '&view=' + view_type;
+        var page_query = path_name + '?book=' + under_title + '&author=' + strip_author + '&view=' + view_type;
         var author_colons_book = strip_author + '::' + under_title;
-        var url_type = sff_vars.ajax_url + 'author/book/' + strip_author + '/' + under_title + '&view=' + view_type;
+        var url_type = sff_vars.ajax_url + sff_vars.ROUTE_START_BOOK + strip_author + '/' + under_title + '&view=' + view_type;
+//        var url_type = sff_vars.ajax_url + '/author/book/' + strip_author + '/' + under_title + '&view=' + view_type;
         statePush(page_type, url_type, author_colons_book, page_query);
         return url_type;
     };
@@ -96,7 +100,7 @@ sff_vars.history_state = (function (wp_holding_page) {
 
     return my;
 
-}(sff_vars.WP_HOLDING_PAGE));
+}(sff_vars.path_name));
 //history-state-end
 `;
 

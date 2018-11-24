@@ -1,11 +1,18 @@
-module.exports =  function (server_var) {
+
 
 var load_css_external = `
 //popup-podcast
 sff_vars.podcast_procs = (function (podcast_close_svg) {
     var my = {
-        my_var: ${server_var}
-    };
+        podcast_mp3: ''
+    };  
+    
+    
+    my.downloadMp3 = function (){
+       window.location = this.podcast_mp3;
+              console.log('podcast_mp3', this.podcast_mp3)
+
+    }
 
     my.loadPodcast = function (goto_url, podcast_url, under_title, strip_author, req_query_view) {
         if (req_query_view) {
@@ -13,16 +20,16 @@ sff_vars.podcast_procs = (function (podcast_close_svg) {
         } else {
             sff_vars.history_state.pushBook(strip_author, under_title);
         }
-         sff_vars.helpers.setDisplay('downlod--mp3', 'block');
+         sff_vars.helpers.setDisplay('download--podcast--mp3', 'block');
         sff_vars.helpers.setDisplay('pdf--controller', 'none');
         document.getElementById('media--title').innerHTML = '';
         sff_vars.blur_procs.blockPage('popup--container');
         sff_vars.blur_procs.mp3load(goto_url);
         
-        
+        this.podcast_mp3=goto_url;
         
         sff_vars.post_procs.loadPostForPodcast(podcast_url)
-        .then(  ()=>{ 
+        .then(  function(){ 
             document.getElementById("post--container").style.display='block';
             var media_height =sff_vars.helpers.computedHeight('mp3--player');
             var pager_height =sff_vars.helpers.computedHeight('post--container');
@@ -38,9 +45,7 @@ sff_vars.podcast_procs = (function (podcast_close_svg) {
 
 //popup-podcast end
 `;
-return load_css_external;
-
-}
+module.exports = load_css_external; 
 
 
 

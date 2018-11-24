@@ -82,8 +82,8 @@ var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4
 
 graph_db.checkDbAlive()
 var misc_helper = rootAppRequire('sff-network/misc-helper')
-var data_repository = rootAppRequire('sff-network/show-nodes/graph-dbs/data-repository')(graph_db);
-var CachedBooksAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books-authors');
+var data_repository = rootAppRequire('sff-network/show-nodes/graph-dbs/show-repository')(graph_db);
+var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
 
 /*
 
@@ -132,9 +132,9 @@ app.get(program_constants.ROUTE_RESOLVE_PDF, function (req, res_express) {
         })
 })
 
-
-app.get('/post-proxy', function (req, res_express) {
+app.get(media_constants.ROUTE_POST_PROXY, function (req, res_express) {
     const absolute_url = req.query.absolute_url;
+   // console.log('absoloute', absolute_url)
     const optionsStart = {
         uri: absolute_url,
         method: "GET",
@@ -160,12 +160,17 @@ app.get('/post-proxy', function (req, res_express) {
 
 
 //  http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=pdf
-app.get('/author/book/:strip_author/:under_title', function (req, res) {
+//app.get('/author/book/:strip_author/:under_title', function (req, res) {
+app.get(program_constants.ROUTE_BOOK_JSON, function (req, res) {
     let {strip_author, under_title}=req.params
+              //  console.log('start', strip_author, under_title)
+
     book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo)
         .then(function (nodes_and_edges) {
             let {nodes_object, edges_object} =nodes_and_edges
             var nodes_string = JSON.stringify(nodes_object);
+            
+          //  clog('asdf423999 ',nodes_and_edges)
             var edges_string = JSON.stringify(edges_object);
 
             if (nodes_object.length > 10) {
@@ -181,6 +186,7 @@ app.get('/author/book/:strip_author/:under_title', function (req, res) {
             };
             var graph_string = JSON.stringify(graph_info);
             var author_json = {nodes_string, edges_string, graph_string}
+          //  console.log('end', under_title)
             res.json(author_json);
         })
 })
@@ -198,6 +204,7 @@ app.get('/author/book/:strip_author/:under_title', function (req, res) {
 //app.get('/author/:strip_author', function (req, res) {
 app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
     const strip_author = req.params.strip_author
+   // clog('strip_authro =', strip_author)
     author_data.sendAuthor(strip_author, ParseNeo)
         .then(function (nodes_and_edges) {
             let {nodes_object, edges_object} =nodes_and_edges
@@ -211,6 +218,7 @@ app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
             var edges_string = JSON.stringify(edges_object);
             var graph_string = JSON.stringify(graph_info);
             var author_json = {nodes_string, edges_string, graph_string}
+          //    clog('author_json =', author_json)
             res.json(author_json);
         })
 })
@@ -237,11 +245,11 @@ app.get('/widget', function (req, res) {
 // })
 
 function authorOrBook(req) {
-    if (CachedBooksAuthors.urlGetAuthorBook(req.query, 'book')) {
+    if (CachedBase.urlGetAuthorBook(req.query, 'book')) {
         var under_title = req.query.book;
         var strip_author = req.query.author;
         return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
-    } else if (CachedBooksAuthors.urlGetAuthorBook(req.query, 'author')) {
+    } else if (CachedBase.urlGetAuthorBook(req.query, 'author')) {
         var strip_author = req.query.author;
         return author_data.sendAuthor(strip_author, ParseNeo);
     } else {
@@ -276,12 +284,15 @@ app.get('/', function (req, res) {
 
 })
 
-app.get('', function (req, res) {
-    authorOrBook(req).then(function (nodes_and_edges) {
-        let {nodes_object, edges_object, graph_info} =nodes_and_edges;
-        media_page(nodes_object, edges_object, graph_info)
-            .then((book_html)=> res.send(book_html));
-    })
+app.get('*', function (req, res) {
+
+//console.log('* req', req.url)
+    res.status(204);
+    // authorOrBook(req).then(function (nodes_and_edges) {
+    //     let {nodes_object, edges_object, graph_info} =nodes_and_edges;
+    //     media_page(nodes_object, edges_object, graph_info)
+    //         .then((book_html)=> res.send(book_html));
+    // })
 
 })
 

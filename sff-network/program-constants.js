@@ -15,7 +15,14 @@ sff_vars.ROUTE_AUTHOR_JSON = '/author/:strip_author';
 
 
 
-sff_vars.WP_HOLDING_PAGE = "/about"; 
+
+
+sff_vars.ROUTE_START_BOOK = '/author/book/';
+sff_vars.ROUTE_BOOK_JSON =  sff_vars.ROUTE_START_BOOK + ':strip_author/:under_title';
+
+
+
+
 
 
 if (typeof module === 'undefined') {

@@ -1,6 +1,7 @@
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 var media_constants = rootAppRequire('sff-network/media-constants')
 var misc_helper = rootAppRequire('sff-network/misc-helper');
+AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 module.exports = function (build_repository) {
 
 //  MATCH (n_author:L_AUTHOR) return *
@@ -23,11 +24,14 @@ module.exports = function (build_repository) {
         //   CLASS AuthorDb --- ????
         addAuthors(book_authors) {
             var my_promises = [];
+
+            var author_moniker = new AuthorMoniker();
             for (let strip_author in book_authors) {
                 if (!this.processed_authors.includes(strip_author)) {
                     this.processed_authors.push(strip_author);
                     const full_author = book_authors[strip_author];
-                    const sorted_label = misc_helper.theLastNameFirst(full_author, ' ');
+                    author_moniker.reloadName(full_author);
+                    const sorted_label = author_moniker.lastFirstMiddle();
                     var neo4j_promise = build_repository.insertAuthor(full_author, strip_author, sorted_label);
                     my_promises.push(neo4j_promise);
                 }
@@ -36,13 +40,15 @@ module.exports = function (build_repository) {
         }
 
 
-
         findAuthorWiki(pdf_csv) {
             let author_wikis = {};
             for (let pdf_object of pdf_csv) {
-                let {title_auth1_auth2, under_title, full_title, strip_1_author, strip_2_author, author_wiki}=pdf_object;
-                strip_1_author = strip_1_author;
-                author_wikis[strip_1_author] = author_wiki;
+                let {title_with_authors, under_title, full_title, last_first_underscores, author_wiki}=pdf_object;
+                
+              //  console.log(last_first_underscores, 'pppppppppppp')
+                
+               var strip_author = last_first_underscores[0];
+                author_wikis[strip_author] = author_wiki;
             }
             return author_wikis;
         }
@@ -63,13 +69,12 @@ module.exports = function (build_repository) {
 
         addWrittenBy() {
             var author_1 = build_repository.insertWrittenBy_author_1();
-            var author_2 = build_repository.insertWrittenBy_author_2();
-            return Promise.all([author_1, author_2]).then(
+            return Promise.all([author_1]).then(
                 ()=> {
                     //console.log('done saveWrittenBy_d_1')
                 }
             )
-   
+
 
         }
 

@@ -54,21 +54,22 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
             var under_title = the_node.under_title;
             var strip_author = the_node.strip_author;
             var book_title = the_node.book_title;
-            var strip_1_author = the_node.strip_1_author;
+            var last_first_underscores = the_node.last_first_underscores;
             var podcast_url = the_node.podcast_url;
             var pdf_country = the_node.pdf_country;   // Canada
 
             if (node_type == 'L_BOOK') {
-                my.loadBookNew(strip_1_author, under_title)
+                my.loadBookNew(last_first_underscores, under_title)
             } else if (node_type == 'L_AUTHOR') {
                 my.loadAuthorNew(strip_author)
             } else if (node_type == 'L_PDF') {
             
                // console.log('234097', pdf_country);             // Canada
                 
-                sff_vars.pdf_procs.loadPdf(goto_url, book_title, label, strip_1_author, under_title, 'pdf');
+                sff_vars.pdf_procs.loadPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf');
             } else if (node_type == 'L_PODCAST') {
-                sff_vars.podcast_procs.loadPodcast(goto_url, podcast_url, under_title, strip_1_author, 'podcast');
+              //console.log('browser-graph :', goto_url, podcast_url);
+                sff_vars.podcast_procs.loadPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast');
             } else if (node_type == 'L_RSD') {
                 sff_vars.rsd_procs.loadRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, strip_author, 'rsd');
             } else if (node_type == 'L_AUTHOR_POST') {   // L_AUTHOR_POST
@@ -76,7 +77,7 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
             } else if (node_type == 'L_BOOK_POST') {
                 sff_vars.book_post_procs.loadBookPost(goto_url, strip_author, under_title, 'post');
             } else if (typeof goto_url !== 'undefined') {
-                window.open(goto_url);
+                window.location = goto_url;
             }
         });
     }

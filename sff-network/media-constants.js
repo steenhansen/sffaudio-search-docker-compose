@@ -68,7 +68,9 @@ var media_constants = {
 	MEDIA_LINK_DIR: "https://www.sffaudio.com/podcasts/", 
 	PODCAST_LINK: "https://www.sffaudio.com/?p=", 
 
+    ROUTE_POST_PROXY : '/post-proxy',
 
+//ROUTE_START_BOOK : '/author/book/',
 
 
   RSD_GOOGLE_DATA: "https://docs.google.com/spreadsheets/d/1VFMgWy6wmTkFIpeNW-NkZdWmpz5iZcuULgMpjn8_QgU/export?format=tsv",
@@ -83,10 +85,12 @@ var media_constants = {
     POST_GOOGLE_DATA: "https://docs.google.com/spreadsheets/d/1C18lpo5-Dj4G0tGfq1AlodPcM4AX_6ITUL3mjsTQ3b0/export?format=tsv",
     
     QUALITY_GOOGLE_DATA: "https://docs.google.com/spreadsheets/d/1N2_v3MXhlOz-jxkWVcIVsMPNKqKkTS7POS26SBzxqP0/export?format=tsv"
-
-
-
 }
+
+//media_constants.ROUTE_BOOK_JSON = media_constants.ROUTE_START_BOOK + ':strip_author/:under_title';
+
+
+
 module.exports = media_constants
 
 

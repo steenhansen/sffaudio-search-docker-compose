@@ -56,9 +56,8 @@ class reloadBase {
 
 
                         .then(()=> author_book_caches.makeNewCaches_d_0(next_db_version,  data_dir))
-
                         .then(()=> author_book_caches.makeNewCaches_d_1(next_db_version))
-                        .then(()=> VersionRepository.updateDbVersion_d_2(next_db_version))
+                          .then(()=> graphs_edges.nextDbVersion_d_2(VersionRepository, next_db_version))
                         .then(()=> VersionRepository.deleteUnused_d_4(next_db_version))
 
                         .catch(function (e) {

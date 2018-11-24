@@ -12,10 +12,10 @@ module.exports = function (data_repository) {
 
         static randomGoodAuthor() {
             var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
-            var cached_quality = new CachedQuality('quality_books_authors_');
-           return  cached_quality.getCache()
-                .then(    (quality_authors)=> {
-                    var my_quality_string =quality_authors.records[0]._fields[0];
+            var cached_quality = new CachedQuality();
+            var quality_string_or_promise = cached_quality.getCache()
+            return Promise.all([quality_string_or_promise])
+                .then((my_quality_string)=> {
                     var my_quality_authors = JSON.parse(my_quality_string);
                     var rand_index = Math.floor((Math.random() * my_quality_authors.length));
                     var random_author = my_quality_authors[rand_index];
@@ -58,23 +58,19 @@ module.exports = function (data_repository) {
             return data_repository.getAuthorNodes(strip_author)
                 .then(function (graph_collection) {
                     var parse_neo = new ParseNeo(graph_collection, 'author');
-
                     var nodes_object = parse_neo.getAuthorGraph(strip_author);
-
+                    
+                    
+                    //console.log('nodes_object', nodes_object)
+                    
                     var number_columns = MediaShow.numberColumns(nodes_object);
                     var post_edges = parse_neo.edgesAuthorPost(number_columns, 'L_AUTHOR_POST');
                     var book_edges = parse_neo.edgesAuthorBook(number_columns, 'L_BOOK');
-
+               // var edges_object = parse_neo.getEdges();  // not called as above sorts positions posts and books
                     var wiki_author_edges = parse_neo.edgesAuthorWiki(number_columns, 'L_AUTHOR_WIKI');
                     var edges_object = book_edges.concat(post_edges, wiki_author_edges)
-
-
                     var db_version = nodes_object[0].db_version;
-
-
                     var graph_info = {graph_type: 'author_page', strip_author: strip_author, db_version: db_version};
-
-
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
                     return nodes_and_edges;
                 })

@@ -1,8 +1,8 @@
-var server_to_browser = rootAppRequire('sff-network/show-nodes/media-nodes/server-to-browser')
+var widget_vars_html = rootAppRequire('sff-network/html-pages/widget-vars-html')
 const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
-const cached_authors = new CachedAuthors('author_linksss');
+const cached_authors = new CachedAuthors();
 const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
-const cached_books = new CachedBooks('books_linksss');
+const cached_books = new CachedBooks();
 var media_constants = rootAppRequire('sff-network/media-constants');
 const graph_container_id = media_constants.GRAPH_CONTAINER_ID;
 
@@ -13,17 +13,17 @@ var load_scripts = rootAppRequire('sff-network/html-pages/load-scripts')('mainSt
 
 const readFilePromise = require('fs-readfile-promise');
 
-const filter_names = rootAppRequire('sff-network/show-nodes/media-nodes/filter-names')('5535345');
+const filter_names = rootAppRequire('sff-network/show-nodes/media-nodes/filter-names');
 const browser_code = rootAppRequire('sff-network/show-nodes/media-nodes/browser-graph');
 const history_state = rootAppRequire('sff-network/html-pages/history-state');
 const history_generate = rootAppRequire('sff-network/html-pages/history-generate');
 const vars_events = rootAppRequire('sff-network/html-pages/vars-events');
 const program_constants = fromAppRoot('sff-network/program-constants.js');
-const popup_pdf = rootAppRequire('sff-network/show-nodes/media-nodes/popup-pdf')();
-const popup_podcast = rootAppRequire('sff-network/show-nodes/media-nodes/popup-podcast')('3466666');
-const popup_rsd = rootAppRequire('sff-network/show-nodes/media-nodes/popup-rsd')('23423423')
-const popup_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup-post')('9998988');
-const popup_book_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup-book-post')('9998988');
+const popup_pdf = rootAppRequire('sff-network/show-nodes/media-nodes/popup-pdf');
+const popup_podcast = rootAppRequire('sff-network/show-nodes/media-nodes/popup-podcast');
+const popup_rsd = rootAppRequire('sff-network/show-nodes/media-nodes/popup-rsd');
+const popup_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup-post');
+const popup_book_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup-book-post');
 const sff_helpers_js = rootAppRequire('sff-network/html-pages/helper-functions');
 
 
@@ -35,9 +35,9 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     }
     var strip_author = graph_object.strip_author;
     const js_constants = readFilePromise(program_constants, 'utf8')
-    var widget_vars = server_to_browser.widgetVars(graph_container_id, nodes_object, edges_object, graph_object);
+    var widget_vars = widget_vars_html.widgetVars(graph_container_id, nodes_object, edges_object, graph_object);
     const author_links = cached_authors.getCache();
-    const book_links = cached_books.getCache();
+    const book_links = cached_books.getCache(); /// books_string_or_promise
     return Promise.all([js_constants, author_links, book_links])
         .then(([js_constants,  author_links, book_links])=> {
 
@@ -53,7 +53,7 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
                  flex-wrap: wrap;
                  "
                  */
-                var widget_html = server_to_browser.widgetHtml(graph_container_id, author_links, book_links);
+                var widget_html = widget_vars_html.widgetHtml(graph_container_id, author_links, book_links);
                 var build_page = `
 
 <script>
