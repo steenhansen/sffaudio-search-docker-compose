@@ -200,7 +200,7 @@ find_deMaupassant() {
 //console.log('this.partial_name == ', '==' + partial_name + '__')
 
         var spaces_names = partial_name.split(' ');
-console.log('fiurstMidlleList', spaces_names)
+//console.log('fiurstMidlleList', spaces_names)
         this.last_name = spaces_names.pop();
         if (spaces_names.length > 0) {
             this.first_name = this.first_the + ' ' + spaces_names.shift();
