@@ -22,7 +22,7 @@ sff_vars.post_procs = (function (post_close_svg, post_proxy) {
         sff_vars.helpers.setDisplay('pdf--controller', 'none');
          
             if (sff_php_vars.php_url === 'not a php host') {
-                 var proxy_call2 =  'http://' + window.location.host + post_proxy + pdf_url; 
+                 var proxy_call2 =  '//' + window.location.host + post_proxy + pdf_url; 
                   //console.log('popup-post.js window.location.host===', window.location.host);
                  //  console.log('popup-post.js post_proxy===', post_proxy);
                     //console.log('popup-post.js pdf_url===', pdf_url);

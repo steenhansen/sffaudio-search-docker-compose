@@ -33,7 +33,7 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     my.loadPdfForRsd = function (pdf_url, book_title, label, strip_author, under_title) {
         my.setupPdf(book_title, label);
             if (sff_php_vars.php_url === 'not a php host') {
-                 var url_type3 =  'http://' + window.location.host + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
+                 var url_type3 =  '//' + window.location.host + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
             }else{
                 var url_type3 =  sff_php_vars.ajax_url + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
             }

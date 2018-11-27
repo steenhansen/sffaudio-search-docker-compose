@@ -17,7 +17,7 @@ sff_vars.book_post_procs = (function (post_close_svg, post_proxy) {
         sff_vars.helpers.setDisplay('pdf--controller', 'none');
          
             if (sff_php_vars.php_url === 'not a php host') {
-                 var proxy_call2 =  'http://' + window.location.host + post_proxy + pdf_url;
+                 var proxy_call2 =  '//' + window.location.host + post_proxy + pdf_url;
             }else{
                 var proxy_call2 =  sff_php_vars.php_url + post_proxy + pdf_url;
             }
