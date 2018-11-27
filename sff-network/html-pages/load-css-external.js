@@ -9,8 +9,8 @@ var load_css_external = `
 
    <style>
         body {
-            color: #d3d3d3;
-            font: 12pt arial;
+          /*  color: #d3d3d3;  */
+         /*   font: 12pt arial;  */
             background-color: #eeffee;
         }
         #my--network {

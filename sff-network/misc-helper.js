@@ -1,8 +1,6 @@
 var request = require('request');
 
 
-
-
 function theLastNameFirst(full_name, split_char) {
     var name_trimmed = full_name.trim();
     var aka_brackets = name_trimmed.split(' (');
@@ -94,5 +92,45 @@ function resolveRedirects(get_url) {
     })
 }
 
+function waitSeconds(second_count, number_authors) {
+    var milli_seconds = second_count * 1000
+    if (number_authors<50){
+        milli_seconds=0;
+    }
+    var wait_promise = new Promise(function (resolve) {
+        setTimeout(resolve, milli_seconds);
+    });
+    if (milli_seconds>0){
+        console.log('    waiting for', second_count, 'seconds.')
+    }
+    return wait_promise;
+}
 
-module.exports = {theLastNameFirst, spacesToUnderscore, stripToLower, alphaUnderscore, getRedirects, resolveRedirects};
+
+function padStartNode(pad_number, pad_template) {
+    var str_number = "" + pad_number
+    var padded_number = pad_template.substring(0, pad_template.length - str_number.length) + str_number
+    return padded_number;
+}
+
+
+function consoleTimeEnd(start_date, interval_name) {
+    var end_date = Date.now();
+    var seconds_interval = (end_date - start_date) / 1000;
+    var seconds_round = Math.round(seconds_interval)
+    const padded_number = padStartNode(seconds_round, "000");
+    console.log(padded_number, "secs", interval_name);
+}
+
+
+module.exports = {
+    consoleTimeEnd,
+    waitSeconds,
+    
+    theLastNameFirst,
+    spacesToUnderscore,
+    stripToLower,
+    alphaUnderscore,
+    getRedirects,
+    resolveRedirects
+};

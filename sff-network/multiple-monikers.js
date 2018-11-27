@@ -107,6 +107,7 @@ class MultipleMonikers {
     }
 
     lastUnderscore() {
+      //  return  this.last_name_first_underscore.join('^');   // q*bert49   
         return this.last_name_first_underscore
     }
 

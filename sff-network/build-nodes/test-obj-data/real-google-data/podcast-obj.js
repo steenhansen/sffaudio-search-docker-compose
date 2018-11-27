@@ -1,5 +1,19 @@
  const my_media_array = [
  {
+  "episode number": "501",
+  "post id": "59250",
+  "publish date": "2018-11-26 00:01",
+  "kind": "READALONG",
+  "participants": "Jesse, Scott, Paul Weimer, Wayne June",
+  "narrator": "",
+  "file name": "SFFaudioPodcast501.mp3",
+  "byte size": "62,301,335",
+  "hh:mm:ss": "1:41:33",
+  "book title": "The Book Of Skulls",
+  "book author": "Robert Silverberg",
+  "about": ""
+ },
+ {
   "episode number": "500",
   "post id": "59229",
   "publish date": "2018-11-19 00:01",

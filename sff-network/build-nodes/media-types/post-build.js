@@ -10,23 +10,32 @@ module.exports = function (build_repository) {
     class PostBuild extends MediaBuild {
     
     static addPosts(author_book_obj) {
+  //   console.time("addPosts");
             var post_promises = [];
-            
+              //   console.log('bbb', author_book_obj)
             for (let book_author of author_book_obj) {
-                var graph_title = book_author['graph title'];
-                var author = book_author['author'];
+                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
+                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
+                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
+                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
+                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
+                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
+                        //
+          //  clog('clowns', book_author);
                 var book = book_author['book'];
-                var sff_post_url = book_author['sff post url'];
-                var strip_author = misc_helper.alphaUnderscore(author);
                 var under_title = misc_helper.alphaUnderscore(book);
                 if (under_title === '') {
-                    var post_promise = build_repository.savePosts(strip_author, sff_post_url, graph_title, graph_title);
+                     var graph_title = book_author['graph title'];
+                     var author = book_author['author'];
+                     var sff_post_url = book_author['sff post url'];
+                    var strip_author = misc_helper.alphaUnderscore(author);
+                     var post_promise = build_repository.savePosts(strip_author, sff_post_url, graph_title, graph_title);
+                     post_promises.push(post_promise);
                 }
-                post_promises.push(post_promise);
             }
-            
-                return Promise.all(post_promises)
-            
+         //   console.timeEnd("addPosts")
+            return Promise.all(post_promises)
+             //   .then( (result)=> clog(result))
            // return post_promises;
         }
 

@@ -2,7 +2,7 @@ var Promise = require('bluebird')
 var write = require('fs-writefile-promise');
 const read_tsv_url = rootAppRequire('sff-network/build-nodes/url-tsv-read');
 var media_constants = rootAppRequire('sff-network/media-constants');
-
+var misc_helper = rootAppRequire('sff-network/misc-helper');
 var {makeEdgesNodes, saveToGraph} = rootAppRequire('sff-network/build-nodes/graphs-edges')
 
 
@@ -34,45 +34,45 @@ function objDataToCode(media_values, file_name){
 }
 
     function startMakeIndexes_a_0(build_repository) {
-      console.time("startMakeIndexes_a_0");
+      var start_date =Date.now();
       return build_repository.makeIndexes()
-              .then( ()=> console.timeEnd("startMakeIndexes_a_0") )
+              .then( ()=> misc_helper.consoleTimeEnd(start_date, "startMakeIndexes_a_0") )
     }
     
    
    
    
     function googlePostTsvToLocal_a_1(post_obj_file) {
-      console.time("googlePostTsvToLocal_a_1");
+      var start_date =Date.now();
       return read_tsv_url(media_constants.POST_GOOGLE_DATA)
             .then(author_book_obj=> {
                 var file_name = fromAppRoot(post_obj_file);
                 return objDataToCode(author_book_obj, file_name);
             })
-              .then( ()=> console.timeEnd("googlePostTsvToLocal_a_1") )
+              .then( ()=> misc_helper.consoleTimeEnd(start_date, "googlePostTsvToLocal_a_1") )
     }
 
 
 
     function googleQualityTsvToLocal_a_2(quality_obj_file) {
-      console.time("googleQualityTsvToLocal_a_2");
+      var start_date =Date.now();
       return read_tsv_url(media_constants.QUALITY_GOOGLE_DATA)
             .then(quality_obj=> {
                 var file_name = fromAppRoot(quality_obj_file);
                 return objDataToCode(quality_obj, file_name);
             })
-              .then( ()=> console.timeEnd("googleQualityTsvToLocal_a_2") )
+              .then( ()=> misc_helper.consoleTimeEnd(start_date, "googleQualityTsvToLocal_a_2") )
     }
 
    
    function googlePdfRsdPodcastToLocal_a_3(rsd_file, rsd_information, media_type) {
-      console.time("googlePdfRsdPodcastToLocal_a_3" + media_type);
+     var start_date =Date.now();
       return  getCsv(rsd_information)
             .then(rsd_obj=> {
                 var file_name = fromAppRoot(rsd_file);
                 return objDataToCode(rsd_obj, file_name);
             })
-             .then( ()=> console.timeEnd("googlePdfRsdPodcastToLocal_a_3"+media_type) )
+             .then( ()=> misc_helper.consoleTimeEnd(start_date, "googlePdfRsdPodcastToLocal_a_3"+media_type) )
     }
    
   

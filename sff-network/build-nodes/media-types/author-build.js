@@ -67,16 +67,16 @@ module.exports = function (build_repository) {
         }
 
 
-        addWrittenBy() {
-            var author_1 = build_repository.insertWrittenBy_author_1();
-            return Promise.all([author_1]).then(
-                ()=> {
-                    //console.log('done saveWrittenBy_d_1')
-                }
-            )
-
-
-        }
+        // addWrittenBy(start_char) {
+        //     var author_1 = build_repository.insertWrittenBy_author_1(start_char);
+        //     return Promise.all([author_1]).then(
+        //         ()=> {
+        //             //console.log('done saveWrittenBy_d_1')
+        //         }
+        //     )
+        //
+        //
+        // }
 
         addWikiAuthors() {
 
