@@ -22,14 +22,12 @@ module.exports = function (build_repository) {
         static addPodcasts(podcast_books) {
             var my_promises = [];
             for (let under_title in podcast_books) {
-            //console.log('55555555555555555',  podcast_books[under_title])
                 let {podcast_number, podcast_description, podcast_link, podcast_id, last_first_underscores}  = podcast_books[under_title];
                 var podcast_title = `Podcast #${podcast_number}`;
                 var podcast_promise = build_repository.insertAPodcast(podcast_title, under_title, podcast_link, podcast_id, last_first_underscores)
                 my_promises.push(podcast_promise);
             }
             return Promise.all(my_promises)
-            //   return my_promises;
         }
 
         static podcastRead(podcast_csv) {
@@ -45,16 +43,13 @@ module.exports = function (build_repository) {
                 var last_first_underscores = multiple_monikers.lastUnderscore();
                 var {esc_book_title, under_title} =MediaBuild.quoteUnderscoreTitle(podcast_object['book title'])
                 var title_with_authors = multiple_monikers.titleWithAuthors(under_title);
-//var normal_name = multiple_monikers.firstMiddleLast();
                 var podcast_link = media_constants.MEDIA_LINK_DIR + podcast_object['file name']
                 podcast_books[title_with_authors] = {esc_book_title, under_title, last_first_underscores};
-               /// console.log('laksdjlskdjflsdkfj', last_first_underscores)
                   var underScoreToNormal = multiple_monikers.underScoreToNormal();
                for (var strip_author in underScoreToNormal) {
                     var normal_author = underScoreToNormal[strip_author];
                     podcast_authors[strip_author] = normal_author;
                 }
-   //console.log('eeeeeeeeeeeeeeeeeeeee', title_with_authors)       
                 var small_podcast = {
                     title_with_authors,
                     podcast_number,

@@ -1,3 +1,12 @@
+
+    const SPACE_REPLACEMENT = '^'
+    const FRENCH_LAST_NAMES = {
+        ' de ': ' de' + SPACE_REPLACEMENT,
+        ' le ': ' le' + SPACE_REPLACEMENT,
+        ' van ' : ' Van'+ SPACE_REPLACEMENT
+    };
+
+
 class AuthorMoniker {
 
     constructor(full_name) {
@@ -21,75 +30,38 @@ class AuthorMoniker {
         this.middle_md = '';
         this.last_name = '';
 
-
-        this.find_DeCamp();
-        this.find_LeGuin();
-this.find_deMaupassant();
+this.replaceFrenchLastNames();
 
         this.findThe();
         this.findJunior();
         this.findMd();
         this.firstMiddleLast();
-        
-        this.fix_DeCamp();
-        this.fix_LeGuin();
- this.fix_deMaupassant();
- 
+
+this.fixFrenchLastNames();
         this.makeMiddle();
         this.spaces_middle = this.middle_names.join(' ');
         this.underscore_middle = this.middle_names.join('_');
-        // console.log('***************************************')
-        // console.log(full_name)
-        // console.log('f===', this.first_name)
-        // console.log('m===', this.spaces_middle)
-        // console.log('l===', this.last_name)
-        // console.log('#######################################')
-
-
     }
 
-    fix_LeGuin() {
-        if (this.last_name.indexOf("Le^Guin") >= 0) {
-            this.last_name= this.last_name.replace("Le^Guin", "Le Guin");
+
+    fixFrenchLastNames() {
+        this.last_name = this.last_name.replace(SPACE_REPLACEMENT, ' ');
+    }
+
+
+
+    replaceFrenchLastNames() {
+        for (let french_spaced_name in FRENCH_LAST_NAMES) {
+            var reg_french = new RegExp(french_spaced_name, 'i');
+            var spaced_list = this.partial_name.split(reg_french);
+            if (spaced_list.length > 1) {
+                this.partial_name = spaced_list[0] + FRENCH_LAST_NAMES[french_spaced_name] + spaced_list[1];
+            }
+
         }
+
     }
 
-    fix_DeCamp() {
-        if (this.last_name.indexOf("de^Camp") >= 0) {
-            this.last_name= this.last_name.replace("de^Camp", "de Camp");
-        }
-    }
-
- fix_deMaupassant() {
-        if (this.last_name.indexOf("de^Maupassant") >= 0) {
-            this.last_name= this.last_name.replace("de^Maupassant", "de Maupassant");
-        }
-    }
-//de Maupassant
-
-find_deMaupassant() {
-        var re = /DE MAUPASSANT/i;
-        var de_maupassant_list = this.partial_name.split(re);
-        if (de_maupassant_list.length > 1) {
-            this.partial_name = de_maupassant_list[0] + "de^Maupassant";
-        }
-    }
-
-    find_LeGuin() {
-        var re = /LE GUIN/i;
-        var le_guin_list = this.partial_name.split(re);
-        if (le_guin_list.length > 1) {
-            this.partial_name = le_guin_list[0] + "Le^Guin";
-        }
-    }
-
-    find_DeCamp() {
-        var re = /DE CAMP/i;
-        var de_camp_list = this.partial_name.split(re);
-        if (de_camp_list.length > 1) {
-            this.partial_name = de_camp_list[0] + "de^Camp";
-        }
-    }
 
 
     makeMiddle() {
@@ -120,7 +92,6 @@ find_deMaupassant() {
 
     fmlSpaces() {
         var first_middle_last = this.first_name + ' ' + this.spaces_middle + ' ' + this.last_name;
-        //console.log('first_middle_last==', first_middle_last)  
         first_middle_last = first_middle_last.replace(/\s\s+/g, ' ');
         return first_middle_last;
     }
@@ -174,41 +145,40 @@ find_deMaupassant() {
     }
 
 
-    findJunior() {
+    findJunior() {  
         if (this.full_name.indexOf(', Jr.') >= 0) {
             this.middle_junior = 'Jr.'
-            this.partial_name = this.partial_name.replace(', Jr.', ' ');
+                    this.partial_name = this.partial_name.replace(/, Jr\./gi, '');
+           // this.partial_name = this.partial_name.replace(', Jr.', ' ');
         } else if (this.full_name.indexOf(' Jr.') >= 0) {
             this.middle_junior = 'Jr.'
-            this.partial_name = this.partial_name.replace(' Jr.', ' ');
+              this.partial_name = this.partial_name.replace(/ Jr\./gi, '');
+          //  this.partial_name = this.partial_name.replace(' Jr.', ' ');
         }
     }
 
     findMd() {
         if (this.full_name.indexOf(', M.D.') >= 0) {
             this.middle_md = 'M.D.'
-            this.partial_name = this.partial_name.replace(', M.D.', ' ');
+            this.partial_name = this.partial_name.replace(/, M\.D\./gi, '');
+
+//            this.partial_name = this.partial_name.replace(', M.D.', ' ');
         } else if (this.full_name.indexOf(' M.D.') >= 0) {
             this.middle_md = 'M.D.'
-            this.partial_name = this.partial_name.replace(' M.D.', ' ');
+              this.partial_name = this.partial_name.replace(/ M\.D\./gi, '');
+           // this.partial_name = this.partial_name.replace(' M.D.', ' ');
         }
     }
 
     firstMiddleLast() {
-//console.log('this.partial_name == ', '==' + this.partial_name + '__')
         var partial_name = this.partial_name.trim();
-//console.log('this.partial_name == ', '==' + partial_name + '__')
-
         var spaces_names = partial_name.split(' ');
-//console.log('fiurstMidlleList', spaces_names)
         this.last_name = spaces_names.pop();
         if (spaces_names.length > 0) {
             this.first_name = this.first_the + ' ' + spaces_names.shift();
             this.first_name = this.first_name.trim();
             if (spaces_names.length > 0) {
                 this.middle_names = spaces_names;
-                //  var middle_name = spaces_names.shift();
-                // this.middle_names.push(middle_name);
             }
         }
 

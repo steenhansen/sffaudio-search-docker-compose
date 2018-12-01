@@ -13,6 +13,10 @@ var cached_books = new CachedBooks()
 
 var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
 var cached_quality = new CachedQuality()
+var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
+var cached_defaults = new CachedDefaults();
+
+
 
 var misc_helper = rootAppRequire('sff-network/misc-helper');
 
@@ -21,6 +25,7 @@ function makeNewCaches_d_0(next_db_version, obj_dir) {
     var quality_obj_file = obj_dir + 'quality-obj.js';
     var quality_books_authors = require(quality_obj_file);
     return cached_quality.makeDbCache(next_db_version, quality_books_authors)
+        .then(()=>cached_defaults.makeDbCache(next_db_version, quality_books_authors))
        .then( ()=> { misc_helper.consoleTimeEnd(start_date, "makeNewCaches_d_0");})
 }
 

@@ -28,15 +28,11 @@ var test_arr=[
 'Frederik Pohl, C.M. Kornbluth, and Robert A.W. Lowndes', 
 'H.P. Lovecraft and R.H. Barlow',
 'James Causey and Bill Blackbeard',
-'Charles Dickens, Andew Halliday, Charles Collins, Hesba Stretton, and Amelia B. Edwards'];
-
-
-
-var test_arr=[
+'Charles Dickens, Andew Halliday, Charles Collins, Hesba Stretton, and Amelia B. Edwards',
 'Nathan Haskell Dole, editor',
 'The Brothers Grimm',
 'Kurt Vonnegut Jr.',
-'Anthony K. Van Riper',
+                         'Anthony K. Van Riper',
 'ascribed to Guy de Maupassant',
 'edited by Chris Coski',
 "'Laura Lee Hope aka 'Lilian C. Garis",
@@ -46,10 +42,14 @@ var test_arr=[
 'Ursula K. Le Guin',
 'E.SInnet'
 ];
-
-
-for( a_test of test_arr){
+// var test_arr=[
+// 'James F. Morton, Jr.',
+// 'C.M. Eddy, Jr. and H.P. Lovecraft'];
+//for( a_test of test_arr){
    // console.log('a test', a_test)
-    multiple_monikers.parseNames(a_test)
-
-}
+   var test_str = test_arr.join(',');
+       console.log(typeof test_str)
+   console.log('test_str', test_str)
+    var author_name = multiple_monikers.parseNames(test_str)
+    console.log('dd', author_name)
+//}

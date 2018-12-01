@@ -8,10 +8,14 @@ function widgetVars(graph_id, nodes_object, edges_object, graph_object) {
 var icons_string = MediaShow.authorIconColors();
 
     if (nodes_object.length > 10) {
-        graph_object.physics = false;
+        graph_object.graph_physics = false;
     } else {
-        graph_object.physics = {"barnesHut": {"avoidOverlap": 1 }};
+        graph_object.graph_physics = {"barnesHut": {"avoidOverlap": 1 }};
     }
+
+
+//var author_json = {nodes_object, edges_object, graph_object};   // q*bert
+//var author_stringified = JSON.stringify(author_json);         // q*bert
 
     var nodes_string = JSON.stringify(nodes_object, null, ' ');
     var edges_string = JSON.stringify(edges_object, null, ' ');
@@ -28,12 +32,13 @@ var post_proxy_absolute = media_constants.ROUTE_POST_PROXY + "?absolute_url=";
 // server-to-browser
     sff_vars.graph_vars={  
         graph_id:"${graph_id}",
+        edge_options:${edge_options},
+        node_icons:${icons_string},  
         nodes_string:${nodes_string},
         edges_string:${edges_string},
-        graph_info:${graph_string},
-        edge_options:${edge_options},
-        node_icons:${icons_string}  
+        graph_info:${graph_string}
 }    
+
 
 sff_vars.pdf_vars={  
         canvas_id:'pdf--canvas'

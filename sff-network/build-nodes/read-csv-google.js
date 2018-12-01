@@ -3,7 +3,7 @@ var write = require('fs-writefile-promise');
 const read_tsv_url = rootAppRequire('sff-network/build-nodes/url-tsv-read');
 var media_constants = rootAppRequire('sff-network/media-constants');
 var misc_helper = rootAppRequire('sff-network/misc-helper');
-var {makeEdgesNodes, saveToGraph} = rootAppRequire('sff-network/build-nodes/graphs-edges')
+var {makeEdgesNodes} = rootAppRequire('sff-network/build-nodes/graphs-edges')
 
 
 module.exports = function (graph_db) {
@@ -14,17 +14,15 @@ module.exports = function (graph_db) {
     function csvFromFiles(read_csv, podcast_csv, rsd_csv, pdf_csv, build_repository, author_book_obj) {
         return read_csv.getFromCsvFile(podcast_csv, rsd_csv, pdf_csv)
             .then(function (media_items) {
-                var media_data = makeEdgesNodes(media_items, build_repository);  // figure NOT MAKE
-                return saveToGraph(media_data, build_repository, author_book_obj);            /// qbert ** 2   
+                return makeEdgesNodes(media_items, build_repository);  // figure NOT MAKE
             });
     }
 
     function csvFromUrl(read_csv, podcast_information, rsd_information, pdf_information, build_repository, author_book_obj) {
         return read_csv.getAllCsv(podcast_information, rsd_information, pdf_information)
             .then(function (media_items) {
-                var media_data = makeEdgesNodes(media_items, build_repository);  // figure NOT MAKE
-                return saveToGraph(media_data, build_repository, author_book_obj);
-            });
+                return makeEdgesNodes(media_items, build_repository);  // figure NOT MAKE
+                      });
     }
 
 function objDataToCode(media_values, file_name){
@@ -64,6 +62,7 @@ function objDataToCode(media_values, file_name){
               .then( ()=> misc_helper.consoleTimeEnd(start_date, "googleQualityTsvToLocal_a_2") )
     }
 
+  
    
    function googlePdfRsdPodcastToLocal_a_3(rsd_file, rsd_information, media_type) {
      var start_date =Date.now();
@@ -128,10 +127,6 @@ function objDataToCode(media_values, file_name){
         let book_list = Object.assign({}, podcast_books, pdf_books, rsd_books);
         let author_list = Object.assign({}, podcast_authors, pdf_authors, rsd_authors);
         
-        //console.log('uuuuuuuuuuuuuuuuuuuu 1 ', podcast_authors)
-       // console.log('uuuuuuuuuuuuuuuuuuuu 2 ', pdf_authors)
-       // console.log('uuuuuuuuuuuuuuuuuuuu 3 ', rsd_authors)
-        
         if ('' in author_list) {
             delete author_list[''];
         }
@@ -165,7 +160,7 @@ function objDataToCode(media_values, file_name){
         startMakeIndexes_a_0,
         googlePostTsvToLocal_a_1, 
         googleQualityTsvToLocal_a_2, 
-        
+   
         
          googlePdfRsdPodcastToLocal_a_3, 
         getAllCsv, saveGoogle, getFromCsvFile

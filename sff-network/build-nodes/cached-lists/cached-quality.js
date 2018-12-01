@@ -26,7 +26,8 @@ class CachedQuality extends CachedBase {
         } catch (e) {
             return VersionRepository.getQuality()
                 .then((quality_list_db)=> {
-                    return this.writeToFile(this.cache_file, quality_list_db)
+                    var json_str= JSON.parse(quality_list_db)
+                    return this.writeToFile(this.cache_file, json_str)
                 })
         }
 

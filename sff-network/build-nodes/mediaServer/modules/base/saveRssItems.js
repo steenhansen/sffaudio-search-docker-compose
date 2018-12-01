@@ -52,8 +52,6 @@ module.exports = function (_di_factory) {
             return Promise.all([promise_tsv_variables, promise_the_rows]).spread(function (tsv_variables, the_rows) {
 
 
-//console.log('derived_rows', the_rows);
-//process.exit(2);
 
 
 

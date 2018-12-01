@@ -26,6 +26,7 @@ class ReloadUrl extends ReloadBase {
     static readSheets() {
         return read_csv_google.googlePostTsvToLocal_a_1(post_obj_file)
             .then(()=> read_csv_google.googleQualityTsvToLocal_a_2(quality_obj_file))
+
             .then(()=> read_csv_google.googlePdfRsdPodcastToLocal_a_3(rsd_file, rsd_information, 'google_rsd'))
             .then(()=> read_csv_google.googlePdfRsdPodcastToLocal_a_3(podcast_file, podcast_information, 'google_podcast'))
             .then(()=> read_csv_google.googlePdfRsdPodcastToLocal_a_3(pdf_file, pdf_information, 'google_pdf'))

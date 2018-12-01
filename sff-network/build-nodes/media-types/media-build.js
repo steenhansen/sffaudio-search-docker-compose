@@ -18,11 +18,8 @@ class MediaBuild {
 
 
     static quoteUnderscoreTitle(book_title) {  // move to author_build
-       //console.log( 'book_title', book_title)
         var esc_book_title = MediaBuild.escapeQuote(book_title);
-      // console.log( 'esc_book_title', esc_book_title)
         var under_title = misc_helper.alphaUnderscore(esc_book_title);
-     //  console.log( 'under_title', under_title)
         return {esc_book_title, under_title};
     }
 

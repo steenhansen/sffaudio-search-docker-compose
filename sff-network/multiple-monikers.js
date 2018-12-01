@@ -9,29 +9,23 @@ class MultipleMonikers {
         }
         this.multiple_names = [];
         this.multiple_fixed = [];
-
+        this.firstMiddleLastArray = []
     }
 
     parseNames(comma_names) {
-            this.last_name_first_spaces = [];
+        this.last_name_first_spaces = [];
         this.last_name_first_underscore = [];
         this.first_middle_last = [];
-        this.underscore_to_normal ={};
+        this.underscore_to_normal = {};
         this.findMultiples(comma_names);
         this.fixJuniorMd();
         this.multipleMiddles();
-        // console.log('***************************************')
-        // console.log(' this.last_name_first_spaces', this.last_name_first_spaces)
-        // console.log(' this.last_name_first_underscore', this.last_name_first_underscore)
-        //
-        // console.log(' this.first_middle_last', this.first_middle_last)
-        // console.log('#######################################')
+        return this.firstMiddleLastArray;
     }
 
     blankExtras(string_with_extras) {
-        //  console.log('string_with_extras===', string_with_extras)
+        console.log(typeof string_with_extras)
         var shrink_string = string_with_extras.replace(", editor", " ");
-        //   console.log('shrink_string===', shrink_string)
         var shrink_string = shrink_string.replace("ascribed to ", " ");
         var shrink_string = shrink_string.replace("edited by ", " ");
 
@@ -42,19 +36,16 @@ class MultipleMonikers {
 
     findMultiples(comma_names) {
         var multiples_work = this.blankExtras(comma_names);
-        var multiples_work = multiples_work.replace(", Jr.", "~ Jr.");
-        var multiples_work = multiples_work.replace(", M.D.", "~ M.D.");
-        var multiples_work = multiples_work.replace(", and ", ", ");
-        var multiples_work = multiples_work.replace(" and ", ", ");
+        var multiples_work = multiples_work.replace(/, Jr\./gi, "~ Jr.");
+        var multiples_work = multiples_work.replace(/, M\.D\./gi, "~ M.D.");
+        var multiples_work = multiples_work.replace(/, and /gi, ", ");
+        var multiples_work = multiples_work.replace(/ and /gi, ", ");
         var two_commas = /,\s*,/;
         var multiples_work = multiples_work.replace(two_commas, ',');
         this.multiple_names = multiples_work.split(',');
-        // console.log('---------------------------------------')
-        // console.log('---------------------------------------')
-        // console.log(':::::', comma_names)
-        // console.log(this.multiple_names)
-        // console.log('+++++++++++++++++++++++++++++++++++++++')
-        // console.log('+++++++++++++++++++++++++++++++++++++++')
+
+        console.log('dddddddddd', this.multiple_names, 'qqqqqqqq')
+
     }
 
     fixJuniorMd() {
@@ -67,11 +58,6 @@ class MultipleMonikers {
                 this.multiple_fixed.push(trim_name);
             }
         }
-        // console.log('***************************************')
-        // console.log('***************************************')
-        // console.log(this.multiple_fixed)
-        // console.log('#######################################')
-        // console.log('#######################################')
     }
 
     multipleMiddles() {
@@ -85,37 +71,29 @@ class MultipleMonikers {
             this.last_name_first_spaces.push(last_name_first);
             this.last_name_first_underscore.push(last_underscore);
             this.first_middle_last.push(first_middle_last);
-            this.underscore_to_normal[last_underscore]=first_middle_last;
+            this.underscore_to_normal[last_underscore] = first_middle_last;
+
+
+            var firstMiddleLastArray = author_moniker.firstMiddleLastArray();
+            this.firstMiddleLastArray.push(firstMiddleLastArray);
+
         }
-        //   console.log('***************************************')
-        //   console.log('***************************************')
-        //  console.log(this.last_name_first_spaces)
-        //    console.log(this.last_name_first_underscore)
-        //  console.log(this.first_middle_last)
-        // console.log('#######################################')
-        // console.log('#######################################')
     }
 
     titleWithAuthors(under_title) {
-     
-       
-      
-     
-     
-       var  title_with_authors = under_title + '^' + this.last_name_first_underscore.join('^');
+        var title_with_authors = under_title + '^' + this.last_name_first_underscore.join('^');
         return title_with_authors
     }
 
     lastUnderscore() {
-      //  return  this.last_name_first_underscore.join('^');   // q*bert49   
         return this.last_name_first_underscore
     }
 
     firstMiddleLast() {
         return this.first_middle_last
     }
-    
-    underScoreToNormal(){
+
+    underScoreToNormal() {
         return this.underscore_to_normal;
     }
 

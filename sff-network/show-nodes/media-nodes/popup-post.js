@@ -23,13 +23,9 @@ sff_vars.post_procs = (function (post_close_svg, post_proxy) {
          
             if (sff_php_vars.php_url === 'not a php host') {
                  var proxy_call2 =  '//' + window.location.host + post_proxy + pdf_url; 
-                  //console.log('popup-post.js window.location.host===', window.location.host);
-                 //  console.log('popup-post.js post_proxy===', post_proxy);
-                    //console.log('popup-post.js pdf_url===', pdf_url);
             }else{
                 var proxy_call2 =  sff_php_vars.php_url + post_proxy + pdf_url; 
             }
-            //console.log('popup-post.js proxy_call2===', proxy_call2);
         return fetch(proxy_call2)
             .then(function (response) {
                 var text_promise = response.text();

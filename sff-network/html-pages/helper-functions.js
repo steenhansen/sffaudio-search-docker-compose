@@ -1,4 +1,3 @@
-
 var sff_helpers_js = `
 // helper-functions
 sff_vars.helpers = (function () {
@@ -22,7 +21,9 @@ sff_vars.helpers = (function () {
 
 
 
-
+my.objectIsEmpty  = function(obj) {
+    return Object.keys(obj).length === 0;
+}
 
 
 

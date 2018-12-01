@@ -10,18 +10,8 @@ module.exports = function (build_repository) {
     class PostBuild extends MediaBuild {
     
     static addPosts(author_book_obj) {
-  //   console.time("addPosts");
             var post_promises = [];
-              //   console.log('bbb', author_book_obj)
             for (let book_author of author_book_obj) {
-                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
-                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
-                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
-                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
-                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
-                        // console.log(' +++++++++++++++++++++++++++++++++++++ ')
-                        //
-          //  clog('clowns', book_author);
                 var book = book_author['book'];
                 var under_title = misc_helper.alphaUnderscore(book);
                 if (under_title === '') {
@@ -33,10 +23,7 @@ module.exports = function (build_repository) {
                      post_promises.push(post_promise);
                 }
             }
-         //   console.timeEnd("addPosts")
             return Promise.all(post_promises)
-             //   .then( (result)=> clog(result))
-           // return post_promises;
         }
 
         static addBookPosts(author_book_obj) {

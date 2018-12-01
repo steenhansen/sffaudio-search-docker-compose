@@ -16,6 +16,12 @@ module.exports = function (build_repository) {
         }
 
 
+
+
+
+
+
+
         addedAuthors() {
             return this.processed_authors;
 
@@ -44,9 +50,6 @@ module.exports = function (build_repository) {
             let author_wikis = {};
             for (let pdf_object of pdf_csv) {
                 let {title_with_authors, under_title, full_title, last_first_underscores, author_wiki}=pdf_object;
-                
-              //  console.log(last_first_underscores, 'pppppppppppp')
-                
                var strip_author = last_first_underscores[0];
                 author_wikis[strip_author] = author_wiki;
             }
@@ -67,17 +70,7 @@ module.exports = function (build_repository) {
         }
 
 
-        // addWrittenBy(start_char) {
-        //     var author_1 = build_repository.insertWrittenBy_author_1(start_char);
-        //     return Promise.all([author_1]).then(
-        //         ()=> {
-        //             //console.log('done saveWrittenBy_d_1')
-        //         }
-        //     )
-        //
-        //
-        // }
-
+  
         addWikiAuthors() {
 
             var neo4j_promise = build_repository.insertWikiAuthors()

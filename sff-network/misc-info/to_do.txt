@@ -1,0 +1,290 @@
+
+ fix_LeGuin()
+
+graphs-edges.saveToGraph() used???
+
+
+gary bed story
+
+interference engine?
+//////
+
+
+
+
+
+- bunch of cypher-queries
+	like to get all author names
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Protocol-relative URL
+
+have all quality authors in cache, and send them down to browser
+
+if in browser none, then swap in random quality record in browser,
+
+
+
+
+
+
+
+
+
+
+
+
+replace all ' de *' and ' le *' wuth one regex '^' and then all undo with one function
+
+reloadClean() erase db
+
+reloadDb with cred files, and second arg is dir  As webServer should not have a data dir
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+professor simon NewComb
+
+
+
+
+last_first_underscores ==> list_lfm_authors
+
+
+
+
+match (n:L_PDF)-[]-()
+WHERE n.under_title = 'the_covenant'
+return *
+
+
+
+MATCH (n)
+WHERE n.name CONTAINS 'ete'
+RETURN n.name, n.age
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======q*bert
+media-build.authorNames() called by
+	author-build.addAuthors()         first
+	author-show.constructor()
+
+AuthorMoniker
+
+
+cached-authors.mediaLink()
+
+
+
+misc-helper.theLastNameFirst()
+
+
+
+
+
+
+
+
+
+idea is to figure out first,middle, last and then keep them
+as an author object
+
+
+
+C.M. Eddy, Jr. and H.P. Lovecraft
+James F. Morton, Jr.
+C.M. Eddy, Jr. and H.P. Lovecraft
+Nathan Haskell Dole, editor
+H. Nearing, Jr.
+Carl Rasmus, M.D. 
+James B.M. Clarke, Jr.
+Frederik Pohl, C.M. Kornbluth, and Robert A.W. Lowndes 
+H.P. Lovecraft and R.H. Barlow
+James Causey and Bill Blackbeard
+Charles Dickens, Andew Halliday, Charles Collins, Hesba Stretton, and Amelia B. Edwards
+
+
+
+
+
+
+
+
+also   author    Poul MurrayLeinster,
+                 anderson
+                 issac asimov
+                 robert sheckly
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+author-cache.js should not have any css in it!!! just authorsS
+
+
+fix so if on mobile, then goto mobile
+
+fix mobile php code so you can see where it goes, now confusing
+
+
+error message if not cors set for php/amazon/digitalocean
+
+
+
+
+clear filter does not clear the text box
+
+
+
+https://www.sffaudio.com/about/?book=neuromancer&author=william_gibson&view=podcast
+gibson nuromancer podcst faailed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+chatherine wells
+charles Beaudelaire
+charles P. Beaudelaire
+ernst wurm
+jean Lahor
+ken winney
+lucian 
+mickey spillane
+
+q. patrick
+s carelton
+
+
+
+
+
+
+
+NASA affars
+
+undefined anonymous_
+
+
+undefined anonymous_j_sheridan_le_fanu_ 
+
+
+undefined Abrach
+
+a Barrister
+     fix!!!!!!!!!!!!
+
+
+h_bedfordjones_  [[[ no first name
+
+
+
+
+
+
+
+
+
+
+
+
+the WereWolf x3 in 
+
+
+BUG
+
+in  http://localhost:5000/author/letter/d
+Peter Grainger (aka Max Dancey) is
+sorted as 'Grainger Peter' eventhough it is regarded as a 'D'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

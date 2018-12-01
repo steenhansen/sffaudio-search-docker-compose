@@ -1,19 +1,16 @@
 var media_constants = rootAppRequire('sff-network/media-constants');
 const {DELETE_UNUSED_RECORDS}=media_constants;
+var misc_helper = rootAppRequire('sff-network/misc-helper');
+// const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
+// const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
+// var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
+// var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
+
+
+
 module.exports = function (graph_db) {
 
     class VersionRepository {
-
-
-//   we need a update tracker,,,,
-//   L_UPDATE_STATE
-//    STEP 1,2,3,4....   THIS WILL GIVE US AN ARRAY INDEX OF THENABLES
-
-
-//
-
-// if we store the update_steps inside the L_VERSION, then we can
-// to an atomic update of 'update_step=0' and 'db_version=+1' in one shot
 
 
         /*
@@ -56,15 +53,32 @@ module.exports = function (graph_db) {
             return graph_db.sqlParams(sql, params);
         }
         
-
-
+        
+        
+        
+    static saveDefaultAuthors(db_version, default_code) {
+            var sql = ` CREATE ( n_default:L_DEFAULT  
+                                 { default_code:{default_code}, db_version:{db_version}  }  ) `;
+            var params = {default_code, db_version};
+            return graph_db.sqlParams(sql, params);
+        }
+        static getDefaultAuthors() {
+            var sql = ` MATCH (n_version:L_VERSION) 
+                         WITH n_version.current_version as v_db_version
+                          MATCH (n_default:L_DEFAULT )
+                         WHERE n_default.db_version=v_db_version
+                         RETURN n_default.default_code `;
+            var params = {};
+            return graph_db.sqlParams(sql, params);
+        }
+        
+        
         static saveQuality(db_version, quality_code) {
             var sql = ` CREATE ( n_quality:L_QUALITY  
                                  { quality_code:{quality_code}, db_version:{db_version}  }  ) `;
             var params = {quality_code, db_version};
             return graph_db.sqlParams(sql, params);
         }
-
     static getQuality() {
             var sql = ` MATCH (n_version:L_VERSION) 
                          WITH n_version.current_version as v_db_version
@@ -136,6 +150,28 @@ module.exports = function (graph_db) {
 
         }
 
+        static deleteFail_d_5(next_db_version, limit_records = DELETE_UNUSED_RECORDS) {
+
+        // const cached_authors = new CachedAuthors();
+        // const cached_books = new CachedBooks();
+        // const cached_quality = new CachedQuality();
+        // const cached_defaults = new CachedDefaults();
+        // cached_authors.deleteCache();
+        // cached_books.deleteCache();
+        // cached_quality.deleteCache();
+        misc_helper.deleteCachedData();
+        
+            var unused_sql = ` // VersionRepository.deleteUnused.unused_sql        
+                         MATCH (n_nodes) 
+                         WHERE (NOT n_nodes:L_VERSION)
+                           AND n_nodes.db_version={next_db_version}
+                          WITH n_nodes LIMIT ${limit_records}
+                 DETACH DELETE n_nodes  `;
+
+            var params = {next_db_version};
+            return graph_db.sqlParams(unused_sql, params);
+
+        }
 
     }
     return VersionRepository;

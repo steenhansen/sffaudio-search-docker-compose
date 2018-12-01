@@ -26,18 +26,7 @@ module.exports = function (version_num) {
         var limited_sql = sql + limit_sql;
 
         var neo4j_promise = neo4j_session.run(limited_sql, params)
-        //            .then( (my_data)=>{console.log(my_data);  neo4j_session.close(); return my_data})
             .then((result)=> {
-              //  neo4j_session.close();
-              
-              
-                // if (limited_sql.includes('PostNode.savePosts')) {
-                // clog('----------------sss', limited_sql)
-                //     // var avail = result.summary().result_available_after;
-                //     // var cons = result.summary().result_consumed_after
-                //     // var total_time = avail + cons
-                //     clog('----------------sss', result)
-                // }
                 return result
             })
 

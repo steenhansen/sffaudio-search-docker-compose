@@ -98,7 +98,6 @@ module.exports = function (build_repository) {
             for (let title_with_authors in pdf_books) {
                 let {book_title, under_title, last_first_underscores, pdf_data_1, pdf_data_2, pdf_data_3, pdf_data_4,pdf_country}  = pdf_books[title_with_authors];
 
-   //console.log('xxxxxxxxxxxxxx', small_pdf)
                 const pdf_promise_1 = PdfBuild.addPdf(pdf_data_1, book_title, under_title, last_first_underscores,pdf_country);
                 my_promises.push(pdf_promise_1);
                 if (pdf_data_2 !== '') {

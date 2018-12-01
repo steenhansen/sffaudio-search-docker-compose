@@ -27,7 +27,7 @@ const popup_book_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup
 const sff_helpers_js = rootAppRequire('sff-network/html-pages/helper-functions');
 
 
-module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view) {
+module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view, nodes_and_edges_str) {
     if (graph_object.under_title) {
         var under_title = graph_object.under_title;
     } else {
@@ -53,11 +53,23 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
                  flex-wrap: wrap;
                  "
                  */
+                 
+                   // var nodes_and_edges = JSON.parse(nodes_and_edges_str);
+// var nodes_and_edges_0 = JSON.parse(nodes_and_edges_str[0]);
+// var nodes_and_edges_1 = JSON.parse(nodes_and_edges_str[1]);
+
+
+
                 var widget_html = widget_vars_html.widgetHtml(graph_container_id, author_links, book_links);
                 var build_page = `
 
+
+
+
 <script>
     ${vars_events}
+
+
 
     sff_vars.vars_events.initVars();
     ${js_constants}
@@ -68,6 +80,27 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     
     ${load_css_external}
     ${widget_vars} 
+    
+    
+    <script>
+sff_vars.strip_author = "${strip_author}";
+    sff_vars.default_authors = ${nodes_and_edges_str}
+
+
+
+if(sff_vars.helpers.objectIsEmpty(sff_vars.graph_vars.nodes_string)){
+       
+       
+         var rand_index = Math.floor((Math.random() * sff_vars.default_authors.length));
+       
+        sff_vars.graph_vars.nodes_string=sff_vars.default_authors[rand_index].nodes_object;
+        sff_vars.graph_vars.edges_string=sff_vars.default_authors[rand_index].edges_object;
+        sff_vars.graph_vars.graph_info=sff_vars.default_authors[rand_index].graph_info;
+        
+       var strip_author = sff_vars.default_authors[rand_index].graph_info.strip_author;
+       sff_vars.strip_author = strip_author;
+}
+</script>
     
 <script>
     ${popup_pdf}
@@ -81,6 +114,9 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 
     ${widget_html}
 
+
+
+
 <style>
    ${popup_blur.popup_blur_css}
 </style>
@@ -90,10 +126,11 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 <script>
     ${popup_blur.popup_blur_js}
     ${load_scripts}
+    
     sff_vars.graph_procs.doGraph();
     function mainStart(polyfill_error){
         sff_vars.vars_events.initEvents();
-        sff_vars.history_generate.startHistoryView('${req_query_view}', '${strip_author}', '${under_title}')
+       sff_vars.history_generate.startHistoryView('${req_query_view}', sff_vars.strip_author, '${under_title}')
     }
 
 </script>`;

@@ -12,7 +12,6 @@ sff_vars.rsd_procs = (function (rsd_close_svg) {
 
     my.downloadMp3 = function (){
        window.location = this.rsd_mp3;
-       //console.log('rsd', this.rsd_mp3)
     }
 
     my.videoEmbed = function (video_link) {

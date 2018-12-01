@@ -7,40 +7,26 @@ module.exports = function (build_repository) {
 
     class BookBuild extends MediaBuild {
 
-
         static addABook(sorted_label, esc_book_title, under_title, last_first_underscores) {
-         ///  console.log('jjjjjjjj', sorted_label, esc_book_title, under_title, last_first_underscores)
-           var my_promises = [];
             return build_repository.insertABook(sorted_label, esc_book_title, under_title, last_first_underscores)
         }
 
         static addBooksNew(book_list) {
             var my_promises = [];
             for (let title_with_authors in book_list) {
-
-
                 let {sorted_label, esc_book_title, under_title, last_first_underscores}  = book_list[title_with_authors];
-
-
                 const book_promise = BookBuild.addABook(sorted_label, esc_book_title, under_title, last_first_underscores)
                 my_promises.push(book_promise);
-                
                 for (let strip_author of last_first_underscores) {
-                    //console.log('ddddddddd', strip_author, under_title)
-                    var author_book_edge =  build_repository.linkAuthorToBook(strip_author, under_title)
-                     my_promises.push(author_book_edge);
+                    var author_book_edge = build_repository.linkAuthorToBook(strip_author, under_title)
+                    my_promises.push(author_book_edge);
                 }
-                
-                
             }
             return my_promises;
         }
-        
-        
+
         static findStoryWiki(pdf_csv) {            // findBookWiki
             let story_wikis = {};
-
-
             for (let pdf_object of pdf_csv) {
                 let {under_title, full_title, last_first_underscores, story_wiki}=pdf_object;
                 if (story_wiki) {
@@ -49,9 +35,6 @@ module.exports = function (build_repository) {
             }
             return story_wikis;
         }
-
-
-
 
         static  addStoryWiki(story_wikis) {
             var my_promises = [];
@@ -66,12 +49,12 @@ module.exports = function (build_repository) {
         }
 
 
-static addPdfsOfBook() {
+        static addPdfsOfBook() {
             return build_repository.insertPdfsOfBook();
         }
 
-        
-       static addPdfsPage() {
+
+        static addPdfsPage() {
             return build_repository.insertPdfPage();
         }
 

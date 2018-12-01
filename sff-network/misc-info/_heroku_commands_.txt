@@ -1,0 +1,32 @@
+
+
+cd into the git directory
+
+
+    heroku logs -a sffaudio-test-neo4j
+
+    heroku run bash -a sffaudio-test-neo4j
+    node reload-db 
+
+
+
+
+
+
+cors on digital ocean
+        
+      Origin: *
+         get: x
+        head: x
+
+
+
+
+
+https://help.heroku.com/sharing/89f4c0a7-74d6-4ce3-b9a3-3b321c557758
+
+
+
+ADD VIM:
+    https://elements.heroku.com/buildpacks/carloluis/heroku-buildpack-vim#buildpack-instructions
+    heroku create --buildpack https://github.com/carloluis/heroku-buildpack-vim.git

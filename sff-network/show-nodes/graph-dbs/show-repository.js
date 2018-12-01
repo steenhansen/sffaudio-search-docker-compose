@@ -10,7 +10,6 @@ module.exports = function (graph_db) {
 
 
         static getAuthorNodes(strip_author) {
-        //console.log('strip aut', strip_author)
             var sql4 = ` // ShowRepository.getAuthorsNodes
                         MATCH (n_version:L_VERSION) 
 			            RETURN '' AS r_author_to_media, '' AS r_author_to_wiki, '' AS n_author, '' AS n_author_wiki, '' AS n_book_or_post,

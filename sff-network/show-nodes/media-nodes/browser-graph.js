@@ -31,8 +31,7 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
     };
 
     my.startGraph = function (graph_id, nodes_string, edges_string, graph_physics) {
-        my.loadGraph(graph_id, nodes_string, edges_string, graph_info.physics);
-
+        my.loadGraph(graph_id, nodes_string, edges_string, graph_info.graph_physics);
         if (graph_info.graph_type == 'book_page') {
             sff_vars.filter_names.selectMedia(graph_info.under_title, 'yes_scroll')
         } else {
@@ -63,12 +62,8 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
             } else if (node_type == 'L_AUTHOR') {
                 my.loadAuthorNew(strip_author)
             } else if (node_type == 'L_PDF') {
-            
-               // console.log('234097', pdf_country);             // Canada
-                
                 sff_vars.pdf_procs.loadPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf');
             } else if (node_type == 'L_PODCAST') {
-              //console.log('browser-graph :', goto_url, podcast_url);
                 sff_vars.podcast_procs.loadPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast');
             } else if (node_type == 'L_RSD') {
                 sff_vars.rsd_procs.loadRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, strip_author, 'rsd');
@@ -120,7 +115,7 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
     }
 
     my.doGraph = function () {
-        my.startGraph(graph_id, nodes_string, edges_string, graph_info.physics);
+        my.startGraph(graph_id, nodes_string, edges_string, graph_info.graph_physics);
     }
 
     return my;

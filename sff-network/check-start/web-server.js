@@ -1,81 +1,6 @@
 'use strict'
 
 
-/*
-
- node web-server localDb-testData-every-type.config.js
-
-
- node web-server localDb-googleData.config.js
-
-
- node web-server grapheneDb-testData-every-type.config.js
-
-
- node web-server grapheneDb-googleData.config.js
-
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
- node web-server 
-
-
- node web-server ./test-config-env.js
-
- http://localhost:5000/author/book/philip_k_dick/adjustment_team
-
- */
-
-
-require('./sff-network/global-require');
-
-
-const setCheckHerokuEnvVars = rootAppRequire('sff-network/heroku-config-vars');
-
-if (process.argv[2]) {
-    var config_file = process.argv[2];
-} else {
-    var config_file = 'NO_CONFIG_FILE';
-
-}
-
-//let env_filename = process.argv[2];
-setCheckHerokuEnvVars(config_file);
-
-
 var media_constants = rootAppRequire('sff-network/media-constants');
 var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
 
@@ -85,17 +10,6 @@ var misc_helper = rootAppRequire('sff-network/misc-helper')
 var data_repository = rootAppRequire('sff-network/show-nodes/graph-dbs/show-repository')(graph_db);
 var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
 
-/*
-
- > /podcast-neo4j/
- node web-server ../test-config-env       // start webserver
- node web-server ../local-config-env       // start webserver
-
- npm test
-
- C:\Users\admin\Documents\GitHub\_real_sffaudio_\sffaudio\test\call-tests.js
-
- */
 
 var misc_helper = rootAppRequire('sff-network/misc-helper')
 
@@ -111,6 +25,7 @@ var ParseNeo = rootAppRequire('sff-network/show-nodes/parse-neo')(data_repositor
 
 const program_constants = rootAppRequire('sff-network/program-constants.js');
 
+//var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
 
 var app = express();
 app.use(express.static('public', {maxAge: '1y'}))
@@ -127,14 +42,13 @@ app.get(program_constants.ROUTE_RESOLVE_PDF, function (req, res_express) {
     misc_helper.resolveRedirects(start_pdf_url)
         .then((end_pdf_url)=> {
             var secure_pdf_url = end_pdf_url.replace('http://', 'https://');
-            
+
             res_express.send(secure_pdf_url)
         })
 })
 
 app.get(media_constants.ROUTE_POST_PROXY, function (req, res_express) {
     const absolute_url = req.query.absolute_url;
-   // console.log('absoloute', absolute_url)
     const optionsStart = {
         uri: absolute_url,
         method: "GET",
@@ -155,22 +69,15 @@ app.get(media_constants.ROUTE_POST_PROXY, function (req, res_express) {
 })
 
 
-
-
-
-
 //  http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=pdf
 //app.get('/author/book/:strip_author/:under_title', function (req, res) {
 app.get(program_constants.ROUTE_BOOK_JSON, function (req, res) {
     let {strip_author, under_title}=req.params
-              //  console.log('start', strip_author, under_title)
 
     book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo)
         .then(function (nodes_and_edges) {
             let {nodes_object, edges_object} =nodes_and_edges
             var nodes_string = JSON.stringify(nodes_object);
-            
-          //  clog('asdf423999 ',nodes_and_edges)
             var edges_string = JSON.stringify(edges_object);
 
             if (nodes_object.length > 10) {
@@ -186,7 +93,6 @@ app.get(program_constants.ROUTE_BOOK_JSON, function (req, res) {
             };
             var graph_string = JSON.stringify(graph_info);
             var author_json = {nodes_string, edges_string, graph_string}
-          //  console.log('end', under_title)
             res.json(author_json);
         })
 })
@@ -204,21 +110,9 @@ app.get(program_constants.ROUTE_BOOK_JSON, function (req, res) {
 //app.get('/author/:strip_author', function (req, res) {
 app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
     const strip_author = req.params.strip_author
-   // clog('strip_authro =', strip_author)
     author_data.sendAuthor(strip_author, ParseNeo)
-        .then(function (nodes_and_edges) {
-            let {nodes_object, edges_object} =nodes_and_edges
-            if (nodes_object.length > 10) {
-                var graph_physics = false;
-            } else {
-                var graph_physics = {"barnesHut": {"avoidOverlap": 1}};
-            }
-            var graph_info = {strip_author: strip_author, graph_type: 'author_page', graph_physics: graph_physics};
-            var nodes_string = JSON.stringify(nodes_object);
-            var edges_string = JSON.stringify(edges_object);
-            var graph_string = JSON.stringify(graph_info);
-            var author_json = {nodes_string, edges_string, graph_string}
-          //    clog('author_json =', author_json)
+        .then((nodes_and_edges) => {
+            var author_json = author_data.authorJson(strip_author, nodes_and_edges);
             res.json(author_json);
         })
 })
@@ -254,11 +148,11 @@ function authorOrBook(req) {
         return author_data.sendAuthor(strip_author, ParseNeo);
     } else {
         return author_data.randomGoodAuthor()
-        .then((random_author)=> {
-            strip_author= misc_helper.alphaUnderscore(random_author);
-            return author_data.sendAuthor(strip_author, ParseNeo);
-        })
-       
+            .then((random_author)=> {
+                strip_author = misc_helper.alphaUnderscore(random_author);
+                return author_data.sendAuthor(strip_author, ParseNeo);
+            })
+
     }
     // if (typeof under_title !== 'undefined') {
     //     return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
@@ -270,30 +164,44 @@ function authorOrBook(req) {
 // http://localhost:5000/
 //   http://localhost:5000/?author=philip_k_dick&view=post
 app.get('/', function (req, res) {
-    authorOrBook(req)
-        .then(function (nodes_and_edges) {
-            let {nodes_object, edges_object, graph_info} =nodes_and_edges;
-            if (typeof req.query.view === 'undefined') {
-                var query_view = '';
-            } else {
-                var query_view = req.query.view;
-            }
-            media_page(nodes_object, edges_object, graph_info, query_view)
-                .then((book_html)=> res.send(book_html));
-        })
+    if (typeof req.query['author'] === 'undefined' && typeof req.query['book'] === 'undefined') {
+        var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
+        var cached_defaults = new CachedDefaults();
+        var default_string_or_promise = cached_defaults.getCache();
+        Promise.all([default_string_or_promise])
+            .then((nodes_and_edges_arr)=> {
+                    var nodes_and_edges_str = nodes_and_edges_arr[0];
+                    return nodes_and_edges_str;
+                }
+            )
+            .then(function (nodes_and_edges_str) {
+                if (typeof req.query.view === 'undefined') {
+                    var query_view = '';
+                } else {
+                    var query_view = req.query.view;
+                }
+                media_page({}, {}, {}, query_view, nodes_and_edges_str)
+                    .then((book_html)=> res.send(book_html));
+            })
+    } else {
+        authorOrBook(req)
+              .then(function (nodes_and_edges) {
+                let {nodes_object, edges_object, graph_info} =nodes_and_edges;
+                if (typeof req.query.view === 'undefined') {
+                    var query_view = '';
+                } else {
+                    var query_view = req.query.view;
+                }
+                media_page(nodes_object, edges_object, graph_info, query_view, '{}')
+                    .then((book_html)=> res.send(book_html));
+            })
+    }
 
 })
 
 app.get('*', function (req, res) {
 
-//console.log('* req', req.url)
     res.status(204);
-    // authorOrBook(req).then(function (nodes_and_edges) {
-    //     let {nodes_object, edges_object, graph_info} =nodes_and_edges;
-    //     media_page(nodes_object, edges_object, graph_info)
-    //         .then((book_html)=> res.send(book_html));
-    // })
-
 })
 
 

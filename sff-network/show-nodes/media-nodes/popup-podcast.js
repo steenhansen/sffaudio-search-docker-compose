@@ -10,8 +10,6 @@ sff_vars.podcast_procs = (function (podcast_close_svg) {
     
     my.downloadMp3 = function (){
        window.location = this.podcast_mp3;
-              console.log('podcast_mp3', this.podcast_mp3)
-
     }
 
     my.loadPodcast = function (goto_url, podcast_url, under_title, strip_author, req_query_view) {

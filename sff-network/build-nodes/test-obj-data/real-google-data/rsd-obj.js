@@ -1,5 +1,20 @@
  const my_media_array = [
  {
+  "episode number": "147",
+  "publish date": "2018-11-28 00:01",
+  "post link": "http://www.sffaudio.com/reading-short-and-deep-147-the-die-hard-by-alfred-bester/",
+  "hh:mm:ss": "0:34:02",
+  "file name": "rsd147TheDieHard.mp3",
+  "byte size": "33,498,872",
+  "podcast participants": "Eric S. Rabkin and Jesse Willis",
+  "book title": "The Die-Hard",
+  "book author": "Alfred Bester",
+  "genre type": "Story",
+  "pdf link": "http://www.sffaudio.com/podcasts/TheDieHardByAlfredBester.pdf",
+  "video link": "",
+  "podcast description": "The Die-Hard by Alfred Bester"
+ },
+ {
   "episode number": "146",
   "publish date": "2018-11-21 00:01",
   "post link": "http://www.sffaudio.com/reading-short-and-deep-146-the-adventures-of-sherlaw-kombs-by-robert-barr/",

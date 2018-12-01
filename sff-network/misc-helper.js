@@ -14,19 +14,11 @@ function theLastNameFirst(full_name, split_char) {
     }
     var last_first = last_name + split_char + first_name;
     if (last_first.indexOf('Jr.') === 0) {
-        // console.log('last_first =========', last_first)
-        // console.log('last_name', last_name)
-        // console.log('split_char', split_char)
-        // console.log('first_name', first_name)
         var jr_array = first_name.split(split_char);
         var jr_last_name_comma = jr_array.pop();
         var jr_first_name = jr_array[0];
         var jr_last_name = jr_last_name_comma.replace(',', '');
         var jr_last_first = jr_last_name + split_char + 'Jr.' + split_char + jr_first_name;
-        //   console.log('======q*bert 2===================')
-        // console.log('jr_first_name2', jr_first_name)
-        // console.log('jr_last_name2', jr_last_name)
-        // console.log('jr_last_first2', jr_last_first)
         return jr_last_first;
     }
     return last_first;
@@ -94,13 +86,13 @@ function resolveRedirects(get_url) {
 
 function waitSeconds(second_count, number_authors) {
     var milli_seconds = second_count * 1000
-    if (number_authors<50){
-        milli_seconds=0;
+    if (number_authors < 50) {
+        milli_seconds = 0;
     }
     var wait_promise = new Promise(function (resolve) {
         setTimeout(resolve, milli_seconds);
     });
-    if (milli_seconds>0){
+    if (milli_seconds > 0) {
         console.log('    waiting for', second_count, 'seconds.')
     }
     return wait_promise;
@@ -122,15 +114,33 @@ function consoleTimeEnd(start_date, interval_name) {
     console.log(padded_number, "secs", interval_name);
 }
 
+function deleteCachedData() {
+
+    const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
+    const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
+    var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
+    var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
+
+    const cached_authors = new CachedAuthors();
+    const cached_books = new CachedBooks();
+    const cached_quality = new CachedQuality();
+    const cached_defaults = new CachedDefaults();
+    cached_authors.deleteCache();
+    cached_books.deleteCache();
+    cached_quality.deleteCache();
+    cached_defaults.deleteCache();
+}
+
 
 module.exports = {
     consoleTimeEnd,
     waitSeconds,
-    
+
     theLastNameFirst,
     spacesToUnderscore,
     stripToLower,
     alphaUnderscore,
     getRedirects,
-    resolveRedirects
+    resolveRedirects,
+    deleteCachedData
 };

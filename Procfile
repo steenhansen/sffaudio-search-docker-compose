@@ -1,1 +1,1 @@
-web: node --expose-gc web-server.js
+web: node --expose-gc server-heroku.js

@@ -42,7 +42,6 @@ sff_vars.history_generate = (function () {
         } else if (req_query_view === 'podcast') {
             var podcast_view = sff_vars.graph_vars.nodes_string.find(podcastView);         //             http://www.sff_test.com/?book=beyond_lies_the_wub&author=philip_k_dick&view=podcast
             if (podcast_view) {
-            //console.log('history-generate :', podcast_view.goto_url, podcast_view.podcast_url);
                 sff_vars.podcast_procs.loadPodcast(podcast_view.goto_url, podcast_view.podcast_url, podcast_view.under_title, podcast_view.last_first_underscores, req_query_view);
             }
         }

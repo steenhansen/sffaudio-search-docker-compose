@@ -10,6 +10,64 @@ module.exports = function (data_repository) {
 
     class AuthorData extends MediaShow {
 
+
+
+        static sendAuthor(strip_author, ParseNeo) {
+            return data_repository.getAuthorNodes(strip_author)
+                .then(function (graph_collection) {
+                    var parse_neo = new ParseNeo(graph_collection, 'author');
+                    var nodes_object = parse_neo.getAuthorGraph(strip_author);
+                    var number_columns = MediaShow.numberColumns(nodes_object);
+                    var post_edges = parse_neo.edgesAuthorPost(number_columns, 'L_AUTHOR_POST');
+                    var book_edges = parse_neo.edgesAuthorBook(number_columns, 'L_BOOK');
+                    var wiki_author_edges = parse_neo.edgesAuthorWiki(number_columns, 'L_AUTHOR_WIKI');
+                    var edges_object = book_edges.concat(post_edges, wiki_author_edges)
+                    var db_version = nodes_object[0].db_version;
+                    var graph_info = {graph_type: 'author_page', strip_author: strip_author, db_version: db_version};
+                    var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
+                    return nodes_and_edges;
+                })
+        }
+        
+   static authorJson22 (strip_author, nodes_and_edges) {
+            let {nodes_object, edges_object} =nodes_and_edges
+            if (nodes_object.length > 10) {
+                var graph_physics = false;
+            } else {
+                var graph_physics = {"barnesHut": {"avoidOverlap": 1}};
+            }
+            var graph_info = {strip_author: strip_author, graph_type: 'author_page', graph_physics: graph_physics};
+            var author_json = {nodes_object, edges_object, graph_info}   
+          return author_json;
+        }
+
+   static authorJson (strip_author, nodes_and_edges) {
+            let {nodes_object, edges_object} =nodes_and_edges
+            if (nodes_object.length > 10) {
+                var graph_physics = false;
+            } else {
+                var graph_physics = {"barnesHut": {"avoidOverlap": 1}};
+            }
+            var graph_info = {strip_author: strip_author, graph_type: 'author_page', graph_physics: graph_physics};
+            var nodes_string = JSON.stringify(nodes_object);
+            var edges_string = JSON.stringify(edges_object);
+            var graph_string = JSON.stringify(graph_info);
+            var author_json = {nodes_string, edges_string, graph_string}     // in makeDbCache we want one JSON.stringify, not 3 separates
+          return author_json;
+      
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         static randomGoodAuthor() {
             var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
             var cached_quality = new CachedQuality();
@@ -30,6 +88,22 @@ module.exports = function (data_repository) {
             this.strip_author = strip_author;
             this.node_type = 'L_AUTHOR';
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         getAuthorNodes(strip_author) {
             return data_repository.getAuthorNodes(strip_author);
@@ -54,27 +128,7 @@ module.exports = function (data_repository) {
         }
 
 
-        static sendAuthor(strip_author, ParseNeo) {
-            return data_repository.getAuthorNodes(strip_author)
-                .then(function (graph_collection) {
-                    var parse_neo = new ParseNeo(graph_collection, 'author');
-                    var nodes_object = parse_neo.getAuthorGraph(strip_author);
-                    
-                    
-                    //console.log('nodes_object', nodes_object)
-                    
-                    var number_columns = MediaShow.numberColumns(nodes_object);
-                    var post_edges = parse_neo.edgesAuthorPost(number_columns, 'L_AUTHOR_POST');
-                    var book_edges = parse_neo.edgesAuthorBook(number_columns, 'L_BOOK');
-               // var edges_object = parse_neo.getEdges();  // not called as above sorts positions posts and books
-                    var wiki_author_edges = parse_neo.edgesAuthorWiki(number_columns, 'L_AUTHOR_WIKI');
-                    var edges_object = book_edges.concat(post_edges, wiki_author_edges)
-                    var db_version = nodes_object[0].db_version;
-                    var graph_info = {graph_type: 'author_page', strip_author: strip_author, db_version: db_version};
-                    var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
-                    return nodes_and_edges;
-                })
-        }
+
 
 
 // showAuthor

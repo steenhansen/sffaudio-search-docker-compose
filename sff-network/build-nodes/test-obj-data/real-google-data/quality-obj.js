@@ -1,8 +1,8 @@
  const my_media_array = [
  {
-  "authors": "Philip K. Dick"
+  "authors": "Isaac Asimov"
  },
  {
-  "authors": "Jorge Luis Borges"
+  "authors": "Roger Zelazny"
  }
 ]; module.exports = my_media_array;

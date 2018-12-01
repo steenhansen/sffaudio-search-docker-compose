@@ -138,7 +138,6 @@ module.exports = class BuildRepository {
 
 
     insertABook(sorted_label, esc_book_title, under_title, last_first_underscores) {
-        ///  console.log('hhhhhhhhhh', sorted_label, esc_book_title, under_title, last_first_underscores)
         var sql = `   // BuildRepository.insertABook()
             WITH {db_version} AS v_db_version,
               {sorted_label} AS v_sorted_label,
@@ -216,18 +215,6 @@ module.exports = class BuildRepository {
 
     addVersionSql(sql, params) {
         params.db_version = this.db_version;
-         // if (sql.includes('PostNode.savePosts')) {
-         //    console.log(' ************************************************* ')
-         //    console.log(' ************************************************* ')
-         //    console.log(' ************************************************* ')
-         //    console.log(' ************************************************* ')
-         //    console.log(' ************************************************* ')
-         //    console.log(' ************************************************* ')
-         //    console.log(' ************************************************* ')
-         //    console.log(' ************************************************* ')
-         //    console.log(' ************************************************* ')
-         //    console.log(' ************************************************* ')
-         // }
         var neo4j_promise = this.graph_db.sqlParams(sql, params)
         return neo4j_promise;
     }
