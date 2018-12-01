@@ -11,7 +11,13 @@ global.rootAppRequire = function (name) {
 }
 
 global.fromAppRoot = function (abs_filepath) {
+
+
+ console.log('abs_filepath', abs_filepath)
+ console.log('__dirname', __dirname)
+
     var from_app_root = path.join(__dirname, '../', abs_filepath);
+    console.log('from_app_root', from_app_root)
     return from_app_root
 }
 

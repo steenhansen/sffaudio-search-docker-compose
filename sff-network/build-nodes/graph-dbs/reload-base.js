@@ -33,7 +33,11 @@ class reloadBase {
                         .then(()=> read_csv_google.startMakeIndexes_a_0(build_repository))
                         .then(()=>this.readSheets())
                         .then(relative_obj_dir=> {
+                        //   ad-url-db { Error: Cannot find module '/app//app/sff-network/build-nodes/test-obj-data/real-google-data/rsd-obj.js'
+                            console.log('fromAppRoot(/)', fromAppRoot('/'))
+                            console.log('relative_obj_dir', relative_obj_dir)
                             absolute_data_dir = fromAppRoot('/') + relative_obj_dir;
+                            console.log('absolute_data_dir', absolute_data_dir)
                             graphs_edges = rootAppRequire('sff-network/build-nodes/graphs-edges')(absolute_data_dir);
                         })
                         .then(()=>graphs_edges.buildAllAuthors_b_2(build_repository))

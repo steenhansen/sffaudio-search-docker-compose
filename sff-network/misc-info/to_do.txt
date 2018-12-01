@@ -1,7 +1,4 @@
 
- fix_LeGuin()
-
-graphs-edges.saveToGraph() used???
 
 
 gary bed story
@@ -54,7 +51,7 @@ if in browser none, then swap in random quality record in browser,
 
 
 
-replace all ' de *' and ' le *' wuth one regex '^' and then all undo with one function
+
 
 reloadClean() erase db
 
