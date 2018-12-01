@@ -17,8 +17,9 @@ var post_obj_file = google_data_dir + 'posts-obj.js';
 var quality_obj_file = google_data_dir + 'quality-obj.js';
 
 
-
+console.log('reload-url-db  google_data_dir=', google_data_dir)
 const google_media_dir = fromAppRoot(google_data_dir)
+console.log('reload-url-db  google_media_dir=', google_media_dir)
 
 var ReloadBase = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-base');
 class ReloadUrl extends ReloadBase {
