@@ -14,7 +14,7 @@ module.exports = function (data_repository) {
 
 
 
-        static sendAuthor(strip_author, ParseNeo) {
+        static sendAuthor(strip_author, ParseNeo) {                                
             return data_repository.getAuthorNodes(strip_author)
                 .then(function (graph_collection) {
                     var parse_neo = new ParseNeo(graph_collection, 'author');
@@ -25,7 +25,8 @@ module.exports = function (data_repository) {
                     var wiki_author_edges = parse_neo.edgesAuthorWiki(number_columns, 'L_AUTHOR_WIKI');
                     var edges_object = book_edges.concat(post_edges, wiki_author_edges)
                     
-                    var db_version = nodes_object[0].db_version;
+                    var db_version = nodes_object[0].db_version;             // q*bert crash
+                    
                     var graph_info = {graph_type: 'author_page', strip_author: strip_author, db_version: db_version};
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
                     return nodes_and_edges;

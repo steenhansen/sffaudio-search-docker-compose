@@ -1,3 +1,5 @@
+// sff-network\multiple-monikers.js
+
 AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 

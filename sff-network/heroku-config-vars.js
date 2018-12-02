@@ -1,4 +1,4 @@
-'use strict'
+// sff-network\heroku-config-vars.js
 
 
 //    rootAppRequire('sff-network/media-constants');

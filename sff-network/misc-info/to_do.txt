@@ -1,6 +1,17 @@
 
 
 
+since cached-default.makeDbCache() 
+  calls author_show.sendAuthor()
+    calls getAuthorNodes()
+THEN getAuthorNodes uses the old db_version
+
+
+
+
+
+
+
 Neo4j database has undefined nodes
 2018-12-02T05:03:47.706626+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: TypeError: Canno
 2018-12-02T05:03:47.706629+00:00 app[web.1]: at CachedDefault.writeToFile (/app/sff-network/build-nodes/

@@ -1,11 +1,4 @@
-'use strict'
-
-
-/// --- neo4j-graph-db
-///         test-graph-db
-
-
-// delete all!!
+// sff-network\neo4j-graph-db.js
 
 module.exports = function (version_num) {
 

@@ -1,3 +1,4 @@
+// sff-network\author-moniker.js
 
     const SPACE_REPLACEMENT = '^'
     const FRENCH_LAST_NAMES = {

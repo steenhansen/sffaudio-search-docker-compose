@@ -1,4 +1,4 @@
-'use strict'
+// sff-network\global-require.js
 
 
 var path = require("path");

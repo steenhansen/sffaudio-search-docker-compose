@@ -242,14 +242,12 @@ module.exports = function (obj_dir) {
         return media_data;
     }
 
-
-    function nextDbVersion_d_2(VersionRepository, next_db_version) {
+    function nextDbVersion_ddddd(VersionRepository, next_db_version) {
         var start_date = Date.now();
-                misc_helper.deleteCachedData();
-              
         return VersionRepository.updateDbVersion_d_3(next_db_version)
             .then(()=> misc_helper.consoleTimeEnd(start_date, "nextDbVersion_d_2"))
     }
+    
 
 
     return {
@@ -273,7 +271,7 @@ module.exports = function (obj_dir) {
         linkBooksAuthorsToWikis_c_5,
         linkBooksToPosts_c_6,
 
-        nextDbVersion_d_2
+        nextDbVersion_ddddd
     };
 
 

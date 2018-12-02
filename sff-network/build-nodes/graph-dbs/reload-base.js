@@ -86,14 +86,7 @@ class reloadBase {
                         .then(()=>graphs_edges.linkBooksToPosts_c_6(build_repository))
 
 
-                        .then(()=> author_book_caches.makeNewCaches_d_0(next_db_version, absolute_data_dir))   // q*bert crash 
-                        
-                        
-                        
-                        
-                        
-                        .then(()=> author_book_caches.makeNewCaches_d_1(next_db_version))
-                        .then(()=> graphs_edges.nextDbVersion_d_2(VersionRepository, next_db_version))
+                        .then(()=> graphs_edges.nextDbVersion_ddddd(VersionRepository, next_db_version))
                         .catch(function (e) {
                             console.log('reload-url-db', e);
 
@@ -106,7 +99,18 @@ class reloadBase {
                                 )
 
                         })
-                        .then(()=> VersionRepository.deleteUnused_d_4(next_db_version))
+
+
+                        .then(()=> author_book_caches.makeNewCaches_d_0(next_db_version, absolute_data_dir))   // q*bert crash 
+
+
+                        .then(()=> author_book_caches.makeNewCaches_d_1(next_db_version))
+
+                        .then(()=> {
+                                misc_helper.deleteCachedData();
+                                return VersionRepository.deleteUnused_d_4(next_db_version);
+                            }
+                        )
                         .catch(function (e) {
                             console.log('reload-url-db', e);
                         })
