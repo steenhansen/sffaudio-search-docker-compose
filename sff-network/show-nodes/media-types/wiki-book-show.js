@@ -1,4 +1,5 @@
-//var Media2Node = rootAppRequire('sff-network/node-types/media-2node')
+// sff-network\show-nodes\media-types\wiki-book-show.js
+
 MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
 module.exports = function (graph_db) {
 

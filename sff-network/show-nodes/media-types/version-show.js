@@ -1,5 +1,7 @@
-MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
+// sff-network\show-nodes\media-types\version-show.js
 
+
+MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
 
 class VersionShow extends MediaShow {
     constructor(node_id, db_version, author_or_book) {

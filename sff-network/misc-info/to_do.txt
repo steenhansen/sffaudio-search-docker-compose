@@ -1,6 +1,18 @@
 
 
 
+2018-12-02T08:05:37.614647+00:00 app[web.1]: 111111111111111111 sff-network/show-nodes/cached-data/default-cache
+2018-12-02T08:05:37.617393+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: Error: ENOENT: no such file or directory, ope
+n '/app/sff-network/show-nodes/cached-data/default-cache.10imy124jp6lpk27'
+2018-12-02T08:05:37.617491+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error origi
+nated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .cat
+ch(). (rejection id: 1)
+2018-12-02T08:05:37.617564+00:00 app[web.1]: (node:4) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In t
+he future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+
+
+
+
 since cached-default.makeDbCache() 
   calls author_show.sendAuthor()
     calls getAuthorNodes()
