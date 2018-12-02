@@ -1,4 +1,4 @@
-'use strict'
+// server-local.js
 
 /*
  node server-local config.local-neo4j.js

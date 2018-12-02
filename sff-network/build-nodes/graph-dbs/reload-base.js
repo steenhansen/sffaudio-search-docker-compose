@@ -86,7 +86,12 @@ class reloadBase {
                         .then(()=>graphs_edges.linkBooksToPosts_c_6(build_repository))
 
 
-                        .then(()=> author_book_caches.makeNewCaches_d_0(next_db_version, absolute_data_dir))
+                        .then(()=> author_book_caches.makeNewCaches_d_0(next_db_version, absolute_data_dir))   // q*bert crash 
+                        
+                        
+                        
+                        
+                        
                         .then(()=> author_book_caches.makeNewCaches_d_1(next_db_version))
                         .then(()=> graphs_edges.nextDbVersion_d_2(VersionRepository, next_db_version))
                         .catch(function (e) {

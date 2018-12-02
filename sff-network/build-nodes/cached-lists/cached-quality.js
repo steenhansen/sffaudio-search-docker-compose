@@ -16,6 +16,7 @@ class CachedQuality extends CachedBase {
 
     makeDbCache(db_version, sorted_media) {
         var js_code = JSON.stringify(sorted_media, null, ' ');
+     //   clog('CachedQuality')
         return VersionRepository.saveQuality(db_version, js_code);
     }
 

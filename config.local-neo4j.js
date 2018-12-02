@@ -1,4 +1,4 @@
-'use strict'
+// config.local-neo4j.js
 
 
 var LOCAL_NEO4J_CONFIG_VARS = {

@@ -35,6 +35,7 @@ class CachedDefault extends CachedBase {
                 })
             author_promises.push(author_json_promise)
         }
+     //    clog('CachedDefault')
         return Promise.all(author_promises)
             .then(()=> {
                 var js_code = JSON.stringify(cached_authors, null, ' ');
