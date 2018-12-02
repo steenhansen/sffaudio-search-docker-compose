@@ -6,7 +6,7 @@ var misc_helper = rootAppRequire('sff-network/misc-helper');
 // var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
 // var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
 
-  // var delete_all_sql = 'MATCH (n) DETACH DELETE n'
+// var delete_all_sql = 'MATCH (n) DETACH DELETE n'
 
 module.exports = function (graph_db) {
 
@@ -24,8 +24,8 @@ module.exports = function (graph_db) {
             var params = {all_links, db_version};
             return graph_db.sqlParams(sql, params);
         }
-        
-         static getAuthors() {
+
+        static getAuthors() {
             var sql = ` MATCH (n_version:L_VERSION) 
                          WITH n_version.current_version as v_db_version
                           MATCH ( n_authors_list:L_AUTHOR_LIST)
@@ -34,16 +34,16 @@ module.exports = function (graph_db) {
             var params = {};
             return graph_db.sqlParams(sql, params);
         }
-        
-        
-        
-                static saveBooks(db_version, all_links) {
+
+
+        static saveBooks(db_version, all_links) {
             var sql = ` MERGE ( n_books_list:L_BOOK_LIST  
                                  { all_links:{all_links}, db_version:{db_version}  }  ) `;
             var params = {all_links, db_version};
             return graph_db.sqlParams(sql, params);
         }
-         static getBooks() {
+
+        static getBooks() {
             var sql = ` MATCH (n_version:L_VERSION) 
                          WITH n_version.current_version as v_db_version
                           MATCH ( n_books_list:L_BOOK_LIST)
@@ -52,16 +52,15 @@ module.exports = function (graph_db) {
             var params = {};
             return graph_db.sqlParams(sql, params);
         }
-        
-        
-        
-        
-    static saveDefaultAuthors(db_version, default_code) {
+
+
+        static saveDefaultAuthors(db_version, default_code) {
             var sql = ` CREATE ( n_default:L_DEFAULT  
                                  { default_code:{default_code}, db_version:{db_version}  }  ) `;
             var params = {default_code, db_version};
             return graph_db.sqlParams(sql, params);
         }
+
         static getDefaultAuthors() {
             var sql = ` MATCH (n_version:L_VERSION) 
                          WITH n_version.current_version as v_db_version
@@ -71,15 +70,16 @@ module.exports = function (graph_db) {
             var params = {};
             return graph_db.sqlParams(sql, params);
         }
-        
-        
+
+
         static saveQuality(db_version, quality_code) {
             var sql = ` CREATE ( n_quality:L_QUALITY  
                                  { quality_code:{quality_code}, db_version:{db_version}  }  ) `;
             var params = {quality_code, db_version};
             return graph_db.sqlParams(sql, params);
         }
-    static getQuality() {
+
+        static getQuality() {
             var sql = ` MATCH (n_version:L_VERSION) 
                          WITH n_version.current_version as v_db_version
                           MATCH (n_quality:L_QUALITY)
@@ -104,7 +104,7 @@ module.exports = function (graph_db) {
             var update_sql = ` // VersionRepository.updateDbVersion.update           
                         MATCH  (n_version:L_VERSION)
                         SET n_version.current_version = {next_db_version} `;
-                     var params = {next_db_version};
+            var params = {next_db_version};
             return graph_db.sqlParams(update_sql, params);
         }
 
@@ -151,16 +151,7 @@ module.exports = function (graph_db) {
         }
 
         static deleteFail_d_5(next_db_version, limit_records = DELETE_UNUSED_RECORDS) {
-
-        // const cached_authors = new CachedAuthors();
-        // const cached_books = new CachedBooks();
-        // const cached_quality = new CachedQuality();
-        // const cached_defaults = new CachedDefaults();
-        // cached_authors.deleteCache();
-        // cached_books.deleteCache();
-        // cached_quality.deleteCache();
-        misc_helper.deleteCachedData();
-        
+            misc_helper.deleteCachedData();
             var unused_sql = ` // VersionRepository.deleteUnused.unused_sql        
                          MATCH (n_nodes) 
                          WHERE (NOT n_nodes:L_VERSION)

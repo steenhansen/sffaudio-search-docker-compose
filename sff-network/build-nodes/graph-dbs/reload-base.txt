@@ -1,0 +1,32 @@
+Loading Heroku data from Google spreadsheets                                   
+000 secs startMakeIndexes_a_0                                                  
+001 secs googlePostTsvToLocal_a_1                                              
+001 secs googleQualityTsvToLocal_a_2                                           
+002 secs googlePdfRsdPodcastToLocal_a_3google_rsd                              
+002 secs googlePdfRsdPodcastToLocal_a_3google_podcast                          
+009 secs googlePdfRsdPodcastToLocal_a_3google_pdf                              
+004 secs buildAllAuthors_b_2                                                   
+    waiting for 30 seconds.                                                    
+006 secs buildAllBooks_b_1                                                     
+    waiting for 30 seconds.                                                    
+012 secs buildPodcastsPage_b_4                                                 
+000 secs buildAllPosts_b_3                                                     
+000 secs buildPdfsPage_b_5                                                     
+000 secs buildRsdsPage_b_6                                                     
+000 secs buildBookPosts_b_7                                                    
+002 secs buildPodcasts_b_8                                                     
+    waiting for 30 seconds.                                                    
+016 secs buildPdfs_b_9                                                         
+001 secs buildRsds_b_10                                                        
+001 secs linkPdfToBook_c_1                                                     
+000 secs linkPodcastsToBook_c_3                                                
+000 secs linkRsdsToBook_c_4                                                    
+000 secs linkBooksAuthorsToWikis_c_5                                           
+000 secs linkBooksToPosts_c_6                                                  
+reload-url-db TypeError: Cannot read property 'db_version' of undefined        
+    at /app/sff-network/show-nodes/media-types/author-show.js:26:54            
+    at <anonymous>                                                             
+    at process._tickCallback (internal/process/next_tick.js:188:7)             
+    reload-db done                                                             
+~ $                                                                            
+~ $                                                                            

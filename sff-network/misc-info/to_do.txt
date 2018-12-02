@@ -1,7 +1,16 @@
 
 
 
-
+Neo4j database has undefined nodes
+2018-12-02T05:03:47.706626+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: TypeError: Canno
+2018-12-02T05:03:47.706629+00:00 app[web.1]: at CachedDefault.writeToFile (/app/sff-network/build-nodes/
+2018-12-02T05:03:47.706630+00:00 app[web.1]: at VersionRepository.getDefaultAuthors.then (/app/sff-netwo
+2018-12-02T05:03:47.706632+00:00 app[web.1]: at <anonymous>
+2018-12-02T05:03:47.706634+00:00 app[web.1]: at process._tickCallback (internal/process/next_tick.js:188
+2018-12-02T05:03:47.706681+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: Unhandled promis
+ch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
+2018-12-02T05:03:47.706749+00:00 app[web.1]: (node:4) [DEP0018] DeprecationWarning: Unhandled promise re
+the Node.js process with a non-zero exit code.
 
 
 

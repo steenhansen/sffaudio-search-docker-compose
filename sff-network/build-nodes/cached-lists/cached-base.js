@@ -1,6 +1,7 @@
 require('../../../sff-network/global-require')
 var fs = require('fs');
 var uniqid = require('uniqid');
+var writeFilePromise = require('fs-writefile-promise');
 
 class CachedBase {
 
@@ -38,20 +39,17 @@ class CachedBase {
             book_list_string +
             "`; " +
             "module.exports = cached_var;";
-        
         var file_unique = book_cache_file + '.' + uniqid();
         var path_unique = fromAppRoot(file_unique)
         var file_js = book_cache_file + '.js';
         var path_js = fromAppRoot(file_js)
-        fs.writeFile(path_unique, book_to_file, function (err, data) {
-
-            if (err) console.log('ERROR - writeFile cached-base : ', err);
-            fs.rename(path_unique, path_js, function (err) {
-                if (err) console.log('ERROR - rename cached-base : ' + err);
-            });
-
-        });
-        return book_list_string;
+        return writeFilePromise(path_unique, book_to_file)
+            .then(()=> {
+                fs.rename(path_unique, path_js, function (err) {
+                    if (err) console.log('ERROR - rename cached-base : ' + err);
+                });
+                return book_list_string;
+            })
     }
 
     deleteCache() {

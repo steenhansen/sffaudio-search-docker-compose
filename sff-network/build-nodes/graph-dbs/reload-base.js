@@ -28,13 +28,12 @@ class reloadBase {
                     var graphs_edges = 'empty graphs_edges';
                     var absolute_data_dir = 'empty absolute_data_dir'
                     var number_authors = 0;
-if ( typeof process.env.GRAPHENE_WAIT_SECONDS !== 'undefined') {
-    var graphene_wait_seconds = process.env.GRAPHENE_WAIT_SECONDS;
-}else{
- var graphene_wait_seconds =30;
+                    if (typeof process.env.GRAPHENE_WAIT_SECONDS !== 'undefined') {
+                        var graphene_wait_seconds = process.env.GRAPHENE_WAIT_SECONDS;
+                    } else {
+                        var graphene_wait_seconds = 30;
 
-}
-
+                    }
 
 
                     dbIsCreated
@@ -49,7 +48,7 @@ if ( typeof process.env.GRAPHENE_WAIT_SECONDS !== 'undefined') {
                             number_authors = number_of_authors;
                             misc_helper.waitSeconds(0, number_authors)
                         })
-                          .then(()=>misc_helper.waitSeconds(graphene_wait_seconds, number_authors)) 
+                        .then(()=>misc_helper.waitSeconds(graphene_wait_seconds, number_authors))
                         .then(()=>graphs_edges.buildAllBooks_b_1(build_repository))
 
 
@@ -93,13 +92,13 @@ if ( typeof process.env.GRAPHENE_WAIT_SECONDS !== 'undefined') {
                         .catch(function (e) {
                             console.log('reload-url-db', e);
 
-                            // VersionRepository.deleteFail_d_5(next_db_version)
-                            //     .then(()=> {
-                            //             console.log('failed update');
-                            //             throw 'failed update';
-                            //             process.exit();
-                            //         }
-                            //     )
+                            VersionRepository.deleteFail_d_5(next_db_version)
+                                .then(()=> {
+                                        console.log('failed update');
+                                        throw 'failed update';
+                                        process.exit();
+                                    }
+                                )
 
                         })
                         .then(()=> VersionRepository.deleteUnused_d_4(next_db_version))

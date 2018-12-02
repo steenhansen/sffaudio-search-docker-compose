@@ -26,7 +26,7 @@ class CachedDefault extends CachedBase {
         for (let an_author of sorted_media) {
             var space_author = an_author.authors;
             var strip_author = misc_helper.alphaUnderscore(space_author);
-            var author_json_promise = author_data.sendAuthor(strip_author, ParseNeo)
+            var author_json_promise = author_data.sendAuthor(strip_author, ParseNeo)        // q*bert crash
                 .then((nodes_and_edges)=> {
                     var current_author = nodes_and_edges.graph_info.strip_author;
                     var author_json = author_data.authorJson22(current_author, nodes_and_edges);

@@ -25,7 +25,11 @@ function makeNewCaches_d_0(next_db_version, obj_dir) {
     var quality_obj_file = obj_dir + 'quality-obj.js';
     var quality_books_authors = require(quality_obj_file);
     return cached_quality.makeDbCache(next_db_version, quality_books_authors)
+    
+    
         .then(()=>cached_defaults.makeDbCache(next_db_version, quality_books_authors))
+        
+        
        .then( ()=> { misc_helper.consoleTimeEnd(start_date, "makeNewCaches_d_0");})
 }
 

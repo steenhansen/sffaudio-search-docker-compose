@@ -1,3 +1,5 @@
+// sff-network\show-nodes\media-types\author-show.js
+
 MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
