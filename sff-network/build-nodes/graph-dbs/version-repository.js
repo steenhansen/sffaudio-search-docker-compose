@@ -6,7 +6,7 @@ var misc_helper = rootAppRequire('sff-network/misc-helper');
 // var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
 // var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
 
-
+  // var delete_all_sql = 'MATCH (n) DETACH DELETE n'
 
 module.exports = function (graph_db) {
 

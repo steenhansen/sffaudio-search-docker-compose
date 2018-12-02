@@ -17,9 +17,7 @@ var post_obj_file = google_data_dir + 'posts-obj.js';
 var quality_obj_file = google_data_dir + 'quality-obj.js';
 
 
-console.log('reload-url-db  google_data_dir=', google_data_dir)
-const google_media_dir = fromAppRoot(google_data_dir)
-console.log('reload-url-db  google_media_dir=', google_media_dir)
+const google_media_dir = fromAppRoot(google_data_dir)                    /// not used
 
 var ReloadBase = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-base');
 class ReloadUrl extends ReloadBase {
@@ -31,7 +29,7 @@ class ReloadUrl extends ReloadBase {
             .then(()=> read_csv_google.googlePdfRsdPodcastToLocal_a_3(rsd_file, rsd_information, 'google_rsd'))
             .then(()=> read_csv_google.googlePdfRsdPodcastToLocal_a_3(podcast_file, podcast_information, 'google_podcast'))
             .then(()=> read_csv_google.googlePdfRsdPodcastToLocal_a_3(pdf_file, pdf_information, 'google_pdf'))
-            .then( ()=> google_media_dir )
+            .then( ()=> google_data_dir )
     }
 
 }

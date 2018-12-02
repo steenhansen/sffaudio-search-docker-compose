@@ -5,8 +5,8 @@ var media_constants = rootAppRequire('sff-network/media-constants');
 var misc_helper = rootAppRequire('sff-network/misc-helper');
 module.exports = function (data_repository) {
 
-    var BookData = rootAppRequire('sff-network/show-nodes/media-types/book-show')(data_repository)
-    var PostData = rootAppRequire('sff-network/show-nodes/media-types/post-show')(data_repository)
+    var BookData = rootAppRequire('sff-network/show-nodes/media-types/book-show')(data_repository)  // show_repository
+    var PostData = rootAppRequire('sff-network/show-nodes/media-types/post-show')(data_repository)  // show_repository
 
     class AuthorData extends MediaShow {
 
@@ -22,6 +22,7 @@ module.exports = function (data_repository) {
                     var book_edges = parse_neo.edgesAuthorBook(number_columns, 'L_BOOK');
                     var wiki_author_edges = parse_neo.edgesAuthorWiki(number_columns, 'L_AUTHOR_WIKI');
                     var edges_object = book_edges.concat(post_edges, wiki_author_edges)
+                    
                     var db_version = nodes_object[0].db_version;
                     var graph_info = {graph_type: 'author_page', strip_author: strip_author, db_version: db_version};
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests

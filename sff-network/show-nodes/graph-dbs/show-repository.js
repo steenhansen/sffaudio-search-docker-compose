@@ -1,5 +1,8 @@
 var media_constants = rootAppRequire('sff-network/media-constants');
 const {NO_RECORD_LIMIT}=media_constants;
+
+//      var delete_all_sql = 'MATCH (n) DETACH DELETE n'
+
 module.exports = function (graph_db) {   
 
 

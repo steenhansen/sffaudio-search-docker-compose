@@ -1,6 +1,8 @@
 var media_constants = rootAppRequire('sff-network/media-constants');
 const {NO_RECORD_LIMIT}=media_constants;
 
+//   var delete_all_sql = 'MATCH (n) DETACH DELETE n'
+
 module.exports = class BuildRepository {
 
     constructor(graph_db, db_version) {
@@ -13,7 +15,7 @@ module.exports = class BuildRepository {
         var sql = `WITH {db_version} AS v_db_version
           MATCH (n_page_pdfs:L_PAGE_PDFS)
           WHERE n_page_pdfs.db_version = v_db_version
-        CREATE ( n_pdf:L_PDF   
+        MERGE ( n_pdf:L_PDF   
                                     {pdf_title:{new_info},
                                      pdf_url:{new_link}, 
                                      book_title:{book_title},
@@ -33,38 +35,12 @@ module.exports = class BuildRepository {
                      AND n_book.under_title = {under_title}
                      AND n_author.db_version = v_db_version
                      AND n_book.db_version = v_db_version
-                  CREATE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
+                  MERGE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
         var params = {strip_author, under_title};
         return this.addVersionSql(sql, params);
     }
     
     
-    //    linkPdfsToPage() {
-    // // MERGE ==15321  CREATE == 13378
-    //     var sql = `WITH {db_version} AS v_db_version
-    //       MATCH (n_pdf:L_PDF),(n_page_pdfs:L_PAGE_PDFS)
-    //       WHERE n_page_pdfs.db_version = v_db_version
-    //       AND n_page_pdfs.db_version = v_db_version
-    //     CREATE ( n_pdf:L_PDF)-[r_pdf_to_pages:L_PDF_TO_PAGES]->(n_page_pdfs)`;
-    //     var params = {new_info, new_link, book_title, under_title, last_first_underscores, pdf_country};
-    //     return this.addVersionSql(sql, params);
-    // }
-    // insertAPdfNOP(new_info, new_link, book_title, under_title, last_first_underscores, pdf_country) {
-    // // MERGE ==15321  CREATE == 13878           13849light
-    //     var sql = `WITH {db_version} AS v_db_version
-    //    
-    //     CREATE ( n_pdf:L_PDF   
-    //                                 {pdf_title:{new_info},
-    //                                  pdf_url:{new_link}, 
-    //                                  book_title:{book_title},
-    //                                  under_title:{under_title}, 
-    //                                  last_first_underscores:{last_first_underscores},
-    //                                  pdf_country:{pdf_country} ,
-    //                                 
-    //                                   db_version:v_db_version    })`;
-    //     var params = {new_info, new_link, book_title, under_title, last_first_underscores, pdf_country};
-    //     return this.addVersionSql(sql, params);
-    // }
 
   linkAuthorToBook(strip_author, under_title) {
         var sql = ` WITH {db_version} AS v_db_version
@@ -73,23 +49,12 @@ module.exports = class BuildRepository {
                      AND n_book.under_title = {under_title}
                      AND n_author.db_version = v_db_version
                      AND n_book.db_version = v_db_version
-                  CREATE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
+                  MERGE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
         var params = {strip_author, under_title};
         return this.addVersionSql(sql, params);
     }
 
-    //
-    // insertWrittenBy_author_1(start_char) {
-    //     var sql = ` WITH {db_version} AS v_db_version
-    //                MATCH (n_author:L_AUTHOR),(n_book:L_BOOK)
-    //                WHERE n_author.strip_author STARTS WITH {start_char}
-    //                  AND n_author.strip_author IN n_book.last_first_underscores
-    //                  AND n_author.db_version = v_db_version
-    //                  AND n_book.db_version = v_db_version
-    //               CREATE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
-    //     var params = {start_char};
-    //     return this.addVersionSql(sql, params);
-    // }
+
 
 
     // rsd_url??
@@ -119,7 +84,7 @@ module.exports = class BuildRepository {
 			WHERE n_book.under_title = n_rsd.under_title 
 			         AND n_book.db_version = v_db_version
 			  AND n_rsd.db_version = v_db_version
-			CREATE (n_book)-[r_book_to_rsd:L_BOOK_TO_RSD]->(n_rsd)			`;
+			MERGE (n_book)-[r_book_to_rsd:L_BOOK_TO_RSD]->(n_rsd)			`;
 
         return this.addVersionSql(sql, {});
     }
@@ -132,7 +97,7 @@ module.exports = class BuildRepository {
             AND n_book.under_title = n_post_book.under_title
             	 AND n_book.db_version = v_db_version
 			  AND n_post_book.db_version = v_db_version
-            CREATE (n_book)-[r_book_to_post:L_BOOK_TO_POST]->(n_post_book)`;
+            MERGE (n_book)-[r_book_to_post:L_BOOK_TO_POST]->(n_post_book)`;
         return this.addVersionSql(sql, {});
     }
 
@@ -177,14 +142,14 @@ module.exports = class BuildRepository {
 
     insertRsdPage() {
         var sql = ` WITH  {db_version} AS v_db_version
-                            CREATE (n_page_rsds:L_PAGE_RSDS { page_title:"All Rsds", pages_url:"http://www.sffaudio.com/reading-short-and-deep/", db_version:v_db_version})`;
+                            MERGE (n_page_rsds:L_PAGE_RSDS { page_title:"All Rsds", pages_url:"http://www.sffaudio.com/reading-short-and-deep/", db_version:v_db_version})`;
         var params = {};
         return this.addVersionSql(sql, params);
     }
 
     insertPodcastPage() {
         var sql = ` WITH  {db_version} AS v_db_version
-                            CREATE (n_page_podcasts:L_PAGE_PODCASTS { page_title:"All Podcasts", pages_url:"http://www.sffaudio.com/the-sffaudio-podcast/", db_version:v_db_version})`;
+                            MERGE (n_page_podcasts:L_PAGE_PODCASTS { page_title:"All Podcasts", pages_url:"http://www.sffaudio.com/the-sffaudio-podcast/", db_version:v_db_version})`;
         var params = {};
         return this.addVersionSql(sql, params);
     }
@@ -192,7 +157,7 @@ module.exports = class BuildRepository {
 
     insertPdfPage() {
         var sql = ` WITH  {db_version} AS v_db_version
-                            CREATE (n_page_pdfs:L_PAGE_PDFS { page_title:"All Pdfs", pages_url:"http://www.sffaudio.com/public-domain-pdf-page/", db_version:v_db_version})`;
+                            MERGE (n_page_pdfs:L_PAGE_PDFS { page_title:"All Pdfs", pages_url:"http://www.sffaudio.com/public-domain-pdf-page/", db_version:v_db_version})`;
         var params = {};
         return this.addVersionSql(sql, params);
     }
@@ -226,7 +191,7 @@ module.exports = class BuildRepository {
             WHERE n_author.strip_author = n_post.strip_author
             			  AND n_author.db_version = v_db_version
 			  AND n_post.db_version = v_db_version
-            CREATE (n_author)-[r_author_to_post:L_AUTHOR_TO_POST]->(n_post)`;
+            MERGE (n_author)-[r_author_to_post:L_AUTHOR_TO_POST]->(n_post)`;
         return this.addVersionSql(sql, {});
     }
 
@@ -239,7 +204,7 @@ module.exports = class BuildRepository {
                                               {post_title} AS v_post_title,
                                                {sorted_label} AS v_sorted_label,
                                                 {db_version} AS v_db_version
-                                CREATE (n_post_book:L_BOOK_POST { strip_author: v_strip_author,
+                                MERGE (n_post_book:L_BOOK_POST { strip_author: v_strip_author,
                                                         under_title: v_under_title,
                                                         post_slug: v_post_slug, 
                                                         post_title: v_post_title,
@@ -263,7 +228,7 @@ module.exports = class BuildRepository {
                                               {post_title} AS v_post_title,
                                                {sorted_label} AS v_sorted_label,
                                                 {db_version} AS v_db_version
-                                CREATE (n_post:L_AUTHOR_POST { strip_author: v_strip_author,
+                                MERGE (n_post:L_AUTHOR_POST { strip_author: v_strip_author,
                                                         post_slug: v_post_slug, 
                                                         post_title: v_post_title,
                                                         sorted_label: v_sorted_label, db_version:v_db_version}) `;
@@ -274,7 +239,7 @@ module.exports = class BuildRepository {
 
     insertAWikiAuthor(author_wiki, strip_author) {
         var sql = ` WITH {strip_author} AS v_strip_author, {author_wiki} AS v_author_wiki, {db_version} AS v_db_version
-                      	CREATE (n_author_wiki:L_AUTHOR_WIKI { wiki_author:"Wikipedia", author_url: v_author_wiki, strip_author: v_strip_author, db_version:v_db_version})`;
+                      	MERGE (n_author_wiki:L_AUTHOR_WIKI { wiki_author:"Wikipedia", author_url: v_author_wiki, strip_author: v_strip_author, db_version:v_db_version})`;
         var params = {author_wiki, strip_author};
         return this.addVersionSql(sql, params);
     }
@@ -286,7 +251,7 @@ module.exports = class BuildRepository {
 			WHERE n_author.strip_author =  n_author_wiki.strip_author 
 			  AND n_author.db_version = v_db_version
 			  AND n_author_wiki.db_version = v_db_version
-			CREATE (n_author)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]->(n_author_wiki)	`;
+			MERGE (n_author)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]->(n_author_wiki)	`;
 
         return this.addVersionSql(sql, {});
     }
@@ -298,7 +263,7 @@ module.exports = class BuildRepository {
 			WHERE n_book.under_title =  n_podcast.under_title
 			         AND n_book.db_version = v_db_version
 			  AND n_podcast.db_version = v_db_version
-			CREATE (n_book)-[r_book_to_podcast:L_BOOK_TO_PODCAST]->(n_podcast)	`;
+			MERGE (n_book)-[r_book_to_podcast:L_BOOK_TO_PODCAST]->(n_podcast)	`;
 
         return this.addVersionSql(sql, {});
     }
@@ -306,7 +271,7 @@ module.exports = class BuildRepository {
 
     insertAWikiBook(story_wiki, under_title) {
         var sql = `	WITH {db_version} AS v_db_version
-                   CREATE (n_book_wiki:L_BOOK_WIKI { wiki_book:"Wikipedia", book_url: {story_wiki}, under_title: {under_title}, db_version: v_db_version})`;
+                   MERGE (n_book_wiki:L_BOOK_WIKI { wiki_book:"Wikipedia", book_url: {story_wiki}, under_title: {under_title}, db_version: v_db_version})`;
         var params = {story_wiki, under_title};
         return this.addVersionSql(sql, params);
     }
@@ -318,7 +283,7 @@ module.exports = class BuildRepository {
 			WHERE n_book.under_title = n_book_wiki.under_title 
 			  AND n_book.db_version = v_db_version
 			  AND n_book_wiki.db_version = v_db_version
-			CREATE (n_book)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]->(n_book_wiki)`;
+			MERGE (n_book)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]->(n_book_wiki)`;
         return this.addVersionSql(sql, {});
     }
 
@@ -331,7 +296,7 @@ module.exports = class BuildRepository {
 			 AND n_book.db_version = v_db_version
 			 AND n_pdf.db_version = v_db_version
 			 AND  n_pdf.last_first_underscores = n_book.last_first_underscores 
-		  CREATE (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf)`;
+		  MERGE (n_book)-[r_book_to_pdf:L_BOOK_TO_PDF]->(n_pdf)`;
         return this.addVersionSql(sql, {})
     }
 

@@ -4,7 +4,9 @@
   "description": "SFFaudio Podcast Graph",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter mocha-teamcity-reporter test"
+    "test": "mocha --reporter mocha-teamcity-reporter test",
+    "dev-server" : "node --inspect server-local config.local-neo4j.js"
+    
   },
   "engines": {
     "node": "8.11.3"
