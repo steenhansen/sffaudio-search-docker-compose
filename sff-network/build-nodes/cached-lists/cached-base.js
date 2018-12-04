@@ -41,10 +41,17 @@ class CachedBase {
         
         var file_unique = book_cache_file + '.' + uniqid();
         var path_unique = fromAppRoot(file_unique)
+        
+ var path_unique =  '~/sff-network/show-nodes/cached-data/default-cache.4iv4jp9fcsro';      
+        
         var file_js = book_cache_file + '.js';
-        var path_js = fromAppRoot(file_js)
+        
+        //var path_js = fromAppRoot(file_js)
         console.log('writeToFile path_unique', path_unique)
-        console.log('writeToFile file_js', file_js)
+        
+        
+         var path_js =  '~/sff-network/show-nodes/cached-data/default-cache.js';      
+        console.log('writeToFile path_js', path_js)
         fs.writeFile(path_unique, book_to_file, function (err, data) {
             if (err) console.log('ERROR - writeFile cached-base : ', err);
             fs.rename(path_unique, path_js, function (err) {
