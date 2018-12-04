@@ -43,8 +43,9 @@ class CachedBase {
         var path_unique = fromAppRoot(file_unique)
         var file_js = book_cache_file + '.js';
         var path_js = fromAppRoot(file_js)
+        console.log('writeToFile path_unique', path_unique)
+        console.log('writeToFile file_js', file_js)
         fs.writeFile(path_unique, book_to_file, function (err, data) {
-
             if (err) console.log('ERROR - writeFile cached-base : ', err);
             fs.rename(path_unique, path_js, function (err) {
                 if (err) console.log('ERROR - rename cached-base : ' + err);
@@ -57,8 +58,10 @@ class CachedBase {
     deleteCache() {
         try {
             var js_file_name = this.cache_file + '.js';
-            fs.unlinkSync(js_file_name)
+            console.log('deleteCache js_file_name', js_file_name); 
+            fs.unlinkSync(js_file_name);
         } catch (e) {
+               console.log('deleteCache e', e); 
         }
     }
 
