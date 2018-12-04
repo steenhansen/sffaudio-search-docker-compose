@@ -96,7 +96,7 @@ function sff_leave(id){
     }
 
 
-    getCache() {
+    getCacheOLD() {
         try {
             var books_html_file = rootAppRequire(this.cache_file)
             return books_html_file;
@@ -106,6 +106,13 @@ function sff_leave(id){
                     return this.writeToFile(this.cache_file, books_html_db)
                 })
         }
+
+    }
+getCache() {
+            return VersionRepository.getBooks()
+                .then((books_html_db)=> {
+                    return this.writeToFile(this.cache_file, books_html_db)
+                })
 
     }
 
