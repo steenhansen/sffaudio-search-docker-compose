@@ -1,4 +1,11 @@
-// sff-network\neo4j-graph-db.js
+'use strict'
+
+
+/// --- neo4j-graph-db
+///         test-graph-db
+
+
+// delete all!!
 
 module.exports = function (version_num) {
 
@@ -20,6 +27,12 @@ module.exports = function (version_num) {
 
         var neo4j_promise = neo4j_session.run(limited_sql, params)
             .then((result)=> {
+            
+         //                   if (limited_sql.includes('ShowRepository.getAuthorsNodes')) {
+         //    console.log(' params.db_version  === ', result, params, limited_sql )
+         // }
+       //  stop();
+            
                 return result
             })
 
@@ -28,9 +41,7 @@ module.exports = function (version_num) {
                 console.log('rrrrrrrrrrrrrrrrrrrrrrrr', params, 'sssssssssssss', sql, 'jjjjjjjjjjj')
                 process.exit()
             });
-        //       if (limited_sql.includes('PostNode.savePosts')) {
-        //    console.log(' params.db_version  === ', params, limited_sql )
-        // }
+
         return neo4j_promise;
     }
 

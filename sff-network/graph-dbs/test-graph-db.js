@@ -19,7 +19,7 @@ function stringToObject(file_name) {
 
 function sqlParams(test_sql, test_params) {         
 
-    if (test_sql.includes(`BookNode.getBookNodes`)) {
+    if (test_sql.includes(`adsfasdPostNode.saveBookPost`)) {
         let {strip_author, under_title}= test_params
         if (strip_author == 'philip_k_dick' && under_title == 'adjustment_team') {
             return testResolve(PKD_ADJUSTMENT_TEAM_DATA);
@@ -37,7 +37,7 @@ function sqlParams(test_sql, test_params) {
         } else {
           //  console.log('^^^^^^^^^^^^^^^^^^ in test-graph-db.sqlParams111, unknow auther', strip_author)
         }
-    }else if (test_sql.includes('AuthorNode.getAuthorsNodes_2')) {
+    }else if (test_sql.includes('PostNode.saveBookPost')) {
        let {strip_author}= test_params
         if (strip_author == 'philip_k_dick') {
             var pron = new Promise((resolve, reject) => {

@@ -12,36 +12,36 @@ module.exports = function (graph_db) {
     class ShowRepository {
 
 
-        static getAuthorNodes(strip_author) {
+       static getAuthorNodes(strip_author, update_index) {
             var sql4 = ` // ShowRepository.getAuthorsNodes
                         MATCH (n_version:L_VERSION) 
 			            RETURN '' AS r_author_to_media, '' AS r_author_to_wiki, '' AS n_author, '' AS n_author_wiki, '' AS n_book_or_post,
-			                   n_version.current_version AS v_new_db_version
+			                   n_version.current_version+{update_index} AS v_db_version
 				UNION
                          MATCH (n_version:L_VERSION) 
-                          WITH n_version.current_version as v_new_db_version, {strip_author} AS v_strip_author
+                          WITH n_version.current_version+{update_index} as v_db_version, {strip_author} AS v_strip_author
                          MATCH (n_author:L_AUTHOR)-[r_author_to_media:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
                          WHERE n_author.strip_author=v_strip_author
                            AND n_author.strip_author IN n_book.last_first_underscores
-                           AND n_author.db_version=v_new_db_version
-                        RETURN r_author_to_media, '' AS r_author_to_wiki, n_author, '' AS n_author_wiki, n_book AS n_book_or_post, v_new_db_version
+                           AND n_author.db_version=v_db_version
+                        RETURN r_author_to_media, '' AS r_author_to_wiki, n_author, '' AS n_author_wiki, n_book AS n_book_or_post, v_db_version
               UNION             
                          MATCH (n_version:L_VERSION) 
-                          WITH n_version.current_version as v_new_db_version, {strip_author} AS v_strip_author
+                          WITH n_version.current_version+{update_index} as v_db_version, {strip_author} AS v_strip_author
                          MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
                          WHERE n_author.strip_author=v_strip_author
-                           AND n_author.db_version=v_new_db_version
-                        RETURN '' AS r_author_to_media, r_author_to_wiki, n_author,  n_author_wiki, '' AS n_book_or_post, v_new_db_version
+                           AND n_author.db_version=v_db_version
+                        RETURN '' AS r_author_to_media, r_author_to_wiki, n_author,  n_author_wiki, '' AS n_book_or_post, v_db_version
                UNION
                          MATCH (n_version:L_VERSION) 
-                          WITH n_version.current_version as v_new_db_version, {strip_author} AS v_strip_author
+                          WITH n_version.current_version+{update_index} as v_db_version, {strip_author} AS v_strip_author
                          MATCH (n_author:L_AUTHOR)-[r_author_to_media:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
                          WHERE n_author.strip_author=v_strip_author
                            AND n_post.strip_author=v_strip_author
-                           AND n_post.db_version=v_new_db_version
-                        RETURN r_author_to_media, '' AS r_author_to_wiki, n_author, '' AS n_author_wiki, n_post AS n_book_or_post, v_new_db_version 
+                           AND n_post.db_version=v_db_version
+                        RETURN r_author_to_media, '' AS r_author_to_wiki, n_author, '' AS n_author_wiki, n_post AS n_book_or_post, v_db_version 
                            `;
-            var params4 = {strip_author};
+            var params4 = {strip_author, update_index};
             var neo4j_promise4 = graph_db.sqlParams(sql4, params4)
             return Promise.all([neo4j_promise4]);
         }
@@ -128,6 +128,9 @@ module.exports = function (graph_db) {
                           WHERE n_author.db_version=v_new_db_version
                 RETURN DISTINCT n_author.strip_author, n_author.sorted_label, n_author.author_name
                        ORDER BY LOWER(n_author.sorted_label) ASC `;
+                       
+                       
+                      // stop(' we are here')
             var params = {};
             return ShowRepository.limitSql(sql, params);
         }

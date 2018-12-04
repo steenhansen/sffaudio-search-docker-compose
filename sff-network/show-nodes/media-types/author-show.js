@@ -1,5 +1,3 @@
-// sff-network\show-nodes\media-types\author-show.js
-
 MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
@@ -12,10 +10,8 @@ module.exports = function (data_repository) {
 
     class AuthorData extends MediaShow {
 
-
-
-        static sendAuthor(strip_author, ParseNeo) {                                
-            return data_repository.getAuthorNodes(strip_author)
+        static sendAuthor(strip_author, ParseNeo, update_index) {
+            return data_repository.getAuthorNodes(strip_author, update_index)
                 .then(function (graph_collection) {
                     var parse_neo = new ParseNeo(graph_collection, 'author');
                     var nodes_object = parse_neo.getAuthorGraph(strip_author);
@@ -24,9 +20,7 @@ module.exports = function (data_repository) {
                     var book_edges = parse_neo.edgesAuthorBook(number_columns, 'L_BOOK');
                     var wiki_author_edges = parse_neo.edgesAuthorWiki(number_columns, 'L_AUTHOR_WIKI');
                     var edges_object = book_edges.concat(post_edges, wiki_author_edges)
-                    
-                    var db_version = nodes_object[0].db_version;             // q*bert crash
-                    
+                    var db_version = nodes_object[0].db_version;
                     var graph_info = {graph_type: 'author_page', strip_author: strip_author, db_version: db_version};
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
                     return nodes_and_edges;
@@ -108,11 +102,11 @@ module.exports = function (data_repository) {
 
 
 
-
-        getAuthorNodes(strip_author) {
-            return data_repository.getAuthorNodes(strip_author);
-        }
-
+        //
+        // getAuthorNodes(strip_author) {
+        //     return data_repository.getAuthorNodes(strip_author);
+        // }
+        //
 
         setSizesColor(page_type) {
             super.setSizesColor(page_type, 'L_AUTHOR')

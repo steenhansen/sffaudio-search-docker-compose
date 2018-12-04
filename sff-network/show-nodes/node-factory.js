@@ -1,5 +1,3 @@
-// sff-network\show-nodes\node-factory.js
-
 
 module.exports = function (data_repository) {
     var AuthorData = rootAppRequire('sff-network/show-nodes/media-types/author-show')(data_repository)

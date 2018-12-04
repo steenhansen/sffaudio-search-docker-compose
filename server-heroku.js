@@ -1,4 +1,4 @@
-// server-heroku.js
+'use strict'
 
 /*
   node server-heroku

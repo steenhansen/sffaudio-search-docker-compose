@@ -1,7 +1,4 @@
-// do-tests.js
- 
- 
- 
+
  // node do-tests
 
 require('./sff-network/global-require');

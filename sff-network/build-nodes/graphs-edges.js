@@ -5,6 +5,10 @@ var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached
 var misc_helper = rootAppRequire('sff-network/misc-helper');
 module.exports = function (obj_dir) {
     var rsd_file = obj_dir + 'rsd-obj.js';
+    
+    //   ad-url-db { Error: Cannot find module '/app//app/sff-network/build-nodes/test-obj-data/real-google-data/rsd-obj.js'
+   // console.log('rsd_file===', rsd_file)
+    
     var podcast_file = obj_dir + 'podcast-obj.js';
     var pdf_file = obj_dir + 'pdf-obj.js';
     var post_obj_file = obj_dir + 'posts-obj.js';
@@ -242,12 +246,14 @@ module.exports = function (obj_dir) {
         return media_data;
     }
 
-    function nextDbVersion_ddddd(VersionRepository, next_db_version) {
+
+    function nextDbVersion_d_2(VersionRepository, next_db_version) {
         var start_date = Date.now();
+                misc_helper.deleteCachedData();
+              
         return VersionRepository.updateDbVersion_d_3(next_db_version)
             .then(()=> misc_helper.consoleTimeEnd(start_date, "nextDbVersion_d_2"))
     }
-    
 
 
     return {
@@ -271,7 +277,7 @@ module.exports = function (obj_dir) {
         linkBooksAuthorsToWikis_c_5,
         linkBooksToPosts_c_6,
 
-        nextDbVersion_ddddd
+        nextDbVersion_d_2
     };
 
 

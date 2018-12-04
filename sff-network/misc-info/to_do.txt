@@ -1,22 +1,10 @@
 
+after:
+    node reload-local config.local-neo4j.js sff-network/build-nodes/test-obj-data/every-type/
 
-
-2018-12-02T08:05:37.614647+00:00 app[web.1]: 111111111111111111 sff-network/show-nodes/cached-data/default-cache
-2018-12-02T08:05:37.617393+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: Error: ENOENT: no such file or directory, ope
-n '/app/sff-network/show-nodes/cached-data/default-cache.10imy124jp6lpk27'
-2018-12-02T08:05:37.617491+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error origi
-nated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .cat
-ch(). (rejection id: 1)
-2018-12-02T08:05:37.617564+00:00 app[web.1]: (node:4) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In t
-he future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
-
-
-
-
-since cached-default.makeDbCache() 
-  calls author_show.sendAuthor()
-    calls getAuthorNodes()
-THEN getAuthorNodes uses the old db_version
+match (s) return s
+    returns tonnes of triple relationships  
+      pkd is linked 3 times to beyond the door
 
 
 
@@ -24,21 +12,36 @@ THEN getAuthorNodes uses the old db_version
 
 
 
-Neo4j database has undefined nodes
-2018-12-02T05:03:47.706626+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: TypeError: Canno
-2018-12-02T05:03:47.706629+00:00 app[web.1]: at CachedDefault.writeToFile (/app/sff-network/build-nodes/
-2018-12-02T05:03:47.706630+00:00 app[web.1]: at VersionRepository.getDefaultAuthors.then (/app/sff-netwo
-2018-12-02T05:03:47.706632+00:00 app[web.1]: at <anonymous>
-2018-12-02T05:03:47.706634+00:00 app[web.1]: at process._tickCallback (internal/process/next_tick.js:188
-2018-12-02T05:03:47.706681+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: Unhandled promis
-ch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
-2018-12-02T05:03:47.706749+00:00 app[web.1]: (node:4) [DEP0018] DeprecationWarning: Unhandled promise re
-the Node.js process with a non-zero exit code.
 
 
 
 
 
+
+
+
+
+
+
+- get car tire
+- get car garbage
+
+- pay rent
+
+- get more $800
+
+
+
+1. reload-base.js line 40 
+   // if on heroku, then    absolute_data_dir =  relative_obj_dir; 
+                            // if on local, then  absolute_data_dir = fromAppRoot('/') + relative_obj_dir;  
+
+
+2. relative_obj_dir comes from reload-url-db
+
+3. the above is read in 
+    reload-local
+    reload-heroku
 
 
 

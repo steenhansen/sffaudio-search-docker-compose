@@ -39,6 +39,7 @@ module.exports = function (build_repository) {
 
                 rsd_books[title_with_authors] = {esc_book_title, under_title, last_first_underscores};
 
+                //console.log('laksdjlskdjflsdkfj', last_first_underscores)
                   var underScoreToNormal = multiple_monikers.underScoreToNormal();
                 for (var strip_author in underScoreToNormal) {
                     var normal_author = underScoreToNormal[strip_author];

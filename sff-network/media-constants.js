@@ -1,4 +1,4 @@
-//  sff-network\media-constants.js
+'use strict'
 
 
 // THIS NAME IS CLASHING WITH 

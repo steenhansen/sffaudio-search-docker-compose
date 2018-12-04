@@ -1,5 +1,3 @@
-// sff-network\multiple-monikers.js
-
 AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
@@ -26,6 +24,7 @@ class MultipleMonikers {
     }
 
     blankExtras(string_with_extras) {
+      //  console.log(typeof string_with_extras)
         var shrink_string = string_with_extras.replace(", editor", " ");
         var shrink_string = shrink_string.replace("ascribed to ", " ");
         var shrink_string = shrink_string.replace("edited by ", " ");
@@ -44,6 +43,8 @@ class MultipleMonikers {
         var two_commas = /,\s*,/;
         var multiples_work = multiples_work.replace(two_commas, ',');
         this.multiple_names = multiples_work.split(',');
+
+      //  console.log('dddddddddd', this.multiple_names, 'qqqqqqqq')
 
     }
 

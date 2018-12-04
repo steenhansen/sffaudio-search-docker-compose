@@ -110,7 +110,7 @@ app.get(program_constants.ROUTE_BOOK_JSON, function (req, res) {
 //app.get('/author/:strip_author', function (req, res) {
 app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
     const strip_author = req.params.strip_author
-    author_data.sendAuthor(strip_author, ParseNeo)
+    author_data.sendAuthor(strip_author, ParseNeo, 0)
         .then((nodes_and_edges) => {
             var author_json = author_data.authorJson(strip_author, nodes_and_edges);
             res.json(author_json);
@@ -145,19 +145,19 @@ function authorOrBook(req) {
         return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
     } else if (CachedBase.urlGetAuthorBook(req.query, 'author')) {
         var strip_author = req.query.author;
-        return author_data.sendAuthor(strip_author, ParseNeo);
+        return author_data.sendAuthor(strip_author, ParseNeo, 0);
     } else {
         return author_data.randomGoodAuthor()
             .then((random_author)=> {
                 strip_author = misc_helper.alphaUnderscore(random_author);
-                return author_data.sendAuthor(strip_author, ParseNeo);
+                return author_data.sendAuthor(strip_author, ParseNeo, 0);
             })
 
     }
     // if (typeof under_title !== 'undefined') {
     //     return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
     // } else {
-    //     return author_data.sendAuthor(strip_author, ParseNeo);
+    //     return author_data.sendAuthor(strip_author, ParseNeo,0);
     // }
 }
 

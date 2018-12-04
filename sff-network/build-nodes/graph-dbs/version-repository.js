@@ -127,7 +127,7 @@ module.exports = function (graph_db) {
         static createDbVersion1() {
             var create_sql = ` // VersionRepository.createDbVersion        
                         MERGE (n_version:L_VERSION)
-                ON CREATE SET n_version.current_version = 1                `;
+                ON CREATE SET n_version.current_version = 0               `;
             return graph_db.sqlParams(create_sql, {});
         }
 
@@ -137,7 +137,6 @@ module.exports = function (graph_db) {
          .then( (db_version_counts)=>console.log('db_version_counts==', db_version_counts));
          */
         static deleteUnused_d_4(next_db_version, limit_records = DELETE_UNUSED_RECORDS) {
-
             var unused_sql = ` // VersionRepository.deleteUnused.unused_sql        
                          MATCH (n_nodes) 
                          WHERE (NOT n_nodes:L_VERSION)
@@ -152,6 +151,7 @@ module.exports = function (graph_db) {
 
         static deleteFail_d_5(next_db_version, limit_records = DELETE_UNUSED_RECORDS) {
             misc_helper.deleteCachedData();
+
             var unused_sql = ` // VersionRepository.deleteUnused.unused_sql        
                          MATCH (n_nodes) 
                          WHERE (NOT n_nodes:L_VERSION)

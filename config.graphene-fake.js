@@ -1,4 +1,4 @@
-// config.graphene-fake.js
+'use strict'
 
 var HEROKU_CONFIG_VARS = {
     PORT: 5000,

@@ -1,9 +1,0 @@
-const author_books_text = 
-`Graph Title	Author	Book	SFF Post Url
-XLethem & Robinson video	Philip K. Dick		jonathan-lethem-and-kim-stanley-robinson-discuss-philip-k-dick
-XExternal review of Dune	Frank Herbert	Dune	https://www.sffaudio.com/external-review-of-dune-by-frank-herbert/`;
-
-module.exports = author_books_text;
-
-
-

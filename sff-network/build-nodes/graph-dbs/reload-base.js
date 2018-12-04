@@ -14,6 +14,8 @@ class reloadBase {
         return VersionRepository.currentDbVersion()
             .then((current_db_version)=> {
                     // MATCH (n) DETACH DELETE n
+
+
                     var current_db_version = parseInt(current_db_version, 10);
                     if (current_db_version === 0) {
                         var dbIsCreated = VersionRepository.createDbVersion1()
@@ -40,7 +42,17 @@ class reloadBase {
                         .then(()=> read_csv_google.startMakeIndexes_a_0(build_repository))
                         .then(()=>this.readSheets())
                         .then(relative_obj_dir=> {
+                            //   ad-url-db { Error: Cannot find module '/app//app/sff-network/build-nodes/test-obj-data/real-google-data/rsd-obj.js'
+                            //   console.log('fromAppRoot(/)', fromAppRoot('/'))        //           /app/
+                            //  console.log('relative_obj_dir', relative_obj_dir)         //  /app/sff-network/build-nodes/test-obj-data/real-google-data/
                             absolute_data_dir = fromAppRoot('/') + relative_obj_dir;        //  /app//app/sff-network/build-nodes/test-obj-data/real-google-data/
+                            //   absolute_data_dir =  relative_obj_dir;       
+                            // console.log('absolute_data_dir', absolute_data_dir)
+
+                            // if on heroku, then    absolute_data_dir =  relative_obj_dir; 
+                            // if on local, then  absolute_data_dir = fromAppRoot('/') + relative_obj_dir;  
+
+
                             graphs_edges = rootAppRequire('sff-network/build-nodes/graphs-edges')(absolute_data_dir);
                         })
                         .then(()=>graphs_edges.buildAllAuthors_b_2(build_repository))
@@ -86,31 +98,22 @@ class reloadBase {
                         .then(()=>graphs_edges.linkBooksToPosts_c_6(build_repository))
 
 
-                        .then(()=> graphs_edges.nextDbVersion_ddddd(VersionRepository, next_db_version))
+                        .then(()=> author_book_caches.makeNewCaches_d_0(next_db_version, absolute_data_dir))
+                        .then(()=> author_book_caches.makeNewCaches_d_1(next_db_version))
+                        .then(()=> graphs_edges.nextDbVersion_d_2(VersionRepository, next_db_version))
                         .catch(function (e) {
                             console.log('reload-url-db', e);
 
-                            VersionRepository.deleteFail_d_5(next_db_version)
-                                .then(()=> {
-                                        console.log('failed update');
-                                        throw 'failed update';
-                                        process.exit();
-                                    }
-                                )
+                            // VersionRepository.deleteFail_d_5(next_db_version)
+                            //     .then(()=> {
+                            //             console.log('failed update');
+                            //             throw 'failed update';
+                            //             process.exit();
+                            //         }
+                            //     )
 
                         })
-
-
-                        .then(()=> author_book_caches.makeNewCaches_d_0(next_db_version, absolute_data_dir))   // q*bert crash 
-
-
-                        .then(()=> author_book_caches.makeNewCaches_d_1(next_db_version))
-
-                        .then(()=> {
-                                misc_helper.deleteCachedData();
-                                return VersionRepository.deleteUnused_d_4(next_db_version);
-                            }
-                        )
+                        .then(()=> VersionRepository.deleteUnused_d_4(next_db_version))
                         .catch(function (e) {
                             console.log('reload-url-db', e);
                         })
