@@ -52,6 +52,18 @@ class CachedBase {
         
          var path_js =  '~/sff-network/show-nodes/cached-data/default-cache.js';      
         console.log('writeToFile path_js', path_js)
+        
+        /////////////////////////////////       /tmp
+        
+        var temp_dir= '/tmp';
+        if (!fs.existsSync(temp_dir)) {
+            fs.mkdirSync(temp_dir);
+        }
+        
+         var path_unique =  '/tmp/xx.yy';  
+        
+        //////////////////////////////////
+        
         fs.writeFile(path_unique, book_to_file, function (err, data) {
             if (err) console.log('ERROR - writeFile cached-base : ', err);
             fs.rename(path_unique, path_js, function (err) {

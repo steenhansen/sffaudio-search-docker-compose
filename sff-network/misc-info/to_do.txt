@@ -1,10 +1,8 @@
 
-after:
-    node reload-local config.local-neo4j.js sff-network/build-nodes/test-obj-data/every-type/
 
-match (s) return s
-    returns tonnes of triple relationships  
-      pkd is linked 3 times to beyond the door
+
+<input id='filter--text' type='text' onChange='sff_vars.filter_names.filterMedia(this)' />
+                                     oninput
 
 
 
@@ -17,31 +15,14 @@ match (s) return s
 
 
 
+why do the cache.js files not update on reload-db???
 
 
 
 
+html-pages ==> browser-html
 
-
-- get car tire
-- get car garbage
-
-- pay rent
-
-- get more $800
-
-
-
-1. reload-base.js line 40 
-   // if on heroku, then    absolute_data_dir =  relative_obj_dir; 
-                            // if on local, then  absolute_data_dir = fromAppRoot('/') + relative_obj_dir;  
-
-
-2. relative_obj_dir comes from reload-url-db
-
-3. the above is read in 
-    reload-local
-    reload-heroku
+media-nodes ==> browser-media   above in main 
 
 
 
@@ -52,7 +33,6 @@ match (s) return s
 
 
 
-gary bed story
 
 interference engine?
 //////

@@ -65,7 +65,7 @@ window.sff__h = sff_vars.helpers.setHidden;
         return author_html;
     }
 
-   getCacheOLD() {
+   getCache() {
         console.log('getCache this.cache_file', this.cache_file)
         try {
             var authors_html_file = rootAppRequire(this.cache_file)
@@ -79,7 +79,8 @@ window.sff__h = sff_vars.helpers.setHidden;
         }
 
     }
-    getCache() {
+    
+    getCacheNew() {
             return VersionRepository.getAuthors()
                 .then((authors_html_db)=> {
                     return this.writeToFile(this.cache_file, authors_html_db)

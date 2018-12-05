@@ -64,49 +64,6 @@ sff_vars.post_vars={
 
 
 
-function widgetHtmlOld(graph_div_id, author_links, book_links) {
-
-    var media_html = `
-
-    <div id="my--network">
-      
-    
-         <div id="all--filter--authors" style="height:600px; ">
-         <div id='filter--authors' style='display:none'>
-              </div>
-            <div id='all--authors'>
-                ${author_links}
-            </div>
-        </div>
-
-  
-        <div id="${graph_div_id}">
-         </div>
-
-
-    <div style='clear:both'> 
-        <button id='clear--filter' onClick='sff_vars.filter_names.stopFiltering()'>Clear Filter</button>
-        <input id='filter--text' type='text' onChange='sff_vars.filter_names.filterMedia(this)' />
-     </div>
-
-         
-         <div id="all--filter--books" style="height:600px; ">
-         <div id='filter--books' style='display:none'>
-              </div>
-            <div id='all--books'>
-                 ${book_links}
-             </div>
-         </div>
-
-    
-     
-</div>
- `;
-    return media_html;
-}
-
-
-
 function widgetHtml(graph_div_id, author_links, book_links) {
 
     var media_html = `
@@ -236,7 +193,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
 
     <div style='clear:both'> 
         <button id='clear--filter' onClick='sff_vars.filter_names.stopFiltering()'>Clear Filter</button>
-        <input id='filter--text' type='text' onChange='sff_vars.filter_names.filterMedia(this)' />
+        <input id='filter--text' type='text' oninput='sff_vars.filter_names.filterMedia(this)' />
      </div>
 
          
