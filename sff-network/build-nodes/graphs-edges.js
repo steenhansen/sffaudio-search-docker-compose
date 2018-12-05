@@ -1,7 +1,7 @@
-const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
-const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
-var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
-var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
+//const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
+//const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
+//var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
+//var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
 var misc_helper = rootAppRequire('sff-network/misc-helper');
 module.exports = function (obj_dir) {
     var rsd_file = obj_dir + 'rsd-obj.js';

@@ -10,7 +10,7 @@ var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/versio
 class CachedAuthors extends CachedBase {
 
     constructor() {
-        super('sff-network/show-nodes/cached-data/author-cache');
+        super('author-cache');
         this.odd_even_class = 'odd__author';
     }
 
@@ -67,16 +67,16 @@ window.sff__h = sff_vars.helpers.setHidden;
 
    getCache() {
         console.log('getCache this.cache_file', this.cache_file)
-        try {
-            var authors_html_file = rootAppRequire(this.cache_file)
-            return authors_html_file;
-        } catch (e) {
+        // try {
+        //     var authors_html_file = rootAppRequire(this.cache_file)
+        //     return authors_html_file;
+        // } catch (e) {
             return VersionRepository.getAuthors()
                 .then((authors_html_db)=> {
-                    console.log('getCache this.cache_file,,e', this.cache_file, e)
+                    console.log('getCache this.cache_file,', this.cache_file)
                     return this.writeToFile(this.cache_file, authors_html_db)
                 })
-        }
+     //   }
 
     }
     

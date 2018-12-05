@@ -10,8 +10,7 @@ var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/versio
 class CachedQuality extends CachedBase {
 
     constructor() {
-        super('sff-network/show-nodes/cached-data/quality-cache');
-        this.cache_file = 'sff-network/show-nodes/cached-data/quality-cache';
+        super('quality-cache');
     }
 
     makeDbCache(db_version, sorted_media) {

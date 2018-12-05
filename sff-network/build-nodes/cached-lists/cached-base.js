@@ -6,6 +6,7 @@ class CachedBase {
 
     constructor(cache_file) {
         this.cache_file = cache_file;
+         clog('qqqqqqqqqqqqqq', cache_file)
     }
 
     static urlGetAuthorBook(request_query, get_type) {
@@ -60,7 +61,9 @@ class CachedBase {
             fs.mkdirSync(temp_dir);
         }
         
-         var path_unique =  '/tmp/xx.yy';  
+        
+         var path_unique =  '/tmp/' + book_cache_file + '.' + uniqid();  
+        clog('ddddddddddd', path_unique)
         
         //////////////////////////////////
         

@@ -16,8 +16,7 @@ var misc_helper = rootAppRequire('sff-network/misc-helper')
 class CachedDefault extends CachedBase {
 
     constructor() {
-        super('sff-network/show-nodes/cached-data/quality-cache');
-        this.cache_file = 'sff-network/show-nodes/cached-data/default-cache';
+        super('default-cache');
     }
 
     makeDbCache(db_version, sorted_media) {

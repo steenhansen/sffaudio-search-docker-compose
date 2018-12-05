@@ -13,7 +13,7 @@ var fs = require('fs');
 class CachedBooks extends CachedBase {
 
     constructor() {
-        super('sff-network/show-nodes/cached-data/book-cache');
+        super('book-cache');
     }
 
 //http://localhost:5000/?author=philip_k_dick&book=adjustment_team
