@@ -249,7 +249,7 @@ module.exports = function (obj_dir) {
 
     function nextDbVersion_d_2(VersionRepository, next_db_version) {
         var start_date = Date.now();
-                misc_helper.deleteCachedData();
+                ///misc_helper.deleteCachedData();
               
         return VersionRepository.updateDbVersion_d_3(next_db_version)
             .then(()=> misc_helper.consoleTimeEnd(start_date, "nextDbVersion_d_2"))

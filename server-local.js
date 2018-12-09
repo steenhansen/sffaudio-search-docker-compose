@@ -1,8 +1,9 @@
 'use strict'
 
 /*
- node server-local config.local-neo4j.js
- node server-local ../config.graphene.js
+  node server-local ../config.local-neo4j.js
+  
+  node server-local ../config.graphene.js
  */
 
 require('./sff-network/global-require');

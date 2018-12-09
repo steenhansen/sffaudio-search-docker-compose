@@ -15,8 +15,8 @@ module.exports = function (data_repository) {
     var RsdNode = rootAppRequire('sff-network/show-nodes/media-types/rsd-show')(data_repository)
     var PagePdfNode = rootAppRequire('sff-network/show-nodes/media-types/page-pdf-show')(data_repository)
     var PageRsdfNode = rootAppRequire('sff-network/show-nodes/media-types/page-rsd-show')(data_repository)
-    var PagePodcastfNode = rootAppRequire('sff-network/show-nodes/media-types/page-podcast-show')(data_repository)
-    var VersionShow = rootAppRequire('sff-network/show-nodes/media-types/version-show')
+    var PagePodcastNode = rootAppRequire('sff-network/show-nodes/media-types/page-podcast-show')(data_repository)
+ //   var VersionShow = rootAppRequire('sff-network/show-nodes/media-types/version-show')
 
     function nodeFactory(media_node, author_or_book) {
         const node_id = media_node.identity.low
@@ -55,12 +55,12 @@ module.exports = function (data_repository) {
             new_node = new PageRsdfNode(node_id, db_version,page_title, pages_url);
          } else if (node_group === 'L_PAGE_PODCASTS') {
             const {page_title, pages_url} = media_node.properties;
-            new_node = new PagePodcastfNode(node_id, db_version,page_title, pages_url);
+            new_node = new PagePodcastNode(node_id, db_version,page_title, pages_url);
             
-        } else if (node_group === 'L_VERSION') {
-            const current_versionX = media_node.properties.current_version.low;
-            new_node = new VersionShow(node_id, current_versionX, author_or_book);
-            
+        // } else if (node_group === 'L_VERSION') {
+        //     const current_versionX = media_node.properties.current_version.low;
+        //     new_node = new VersionShow(node_id, current_versionX, author_or_book);
+        //    
         } else if (node_group === 'L_BOOK_POST') {
            const {post_title, sorted_label, post_slug, strip_author,under_title} = media_node.properties;
             new_node = new BookPostNode(node_id, db_version, post_title, sorted_label, post_slug, strip_author,under_title); 

@@ -58,6 +58,7 @@ sff_vars.blur_procs = (function (pop_up_id) {
         
         
         document.getElementById('video--player').src = '';
+              document.getElementById("my--graph").style.display="block"; 
     }
 
     my.postPdfWidth = function (post_pdf_container) {

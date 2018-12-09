@@ -13,6 +13,7 @@ sff_vars.podcast_procs = (function (podcast_close_svg) {
     }
 
     my.loadPodcast = function (goto_url, podcast_url, under_title, strip_author, req_query_view) {
+     document.getElementById("my--graph").style.display="none"; 
         if (req_query_view) {
             sff_vars.history_state.pushBookView(strip_author, under_title, req_query_view);
         } else {

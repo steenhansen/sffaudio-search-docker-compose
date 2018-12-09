@@ -55,7 +55,6 @@ function download_pdf_icon(w_color) {
 
 
 
-
 function iconShape(svg_icon) {
     var uri_icon = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg_icon);
     var icon_shape = {
@@ -158,42 +157,42 @@ function last_icon(w_color) {
 
 
 
-
-function no_such_book(w_color) {      //wikipedia_icon
-
-
-//  <svg viewBox="0 0 340 340"  xmlns="http://www.w3.org/2000/svg">
-
-    var svg_wikipedia = `<svg width="333" height="55" xmlns="http://www.w3.org/2000/svg">
- <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
-
- <g>
-  <title>Layer 1</title>
-  <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_3" y="30.9375" x="5.5"
-   stroke-width="0" stroke="#000" fill="${w_color}">Book is not in the database</text>
- </g>
-</svg>`;
-    return iconShape(svg_wikipedia);
-}
-
-
-function no_such_author(w_color) {      //wikipedia_icon
-
-
-//  <svg viewBox="0 0 340 340"  xmlns="http://www.w3.org/2000/svg">
-
-    var svg_wikipedia = `<svg width="333" height="55" xmlns="http://www.w3.org/2000/svg">
- <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
-
- <g>
-  <title>Layer 1</title>
-  <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_3" y="30.9375" x="5.5" stroke-width="0" 
-  stroke="000" fill="${w_color}">Author is not in the database</text>
- </g>
-</svg>`;
-    return iconShape(svg_wikipedia);
-}
-
+//
+// function no_such_book(w_color) {      //wikipedia_icon
+//
+//
+// //  <svg viewBox="0 0 340 340"  xmlns="http://www.w3.org/2000/svg">
+//
+//     var svg_wikipedia = `<svg width="333" height="55" xmlns="http://www.w3.org/2000/svg">
+//  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+//
+//  <g>
+//   <title>Layer 1</title>
+//   <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_3" y="30.9375" x="5.5"
+//    stroke-width="0" stroke="#000" fill="${w_color}">Book is not in the database</text>
+//  </g>
+// </svg>`;
+//     return iconShape(svg_wikipedia);
+// }
+//
+//
+// function no_such_author(w_color) {      //wikipedia_icon
+//
+//
+// //  <svg viewBox="0 0 340 340"  xmlns="http://www.w3.org/2000/svg">
+//
+//     var svg_wikipedia = `<svg width="333" height="55" xmlns="http://www.w3.org/2000/svg">
+//  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+//
+//  <g>
+//   <title>Layer 1</title>
+//   <text style="cursor: move;" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_3" y="30.9375" x="5.5" stroke-width="0" 
+//   stroke="000" fill="${w_color}">Author is not in the database</text>
+//  </g>
+// </svg>`;
+//     return iconShape(svg_wikipedia);
+// }
+//
 
 
 function close_icon(w_color) {      //wikipedia_icon
@@ -707,7 +706,6 @@ function pdf_icon(w_color) {     // interior_color, base_color
 //http://localhost:5000/?book=the_zap_gun
 function podcast_icon(w_color) {
     var svg_all = `
-
 <svg viewBox="0 0 130 130"  xmlns="http://www.w3.org/2000/svg">
  <g id="g916">
   <title>Layer 1</title>
@@ -721,21 +719,101 @@ function podcast_icon(w_color) {
  </g>
 </svg>
 `;
+    return iconShape(svg_all);
+}
+
+function help_icon(w_color) {
+    var svg_all = `
 
 
 
+<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="3.49996" height="3.49996" id="canvas_background" fill="none"/>
+ </g>
+
+ <g>
+  <title>Layer 1</title>
+  <circle r="12" cy="12" cx="12" id="svg_circle" fill="${background_color}"/>
+  <circle r="8" cy="12" cx="12" id="svg_circle" fill="${w_color}"/>
+  <path fill='#A0A0A0' d="m12,2c-5.52,0 -10,4.48 -10,10s4.48,10 10,10s10,-4.48 10,-10s-4.48,-10 -10,-10zm1,17l-2,0l0,-2l2,0l0,2zm2.07,-7.75l-0.9,0.92c-0.72,0.73 -1.17,1.33 -1.17,2.83l-2,0l0,-0.5c0,-1.1 0.45,-2.1 1.17,-2.83l1.24,-1.26c0.37,-0.36 0.59,-0.86 0.59,-1.41c0,-1.1 -0.9,-2 -2,-2s-2,0.9 -2,2l-2,0c0,-2.21 1.79,-4 4,-4s4,1.79 4,4c0,0.88 -0.36,1.68 -0.93,2.25z" id="svg_2"/>
+ </g>
+</svg>
 
 
-
-
-
-
+`;
     return iconShape(svg_all);
 }
 
 
 
+function filter_icon(w_color) {   
+    var svg_filter = `<svg width="85" height="20" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="87" height="22" id="canvas_background" fill="none"/>
+ </g>
+
+ <g display="inline" id="g15">
+  <title>Layer 1</title>
+  <rect fill="${background_color}" id="svg_5" height="46.50019" width="270.50113" y="-1.03147" x="-0.50067"/>
+  <rect stroke="#666666" fill="#ffffff" stroke-width="0.75" id="svg_1" height="12.41678" width="74.75032" y="3.85418" x="3.66673"/>
+  <text stroke="#000000" transform="matrix(0.568168044090271,0,0,0.568168044090271,2.9755920711904764,1.896012181416154) " font-family="Helvetica, Arial, sans-serif" text-anchor="start" fill="#666666" stroke-width="0" font-size="12px" id="svg_2" y="17.57907" x="6.31045" stroke-opacity="null">Filter authors &amp; stories</text>
+ </g>
+</svg>`;
+       return iconShape(svg_filter);
+}
+
+
+function filter_grow(w_color) {   
+    var svg_filter = `<svg width="18" height="20" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="5" height="5.33333" id="canvas_background" fill="none"/>
+ </g>
+
+ <g display="inline" id="g15">
+  <title>Layer 1</title>
+  <rect fill="${background_color}" id="svg_5" height="46.50019" width="270.50113" y="-1.03147" x="-0.50067"/>
+  <rect stroke="#666666" stroke-width="0.75" fill="#cccccc" id="svg_1" height="12.41678" width="9.87555" y="3.85418" x="3.66673"/>
+  <text stroke="#666666" font-family="Helvetica, Arial, sans-serif" text-anchor="start" fill="#000000" stroke-width="0"
+   font-size="12px" id="svg_2" y="14.07907" x="5.14378">+</text>
+ </g>
+</svg>`;
+       return iconShape(svg_filter);
+}
+function filter_shrink(w_color) {   
+    var svg_filter = `<svg width="18" height="20" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="5" height="5.33333" id="canvas_background" fill="none"/>
+ </g>
+
+ <g display="inline" id="g15">
+  <title>Layer 1</title>
+  <rect fill="${background_color}" id="svg_5" height="46.50019" width="270.50113" y="-1.03147" x="-0.50067"/>
+  <rect stroke="#666666" stroke-width="0.75" fill="#cccccc" id="svg_1" height="12.41678" width="9.87555" y="3.85418" x="3.66673"/>
+  <text stroke="#666666" font-family="Helvetica, Arial, sans-serif" text-anchor="start" fill="#000000" stroke-width="0"
+   font-size="12px" id="svg_2" y="13.76657" x="6.64377">-</text>
+ </g>
+</svg>`;
+       return iconShape(svg_filter);
+}
+
+function nothing_icon() {
+    var svg_all = `
+<svg viewBox="0 0 130 130"  xmlns="http://www.w3.org/2000/svg">
+ <g id="g916">
+  <title>Layer 1</title>
+ </g>
+</svg>
+`;
+    return iconShape(svg_all);
+}
+
+
 module.exports = {
 download_mp3_icon, download_pdf_icon,
-first_icon, last_icon, prev_icon, next_icon, close_icon, no_such_book, no_such_author,  allPodcasts, allRsds, allPdfs, wikipedia_icon, author_icon, 
- pdf_icon, post_icon, book_icon, podcast_icon, rsd_icon, rsd_video}
+first_icon, last_icon, prev_icon, next_icon, close_icon,  allPodcasts, allRsds, allPdfs, wikipedia_icon, author_icon, 
+ pdf_icon, post_icon, book_icon, podcast_icon, rsd_icon, rsd_video, help_icon, nothing_icon, filter_grow, filter_shrink, filter_icon}

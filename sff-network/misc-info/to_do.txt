@@ -1,8 +1,67 @@
 
 
 
-<input id='filter--text' type='text' onChange='sff_vars.filter_names.filterMedia(this)' />
-                                     oninput
+Have short text on first help screen, then really long text on second one node help.
+So on second filter help have long explanation about filter
+-show only matching authors and stories 
+- if you enter 'ze' for a filter then you see aurhors and stories that contain 'ze'
+
+Have widget in div with borders and explain text
+- search and view sffaudio's online media content by author and/or story
+
+
+[-] graph Zoom in , which can also be done with mouse scroll wheel.
+
+So... Filter help
+
+/Book=help-filter& author=help-graph
+/Book=help-pdf&.......
+
+
+On init help screen
+"Click on icons for more detailed help"
+
+Every graph gets a small help icon
+
+
+On help also have a graph icon to say what is the point of the whole thing. Copy of post icon
+
+Have routine hideTooltips, showTooltips instead of get element by id
+
+my.str_val
+my_props.str_vsl
+my_,props.myFunc()
+
+Better my_popup.my_str
+My_history.my_int
+
+D:\github\podcast_neo4j_conf\podcast-neo4j\sff-network\html-pages\widget-vars-html.js
+
+
+we need to make an icon that looks like
+
+[Filter authors and stories ]
+[-]
+[+]
+
+talk about mouse scroll
+
+
+
+pkd pkd pkd pkd
+    authors with online content
+|||||||||||||||||    
+|               |
+|               |
+|               |
+|||||||||||||||||    
+     stories with online content
+
+
+
+
+
+brower-graph.js to html-pages?
 
 
 
@@ -12,10 +71,6 @@
 
 
 
-
-
-
-why do the cache.js files not update on reload-db???
 
 
 

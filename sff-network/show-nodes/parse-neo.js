@@ -1,4 +1,4 @@
-var VersionShow = rootAppRequire('sff-network/show-nodes/media-types/version-show')
+//var VersionShow = rootAppRequire('sff-network/show-nodes/media-types/version-show')
 
 
 
@@ -89,9 +89,10 @@ module.exports = function (graph_repository) {
                     if ((field_data !== null) && (typeof field_data.identity !== 'undefined')) {
                         var identity_int = field_data.identity.low;
                         var node_2object = nodeFactory(field_data, this.author_or_book);
-                        if (node_2object instanceof VersionShow) {
-                            this.nodes_2string['EMPTY_ICON'] = node_2object;
-                        } else if (node_2object !== null) {
+                        // if (node_2object instanceof VersionShow) {
+                        //     this.nodes_2string['EMPTY_ICON'] = node_2object;
+                        // } else 
+                        if (node_2object !== null) {
                             this.nodes_2string[node_2object.sorted_label + identity_int] = node_2object;
                         }
 

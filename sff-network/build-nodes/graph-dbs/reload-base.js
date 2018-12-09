@@ -100,7 +100,8 @@ class reloadBase {
 
                         .then(()=> author_book_caches.makeNewCaches_d_0(next_db_version, absolute_data_dir))
                         .then(()=> author_book_caches.makeNewCaches_d_1(next_db_version))
-                        .then(()=> graphs_edges.nextDbVersion_d_2(VersionRepository, next_db_version))
+                        .then(()=> author_book_caches.makeNewCaches_d_1_1_1())
+                        .then(()=> graphs_edges.nextDbVersion_d_2(VersionRepository, next_db_version))    // UPDATE DONE
                         .catch(function (e) {
                             console.log('reload-url-db', e);
 
@@ -113,6 +114,13 @@ class reloadBase {
                             //     )
 
                         })
+                         .then(()=> author_book_caches.makeNewCaches_d_3(VersionRepository))
+                        .catch(function (e) {
+                            console.log('makeNewCaches_d_3', e);
+                        })
+                        
+                        
+                        
                         .then(()=> VersionRepository.deleteUnused_d_4(next_db_version))
                         .catch(function (e) {
                             console.log('reload-url-db', e);

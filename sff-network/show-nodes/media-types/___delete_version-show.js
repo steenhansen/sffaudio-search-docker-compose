@@ -7,7 +7,7 @@ class VersionShow extends MediaShow {
          this.sorted_label = 'db version';
 
         if (author_or_book == 'author') {
-            this.node_type = 'L_VERSION';
+            this.node_type = 'L_VERSION';         // what does this do??
         }else{
             this.node_type = 'I_NO_BOOK';
         

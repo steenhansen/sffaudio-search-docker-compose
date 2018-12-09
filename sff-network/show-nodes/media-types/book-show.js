@@ -65,9 +65,10 @@ module.exports = function (data_repository) {
         static sendBooksOfAuthor(strip_author, under_title, ParseNeo) {
             return data_repository.getBookNodes(under_title)
                 .then(function (graph_collection) {
+var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
+var db_version= graph_collection[0].records[0]._fields[db_version_index];
                     var parse_neo = new ParseNeo(graph_collection, 'book');
                     var nodes_object = parse_neo.getBookGraph(strip_author)
-                    const db_version = nodes_object[0].db_version
                     var edges_object = parse_neo.getEdges()
                     var graph_info = {graph_type: 'book_page', strip_author: strip_author, under_title: under_title, db_version:db_version};
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests

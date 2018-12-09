@@ -30,6 +30,7 @@ module.exports = function (version_num) {
             
          //                   if (limited_sql.includes('ShowRepository.getAuthorsNodes')) {
          //    console.log(' params.db_version  === ', result, params, limited_sql )
+         //    console.log(' result.records22 ', result.records[0]);
          // }
        //  stop();
             

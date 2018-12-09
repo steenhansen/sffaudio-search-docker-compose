@@ -150,7 +150,7 @@ module.exports = function (graph_db) {
         }
 
         static deleteFail_d_5(next_db_version, limit_records = DELETE_UNUSED_RECORDS) {
-            misc_helper.deleteCachedData();
+            //misc_helper.deleteCachedData();
 
             var unused_sql = ` // VersionRepository.deleteUnused.unused_sql        
                          MATCH (n_nodes) 

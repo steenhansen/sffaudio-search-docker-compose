@@ -78,10 +78,11 @@ class MediaShow {
  //    
  // let download_pdf_icon = svg_icons.download_pdf_icon(media_constants.PDF_COLOR);
 
-        let empty_set = svg_icons.no_such_author('pink');
+        //let empty_set = svg_icons.no_such_author('pink');
+      //  let no_such_author = svg_icons.no_such_author('pink');
 
-        let no_such_book = svg_icons.no_such_book('#FFF933');
-
+      //  let no_such_book = svg_icons.no_such_book('#FFF933');
+let nothing_icon = svg_icons.nothing_icon();
 
         let close_pdf = svg_icons.close_icon(media_constants.PDF_COLOR);
         let close_rsd = svg_icons.close_icon(media_constants.RSD_COLOR);
@@ -109,12 +110,21 @@ class MediaShow {
         let icon_rsd_video = svg_icons.rsd_video(media_constants.RSD_COLOR);  
   
   let icon_rsd_solid = svg_icons.rsd_icon('#fffeff');  
+  
+    let icon_help = svg_icons.help_icon('#ffff00');  
+    let icon_filter = svg_icons.filter_icon('#123456');  
+    
+     let icon_grow = svg_icons.filter_grow('#123456'); 
+     let icon_shrink = svg_icons.filter_shrink('#123456'); 
 
         const icons_string = `{ 
-    L_VERSION: ${empty_set},
+
+I_NOTHING: ${nothing_icon},
     
-    
-    I_NO_BOOK: ${no_such_book},
+    I_HELP: ${icon_help},
+    I_FILTER: ${icon_filter},
+    I_GROW: ${icon_grow},
+    I_SHRINK: ${icon_shrink},
     
        I_CLOSE_PDF: ${ close_pdf},
        I_CLOSE_RSD: ${ close_rsd},

@@ -8,6 +8,25 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
         my_nodes: []
     };
 
+my.graphSize=function(movement_dir){
+var current_scale =  my.network_graph.getScale();
+
+if (movement_dir==='+'){
+   if (current_scale<99){
+    current_scale += 0.1;
+    }
+}else{
+    if (current_scale>0.1){
+        current_scale -= 0.1;
+    }
+
+}
+
+ my.network_graph.moveTo( {scale:current_scale});
+
+}
+
+
     my.loadGraph = function (graph_id, nodes_string, edges_string, graph_physics) {
         var container = document.getElementById(graph_id);
         this.my_nodes = new vis.DataSet(nodes_string);
@@ -57,7 +76,11 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
             var podcast_url = the_node.podcast_url;
             var pdf_country = the_node.pdf_country;   // Canada
 
-            if (node_type == 'L_BOOK') {
+
+if (node_type.indexOf('HELP_'>=0)) {
+                sff_vars.graph_procs.loadAuthorNew(the_node.node_type)
+               console.log('the clicked help,', the_node.node_type);
+            } else if (node_type == 'L_BOOK') {
                 my.loadBookNew(last_first_underscores, under_title)
             } else if (node_type == 'L_AUTHOR') {
                 my.loadAuthorNew(strip_author)
@@ -67,7 +90,7 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
                 sff_vars.podcast_procs.loadPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast');
             } else if (node_type == 'L_RSD') {
                 sff_vars.rsd_procs.loadRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, strip_author, 'rsd');
-            } else if (node_type == 'L_AUTHOR_POST') {   // L_AUTHOR_POST
+            } else if (node_type == 'L_AUTHOR_POST') {  
                 sff_vars.post_procs.loadPost(goto_url, strip_author, 'post');
             } else if (node_type == 'L_BOOK_POST') {
                 sff_vars.book_post_procs.loadBookPost(goto_url, strip_author, under_title, 'post');
@@ -90,7 +113,15 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
                     }
                     var fetch_nodes = JSON.parse(myJson.nodes_string)
                     var fetch_edges = JSON.parse(myJson.edges_string);
-                    var fetch_options = JSON.parse(myJson.graph_string)
+                    var fetch_options = JSON.parse(myJson.graph_string);
+                    console.log('addLoadNewGraph - fetch_options', fetch_options);
+                    
+                    if (fetch_options.strip_author.indexOf('HELP_'>=0)) {       // q*bert
+                    
+                    // if(fetch_options.strip_author==='_help_'){
+                        fetch_nodes =  sff_vars.help_nodes[fetch_options.strip_author]; 
+                        fetch_edges= sff_vars.help_edges ;  
+                    }                    
                     sff_vars.graph_procs.loadGraph(graph_id, fetch_nodes, fetch_edges, fetch_options.graph_physics);
                 });
         };

@@ -39,7 +39,7 @@ var load_css_external = `
         }      
         
         #filter--text {
-             width: 70%;
+             width: 60%;
         }
         
            .current__media{

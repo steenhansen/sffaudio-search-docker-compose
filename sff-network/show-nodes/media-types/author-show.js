@@ -13,6 +13,8 @@ module.exports = function (data_repository) {
         static sendAuthor(strip_author, ParseNeo, update_index) {
             return data_repository.getAuthorNodes(strip_author, update_index)
                 .then(function (graph_collection) {
+                    var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
+                    var db_version = graph_collection[0].records[0]._fields[db_version_index];
                     var parse_neo = new ParseNeo(graph_collection, 'author');
                     var nodes_object = parse_neo.getAuthorGraph(strip_author);
                     var number_columns = MediaShow.numberColumns(nodes_object);
@@ -20,14 +22,13 @@ module.exports = function (data_repository) {
                     var book_edges = parse_neo.edgesAuthorBook(number_columns, 'L_BOOK');
                     var wiki_author_edges = parse_neo.edgesAuthorWiki(number_columns, 'L_AUTHOR_WIKI');
                     var edges_object = book_edges.concat(post_edges, wiki_author_edges)
-                    var db_version = nodes_object[0].db_version;
                     var graph_info = {graph_type: 'author_page', strip_author: strip_author, db_version: db_version};
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
                     return nodes_and_edges;
                 })
         }
-        
-   static authorJson22 (strip_author, nodes_and_edges) {
+
+        static authorJson22(strip_author, nodes_and_edges) {
             let {nodes_object, edges_object} =nodes_and_edges
             if (nodes_object.length > 10) {
                 var graph_physics = false;
@@ -35,11 +36,11 @@ module.exports = function (data_repository) {
                 var graph_physics = {"barnesHut": {"avoidOverlap": 1}};
             }
             var graph_info = {strip_author: strip_author, graph_type: 'author_page', graph_physics: graph_physics};
-            var author_json = {nodes_object, edges_object, graph_info}   
-          return author_json;
+            var author_json = {nodes_object, edges_object, graph_info}
+            return author_json;
         }
 
-   static authorJson (strip_author, nodes_and_edges) {
+        static authorJson(strip_author, nodes_and_edges) {
             let {nodes_object, edges_object} =nodes_and_edges
             if (nodes_object.length > 10) {
                 var graph_physics = false;
@@ -51,55 +52,33 @@ module.exports = function (data_repository) {
             var edges_string = JSON.stringify(edges_object);
             var graph_string = JSON.stringify(graph_info);
             var author_json = {nodes_string, edges_string, graph_string}     // in makeDbCache we want one JSON.stringify, not 3 separates
-          return author_json;
-      
+            return author_json;
+
         }
 
 
-
-
-
-
-
-
-
-
-
-
-        static randomGoodAuthor() {
-            var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
-            var cached_quality = new CachedQuality();
-            var quality_string_or_promise = cached_quality.getCache()
-            return Promise.all([quality_string_or_promise])
-                .then((my_quality_string)=> {
-                    var my_quality_authors = JSON.parse(my_quality_string);
-                    var rand_index = Math.floor((Math.random() * my_quality_authors.length));
-                    var random_author = my_quality_authors[rand_index];
-                    var random_name = random_author.authors;
-                    return random_name;
-                })
-        }
+        // static randomGoodAuthor() {
+        //     var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
+        //     var cached_quality = new CachedQuality();
+        //     var quality_string_or_promise = cached_quality.getCache()
+        //     return Promise.all([quality_string_or_promise])
+        //         .then((my_quality_string)=> {
+        //             var my_quality_authors = JSON.parse(my_quality_string);
+        //             clog(' random list ', my_quality_authors)
+        //             var rand_index = Math.floor((Math.random() * my_quality_authors.length));
+        //             var random_author = my_quality_authors[rand_index];
+        //             var random_name = random_author.authors;
+        //             return random_name;
+        //         })
+        // }
 
         constructor(node_id, db_version, author_name, strip_author) {
             const sorted_label = misc_helper.theLastNameFirst(author_name, ' ');
             super(node_id, db_version, author_name, sorted_label);
             this.strip_author = strip_author;
             this.node_type = 'L_AUTHOR';
+            
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         //
@@ -124,9 +103,6 @@ module.exports = function (data_repository) {
         setAuthorPos(x_y_pos) {
             super.setPosition2(x_y_pos)
         }
-
-
-
 
 
 // showAuthor

@@ -7,6 +7,8 @@ var media_constants = rootAppRequire('sff-network/media-constants');
 var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 
+
+
 class CachedAuthors extends CachedBase {
 
     constructor() {
@@ -65,27 +67,19 @@ window.sff__h = sff_vars.helpers.setHidden;
         return author_html;
     }
 
-   getCache() {
-        console.log('getCache this.cache_file', this.cache_file)
-        // try {
-        //     var authors_html_file = rootAppRequire(this.cache_file)
-        //     return authors_html_file;
-        // } catch (e) {
-            return VersionRepository.getAuthors()
-                .then((authors_html_db)=> {
-                    console.log('getCache this.cache_file,', this.cache_file)
-                    return this.writeToFile(this.cache_file, authors_html_db)
-                })
-     //   }
+    getCache() {
+        return CachedBase.mcGet(this.cache_file)
+            .catch(function (e) {
+                return VersionRepository.getAuthors()
+                    .then((authors_html_db)=> {
+                     clog('---------------------------')
+                        var authors_cache = authors_html_db.records[0]._fields[0];
+                        return authors_cache;
+                    })
+            })
+    }
 
-    }
-    
-    getCacheNew() {
-            return VersionRepository.getAuthors()
-                .then((authors_html_db)=> {
-                    return this.writeToFile(this.cache_file, authors_html_db)
-                })
-    }
 
 }
+
 module.exports = CachedAuthors;

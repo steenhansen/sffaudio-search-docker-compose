@@ -20,21 +20,21 @@ class CachedDefault extends CachedBase {
     }
 
     makeDbCache(db_version, sorted_media) {
-    
-  //  console.log('zzzzzzzzzzzz makeDbCache', sorted_media)
-    
+
+        //  console.log('zzzzzzzzzzzz makeDbCache', sorted_media)
+
         let author_promises = [];
         let cached_authors = [];
         for (let an_author of sorted_media) {
             var space_author = an_author.authors;
             var strip_author = misc_helper.alphaUnderscore(space_author);
-              //  console.log('zzzzzzzzzzzz strip_author', strip_author)
+            //  console.log('zzzzzzzzzzzz strip_author', strip_author)
             var author_json_promise = author_data.sendAuthor(strip_author, ParseNeo, 1)
                 .then((nodes_and_edges)=> {
                     var current_author = nodes_and_edges.graph_info.strip_author;
                     var author_json = author_data.authorJson22(current_author, nodes_and_edges);
                     cached_authors.push(author_json)
-                    return; 
+                    return;
                 })
             author_promises.push(author_json_promise)
         }
@@ -45,20 +45,20 @@ class CachedDefault extends CachedBase {
             })
     }
 
+
     getCache() {
-        try {
-            var quality_list_file = rootAppRequire(this.cache_file)
-            return quality_list_file;
-        } catch (e) {
-            return VersionRepository.getDefaultAuthors()
-                .then((quality_list_db)=> {
-                console.log('CachedDefault.getCache', this.cache_file, quality_list_db)
-                    return this.writeToFile(this.cache_file, quality_list_db)
-                })
-        }
-
-
+        return CachedBase.mcGet(this.cache_file)
+            .catch(function (e) {
+                return VersionRepository.getDefaultAuthors()
+                    .then((authors_html_db)=> {
+                    clog(';;;;;;;;;;;;;;;;;;;;;;')
+                        var default_string = authors_html_db.records[0]._fields[0];
+                        return default_string;
+                    })
+            })
     }
+
+
 }
 
 module.exports = CachedDefault;

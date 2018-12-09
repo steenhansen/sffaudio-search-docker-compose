@@ -95,26 +95,19 @@ function sff_leave(id){
         return book_html;
     }
 
-
-    getCacheOLD() {
-        try {
-            var books_html_file = rootAppRequire(this.cache_file)
-            return books_html_file;
-        } catch (e) {
-            return VersionRepository.getBooks()
-                .then((books_html_db)=> {
-                    return this.writeToFile(this.cache_file, books_html_db)
-                })
-        }
-
+    getCache() {
+        return CachedBase.mcGet(this.cache_file)
+            .catch(function (e) {
+                return VersionRepository.getBooks()
+                    .then((books_html_db)=> {
+                     clog('???????????????????')
+                        var books_cache = books_html_db.records[0]._fields[0];
+                        return books_cache;
+                    })
+            })
     }
-getCache() {
-            return VersionRepository.getBooks()
-                .then((books_html_db)=> {
-                    return this.writeToFile(this.cache_file, books_html_db)
-                })
 
-    }
+
 
 
 }

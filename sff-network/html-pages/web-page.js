@@ -7,18 +7,16 @@ module.exports = function build_page(nodes_object, edges_object, graph_object, r
         .then(widget_html=> {
                 return `
 
-111
-
+<!-- start widget -->
 
  ${widget_html}
 
+<!-- end widget -->
 
 
-
-222
+<!-- start req_query_view -->
 ${req_query_view}
-
-333
+<!-- end req_query_view -->
   
 `;
             }

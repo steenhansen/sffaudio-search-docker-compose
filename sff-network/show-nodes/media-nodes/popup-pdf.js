@@ -31,6 +31,7 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     }
     
     my.loadPdfForRsd = function (pdf_url, book_title, label, strip_author, under_title) {
+       //  document.getElementById("my--graph").style.display="none"; 
         my.setupPdf(book_title, label);
             if (sff_php_vars.php_url === 'not a php host') {
                  var url_type3 =  '//' + window.location.host + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
@@ -72,7 +73,9 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         })
     }
 
+// change my name, is a short form of a longer one
     my.loadPdf = function (pdf_url, book_title, label, strip_author, under_title, req_query_view) {
+         document.getElementById("my--graph").style.display="none"; 
         this.pdf_url = pdf_url;
         if (req_query_view) {
             sff_vars.history_state.pushBookView(strip_author, under_title, req_query_view);

@@ -14,6 +14,7 @@ module.exports = function (graph_db) {
                   this.podcast_url = 'https://www.sffaudio.com/?p='+podcast_id;
                   this.under_title = under_title;
                   this.last_first_underscores = last_first_underscores;
+                    this.title = 'Click to listen and read this podcast';
         }
 
 

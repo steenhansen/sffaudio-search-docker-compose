@@ -1,1 +1,0 @@
-Heroku ignores this directory if left empty of cached files

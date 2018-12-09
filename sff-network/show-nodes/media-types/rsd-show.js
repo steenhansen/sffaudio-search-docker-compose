@@ -22,7 +22,7 @@ module.exports = function (graph_db) {
                       this.node_type = 'L_RSD_VIDEO';
                   
                   }
-                  
+                     this.title = 'hover title rsd';
         }
 
 

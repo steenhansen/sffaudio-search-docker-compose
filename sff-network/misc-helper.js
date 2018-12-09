@@ -114,22 +114,22 @@ function consoleTimeEnd(start_date, interval_name) {
     console.log(padded_number, "secs", interval_name);
 }
 
-function deleteCachedData() {
-
-    const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
-    const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
-    var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
-    var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
-
-    const cached_authors = new CachedAuthors();
-    const cached_books = new CachedBooks();
-    const cached_quality = new CachedQuality();
-    const cached_defaults = new CachedDefaults();
-    cached_authors.deleteCache();
-    cached_books.deleteCache();
-    cached_quality.deleteCache();
-    cached_defaults.deleteCache();
-}
+// function deleteCachedData() {
+//
+//     const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
+//     const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
+//    // var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
+//     var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
+//
+//     const cached_authors = new CachedAuthors();
+//     const cached_books = new CachedBooks();
+//   //  const cached_quality = new CachedQuality();
+//     const cached_defaults = new CachedDefaults();
+//     cached_authors.deleteCache();
+//     cached_books.deleteCache();
+//    // cached_quality.deleteCache();
+//     cached_defaults.deleteCache();
+// }
 
 
 module.exports = {
@@ -141,6 +141,6 @@ module.exports = {
     stripToLower,
     alphaUnderscore,
     getRedirects,
-    resolveRedirects,
-    deleteCachedData
+    resolveRedirects
+    //deleteCachedData
 };

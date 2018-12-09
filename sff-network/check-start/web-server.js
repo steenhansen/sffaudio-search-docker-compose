@@ -117,7 +117,6 @@ app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
         })
 })
 
-
 app.get('/widget', function (req, res) {
     authorOrBook(req).then(function (nodes_and_edges) {
         let {nodes_object, edges_object, graph_info} =nodes_and_edges
@@ -128,17 +127,7 @@ app.get('/widget', function (req, res) {
     })
 })
 
-// app.get('/load', function (req, res) {
-//    
-//      var url_update = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-url-db.js');
-//     url_update()
-//             .then(
-//             (new_db_version)=> res.send(new_db_version)
-//            
-//             );
-// })
-
-function authorOrBook(req) {
+function authorOrBookData(req) {
     if (CachedBase.urlGetAuthorBook(req.query, 'book')) {
         var under_title = req.query.book;
         var strip_author = req.query.author;
@@ -147,51 +136,47 @@ function authorOrBook(req) {
         var strip_author = req.query.author;
         return author_data.sendAuthor(strip_author, ParseNeo, 0);
     } else {
-        return author_data.randomGoodAuthor()
-            .then((random_author)=> {
-                strip_author = misc_helper.alphaUnderscore(random_author);
-                return author_data.sendAuthor(strip_author, ParseNeo, 0);
-            })
 
+                clog('SHOULD NEVER HAPPEN 123')
     }
-    // if (typeof under_title !== 'undefined') {
-    //     return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo);
-    // } else {
-    //     return author_data.sendAuthor(strip_author, ParseNeo,0);
-    // }
 }
 
-// http://localhost:5000/
+function noData() {
+    var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
+    var cached_defaults = new CachedDefaults();
+    return cached_defaults.getCache();
+}
+
+function queryView(req) {
+    if (typeof req.query.view === 'undefined') {
+        var query_view = '';
+    } else {
+        var query_view = req.query.view;
+    }
+    return query_view;
+}
+
 //   http://localhost:5000/?author=philip_k_dick&view=post
 app.get('/', function (req, res) {
     if (typeof req.query['author'] === 'undefined' && typeof req.query['book'] === 'undefined') {
-        var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
-        var cached_defaults = new CachedDefaults();
-        var default_string_or_promise = cached_defaults.getCache();
-        Promise.all([default_string_or_promise])
-            .then((nodes_and_edges_arr)=> {
-                    var nodes_and_edges_str = nodes_and_edges_arr[0];
-                    return nodes_and_edges_str;
-                }
-            )
+        noData()
             .then(function (nodes_and_edges_str) {
-                if (typeof req.query.view === 'undefined') {
-                    var query_view = '';
-                } else {
-                    var query_view = req.query.view;
-                }
+            
+            
+         //   console.log('9999999999999999999999', typeof  nodes_and_edges_str, nodes_and_edges_str)
+            // is it empty here?????    for sff_vars.default_authors 
+            
+            
+                var query_view = queryView(req);
                 media_page({}, {}, {}, query_view, nodes_and_edges_str)
                     .then((book_html)=> res.send(book_html));
             })
     } else {
-        authorOrBook(req)
-              .then(function (nodes_and_edges) {
+        clog('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+        authorOrBookData(req)
+            .then(function (nodes_and_edges) {
                 let {nodes_object, edges_object, graph_info} =nodes_and_edges;
-                if (typeof req.query.view === 'undefined') {
-                    var query_view = '';
-                } else {
-                    var query_view = req.query.view;
-                }
+                var query_view = queryView(req);
                 media_page(nodes_object, edges_object, graph_info, query_view, '{}')
                     .then((book_html)=> res.send(book_html));
             })

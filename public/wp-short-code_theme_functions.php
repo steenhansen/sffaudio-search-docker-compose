@@ -77,7 +77,7 @@ function getQueryParameters($widget_url, $get_author, $get_book, $get_view)
 // https://www.sffaudio.com/about/
 function media_graph_component()  //  [media-graph-component]
 {
-    $widget_url = 'https://sffaudio-test-neo4j.herokuapp.com/';
+    $widget_url = 'https://sffaudio-test-neo4j.herokuapp.com';
     $get_author = @$_GET['author'];
     $get_book = @$_GET['book'];
     $get_view = @$_GET['view'];
@@ -96,5 +96,6 @@ JAVASCRIPT_HTML;
     return $from_php_js_html;
 }
 
-add_shortcode('media-graph-component', media_graph_component);
-
+if (function_exists('add_shortcode')) {
+    add_shortcode('media-graph-component', media_graph_component);
+}
