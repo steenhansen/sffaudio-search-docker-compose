@@ -1,6 +1,9 @@
 AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+const { BOOK_AUTHOR_DELIMITER}=graph_constants;
+
 class MultipleMonikers {
 
     constructor(comma_names) {
@@ -24,7 +27,6 @@ class MultipleMonikers {
     }
 
     blankExtras(string_with_extras) {
-      //  console.log(typeof string_with_extras)
         var shrink_string = string_with_extras.replace(", editor", " ");
         var shrink_string = shrink_string.replace("ascribed to ", " ");
         var shrink_string = shrink_string.replace("edited by ", " ");
@@ -43,9 +45,6 @@ class MultipleMonikers {
         var two_commas = /,\s*,/;
         var multiples_work = multiples_work.replace(two_commas, ',');
         this.multiple_names = multiples_work.split(',');
-
-      //  console.log('dddddddddd', this.multiple_names, 'qqqqqqqq')
-
     }
 
     fixJuniorMd() {
@@ -81,7 +80,7 @@ class MultipleMonikers {
     }
 
     titleWithAuthors(under_title) {
-        var title_with_authors = under_title + '^' + this.last_name_first_underscore.join('^');
+        var title_with_authors = under_title + BOOK_AUTHOR_DELIMITER + this.last_name_first_underscore.join(BOOK_AUTHOR_DELIMITER);
         return title_with_authors
     }
 

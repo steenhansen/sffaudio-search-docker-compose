@@ -1,6 +1,6 @@
 
 
-// start program-constants.js
+// start program-variables.js
 if (typeof sff_vars === 'undefined') {
     sff_vars = {};
 }
@@ -29,4 +29,4 @@ if (typeof module === 'undefined') {
     module = {};
 }
 module.exports = sff_vars;
-// end program-constants.js
+// end program-variables.js

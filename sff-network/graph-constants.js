@@ -1,12 +1,5 @@
 'use strict'
 
-
-// THIS NAME IS CLASHING WITH 
-// var media_constnats = rootAppRequire('sff-network/build-nodes/mediaServer/modules/base/media-constants');
-
-
-// this should be like constants.js
-
 const the_colors =["red", "#666600", "olive", "green", "blue", "indigo", "violet" ]
 
 
@@ -16,10 +9,14 @@ const rotate_colors = the_colors.concat(the_colors);
 // local 26 records config
 
 
-var media_constants = {
+var graph_constants = {
 
-	
-//DOWNLOADS
+    URL_SEPARATOR : '-',         // - or _
+
+	AUTHOR_PAGE_TYPE : 'AUTHOR_PAGE',
+	BOOK_PAGE_TYPE: 'BOOK_PAGE',
+
+
     PDF_COLOR : '#FF0101',
     RSD_COLOR : '#0101FF',
     PODCAST_COLOR: '#01FF01',
@@ -43,6 +40,9 @@ var media_constants = {
     
     GRAPH_CONTAINER_ID : 'my--graph',
     WITH_REGEX : new RegExp(' with | and ', 'i'),
+
+
+
 
 	NEO4J_VERSION : 'v1',
 	
@@ -87,11 +87,11 @@ var media_constants = {
     QUALITY_GOOGLE_DATA: "https://docs.google.com/spreadsheets/d/1N2_v3MXhlOz-jxkWVcIVsMPNKqKkTS7POS26SBzxqP0/export?format=tsv"
 }
 
-//media_constants.ROUTE_BOOK_JSON = media_constants.ROUTE_START_BOOK + ':strip_author/:under_title';
+//graph_constants.ROUTE_BOOK_JSON = graph_constants.ROUTE_START_BOOK + ':strip_author/:under_title';
 
 
 
-module.exports = media_constants
+module.exports = graph_constants
 
 
 

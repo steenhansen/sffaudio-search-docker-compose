@@ -1,5 +1,5 @@
 
-var media_constants = rootAppRequire('sff-network/media-constants')
+var graph_constants = rootAppRequire('sff-network/graph-constants')
 
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
@@ -21,7 +21,7 @@ module.exports = function (build_repository) {
                 return '';
             }
             let new_info;
-            const new_link = media_constants.MEDIA_LINK_DIR + pdf_link;
+            const new_link = graph_constants.MEDIA_LINK_DIR + pdf_link;
             if (pdf_info === '') {
                 new_info = `${pdf_pages} Pages`;
             } else {

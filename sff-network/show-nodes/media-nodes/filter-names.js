@@ -1,5 +1,8 @@
 
-var load_css_external = `
+
+module.exports =  function (URL_SEPARATOR) {
+
+var filter_names = `
 // filter-names
 sff_vars.filter_names = (function (graph_id) {
     var my = {
@@ -12,12 +15,12 @@ sff_vars.filter_names = (function (graph_id) {
             if (elem) {
                 elem.classList.remove('current__media');
             }
-            var elem_filter = document.getElementById('filter_' + my.last_selected_media);
+            var elem_filter = document.getElementById('filter' + '${URL_SEPARATOR}' + my.last_selected_media);
             if (elem_filter != null) {
                 elem_filter.classList.remove('current__media');
             }
         }
-        var media_id = media_id_short + '_';
+        var media_id = media_id_short + '${URL_SEPARATOR}';
         var elem = document.getElementById(media_id);
         if (elem != null) {
             elem.classList.add('current__media');
@@ -27,7 +30,7 @@ sff_vars.filter_names = (function (graph_id) {
                 container.scrollIntoView();
             }
         }
-        var elem_filter = document.getElementById('filter_' + media_id);
+        var elem_filter = document.getElementById('filter'  + '${URL_SEPARATOR}' + media_id);
         if (elem_filter != null) {
             elem_filter.classList.add('current__media');
         }
@@ -59,7 +62,7 @@ sff_vars.filter_names = (function (graph_id) {
             if (div_id !== '') {
                 if (div_id.indexOf(search_underscore) > -1) {
                     var copy_choice = choice_node.cloneNode(true);
-                    copy_choice.id = 'filter_' + copy_choice.id;
+                    copy_choice.id = 'filter' + '${URL_SEPARATOR}' + copy_choice.id;
                     filter_div.appendChild(copy_choice);
                 }
             }
@@ -92,8 +95,8 @@ sff_vars.filter_names = (function (graph_id) {
         }
     }
 
-    function spacesToUnderscore(author_title) {
-        var underscore_author_title = author_title.replace(/ /g, '_');
+    function spacesToUrlSeparator(author_title) {
+        var underscore_author_title = author_title.replace(/ /g, '${URL_SEPARATOR}');
         return underscore_author_title;
     }
 
@@ -105,7 +108,7 @@ sff_vars.filter_names = (function (graph_id) {
 
     function alphaUnderscore(book_or_author) {
         var lower_striped = stripToLower(book_or_author);
-        var lower_underscored = spacesToUnderscore(lower_striped);
+        var lower_underscored = spacesToUrlSeparator(lower_striped);
         return lower_underscored;
     }
 
@@ -114,7 +117,9 @@ sff_vars.filter_names = (function (graph_id) {
 }(sff_vars.graph_vars.graph_id))
 // filter-names end
 `;
-module.exports = load_css_external; 
+return filter_names;
+}
+//module.exports = load_css_external; filter_names
 
 
 

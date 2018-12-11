@@ -2,8 +2,8 @@
 // https://material.io/tools/icons/?icon=person&style=sharp
 // https://www.shareicon.net/
 // http://editor.method.ac/
- var media_constants = rootAppRequire('sff-network/media-constants');
-var background_color=media_constants.GRAPH_BACKGROUND;
+ var graph_constants = rootAppRequire('sff-network/graph-constants');
+var background_color=graph_constants.GRAPH_BACKGROUND;
 
 
 function download_mp3_icon(w_color) {   
@@ -749,17 +749,17 @@ function help_icon(w_color) {
 
 
 function filter_icon(w_color) {   
-    var svg_filter = `<svg width="85" height="20" xmlns="http://www.w3.org/2000/svg">
+    var svg_filter = `<svg width="33" height="20" xmlns="http://www.w3.org/2000/svg">
  <g>
   <title>background</title>
-  <rect x="-1" y="-1" width="87" height="22" id="canvas_background" fill="none"/>
+  <rect x="-1" y="-1" width="35" height="22" id="canvas_background" fill="none"/>
  </g>
 
  <g display="inline" id="g15">
   <title>Layer 1</title>
-  <rect fill="${background_color}" id="svg_5" height="46.50019" width="270.50113" y="-1.03147" x="-0.50067"/>
-  <rect stroke="#666666" fill="#ffffff" stroke-width="0.75" id="svg_1" height="12.41678" width="74.75032" y="3.85418" x="3.66673"/>
-  <text stroke="#000000" transform="matrix(0.568168044090271,0,0,0.568168044090271,2.9755920711904764,1.896012181416154) " font-family="Helvetica, Arial, sans-serif" text-anchor="start" fill="#666666" stroke-width="0" font-size="12px" id="svg_2" y="17.57907" x="6.31045" stroke-opacity="null">Filter authors &amp; stories</text>
+  <rect fill="${background_color}" id="svg_5" height="25.24808" width="94.48373" y="-1.03147" x="-1" stroke="null"/>
+  <rect stroke="#666666" fill="#ffffff" stroke-width="0.75" id="svg_1" height="12.41678" width="26.25048" y="3.85418" x="3.66673"/>
+  <text stroke="#000000" transform="matrix(0.568168044090271,0,0,0.568168044090271,2.9755920711904764,1.896012181416154) " font-family="Helvetica, Arial, sans-serif" text-anchor="start" fill="#666666" stroke-width="0" font-size="12px" id="svg_2" y="18.23909" x="5.32043" stroke-opacity="null">Filter ...</text>
  </g>
 </svg>`;
        return iconShape(svg_filter);
@@ -813,7 +813,35 @@ function nothing_icon() {
 }
 
 
+
+
+
+function arrow_icon(w_color) {
+
+ var svg_all = `<svg width="90.00000000000001" height="90.00000000000001" xmlns="http://www.w3.org/2000/svg">
+ <metadata id="metadata20">image/svg+xml</metadata>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="16.99973" width="16.99973" y="-1" x="-1"/>
+ </g>
+ <g display="inline" id="g12">
+  <title>Layer 1</title>
+  <circle fill="${background_color}" stroke-width="1.85746" id="path1080" cx="44.90706" cy="44.90706" r="44.90706" stroke-miterlimit="4"/>
+  <g display="inline" stroke="null" id="svg_1">
+   <path fill="#ffffff" stroke-width="0.84917" stroke="null" d="m75.79714,53.09884l-44.67113,-37.48348l0,58.31372l11.95828,-14.35737l8.34046,17.88633l14.02784,-6.5413l-8.34046,-17.88619l18.68501,0.06827l0,0.00002z" id="svg_2-9"/>
+   <path fill="#000000" stroke="null" d="m80.95055,54.0157l-52.60573,-44.14139l0,68.67155l14.08235,-16.90756l9.82191,21.06335l16.5195,-7.70318l-9.82191,-21.06318l22.00388,0.08038l0,0.00003zm-19.4488,18.33786l-6.60773,3.08132l-11.15305,-23.91792l-9.9278,11.91967l0,-41.83582l32.04781,26.89151l-15.51244,-0.05669l11.15322,23.91792l-0.00001,0.00001z" id="svg_2"/>
+  </g>
+ </g>
+</svg>
+`;
+
+    return iconShape(svg_all);
+}
+
+
+
 module.exports = {
 download_mp3_icon, download_pdf_icon,
 first_icon, last_icon, prev_icon, next_icon, close_icon,  allPodcasts, allRsds, allPdfs, wikipedia_icon, author_icon, 
- pdf_icon, post_icon, book_icon, podcast_icon, rsd_icon, rsd_video, help_icon, nothing_icon, filter_grow, filter_shrink, filter_icon}
+ pdf_icon, post_icon, book_icon, podcast_icon, rsd_icon, rsd_video, help_icon, nothing_icon, filter_grow, filter_shrink, filter_icon, arrow_icon}

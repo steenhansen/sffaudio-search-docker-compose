@@ -1,7 +1,7 @@
 'use strict'
 
 
-//    rootAppRequire('sff-network/media-constants');
+//    rootAppRequire('sff-network/graph-constants');
 
 const CONFIG_ENV_KEYS = ['PORT', 'GRAPHENEDB_BOLT_URL', 'GRAPHENEDB_BOLT_USER', 'GRAPHENEDB_BOLT_PASSWORD'];
 

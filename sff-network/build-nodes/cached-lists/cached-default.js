@@ -3,8 +3,8 @@ require('../../../sff-network/global-require')
 
 var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
 
-var media_constants = rootAppRequire('sff-network/media-constants');
-var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 
 var data_repository = rootAppRequire('sff-network/show-nodes/graph-dbs/show-repository')(graph_db);
@@ -20,15 +20,11 @@ class CachedDefault extends CachedBase {
     }
 
     makeDbCache(db_version, sorted_media) {
-
-        //  console.log('zzzzzzzzzzzz makeDbCache', sorted_media)
-
         let author_promises = [];
         let cached_authors = [];
         for (let an_author of sorted_media) {
             var space_author = an_author.authors;
             var strip_author = misc_helper.alphaUnderscore(space_author);
-            //  console.log('zzzzzzzzzzzz strip_author', strip_author)
             var author_json_promise = author_data.sendAuthor(strip_author, ParseNeo, 1)
                 .then((nodes_and_edges)=> {
                     var current_author = nodes_and_edges.graph_info.strip_author;
@@ -47,15 +43,11 @@ class CachedDefault extends CachedBase {
 
 
     getCache() {
-        return CachedBase.mcGet(this.cache_file)
-            .catch(function (e) {
                 return VersionRepository.getDefaultAuthors()
                     .then((authors_html_db)=> {
-                    clog(';;;;;;;;;;;;;;;;;;;;;;')
                         var default_string = authors_html_db.records[0]._fields[0];
                         return default_string;
                     })
-            })
     }
 
 

@@ -1,5 +1,20 @@
  const my_media_array = [
  {
+  "episode number": "148",
+  "publish date": "2018-12-05 00:01",
+  "post link": "http://www.sffaudio.com/reading-short-and-deep-148-casey-at-the-bat-by-ernest-thayer/",
+  "hh:mm:ss": "0:31:57",
+  "file name": "rsd148CaseyAtTheBat.mp3",
+  "byte size": "31,506,186",
+  "podcast participants": "Eric S. Rabkin and Jesse Willis",
+  "book title": "Casey At The Bat",
+  "book author": "Ernest Thayer",
+  "genre type": "Poem",
+  "pdf link": "http://www.sffaudio.com/podcasts/CaseyAtTheBatByEarnestThayerSaintPaulGlobeApril201902.pdf",
+  "video link": "",
+  "podcast description": "Casey At The Bat by Ernest Thayer"
+ },
+ {
   "episode number": "147",
   "publish date": "2018-11-28 00:01",
   "post link": "http://www.sffaudio.com/reading-short-and-deep-147-the-die-hard-by-alfred-bester/",
@@ -188,7 +203,7 @@
   "byte size": "35,070,474",
   "podcast participants": "Eric S. Rabkin and Jesse Willis",
   "book title": "The Pendulum",
-  "book author": "Ray Bradbury (and Henry Hasse)",
+  "book author": "Ray Bradbury and Henry Hasse",
   "genre type": "Story",
   "pdf link": "http://www.sffaudio.com/podcasts/ThePendulumByRayBradburyFuturiaFantasiaFall1939.pdf",
   "video link": "",

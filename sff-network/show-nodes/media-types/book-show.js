@@ -2,8 +2,8 @@ var LabelPositions = rootAppRequire('sff-network/show-nodes/label-positions')
 var MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
 const {BOTTOM_COLUMNS_Y_OFFSET, HORIZONTAL_COLUMNS, X_NODE_SEPARATION, Y_NODE_SEPARATION, VERTICAL_STAGGER}=LabelPositions
 var misc_helper = rootAppRequire('sff-network/misc-helper')
-var media_constants = rootAppRequire('sff-network/media-constants');
-const program_constants = rootAppRequire('sff-network/program-constants.js');
+const {BOOK_PAGE_TYPE} = rootAppRequire('sff-network/graph-constants');
+const program_variables = rootAppRequire('sff-network/program-variables.js');
 
 
 module.exports = function (data_repository) {
@@ -52,7 +52,7 @@ module.exports = function (data_repository) {
 
         bookUrl(strip_author) {
 ///            this.goto_url = `/author/book/${strip_author}/` + this.under_title;
-            this.goto_url =  program_constants.ROUTE_START_BOOK + strip_author + '/' + this.under_title;
+            this.goto_url =  program_variables.ROUTE_START_BOOK + strip_author + '/' + this.under_title;
         }
 
         setSizesColor(page_type) {     //L_AUTHOR
@@ -70,7 +70,7 @@ var db_version= graph_collection[0].records[0]._fields[db_version_index];
                     var parse_neo = new ParseNeo(graph_collection, 'book');
                     var nodes_object = parse_neo.getBookGraph(strip_author)
                     var edges_object = parse_neo.getEdges()
-                    var graph_info = {graph_type: 'book_page', strip_author: strip_author, under_title: under_title, db_version:db_version};
+                    var graph_info = {graph_type: BOOK_PAGE_TYPE, strip_author: strip_author, under_title: under_title, db_version:db_version};
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
                     return nodes_and_edges;
                 })

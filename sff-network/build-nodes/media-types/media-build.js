@@ -1,8 +1,8 @@
-var media_constants = rootAppRequire('sff-network/media-constants')
+var graph_constants = rootAppRequire('sff-network/graph-constants')
 var misc_helper = rootAppRequire('sff-network/misc-helper')
-const author_delimiter = media_constants.BOOK_AUTHOR_DELIMITER;
-AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 
+AuthorMoniker = rootAppRequire('sff-network/author-moniker');
+const {URL_SEPARATOR}=graph_constants;
 
 class MediaBuild {
 
@@ -40,7 +40,7 @@ class MediaBuild {
     
 
     static sortedLabel(the_name, space_char) {
-        if (space_char === '_') {
+        if (space_char === URL_SEPARATOR) {
             var start_articles_reg_ex = /^(a_|an_|the_)/i;
         } else {
             var start_articles_reg_ex = /^(a |an |the )/i;

@@ -1,17 +1,25 @@
-var media_constants = rootAppRequire('sff-network/media-constants');
-const {DELETE_UNUSED_RECORDS}=media_constants;
-var misc_helper = rootAppRequire('sff-network/misc-helper');
-// const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
-// const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
-// var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
-// var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+const {DELETE_UNUSED_RECORDS}=graph_constants;
 
-// var delete_all_sql = 'MATCH (n) DETACH DELETE n'
 
 module.exports = function (graph_db) {
 
     class VersionRepository {
 
+  static  deleteAll() {
+
+        // delete rsds  MATCH (n_rsd:L_RSD) DETACH DELETE n_rsd
+
+        var delete_all_sql = 'MATCH (n) DETACH DELETE n'
+        var params = {};
+            return graph_db.sqlParams(delete_all_sql, params);
+    }
+    
+        static entireDb(){
+            var sql = ` MATCH (a) RETURN a`;
+            var params = {};
+            return graph_db.sqlParams(sql, params);
+        }
 
         /*
          VersionRepository.updateDbVersion()

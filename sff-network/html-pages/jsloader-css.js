@@ -1,24 +1,29 @@
-var widget_vars_html = rootAppRequire('sff-network/html-pages/widget-vars-html')
+var widget_vars_html = rootAppRequire('sff-network/html-pages/widget-vars-html');
+
+
+var help_vars = rootAppRequire('sff-network/html-pages/help-graph');
+
 const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
 const cached_authors = new CachedAuthors();
 const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
 const cached_books = new CachedBooks();
-var media_constants = rootAppRequire('sff-network/media-constants');
-const graph_container_id = media_constants.GRAPH_CONTAINER_ID;
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+const graph_container_id = graph_constants.GRAPH_CONTAINER_ID;
+const AUTHOR_PAGE_TYPE = graph_constants.AUTHOR_PAGE_TYPE;
 
 var popup_blur = rootAppRequire('sff-network/html-pages/popup-blur.css.js');
-var load_css_external = rootAppRequire('sff-network/html-pages/load-css-external')(media_constants.GRAPH_BACKGROUND, graph_container_id);
+var load_css_external = rootAppRequire('sff-network/html-pages/load-css-external')(graph_constants.GRAPH_BACKGROUND, graph_container_id);
 var load_scripts = rootAppRequire('sff-network/html-pages/load-scripts')('mainStart');  // mainJsStart // ie_load_second_chance
 
 
 const readFilePromise = require('fs-readfile-promise');
 
-const filter_names = rootAppRequire('sff-network/show-nodes/media-nodes/filter-names');
+const filter_names = rootAppRequire('sff-network/show-nodes/media-nodes/filter-names')(graph_constants.URL_SEPARATOR)
 const browser_code = rootAppRequire('sff-network/html-pages/browser-graph');
 const history_state = rootAppRequire('sff-network/html-pages/history-state');
 const history_generate = rootAppRequire('sff-network/html-pages/history-generate');
 const vars_events = rootAppRequire('sff-network/html-pages/vars-events');
-const program_constants = fromAppRoot('sff-network/program-constants.js');
+const program_variables = fromAppRoot('sff-network/program-variables.js');
 const popup_pdf = rootAppRequire('sff-network/show-nodes/media-nodes/popup-pdf');
 const popup_podcast = rootAppRequire('sff-network/show-nodes/media-nodes/popup-podcast');
 const popup_rsd = rootAppRequire('sff-network/show-nodes/media-nodes/popup-rsd');
@@ -41,9 +46,8 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
         var strip_author = graph_object.strip_author;
     }
 
-    //  clog('444444444444444444444444,graph_object.strip_author ==', strip_author)
 
-    const js_constants = readFilePromise(program_constants, 'utf8')
+    const js_constants = readFilePromise(program_variables, 'utf8')
     var widget_vars = widget_vars_html.widgetVars(graph_container_id, nodes_object, edges_object, graph_object);
     const author_links = cached_authors.getCache();
     const book_links = cached_books.getCache(); /// books_string_or_promise
@@ -88,55 +92,36 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     
     ${load_css_external}
     ${widget_vars} 
+    ${help_vars}  
+    
+<script>
+    sff_vars.strip_author = "${strip_author}";
+    sff_vars.default_authors =
+    ${nodes_and_edges_str}
     
     
-    <script>
-sff_vars.strip_author = "${strip_author}";
-    sff_vars.default_authors = ${nodes_and_edges_str}
-
-
-
-if(sff_vars.helpers.objectIsEmpty(sff_vars.graph_vars.nodes_string)){
-    if (sff_vars.strip_author===''){
-             var rand_index = Math.floor((Math.random() * sff_vars.default_authors.length));
-            sff_vars.graph_vars.nodes_string=sff_vars.default_authors[rand_index].nodes_object;
-            sff_vars.graph_vars.edges_string=sff_vars.default_authors[rand_index].edges_object;
-            sff_vars.graph_vars.graph_info=sff_vars.default_authors[rand_index].graph_info;
-           var strip_author = sff_vars.default_authors[rand_index].graph_info.strip_author;
-           sff_vars.strip_author = strip_author;
-          // console.log('*************', strip_author)
-    }else{
-        var graph_type =sff_vars.graph_vars.graph_info.graph_type;
-        if (graph_type ==='author_page'){
-        
-
-        
-        
-        //http://visjs.org/examples/network/labels/multilineText.html
-        if (sff_vars.strip_author==='_HELP_'){
-
-              sff_vars.graph_vars.edges_string=sff_vars.help_edges;
-              var nothing_to_show=sff_vars.help_nodes['_HELP_'];
-            }else{
-            
-            var nothing_to_show = [{"group":"I_NOTHING", 
-            "font": {"size": 16,
-                    "color": "red" },
-            "title" : "click on an author above",
-            "label":"Author is not in the database"}];
+    if (sff_vars.helpers.objectIsEmpty(sff_vars.graph_vars.nodes_string)) {
+        if (sff_vars.strip_author === '') {
+            var rand_index = Math.floor((Math.random() * sff_vars.default_authors.length));
+            sff_vars.graph_vars.nodes_string = sff_vars.default_authors[rand_index].nodes_object;
+            sff_vars.graph_vars.edges_string = sff_vars.default_authors[rand_index].edges_object;
+            sff_vars.graph_vars.graph_info = sff_vars.default_authors[rand_index].graph_info;
+            var strip_author = sff_vars.default_authors[rand_index].graph_info.strip_author;
+            sff_vars.strip_author = strip_author;
+        } else {
+            var graph_type = sff_vars.graph_vars.graph_info.graph_type;
+            if (graph_type === '${AUTHOR_PAGE_TYPE}') {
+                if (sff_vars.strip_author.indexOf('HELP_') >= 0) {
+                    sff_vars.graph_vars.edges_string = sff_vars.HELP_ALL_EDGES;
+                    sff_vars.graph_vars.nodes_string = sff_vars.help_nodes[sff_vars.strip_author];
+                } else {
+                    sff_vars.graph_vars.nodes_string = sff_vars.NO_SUCH_AUTHOR;
+                }
+            } else {
+                sff_vars.graph_vars.nodes_string = sff_vars.NO_SUCH_BOOK
             }
-            
-           
-            
-        }else{
-            var nothing_to_show = [{"group":"I_NOTHING",
-             "font": {"size": 16,
-                    "color": "red" },
-             "label":"Book is not in the database"}];
         }
-        sff_vars.graph_vars.nodes_string=nothing_to_show;
     }
-}
 </script>
     
 <script>

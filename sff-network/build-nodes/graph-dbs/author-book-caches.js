@@ -1,5 +1,5 @@
-var media_constants = rootAppRequire('sff-network/media-constants');
-var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
 //graph_db.checkDbAlive()
 
 var data_repository = rootAppRequire('sff-network/show-nodes/graph-dbs/show-repository')(graph_db);
@@ -14,7 +14,7 @@ var cached_books = new CachedBooks()
 var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
 var cached_defaults = new CachedDefaults();
 
-var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
+//var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
 
 var misc_helper = rootAppRequire('sff-network/misc-helper');
 
@@ -36,14 +36,14 @@ function makeNewCaches_d_1(new_db_version) {
         .then((books_next_version)=>cached_books.makeDbCache(books_next_version, new_db_version))
         .then(()=> misc_helper.consoleTimeEnd(start_date, "makeNewCaches_d_1"))
 }
-
-function makeNewCaches_d_1_1_1() {
-    var start_date = Date.now();
-    var mcccs = rootAppRequire('sff-network/build-nodes/cached-lists/mem-cache')('sff_mem_cache');
-    return mcccs.mcSet('')
-        .then(()=> misc_helper.consoleTimeEnd(start_date, "makeNewCaches_d_1_1_1"))
-
-}
+//
+// function makeNewCaches_d_1_1_1() {
+//     var start_date = Date.now();
+//     var mcccs = rootAppRequire('sff-network/build-nodes/cached-lists/mem-cache')('sff_mem_cache');
+//     return mcccs.mcSet('')
+//         .then(()=> misc_helper.consoleTimeEnd(start_date, "makeNewCaches_d_1_1_1"))
+//
+// }
 
 function makeNewCaches_d_3(VersionRepository) {
     var start_date = Date.now();
@@ -59,14 +59,14 @@ function makeNewCaches_d_3(VersionRepository) {
             the_cache['book-cache'] = books_cache
             return VersionRepository.getDefaultAuthors();
         })
-        .then((default_html_db)=> {
-            var default_string = default_html_db.records[0]._fields[0];
-            the_cache['default-cache'] = default_string
-
-            var json_cache = JSON.stringify(the_cache)
-            return CachedBase.mcSet(json_cache);
-
-        })
+        // .then((default_html_db)=> {
+        //     var default_string = default_html_db.records[0]._fields[0];
+        //     the_cache['default-cache'] = default_string
+        //
+        //     var json_cache = JSON.stringify(the_cache)
+        //     return CachedBase.mcSet(json_cache);
+        //
+        // })
         .then(()=> misc_helper.consoleTimeEnd(start_date, "makeNewCaches_d_3"))
 }
 
@@ -75,7 +75,7 @@ module.exports =
 {
     makeNewCaches_d_0,
     makeNewCaches_d_1,
-    makeNewCaches_d_1_1_1,
+  //  makeNewCaches_d_1_1_1,
     makeNewCaches_d_3
 };
  

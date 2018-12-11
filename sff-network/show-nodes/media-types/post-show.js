@@ -1,7 +1,7 @@
 //var Media2Node = rootAppRequire('sff-network/node-types/media-2node')
 MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
 var LabelPositions = rootAppRequire('sff-network/show-nodes/label-positions')
-var media_constants = rootAppRequire('sff-network/media-constants')
+var graph_constants = rootAppRequire('sff-network/graph-constants')
 
 
 const {TOP_COLUMNS_Y_OFFSET, HORIZONTAL_COLUMNS, X_NODE_SEPARATION, Y_NODE_SEPARATION, VERTICAL_STAGGER}=LabelPositions
@@ -55,7 +55,7 @@ module.exports = function (graph_repository) {
             this.strip_author = strip_author;
             this.node_type = 'L_AUTHOR_POST';
 
-            this.goto_url = media_constants.POST_LINK + post_slug;
+            this.goto_url = graph_constants.POST_LINK + post_slug;
  this.sorted_label = post_slug;
         }
 

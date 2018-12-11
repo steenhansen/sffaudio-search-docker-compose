@@ -1,4 +1,4 @@
-var media_constants = rootAppRequire('sff-network/media-constants')
+var graph_constants = rootAppRequire('sff-network/graph-constants')
 
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 var misc_helper = rootAppRequire('sff-network/misc-helper')
@@ -43,7 +43,7 @@ module.exports = function (build_repository) {
                 var last_first_underscores = multiple_monikers.lastUnderscore();
                 var {esc_book_title, under_title} =MediaBuild.quoteUnderscoreTitle(podcast_object['book title'])
                 var title_with_authors = multiple_monikers.titleWithAuthors(under_title);
-                var podcast_link = media_constants.MEDIA_LINK_DIR + podcast_object['file name']
+                var podcast_link = graph_constants.MEDIA_LINK_DIR + podcast_object['file name']
                 podcast_books[title_with_authors] = {esc_book_title, under_title, last_first_underscores};
                   var underScoreToNormal = multiple_monikers.underScoreToNormal();
                for (var strip_author in underScoreToNormal) {

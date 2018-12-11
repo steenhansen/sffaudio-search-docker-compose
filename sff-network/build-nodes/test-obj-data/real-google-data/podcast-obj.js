@@ -1,5 +1,33 @@
  const my_media_array = [
  {
+  "episode number": "503",
+  "post id": "59270",
+  "publish date": "2018-12-10 00:01",
+  "kind": "READALONG",
+  "participants": "Jesse, Evan Lampe",
+  "narrator": "",
+  "file name": "SFFaudioPodcast503.mp3",
+  "byte size": "58,398,925",
+  "hh:mm:ss": "1:31:25",
+  "book title": "The Wood Beyond The World",
+  "book author": "William Morris",
+  "about": ""
+ },
+ {
+  "episode number": "502",
+  "post id": "59265",
+  "publish date": "2018-12-03 00:01",
+  "kind": "AUDIOBOOK",
+  "participants": "",
+  "narrator": "Cori Samuel",
+  "file name": "SFFaudioPodcast502.mp3",
+  "byte size": "211,741,399",
+  "hh:mm:ss": "5:15:35",
+  "book title": "The Wood Beyond The World",
+  "book author": "William Morris",
+  "about": ""
+ },
+ {
   "episode number": "501",
   "post id": "59250",
   "publish date": "2018-11-26 00:01",

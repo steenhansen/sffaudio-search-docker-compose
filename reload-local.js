@@ -21,4 +21,6 @@ if (data_dir) {
     console.log('Loading Local data from Google spreadsheets');
     var reload_db = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-url-db');
 }
-reload_db.buildData();
+reload_db.buildData()
+   .then( ()=> process.exit() )
+

@@ -1,5 +1,5 @@
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
-var media_constants = rootAppRequire('sff-network/media-constants')
+var graph_constants = rootAppRequire('sff-network/graph-constants')
 var misc_helper = rootAppRequire('sff-network/misc-helper');
 AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 module.exports = function (build_repository) {

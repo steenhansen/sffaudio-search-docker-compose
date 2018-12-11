@@ -1,5 +1,5 @@
-var media_constants = rootAppRequire('sff-network/media-constants');
-const {NO_RECORD_LIMIT}=media_constants;
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+const {NO_RECORD_LIMIT}=graph_constants;
 
 //      var delete_all_sql = 'MATCH (n) DETACH DELETE n'
 

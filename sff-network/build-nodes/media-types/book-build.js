@@ -1,6 +1,6 @@
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
-var media_constants = rootAppRequire('sff-network/media-constants')
+var graph_constants = rootAppRequire('sff-network/graph-constants')
 
 
 module.exports = function (build_repository) {

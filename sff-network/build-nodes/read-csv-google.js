@@ -1,7 +1,7 @@
 var Promise = require('bluebird')
 var write = require('fs-writefile-promise');
 const read_tsv_url = rootAppRequire('sff-network/build-nodes/url-tsv-read');
-var media_constants = rootAppRequire('sff-network/media-constants');
+var graph_constants = rootAppRequire('sff-network/graph-constants');
 var misc_helper = rootAppRequire('sff-network/misc-helper');
 var {makeEdgesNodes} = rootAppRequire('sff-network/build-nodes/graphs-edges')
 
@@ -42,7 +42,7 @@ function objDataToCode(media_values, file_name){
    
     function googlePostTsvToLocal_a_1(post_obj_file) {
       var start_date =Date.now();
-      return read_tsv_url(media_constants.POST_GOOGLE_DATA)
+      return read_tsv_url(graph_constants.POST_GOOGLE_DATA)
             .then(author_book_obj=> {
                 var file_name = fromAppRoot(post_obj_file);
                 return objDataToCode(author_book_obj, file_name);
@@ -54,7 +54,7 @@ function objDataToCode(media_values, file_name){
 
     function googleQualityTsvToLocal_a_2(quality_obj_file) {
       var start_date =Date.now();
-      return read_tsv_url(media_constants.QUALITY_GOOGLE_DATA)
+      return read_tsv_url(graph_constants.QUALITY_GOOGLE_DATA)
             .then(quality_obj=> {
                 var file_name = fromAppRoot(quality_obj_file);
                 return objDataToCode(quality_obj, file_name);

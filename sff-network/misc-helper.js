@@ -1,5 +1,8 @@
 var request = require('request');
+var graph_constants = rootAppRequire('sff-network/graph-constants');
 
+
+const {URL_SEPARATOR}=graph_constants;
 
 function theLastNameFirst(full_name, split_char) {
     var name_trimmed = full_name.trim();
@@ -25,8 +28,8 @@ function theLastNameFirst(full_name, split_char) {
 }
 //   "book author":"H. Nearing, Jr."
 
-function spacesToUnderscore(author_title) {
-    var underscore_author_title = author_title.replace(/ /g, '_');
+function spacesToUrlSeparator(author_title) {
+    var underscore_author_title = author_title.replace(/ /g, URL_SEPARATOR);
     return underscore_author_title;
 }
 
@@ -38,7 +41,7 @@ function stripToLower(csv_string) {
 
 function alphaUnderscore(book_or_author) {
     var lower_striped = stripToLower(book_or_author);
-    var lower_underscored = spacesToUnderscore(lower_striped);
+    var lower_underscored = spacesToUrlSeparator(lower_striped);
     return lower_underscored;
 }
 
@@ -137,7 +140,7 @@ module.exports = {
     waitSeconds,
 
     theLastNameFirst,
-    spacesToUnderscore,
+    spacesToUrlSeparator,
     stripToLower,
     alphaUnderscore,
     getRedirects,

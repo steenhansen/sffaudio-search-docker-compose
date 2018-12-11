@@ -2,21 +2,6 @@ require('../../../sff-network/global-require')
 var fs = require('fs');
 var uniqid = require('uniqid');
 
-var memjs = require('memjs');
-
-// var mc = memjs.Client.create(process.env.MEMCACHIER_SERVERS, {
-//     failover: true,  // default: false
-//     timeout: 1,      // default: 0.5 (seconds)
-//     keepAlive: true  // default: false
-// })
-
-// var mc = memjs.Client.create(process.env.MEMCACHEDCLOUD_SERVERS, {
-//     failover: true,  // default: false
-//     timeout: 1,      // default: 0.5 (seconds)
-//     keepAlive: true  // default: false
-// })
-
-var mcccs = rootAppRequire('sff-network/build-nodes/cached-lists/mem-cache')('sff_mem_cache');
 
 class CachedBase {
 
@@ -25,13 +10,6 @@ class CachedBase {
     }
 
 
-    static mcSet(the_cache) {
-      return  mcccs.mcSet(the_cache);
-    }
-
-    static mcGet(cache_file) {
-        return mcccs.mcGet(cache_file);
-    }
 
 
 
@@ -61,15 +39,6 @@ class CachedBase {
 
   
 
-    // deleteCache() {
-    //     // try {
-    //     //     var js_file_name = this.cache_file + '.js';
-    //     //     console.log('deleteCache js_file_name', js_file_name);
-    //     //     fs.unlinkSync(js_file_name);
-    //     // } catch (e) {
-    //     //     console.log('deleteCache e', e);
-    //     // }
-    // }
 
 }
 

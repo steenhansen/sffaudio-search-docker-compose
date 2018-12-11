@@ -1,6 +1,8 @@
 
 module.exports =  function (graph_background, graph_container_id) {
 
+var canvas_height = '400px;';
+
 var load_css_external = `
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
@@ -20,11 +22,17 @@ var load_css_external = `
             height: 800px;
         }
      
+     #stable-redraw-height{
+     width: 0%;
+     height:${canvas_height};
+     float: left;
+     }
+     
      #my--graph{
         display: flex;
         float: left;
-        width:570px;
-        height:600px;
+        width:100%;
+        height:${canvas_height};
         
      }
      

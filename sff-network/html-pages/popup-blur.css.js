@@ -1,5 +1,5 @@
 //MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
- var media_constants = rootAppRequire('sff-network/media-constants');
+ var graph_constants = rootAppRequire('sff-network/graph-constants');
  var svg_icons = rootAppRequire('./sff-network/html-pages/svg-icons');
 
 var popup_blur_js = `
@@ -55,10 +55,8 @@ sff_vars.blur_procs = (function (pop_up_id) {
         
         sff_vars.helpers.setDisplay('download--rsd--mp3', 'none');
         sff_vars.helpers.setDisplay('download--podcast--mp3', 'none');
-        
-        
         document.getElementById('video--player').src = '';
-              document.getElementById("my--graph").style.display="block"; 
+        document.getElementById("my--graph").style.display="block"; 
     }
 
     my.postPdfWidth = function (post_pdf_container) {
@@ -101,16 +99,16 @@ sff_vars.blur_procs = (function (pop_up_id) {
 //popup-blur.css.js end 
 `;
 
-let first_page = svg_icons.first_icon(media_constants.PDF_COLOR);
-let last_page = svg_icons.last_icon(media_constants.PDF_COLOR);
+let first_page = svg_icons.first_icon(graph_constants.PDF_COLOR);
+let last_page = svg_icons.last_icon(graph_constants.PDF_COLOR);
 
 
-let download_pdf = svg_icons.download_pdf_icon(media_constants.PDF_COLOR);
-let download_rsd_mp3 = svg_icons.download_mp3_icon(media_constants.RSD_COLOR);
-let download_podcast_mp3 = svg_icons.download_mp3_icon(media_constants.PODCAST_COLOR);
+let download_pdf = svg_icons.download_pdf_icon(graph_constants.PDF_COLOR);
+let download_rsd_mp3 = svg_icons.download_mp3_icon(graph_constants.RSD_COLOR);
+let download_podcast_mp3 = svg_icons.download_mp3_icon(graph_constants.PODCAST_COLOR);
 
-let next_page = svg_icons.next_icon(media_constants.PDF_COLOR);
-let prev_page = svg_icons.prev_icon(media_constants.PDF_COLOR);
+let next_page = svg_icons.next_icon(graph_constants.PDF_COLOR);
+let prev_page = svg_icons.prev_icon(graph_constants.PDF_COLOR);
 
 
 
@@ -231,6 +229,7 @@ text-align:left;
  position:absolute; 
 top:38px;
 left:8px;
+  display:none; 
 }
 
 #download--podcast--mp3{
@@ -238,6 +237,7 @@ left:8px;
  position:absolute; 
 top:38px;
 left:8px;
+  display:none; 
 }
 
 

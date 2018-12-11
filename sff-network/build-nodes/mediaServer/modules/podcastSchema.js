@@ -4,7 +4,7 @@
 // move up to models !!!
 
 
-var media_constants = rootAppRequire('sff-network/media-constants')
+var media_constants = rootAppRequire('sff-network/graph-constants')
 var objectAssign = require('object-assign')
 
 

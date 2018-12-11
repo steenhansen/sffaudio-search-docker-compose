@@ -28,7 +28,6 @@
     "fs-readfile-promise": "^3.0.1",
     "fs-writefile-promise": "^3.0.0",
     "glob-fs": "^0.1.7",
-    "memjs": "^1.2.0",
     "mocha-teamcity-reporter": "2.4.0",
     "moment-timezone": "0.5.21",
     "mongoose": "5.2.4",

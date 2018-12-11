@@ -1,6 +1,6 @@
 
 MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show');
- var media_constants = rootAppRequire('sff-network/media-constants');
+ var graph_constants = rootAppRequire('sff-network/graph-constants');
 
 // build_widget
 function widgetVars(graph_id, nodes_object, edges_object, graph_object) {
@@ -21,11 +21,11 @@ var icons_string = MediaShow.authorIconColors();
     var edges_string = JSON.stringify(edges_object, null, ' ');
     var graph_string = JSON.stringify(graph_object, null, ' ');
 
-    var edge_options_json= media_constants.EDGE_OPTIONS;
+    var edge_options_json= graph_constants.EDGE_OPTIONS;
     
 var edge_options = JSON.stringify(edge_options_json);
 
-var post_proxy_absolute = media_constants.ROUTE_POST_PROXY + "?absolute_url=";
+var post_proxy_absolute = graph_constants.ROUTE_POST_PROXY + "?absolute_url=";
 
     var media_html = `
 <script>
@@ -50,136 +50,9 @@ sff_vars.post_vars={
         post_proxy:"${post_proxy_absolute}"
 }    
 
-          
-
-sff_vars.help_nodes= {
-"_HELP_" : [
-            {"id": 900,
-                "group":"I_HELP", 
-                "font": {"size": 32,
-                    "color": "red" },
-                "label":"Click for Help" },
-            
-             {"id": 901,
-                "group":"L_AUTHOR", 
-                  "node_type":"HELP_AUTHOR",
-                "font": {"size": 16,
-                    "color": "red" }},
-            
-            
-                   {"id": 902,
-                "group":"L_BOOK", 
-                   "node_type":"HELP_BOOK",
-                "font": {"size": 16,
-                    "color": "red" }},
-            
-                          {"id": 903,
-                "group":"L_PDF", 
-                    "node_type":"HELP_PDF",
-                "font": {"size": 16,
-                    "color": "red" }},
-                
-                  {"id": 904,
-                "group":"L_AUTHOR_POST", 
-                    "node_type":"HELP_AUTHOR_POST",
-                "font": {"size": 16,
-                    "color": "red" }},
-                
-                  {"id": 905,
-                "group":"L_RSD", 
-                "node_type":"HELP_RSD",
-                "font": {"size": 16,
-                    "color": "red" }},
-                
-                  {"id": 906,
-                "group":"L_PODCAST", 
-                  "node_type":"HELP_PODCAST",
-                "font": {"size": 16,
-                    "color": "red" }},
-                
-                                
-                  {"id": 907,
-                "group":"L_BOOK_WIKI", 
-                   "node_type":"HELP_BOOK_WIKI",
-                "font": {"size": 16,
-                    "color": "red" }},
-                
-                     {"id": 908,
-                "group":"I_GROW", 
-                 "node_type":"HELP_GROW",
-                "font": {"size": 16,
-                    "color": "red" }},         
-
-                
-                  {"id": 909,
-                "group":"I_FILTER", 
-                "node_type":"HELP_FILTER",
-                "font": {"size": 16,
-                    "color": "red" }},
-
-    
-
-                  {"id": 910,
-                "group":"I_SHRINK",
-                   "node_type":"HELP_SHRINK" ,
-                "font": {"size": 16,
-                    "color": "red" }},
-                
-            ],
-            
-            
-"HELP_SHRINK":[ {"id": 910,
-                "group":"I_SHRINK",
-                   "node_type":"HELP_SHRINK" ,
-                "font": {"size": 16, "color": "red" },
-                     "label":"Shrink graph, same as\\nusing the mouse scroll wheel",
-                    
-                    
-                    },]    ,
-                    
-    "HELP_FILTER":[ {"id": 909,
-                "group":"I_FILTER",
-                   "node_type":"HELP_FILTER" ,
-                "font": {"size": 16, "color": "red" },
-                     "label":"Filter authors & books."     + "\\n" +
-                            "Entering 'moore' will result"  + "\\n" +
-                            "authors named 'moore' and"    + "\\n" +
-                            "stories written by someone"  + "\\n" +
-                            "named 'moore' being shown."
-                    
-                    
-                    },]                    
-                            
-            
-            };
-
-
-
-sff_vars.help_edges= [
-              {"from": 900,"to": 901 },
-              {"from": 900,"to": 902 },
-              {"from": 900,"to": 903 },
-              {"from": 900,"to": 904 },
-              {"from": 900,"to": 905 },
-              {"from": 900,"to": 906 },
-              {"from": 900,"to": 907 },
-              {"from": 900,"to": 908 },
-              {"from": 900,"to": 909 },
-              {"from": 900,"to": 910 },
-              ];
-
-
-
 </script> `;
     return media_html;
 }
-
-
-
-
-
-
-
 
 
 
@@ -307,8 +180,14 @@ function widgetHtml(graph_div_id, author_links, book_links) {
             </div>
         </div>
 
+
+
+<div >
+<div id='stable-redraw-height'></div>
          <div id="${graph_div_id}">
          </div>
+</div>
+
 
     <div style='clear:both'> 
         <button id='clear--filter' onClick="
@@ -328,9 +207,9 @@ function widgetHtml(graph_div_id, author_links, book_links) {
                      <button id='shrink--filter' onClick=" sff_vars.graph_procs.graphSize('-'); ">-</button>   
                      <button id='grow--filter' onClick=" sff_vars.graph_procs.graphSize('+'); ">+</button>   
                     
-            <button id='help--filter' onClick=" sff_vars.graph_procs.loadAuthorNew('_HELP_'); ">Help</button>        
+            <button id='help--filter' onClick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL'); ">Help</button>        
      </div>
-
+<div style="display:inline-block"> Stories with online content</div>
          
          <div id="all--filter--books" style="height:600px; ">
          <div id='filter--books' style='display:none'>
@@ -343,6 +222,9 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     
      
 </div>
+<script>
+    document.getElementById('filter--text').value = '';
+</script>
  `;
     return media_html;
 }

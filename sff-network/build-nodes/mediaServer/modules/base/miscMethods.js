@@ -15,7 +15,6 @@ mongoose.Promise = require('bluebird')
 var fsAsync = Promise.promisifyAll(require("fs"))
 
 var media_constants = require('./MediaConstants')
-var media_constants = rootAppRequire('sff-network/media-constants')
 
 var miscMethods = {
 

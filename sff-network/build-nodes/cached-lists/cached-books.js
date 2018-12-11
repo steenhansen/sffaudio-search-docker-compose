@@ -5,10 +5,12 @@ require('../../../sff-network/global-require')
 
 var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
 
-var media_constants = rootAppRequire('sff-network/media-constants');
-var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 var fs = require('fs');
+
+const {URL_SEPARATOR}=graph_constants;
 
 class CachedBooks extends CachedBase {
 
@@ -83,7 +85,7 @@ function sff_leave(id){
     mediaLink(book_name) {
         var [under_title, book_title, sorted_label, strip_author]= book_name;
         var shrunkArticles = this.shrinkAAnThe(book_title, sorted_label);
-        var author_colons_title = strip_author + '::' + under_title + '_';
+        var author_colons_title = strip_author + '::' + under_title + URL_SEPARATOR;
         var book_html = `
              <div   class="book__choice"  
                     id="${author_colons_title}" 
@@ -96,15 +98,11 @@ function sff_leave(id){
     }
 
     getCache() {
-        return CachedBase.mcGet(this.cache_file)
-            .catch(function (e) {
                 return VersionRepository.getBooks()
                     .then((books_html_db)=> {
-                     clog('???????????????????')
                         var books_cache = books_html_db.records[0]._fields[0];
                         return books_cache;
                     })
-            })
     }
 
 

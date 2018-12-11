@@ -6,7 +6,7 @@
 // maybe move to media-types????
 
 var media_sizes = rootAppRequire('./sff-network/show-nodes/media-nodes/media-sizes')
-var media_constants = rootAppRequire('sff-network/media-constants');
+var graph_constants = rootAppRequire('sff-network/graph-constants');
 
 var svg_icons = rootAppRequire('./sff-network/html-pages/svg-icons');
 var media_sizes = rootAppRequire('./sff-network/show-nodes/media-nodes/media-sizes')
@@ -73,10 +73,10 @@ class MediaShow {
 
     static authorIconColors() {
  //
- // let download_rsd_mp3 = svg_icons.download_mp3_icon(media_constants.RSD_COLOR);
- // let download_podcast_mp3 = svg_icons.download_mp3_icon(media_constants.PODCAST_COLOR);
+ // let download_rsd_mp3 = svg_icons.download_mp3_icon(graph_constants.RSD_COLOR);
+ // let download_podcast_mp3 = svg_icons.download_mp3_icon(graph_constants.PODCAST_COLOR);
  //    
- // let download_pdf_icon = svg_icons.download_pdf_icon(media_constants.PDF_COLOR);
+ // let download_pdf_icon = svg_icons.download_pdf_icon(graph_constants.PDF_COLOR);
 
         //let empty_set = svg_icons.no_such_author('pink');
       //  let no_such_author = svg_icons.no_such_author('pink');
@@ -84,10 +84,10 @@ class MediaShow {
       //  let no_such_book = svg_icons.no_such_book('#FFF933');
 let nothing_icon = svg_icons.nothing_icon();
 
-        let close_pdf = svg_icons.close_icon(media_constants.PDF_COLOR);
-        let close_rsd = svg_icons.close_icon(media_constants.RSD_COLOR);
-        let close_podcast = svg_icons.close_icon(media_constants.PODCAST_COLOR);
-        let close_post = svg_icons.close_icon(media_constants.POST_COLOR);
+        let close_pdf = svg_icons.close_icon(graph_constants.PDF_COLOR);
+        let close_rsd = svg_icons.close_icon(graph_constants.RSD_COLOR);
+        let close_podcast = svg_icons.close_icon(graph_constants.PODCAST_COLOR);
+        let close_post = svg_icons.close_icon(graph_constants.POST_COLOR);
 
 
         let icon_all_podcasts = svg_icons.allPodcasts(ICON_COLORS.L_AUTHOR_WIKI);
@@ -107,7 +107,7 @@ let nothing_icon = svg_icons.nothing_icon();
         let icon_pdf = svg_icons.pdf_icon(ICON_COLORS.L_PDF);
         let icon_podcast = svg_icons.podcast_icon(ICON_COLORS.L_PODCAST);
 
-        let icon_rsd_video = svg_icons.rsd_video(media_constants.RSD_COLOR);  
+        let icon_rsd_video = svg_icons.rsd_video(graph_constants.RSD_COLOR);  
   
   let icon_rsd_solid = svg_icons.rsd_icon('#fffeff');  
   
@@ -116,6 +116,9 @@ let nothing_icon = svg_icons.nothing_icon();
     
      let icon_grow = svg_icons.filter_grow('#123456'); 
      let icon_shrink = svg_icons.filter_shrink('#123456'); 
+     
+     
+         let icon_arrow = svg_icons.arrow_icon('#123456'); 
 
         const icons_string = `{ 
 
@@ -125,6 +128,10 @@ I_NOTHING: ${nothing_icon},
     I_FILTER: ${icon_filter},
     I_GROW: ${icon_grow},
     I_SHRINK: ${icon_shrink},
+    
+    
+       I_ARROW: ${icon_arrow},
+    
     
        I_CLOSE_PDF: ${ close_pdf},
        I_CLOSE_RSD: ${ close_rsd},

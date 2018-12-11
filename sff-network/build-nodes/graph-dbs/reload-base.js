@@ -1,5 +1,5 @@
-var media_constants = rootAppRequire('sff-network/media-constants');
-var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
 var BuildRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/build-repository');
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 var author_book_caches = rootAppRequire(`sff-network/build-nodes/graph-dbs/author-book-caches`);
@@ -37,22 +37,11 @@ class reloadBase {
 
                     }
 
-
-                    dbIsCreated
+                   return dbIsCreated
                         .then(()=> read_csv_google.startMakeIndexes_a_0(build_repository))
                         .then(()=>this.readSheets())
                         .then(relative_obj_dir=> {
-                            //   ad-url-db { Error: Cannot find module '/app//app/sff-network/build-nodes/test-obj-data/real-google-data/rsd-obj.js'
-                            //   console.log('fromAppRoot(/)', fromAppRoot('/'))        //           /app/
-                            //  console.log('relative_obj_dir', relative_obj_dir)         //  /app/sff-network/build-nodes/test-obj-data/real-google-data/
                             absolute_data_dir = fromAppRoot('/') + relative_obj_dir;        //  /app//app/sff-network/build-nodes/test-obj-data/real-google-data/
-                            //   absolute_data_dir =  relative_obj_dir;       
-                            // console.log('absolute_data_dir', absolute_data_dir)
-
-                            // if on heroku, then    absolute_data_dir =  relative_obj_dir; 
-                            // if on local, then  absolute_data_dir = fromAppRoot('/') + relative_obj_dir;  
-
-
                             graphs_edges = rootAppRequire('sff-network/build-nodes/graphs-edges')(absolute_data_dir);
                         })
                         .then(()=>graphs_edges.buildAllAuthors_b_2(build_repository))
@@ -100,7 +89,7 @@ class reloadBase {
 
                         .then(()=> author_book_caches.makeNewCaches_d_0(next_db_version, absolute_data_dir))
                         .then(()=> author_book_caches.makeNewCaches_d_1(next_db_version))
-                        .then(()=> author_book_caches.makeNewCaches_d_1_1_1())
+                       // .then(()=> author_book_caches.makeNewCaches_d_1_1_1())
                         .then(()=> graphs_edges.nextDbVersion_d_2(VersionRepository, next_db_version))    // UPDATE DONE
                         .catch(function (e) {
                             console.log('reload-url-db', e);
@@ -122,12 +111,14 @@ class reloadBase {
                         
                         
                         .then(()=> VersionRepository.deleteUnused_d_4(next_db_version))
+                        
                         .catch(function (e) {
                             console.log('reload-url-db', e);
                         })
                         .finally(()=> {
                             console.log('    reload-db done');
-                            process.exit();
+                            return;
+                            //process.exit();
                         })
 
 

@@ -11,7 +11,7 @@ sff_vars.rsd_procs = (function (rsd_close_svg) {
     };
 
     my.downloadMp3 = function (){
-       window.location = this.rsd_mp3;
+        window.location = this.rsd_mp3;
     }
 
     my.videoEmbed = function (video_link) {
@@ -31,20 +31,20 @@ sff_vars.rsd_procs = (function (rsd_close_svg) {
         return '';
     }
 
-    my.loadRsd = function (goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, strip_author, req_query_view) {
-    document.getElementById("my--graph").style.display="none"; 
+    my.loadRsd = function (goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, req_query_view) {
+        document.getElementById("my--graph").style.display="none"; 
         if (req_query_view) {
-            sff_vars.history_state.pushBookView(strip_author, under_title, req_query_view);
+            sff_vars.history_state.pushBookView(last_first_underscores, under_title, req_query_view);
         } else {
-            sff_vars.history_state.pushBook(strip_author, under_title);
+            sff_vars.history_state.pushBook(last_first_underscores, under_title);
         }
         sff_vars.helpers.setDisplay('media--title', 'block');
         if (video_link !== '') {
             var video_embed = my.videoEmbed(video_link);
-            my.loadVideo(video_embed, label, rsd_description, under_title, strip_author);
+            my.loadVideo(video_embed, label, rsd_description, under_title, last_first_underscores);
         } else {
             sff_vars.helpers.setDisplay("video--container", 'none');
-            sff_vars.pdf_procs.loadPdfForRsd(rsd_pdf_link, label, rsd_description, strip_author, under_title);
+            sff_vars.pdf_procs.loadPdfForRsd(rsd_pdf_link, label, rsd_description, last_first_underscores, under_title);
         }
         this.rsd_mp3=goto_url;
         document.getElementById('close--icon').src = rsd_close_svg;
@@ -54,7 +54,7 @@ sff_vars.rsd_procs = (function (rsd_close_svg) {
             sff_vars.helpers.setDisplay('download--rsd--mp3', 'block');
     }
 
-    my.loadVideo = function (video_embed, book_title, label, under_title, strip_author) {
+    my.loadVideo = function (video_embed, book_title, label, under_title, last_first_underscores) {  // not used
      
         sff_vars.helpers.setDisplay("media--title", 'block');
         document.getElementById('close--icon').src = rsd_close_svg;

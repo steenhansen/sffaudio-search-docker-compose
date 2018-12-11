@@ -1,4 +1,6 @@
 
+let {BOOK_PAGE_TYPE} = rootAppRequire('sff-network/graph-constants');
+
 var load_css_external = `
 // browser-graph
 sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_info, edge_options) {
@@ -51,7 +53,7 @@ if (movement_dir==='+'){
 
     my.startGraph = function (graph_id, nodes_string, edges_string, graph_physics) {
         my.loadGraph(graph_id, nodes_string, edges_string, graph_info.graph_physics);
-        if (graph_info.graph_type == 'book_page') {
+        if (graph_info.graph_type == '${BOOK_PAGE_TYPE}') {
             sff_vars.filter_names.selectMedia(graph_info.under_title, 'yes_scroll')
         } else {
             sff_vars.filter_names.selectMedia(graph_info.strip_author, 'yes_scroll')
@@ -61,41 +63,40 @@ if (movement_dir==='+'){
     my.addClickOnEvent = function () {
         var self = this;
         my.network_graph.on("click", function (params) {
-            var node_id = params.nodes[0]
-            var the_node = self.my_nodes.get(node_id)
-            var node_type = the_node.node_type;
-            var goto_url = the_node.goto_url;
-            var rsd_description = the_node.rsd_description;
-            var label = the_node.label;
-            var rsd_pdf_link = the_node.rsd_pdf_link;
-            var video_link = the_node.video_link;
-            var under_title = the_node.under_title;
-            var strip_author = the_node.strip_author;
-            var book_title = the_node.book_title;
-            var last_first_underscores = the_node.last_first_underscores;
-            var podcast_url = the_node.podcast_url;
-            var pdf_country = the_node.pdf_country;   // Canada
-
-
-if (node_type.indexOf('HELP_'>=0)) {
-                sff_vars.graph_procs.loadAuthorNew(the_node.node_type)
-               console.log('the clicked help,', the_node.node_type);
-            } else if (node_type == 'L_BOOK') {
-                my.loadBookNew(last_first_underscores, under_title)
-            } else if (node_type == 'L_AUTHOR') {
-                my.loadAuthorNew(strip_author)
-            } else if (node_type == 'L_PDF') {
-                sff_vars.pdf_procs.loadPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf');
-            } else if (node_type == 'L_PODCAST') {
-                sff_vars.podcast_procs.loadPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast');
-            } else if (node_type == 'L_RSD') {
-                sff_vars.rsd_procs.loadRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, strip_author, 'rsd');
-            } else if (node_type == 'L_AUTHOR_POST') {  
-                sff_vars.post_procs.loadPost(goto_url, strip_author, 'post');
-            } else if (node_type == 'L_BOOK_POST') {
-                sff_vars.book_post_procs.loadBookPost(goto_url, strip_author, under_title, 'post');
-            } else if (typeof goto_url !== 'undefined') {
-                window.location = goto_url;
+            if (params.nodes.length>0){
+                    var node_id = params.nodes[0]
+                    var the_node = self.my_nodes.get(node_id)
+                    var node_type = the_node.node_type;
+                    var goto_url = the_node.goto_url;
+                    var rsd_description = the_node.rsd_description;
+                    var label = the_node.label;
+                    var rsd_pdf_link = the_node.rsd_pdf_link;
+                    var video_link = the_node.video_link;
+                    var under_title = the_node.under_title;
+                    var strip_author = the_node.strip_author;
+                    var book_title = the_node.book_title;
+                    var last_first_underscores = the_node.last_first_underscores;
+                    var podcast_url = the_node.podcast_url;
+                    var pdf_country = the_node.pdf_country;   // Canada
+                    if (node_type.indexOf('HELP_')>=0) {
+                        sff_vars.graph_procs.loadAuthorNew(the_node.node_type)
+                    } else if (node_type == 'L_BOOK') {
+                        my.loadBookNew(last_first_underscores, under_title)
+                    } else if (node_type == 'L_AUTHOR') {
+                        my.loadAuthorNew(strip_author)
+                    } else if (node_type == 'L_PDF') {
+                        sff_vars.pdf_procs.loadPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf');
+                    } else if (node_type == 'L_PODCAST') {
+                        sff_vars.podcast_procs.loadPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast');
+                    } else if (node_type == 'L_RSD') {
+                        sff_vars.rsd_procs.loadRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd');
+                    } else if (node_type == 'L_AUTHOR_POST') {  
+                        sff_vars.post_procs.loadPost(goto_url, strip_author, 'post');
+                    } else if (node_type == 'L_BOOK_POST') {
+                        sff_vars.book_post_procs.loadBookPost(goto_url, strip_author, under_title, 'post');
+                    } else if (typeof goto_url !== 'undefined') {
+                        window.location = goto_url;
+                    }
             }
         });
     }
@@ -114,13 +115,9 @@ if (node_type.indexOf('HELP_'>=0)) {
                     var fetch_nodes = JSON.parse(myJson.nodes_string)
                     var fetch_edges = JSON.parse(myJson.edges_string);
                     var fetch_options = JSON.parse(myJson.graph_string);
-                    console.log('addLoadNewGraph - fetch_options', fetch_options);
-                    
-                    if (fetch_options.strip_author.indexOf('HELP_'>=0)) {       // q*bert
-                    
-                    // if(fetch_options.strip_author==='_help_'){
+                    if (fetch_options.strip_author.indexOf('HELP_')>=0) {     
                         fetch_nodes =  sff_vars.help_nodes[fetch_options.strip_author]; 
-                        fetch_edges= sff_vars.help_edges ;  
+                        fetch_edges= sff_vars.HELP_ALL_EDGES ;  
                     }                    
                     sff_vars.graph_procs.loadGraph(graph_id, fetch_nodes, fetch_edges, fetch_options.graph_physics);
                 });

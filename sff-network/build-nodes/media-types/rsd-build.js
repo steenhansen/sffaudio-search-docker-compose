@@ -1,6 +1,6 @@
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
-var media_constants = rootAppRequire('sff-network/media-constants')
+var graph_constants = rootAppRequire('sff-network/graph-constants')
 
 MultipleMonikers = rootAppRequire('sff-network/multiple-monikers');
 
@@ -39,7 +39,6 @@ module.exports = function (build_repository) {
 
                 rsd_books[title_with_authors] = {esc_book_title, under_title, last_first_underscores};
 
-                //console.log('laksdjlskdjflsdkfj', last_first_underscores)
                   var underScoreToNormal = multiple_monikers.underScoreToNormal();
                 for (var strip_author in underScoreToNormal) {
                     var normal_author = underScoreToNormal[strip_author];
@@ -47,7 +46,7 @@ module.exports = function (build_repository) {
                 }
 
 
-                var rsd_link = media_constants.MEDIA_LINK_DIR + rsd_object['file name']
+                var rsd_link = graph_constants.MEDIA_LINK_DIR + rsd_object['file name']
                 var video_link = rsd_object['video link'];
 
 

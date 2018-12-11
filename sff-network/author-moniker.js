@@ -1,10 +1,12 @@
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+const {URL_SEPARATOR, BOOK_AUTHOR_DELIMITER}=graph_constants;
 
-    const SPACE_REPLACEMENT = '^'
-    const FRENCH_LAST_NAMES = {
-        ' de ': ' de' + SPACE_REPLACEMENT,
-        ' le ': ' le' + SPACE_REPLACEMENT,
-        ' van ' : ' Van'+ SPACE_REPLACEMENT
-    };
+
+const FRENCH_LAST_NAMES = {
+    ' de ': ' de' + BOOK_AUTHOR_DELIMITER,
+    ' le ': ' le' + BOOK_AUTHOR_DELIMITER,
+    ' van ': ' Van' + BOOK_AUTHOR_DELIMITER
+};
 
 
 class AuthorMoniker {
@@ -30,24 +32,23 @@ class AuthorMoniker {
         this.middle_md = '';
         this.last_name = '';
 
-this.replaceFrenchLastNames();
+        this.replaceFrenchLastNames();
 
         this.findThe();
         this.findJunior();
         this.findMd();
         this.firstMiddleLast();
 
-this.fixFrenchLastNames();
+        this.fixFrenchLastNames();
         this.makeMiddle();
         this.spaces_middle = this.middle_names.join(' ');
-        this.underscore_middle = this.middle_names.join('_');
+        this.underscore_middle = this.middle_names.join(URL_SEPARATOR);
     }
 
 
     fixFrenchLastNames() {
-        this.last_name = this.last_name.replace(SPACE_REPLACEMENT, ' ');
+        this.last_name = this.last_name.replace(BOOK_AUTHOR_DELIMITER, ' ');
     }
-
 
 
     replaceFrenchLastNames() {
@@ -61,7 +62,6 @@ this.fixFrenchLastNames();
         }
 
     }
-
 
 
     makeMiddle() {
@@ -104,14 +104,16 @@ this.fixFrenchLastNames();
             if (this.first_name == '') {
                 var fml_underscore = this.last_name;
             } else {
-                var fml_underscore = this.first_name + '_' + this.last_name;
+                var fml_underscore = this.first_name + URL_SEPARATOR + this.last_name;
             }
         } else {
-            var fml_underscore = this.first_name + '_' + this.underscore_middle + '_' + this.last_name;
+            var fml_underscore = this.first_name + URL_SEPARATOR + this.underscore_middle + URL_SEPARATOR + this.last_name;
         }
         fml_underscore = fml_underscore.toLowerCase();
-        fml_underscore = fml_underscore.replace(/[^0-9a-z _]/gi, '');
-        return fml_underscore;
+        var reg_exp_str = '[^0-9 a-z' + '\\\\' + URL_SEPARATOR + ']';   // - or _
+        var re = new RegExp(reg_exp_str, 'gi');
+        var fml_separatored = fml_underscore.replace(re, '');
+        return fml_separatored;
     }
 
 
@@ -145,15 +147,15 @@ this.fixFrenchLastNames();
     }
 
 
-    findJunior() {  
+    findJunior() {
         if (this.full_name.indexOf(', Jr.') >= 0) {
             this.middle_junior = 'Jr.'
-                    this.partial_name = this.partial_name.replace(/, Jr\./gi, '');
-           // this.partial_name = this.partial_name.replace(', Jr.', ' ');
+            this.partial_name = this.partial_name.replace(/, Jr\./gi, '');
+            // this.partial_name = this.partial_name.replace(', Jr.', ' ');
         } else if (this.full_name.indexOf(' Jr.') >= 0) {
             this.middle_junior = 'Jr.'
-              this.partial_name = this.partial_name.replace(/ Jr\./gi, '');
-          //  this.partial_name = this.partial_name.replace(' Jr.', ' ');
+            this.partial_name = this.partial_name.replace(/ Jr\./gi, '');
+            //  this.partial_name = this.partial_name.replace(' Jr.', ' ');
         }
     }
 
@@ -165,8 +167,8 @@ this.fixFrenchLastNames();
 //            this.partial_name = this.partial_name.replace(', M.D.', ' ');
         } else if (this.full_name.indexOf(' M.D.') >= 0) {
             this.middle_md = 'M.D.'
-              this.partial_name = this.partial_name.replace(/ M\.D\./gi, '');
-           // this.partial_name = this.partial_name.replace(' M.D.', ' ');
+            this.partial_name = this.partial_name.replace(/ M\.D\./gi, '');
+            // this.partial_name = this.partial_name.replace(' M.D.', ' ');
         }
     }
 

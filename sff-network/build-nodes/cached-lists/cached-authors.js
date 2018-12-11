@@ -3,8 +3,8 @@ require('../../../sff-network/global-require')
 var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
 AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 
-var media_constants = rootAppRequire('sff-network/media-constants');
-var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 
 
@@ -68,15 +68,11 @@ window.sff__h = sff_vars.helpers.setHidden;
     }
 
     getCache() {
-        return CachedBase.mcGet(this.cache_file)
-            .catch(function (e) {
                 return VersionRepository.getAuthors()
                     .then((authors_html_db)=> {
-                     clog('---------------------------')
                         var authors_cache = authors_html_db.records[0]._fields[0];
                         return authors_cache;
                     })
-            })
     }
 
 

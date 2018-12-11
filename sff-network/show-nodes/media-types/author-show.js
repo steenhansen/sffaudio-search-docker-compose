@@ -1,7 +1,7 @@
 MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
-var media_constants = rootAppRequire('sff-network/media-constants');
+const {AUTHOR_PAGE_TYPE} = rootAppRequire('sff-network/graph-constants');
 var misc_helper = rootAppRequire('sff-network/misc-helper');
 module.exports = function (data_repository) {
 
@@ -22,7 +22,7 @@ module.exports = function (data_repository) {
                     var book_edges = parse_neo.edgesAuthorBook(number_columns, 'L_BOOK');
                     var wiki_author_edges = parse_neo.edgesAuthorWiki(number_columns, 'L_AUTHOR_WIKI');
                     var edges_object = book_edges.concat(post_edges, wiki_author_edges)
-                    var graph_info = {graph_type: 'author_page', strip_author: strip_author, db_version: db_version};
+                    var graph_info = {graph_type: AUTHOR_PAGE_TYPE, strip_author: strip_author, db_version: db_version};
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
                     return nodes_and_edges;
                 })
@@ -35,7 +35,7 @@ module.exports = function (data_repository) {
             } else {
                 var graph_physics = {"barnesHut": {"avoidOverlap": 1}};
             }
-            var graph_info = {strip_author: strip_author, graph_type: 'author_page', graph_physics: graph_physics};
+            var graph_info = {strip_author: strip_author, graph_type: AUTHOR_PAGE_TYPE, graph_physics: graph_physics};
             var author_json = {nodes_object, edges_object, graph_info}
             return author_json;
         }
@@ -47,7 +47,7 @@ module.exports = function (data_repository) {
             } else {
                 var graph_physics = {"barnesHut": {"avoidOverlap": 1}};
             }
-            var graph_info = {strip_author: strip_author, graph_type: 'author_page', graph_physics: graph_physics};
+            var graph_info = {strip_author: strip_author, graph_type: AUTHOR_PAGE_TYPE, graph_physics: graph_physics};
             var nodes_string = JSON.stringify(nodes_object);
             var edges_string = JSON.stringify(edges_object);
             var graph_string = JSON.stringify(graph_info);
@@ -57,20 +57,6 @@ module.exports = function (data_repository) {
         }
 
 
-        // static randomGoodAuthor() {
-        //     var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
-        //     var cached_quality = new CachedQuality();
-        //     var quality_string_or_promise = cached_quality.getCache()
-        //     return Promise.all([quality_string_or_promise])
-        //         .then((my_quality_string)=> {
-        //             var my_quality_authors = JSON.parse(my_quality_string);
-        //             clog(' random list ', my_quality_authors)
-        //             var rand_index = Math.floor((Math.random() * my_quality_authors.length));
-        //             var random_author = my_quality_authors[rand_index];
-        //             var random_name = random_author.authors;
-        //             return random_name;
-        //         })
-        // }
 
         constructor(node_id, db_version, author_name, strip_author) {
             const sorted_label = misc_helper.theLastNameFirst(author_name, ' ');
@@ -81,11 +67,6 @@ module.exports = function (data_repository) {
         }
 
 
-        //
-        // getAuthorNodes(strip_author) {
-        //     return data_repository.getAuthorNodes(strip_author);
-        // }
-        //
 
         setSizesColor(page_type) {
             super.setSizesColor(page_type, 'L_AUTHOR')

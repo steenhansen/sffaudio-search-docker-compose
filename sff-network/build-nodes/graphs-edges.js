@@ -6,9 +6,6 @@ var misc_helper = rootAppRequire('sff-network/misc-helper');
 module.exports = function (obj_dir) {
     var rsd_file = obj_dir + 'rsd-obj.js';
     
-    //   ad-url-db { Error: Cannot find module '/app//app/sff-network/build-nodes/test-obj-data/real-google-data/rsd-obj.js'
-   // console.log('rsd_file===', rsd_file)
-    
     var podcast_file = obj_dir + 'podcast-obj.js';
     var pdf_file = obj_dir + 'pdf-obj.js';
     var post_obj_file = obj_dir + 'posts-obj.js';

@@ -1,31 +1,17 @@
-'use strict'
-
-
-var media_constants = rootAppRequire('sff-network/media-constants');
-var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(media_constants.NEO4J_VERSION);
-
-
-graph_db.checkDbAlive()
-var misc_helper = rootAppRequire('sff-network/misc-helper')
-var data_repository = rootAppRequire('sff-network/show-nodes/graph-dbs/show-repository')(graph_db);
-var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
-
-
-var misc_helper = rootAppRequire('sff-network/misc-helper')
-
-var the_widget = rootAppRequire('sff-network/html-pages/jsloader-css')
 var request = require('request');
 var express = require('express');
 
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
+graph_db.checkDbAlive()
+var data_repository = rootAppRequire('sff-network/show-nodes/graph-dbs/show-repository')(graph_db);
+var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
+var misc_helper = rootAppRequire('sff-network/misc-helper')
 var author_data = rootAppRequire('sff-network/show-nodes/media-types/author-show')(data_repository)
 var book_data = rootAppRequire('sff-network/show-nodes/media-types/book-show')(data_repository)
-
 var media_page = rootAppRequire('./sff-network/html-pages/web-page')
 var ParseNeo = rootAppRequire('sff-network/show-nodes/parse-neo')(data_repository);
-
-const program_constants = rootAppRequire('sff-network/program-constants.js');
-
-//var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
+const program_variables = rootAppRequire('sff-network/program-variables.js');
 
 var app = express();
 app.use(express.static('public', {maxAge: '1y'}))
@@ -37,17 +23,16 @@ app.use(function (req, res, next) {
 });
 
 
-app.get(program_constants.ROUTE_RESOLVE_PDF, function (req, res_express) {
-    const start_pdf_url = req.query[program_constants.SFF_START_PDF_URL];
+app.get(program_variables.ROUTE_RESOLVE_PDF, function (req, res_express) {
+    const start_pdf_url = req.query[program_variables.SFF_START_PDF_URL];
     misc_helper.resolveRedirects(start_pdf_url)
         .then((end_pdf_url)=> {
             var secure_pdf_url = end_pdf_url.replace('http://', 'https://');
-
             res_express.send(secure_pdf_url)
         })
 })
 
-app.get(media_constants.ROUTE_POST_PROXY, function (req, res_express) {
+app.get(graph_constants.ROUTE_POST_PROXY, function (req, res_express) {
     const absolute_url = req.query.absolute_url;
     const optionsStart = {
         uri: absolute_url,
@@ -71,9 +56,8 @@ app.get(media_constants.ROUTE_POST_PROXY, function (req, res_express) {
 
 //  http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=pdf
 //app.get('/author/book/:strip_author/:under_title', function (req, res) {
-app.get(program_constants.ROUTE_BOOK_JSON, function (req, res) {
+app.get(program_variables.ROUTE_BOOK_JSON, function (req, res) {
     let {strip_author, under_title}=req.params
-
     book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo)
         .then(function (nodes_and_edges) {
             let {nodes_object, edges_object} =nodes_and_edges
@@ -88,7 +72,7 @@ app.get(program_constants.ROUTE_BOOK_JSON, function (req, res) {
             var graph_info = {
                 strip_author: strip_author,
                 under_title: under_title,
-                graph_type: 'book_page',
+                graph_type: graph_constants.BOOK_PAGE_TYPE,
                 graph_physics: graph_physics
             };
             var graph_string = JSON.stringify(graph_info);
@@ -97,34 +81,14 @@ app.get(program_constants.ROUTE_BOOK_JSON, function (req, res) {
         })
 })
 
-//   http://localhost:5000/book/philip_k_dick/upon_the_dull_earth
-
-
-//   http://localhost:5000/author/philip_k_dick
-//   http://localhost:5000/author/martin_caidin
-
-
-//   http://localhost:5000/?author=philip_k_dick&view=post
-
-// GET JSON!
 //app.get('/author/:strip_author', function (req, res) {
-app.get(program_constants.ROUTE_AUTHOR_JSON, function (req, res) {
+app.get(program_variables.ROUTE_AUTHOR_JSON, function (req, res) {
     const strip_author = req.params.strip_author
     author_data.sendAuthor(strip_author, ParseNeo, 0)
         .then((nodes_and_edges) => {
             var author_json = author_data.authorJson(strip_author, nodes_and_edges);
             res.json(author_json);
         })
-})
-
-app.get('/widget', function (req, res) {
-    authorOrBook(req).then(function (nodes_and_edges) {
-        let {nodes_object, edges_object, graph_info} =nodes_and_edges
-        the_widget(nodes_object, edges_object, graph_info)
-            .then(
-                (widget_html)=> res.send(widget_html)
-            );
-    })
 })
 
 function authorOrBookData(req) {
@@ -136,7 +100,6 @@ function authorOrBookData(req) {
         var strip_author = req.query.author;
         return author_data.sendAuthor(strip_author, ParseNeo, 0);
     } else {
-
                 clog('SHOULD NEVER HAPPEN 123')
     }
 }
@@ -161,18 +124,11 @@ app.get('/', function (req, res) {
     if (typeof req.query['author'] === 'undefined' && typeof req.query['book'] === 'undefined') {
         noData()
             .then(function (nodes_and_edges_str) {
-            
-            
-         //   console.log('9999999999999999999999', typeof  nodes_and_edges_str, nodes_and_edges_str)
-            // is it empty here?????    for sff_vars.default_authors 
-            
-            
                 var query_view = queryView(req);
                 media_page({}, {}, {}, query_view, nodes_and_edges_str)
                     .then((book_html)=> res.send(book_html));
             })
     } else {
-        clog('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk')
         authorOrBookData(req)
             .then(function (nodes_and_edges) {
                 let {nodes_object, edges_object, graph_info} =nodes_and_edges;
@@ -185,10 +141,8 @@ app.get('/', function (req, res) {
 })
 
 app.get('*', function (req, res) {
-
     res.status(204);
 })
-
 
 app.set('port', process.env.PORT)
 var node_port = app.get('port')

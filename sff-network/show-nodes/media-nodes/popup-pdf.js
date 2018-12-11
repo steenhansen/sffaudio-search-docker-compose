@@ -30,8 +30,9 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         sff_vars.helpers.setDisplay('pdf--loading', 'block');
     }
     
-    my.loadPdfForRsd = function (pdf_url, book_title, label, strip_author, under_title) {
+    my.loadPdfForRsd = function (pdf_url, book_title, label, last_first_underscores, under_title) {  // last_first_underscores not used
        //  document.getElementById("my--graph").style.display="none"; 
+       this.pdf_url = pdf_url;
         my.setupPdf(book_title, label);
             if (sff_php_vars.php_url === 'not a php host') {
                  var url_type3 =  '//' + window.location.host + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
@@ -74,15 +75,15 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     }
 
 // change my name, is a short form of a longer one
-    my.loadPdf = function (pdf_url, book_title, label, strip_author, under_title, req_query_view) {
+    my.loadPdf = function (pdf_url, book_title, label, last_first_underscores, under_title, req_query_view) {
          document.getElementById("my--graph").style.display="none"; 
         this.pdf_url = pdf_url;
         if (req_query_view) {
-            sff_vars.history_state.pushBookView(strip_author, under_title, req_query_view);
+            sff_vars.history_state.pushBookView(last_first_underscores, under_title, req_query_view);
         } else {
-            sff_vars.history_state.pushBook(strip_author, under_title);
+            sff_vars.history_state.pushBook(last_first_underscores, under_title);
         }
-        my.loadPdfForRsd(pdf_url, book_title, label, strip_author, under_title);
+        my.loadPdfForRsd(pdf_url, book_title, label, last_first_underscores, under_title);
     }
 
 
