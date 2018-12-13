@@ -58,12 +58,12 @@ module.exports = function (version_num) {
                 console.log('Stopping on error:', xxx);
                 process.exit();
             })
-            .then((value) => {
-                var number_db_nodes = value.records[0]._fields[0].low
-                console.log('Neo4j database has', number_db_nodes, 'nodes')
-            }, (reason) => {
-                console.log('rejection', value)
-            })
+            // .then((value) => {
+            //     var number_db_nodes = value.records[0]._fields[0].low
+            //     console.log('Neo4j database has', number_db_nodes, 'nodes')
+            // }, (reason) => {
+            //     console.log('rejection', value)
+            // })
 
 
     }

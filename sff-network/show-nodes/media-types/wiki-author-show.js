@@ -1,4 +1,3 @@
-//var Media2Node = rootAppRequire('sff-network/node-types/media-2node')
 MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
 module.exports = function (graph_db) {
 
@@ -9,8 +8,9 @@ module.exports = function (graph_db) {
             super(node_id, db_version, '', strip_author);
             this.goto_url = wiki_url;
             this.node_type = 'L_AUTHOR_WIKI';
-        }
+            this.title = "Click for author's Wikipedia entry";
 
+        }
 
 
         setAuthorWikiPos(x_y_pos) {

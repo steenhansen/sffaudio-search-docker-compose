@@ -10,6 +10,16 @@ module.exports = function (data_repository) {
 
     class AuthorData extends MediaShow {
 
+
+
+        constructor(node_id, db_version, author_name, strip_author) {
+            const sorted_label = misc_helper.theLastNameFirst(author_name, ' ');
+            super(node_id, db_version, author_name, sorted_label);
+            this.strip_author = strip_author;
+            this.node_type = 'L_AUTHOR';
+              this.title = "Click for author's stories & posts";
+        }
+
         static sendAuthor(strip_author, ParseNeo, update_index) {
             return data_repository.getAuthorNodes(strip_author, update_index)
                 .then(function (graph_collection) {
@@ -28,7 +38,7 @@ module.exports = function (data_repository) {
                 })
         }
 
-        static authorJson22(strip_author, nodes_and_edges) {
+        static authorJson(strip_author, nodes_and_edges) {
             let {nodes_object, edges_object} =nodes_and_edges
             if (nodes_object.length > 10) {
                 var graph_physics = false;
@@ -40,31 +50,9 @@ module.exports = function (data_repository) {
             return author_json;
         }
 
-        static authorJson(strip_author, nodes_and_edges) {
-            let {nodes_object, edges_object} =nodes_and_edges
-            if (nodes_object.length > 10) {
-                var graph_physics = false;
-            } else {
-                var graph_physics = {"barnesHut": {"avoidOverlap": 1}};
-            }
-            var graph_info = {strip_author: strip_author, graph_type: AUTHOR_PAGE_TYPE, graph_physics: graph_physics};
-            var nodes_string = JSON.stringify(nodes_object);
-            var edges_string = JSON.stringify(edges_object);
-            var graph_string = JSON.stringify(graph_info);
-            var author_json = {nodes_string, edges_string, graph_string}     // in makeDbCache we want one JSON.stringify, not 3 separates
-            return author_json;
-
-        }
+      
 
 
-
-        constructor(node_id, db_version, author_name, strip_author) {
-            const sorted_label = misc_helper.theLastNameFirst(author_name, ' ');
-            super(node_id, db_version, author_name, sorted_label);
-            this.strip_author = strip_author;
-            this.node_type = 'L_AUTHOR';
-            
-        }
 
 
 

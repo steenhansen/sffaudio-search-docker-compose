@@ -12,6 +12,16 @@ module.exports = function (graph_repository) {
     //  var author_2node = rootAppRequire('./sff-network/node-types/author-2node')(graph_repository)
 
     class PostData extends MediaShow {
+   
+        constructor(node_id, db_version, post_title, sorted_label, post_slug, strip_author) {
+            super(node_id, db_version, post_title, sorted_label);
+            this.post_slug = post_slug;
+            this.strip_author = strip_author;
+            this.goto_url = graph_constants.POST_LINK + post_slug;
+            this.sorted_label = post_slug;
+            this.node_type = 'L_AUTHOR_POST';
+            this.title = "Click for author's SFFaudio post";
+        }
 
 
         static postPositions2(sorted_nodes, vertical_center, number_columns) {
@@ -45,19 +55,6 @@ module.exports = function (graph_repository) {
         }
 
 
-
-
-        constructor(node_id, db_version, post_title, sorted_label, post_slug, strip_author) {
-
-
-            super(node_id, db_version, post_title, sorted_label);
-            this.post_slug = post_slug;
-            this.strip_author = strip_author;
-            this.node_type = 'L_AUTHOR_POST';
-
-            this.goto_url = graph_constants.POST_LINK + post_slug;
- this.sorted_label = post_slug;
-        }
 
 
 

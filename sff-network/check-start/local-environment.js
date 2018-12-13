@@ -4,9 +4,11 @@ var HerokuEnvironment = rootAppRequire('./sff-network/check-start/heroku-environ
 
 class LocalEnvironment extends HerokuEnvironment {
 
-    static setEnvVars(env_filename) {
+    static setEnvVars(env_filename, show_or_hide_information='') {
         var local_db_config = fromAppRoot('/') + env_filename;
-        console.log('Local Environment Filename : ', local_db_config);
+        if (show_or_hide_information !== 'hide--information') {
+            console.log('Local Environment Filename : ', local_db_config);
+        }
         try {
             var config_vars = require(local_db_config);
         } catch (e) {
@@ -17,12 +19,13 @@ class LocalEnvironment extends HerokuEnvironment {
         }
     }
 
-    static processEnvVars(env_filename) {
+    static processEnvVars(env_filename, show_or_hide_information='') {
+ 
         if (!env_filename) {
             throw new Error('Missing local database config file parameter');
         }
-        LocalEnvironment.setEnvVars(env_filename);
-        super.processEnvVars();
+        LocalEnvironment.setEnvVars(env_filename, show_or_hide_information);
+        super.processEnvVars(show_or_hide_information);
     }
 }
 module.exports = LocalEnvironment;

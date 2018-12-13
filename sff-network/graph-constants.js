@@ -25,7 +25,7 @@ var graph_constants = {
     POST_COLOR:"#019CCD",
     WIKI_COLOR: '#FF7F01',
     
-    // sff_vars.graph_vars.edge_options
+    // sff_vars.graph_vars.edge_options         // network_options more better name
     EDGE_OPTIONS: {
     edges: {
         color: {
@@ -35,7 +35,9 @@ var graph_constants = {
         },
        selectionWidth: 1,
         width: 1,
-    }
+    },
+     interaction:{
+    tooltipDelay:1234}
 },
     
     GRAPH_CONTAINER_ID : 'my--graph',

@@ -28,7 +28,7 @@ class CachedDefault extends CachedBase {
             var author_json_promise = author_data.sendAuthor(strip_author, ParseNeo, 1)
                 .then((nodes_and_edges)=> {
                     var current_author = nodes_and_edges.graph_info.strip_author;
-                    var author_json = author_data.authorJson22(current_author, nodes_and_edges);
+                    var author_json = author_data.authorJson(current_author, nodes_and_edges);
                     cached_authors.push(author_json)
                     return;
                 })

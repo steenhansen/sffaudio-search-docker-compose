@@ -10,6 +10,15 @@ module.exports = function (data_repository) {
 
     class BookData extends MediaShow {
 
+        constructor(node_id, db_version, book_title, sorted_label, under_title, last_first_underscores) {
+            super(node_id, db_version, book_title, sorted_label);
+            this.under_title = under_title;
+            this.last_first_underscores = last_first_underscores;
+            this.node_type = 'L_BOOK';
+                 this.title = 'Click for online story media';
+        }
+
+
 // maybe BooksData - plural like symfony class
         static bookPositions2(sorted_nodes, vertical_center, number_columns) {
             var book_count = BookData.arrayObjectCount(sorted_nodes)
@@ -38,12 +47,6 @@ module.exports = function (data_repository) {
 
 
 
-        constructor(node_id, db_version, book_title, sorted_label, under_title, last_first_underscores) {
-            super(node_id, db_version, book_title, sorted_label);
-            this.under_title = under_title;
-            this.last_first_underscores = last_first_underscores;
-            this.node_type = 'L_BOOK';
-        }
 
         static arrayObjectCount(object_array) {
             return super.arrayObjectCount(object_array, 'BookData')

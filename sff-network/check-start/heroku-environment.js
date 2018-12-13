@@ -13,11 +13,13 @@ class HerokuEnvironment {
     }
 
 
-    static processEnvVars() {
+    static processEnvVars(show_or_hide_information='') {
         HerokuEnvironment.checkEnvVars();
-        console.log('Neo4j Bolt Url : ', process.env.GRAPHENEDB_BOLT_URL);
-        console.log('Web Url : ', 'http://localhost:' + process.env.PORT);
-        console.log();
+           if (show_or_hide_information !== 'hide--information') {
+               console.log('Neo4j Bolt Url : ', process.env.GRAPHENEDB_BOLT_URL);
+               console.log('Web Url : ', 'http://localhost:' + process.env.PORT);
+               console.log();
+           }
     }
 
 }

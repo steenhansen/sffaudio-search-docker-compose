@@ -4,7 +4,6 @@
 
 const CONFIG_ENV_KEYS = ['GRAPHENEDB_BOLT_URL', 'GRAPHENEDB_BOLT_USER', 'GRAPHENEDB_BOLT_PASSWORD'];
 
-
 function setHerokuProcessEnvVars(windows_env_filename) {
     if (!windows_env_filename.includes('../')) {
         console.log('Warning a config file inside program folder ' + windows_env_filename);

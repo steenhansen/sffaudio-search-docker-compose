@@ -13,6 +13,7 @@ module.exports = function (graph_db) {
             this.sorted_label = pdf_url;
             this.node_type = 'L_PDF';
             this.pdf_country=pdf_country;
+               this.title = "Click for story's PDF";
         }
 
     }

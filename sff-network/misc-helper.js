@@ -92,12 +92,10 @@ function waitSeconds(second_count, number_authors) {
     if (number_authors < 50) {
         milli_seconds = 0;
     }
-    var wait_promise = new Promise(function (resolve) {
-        setTimeout(resolve, milli_seconds);
-    });
     if (milli_seconds > 0) {
         console.log('    waiting for', second_count, 'seconds.')
     }
+    let wait_promise = Promise.resolve();
     return wait_promise;
 }
 
@@ -108,32 +106,15 @@ function padStartNode(pad_number, pad_template) {
     return padded_number;
 }
 
-
-function consoleTimeEnd(start_date, interval_name) {
-    var end_date = Date.now();
-    var seconds_interval = (end_date - start_date) / 1000;
-    var seconds_round = Math.round(seconds_interval)
-    const padded_number = padStartNode(seconds_round, "000");
-    console.log(padded_number, "secs", interval_name);
+function consoleTimeEnd(start_date, interval_name, show_or_hide_seconds='') {
+    if (show_or_hide_seconds !== 'hide--seconds') {
+        var end_date = Date.now();
+        var seconds_interval = (end_date - start_date) / 1000;
+        var seconds_round = Math.round(seconds_interval)
+        const padded_number = padStartNode(seconds_round, "000");
+        console.log(padded_number, "secs", interval_name);
+    }
 }
-
-// function deleteCachedData() {
-//
-//     const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
-//     const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
-//    // var CachedQuality = rootAppRequire('sff-network/build-nodes/cached-lists/cached-quality');
-//     var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
-//
-//     const cached_authors = new CachedAuthors();
-//     const cached_books = new CachedBooks();
-//   //  const cached_quality = new CachedQuality();
-//     const cached_defaults = new CachedDefaults();
-//     cached_authors.deleteCache();
-//     cached_books.deleteCache();
-//    // cached_quality.deleteCache();
-//     cached_defaults.deleteCache();
-// }
-
 
 module.exports = {
     consoleTimeEnd,
@@ -145,5 +126,4 @@ module.exports = {
     alphaUnderscore,
     getRedirects,
     resolveRedirects
-    //deleteCachedData
 };

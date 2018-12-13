@@ -1,5 +1,20 @@
  const my_media_array = [
  {
+  "episode number": "149",
+  "publish date": "2018-12-12 00:01",
+  "post link": "http://www.sffaudio.com/reading-short-and-deep-149-an-apparition-by-guy-de-maupassant/",
+  "hh:mm:ss": "0:35:13",
+  "file name": "rsd149AnApparition.mp3",
+  "byte size": "34,632,138",
+  "podcast participants": "Eric S. Rabkin and Jesse Willis",
+  "book title": "An Apparition",
+  "book author": "Guy de Maupassant",
+  "genre type": "Story",
+  "pdf link": "http://www.sffaudio.com/podcasts/BewitchedLoveLettersByGuyDeMaupassant.pdf",
+  "video link": "",
+  "podcast description": "An Apparition by Guy de Maupassant"
+ },
+ {
   "episode number": "148",
   "publish date": "2018-12-05 00:01",
   "post link": "http://www.sffaudio.com/reading-short-and-deep-148-casey-at-the-bat-by-ernest-thayer/",

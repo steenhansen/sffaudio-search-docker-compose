@@ -11,70 +11,55 @@ module.exports = function (graph_db) {
     var rsd_build = rootAppRequire('./sff-network/build-nodes/media-types/rsd-build')(graph_db)
     var pdf_build = rootAppRequire('./sff-network/build-nodes/media-types/pdf-build')(graph_db)
 
-    function csvFromFiles(read_csv, podcast_csv, rsd_csv, pdf_csv, build_repository, author_book_obj) {
-        return read_csv.getFromCsvFile(podcast_csv, rsd_csv, pdf_csv)
-            .then(function (media_items) {
-                return makeEdgesNodes(media_items, build_repository);  // figure NOT MAKE
-            });
+
+
+
+    function objDataToCode(media_values, file_name) {
+        var media_json = JSON.stringify(media_values, null, 1);
+        var js_code = ` const my_media_array = ${media_json}; module.exports = my_media_array;`
+        return write(file_name, js_code);
     }
 
-    function csvFromUrl(read_csv, podcast_information, rsd_information, pdf_information, build_repository, author_book_obj) {
-        return read_csv.getAllCsv(podcast_information, rsd_information, pdf_information)
-            .then(function (media_items) {
-                return makeEdgesNodes(media_items, build_repository);  // figure NOT MAKE
-                      });
+    function startMakeIndexes_a_0(build_repository, show_or_hide_seconds) {
+        var start_date = Date.now();
+        return build_repository.makeIndexes()
+            .then(()=> misc_helper.consoleTimeEnd(start_date, "startMakeIndexes_a_0", show_or_hide_seconds))
     }
 
-function objDataToCode(media_values, file_name){
-   var media_json = JSON.stringify(media_values, null, 1);
-   var js_code = ` const my_media_array = ${media_json}; module.exports = my_media_array;`
- return write(file_name, js_code);
-}
 
-    function startMakeIndexes_a_0(build_repository) {
-      var start_date =Date.now();
-      return build_repository.makeIndexes()
-              .then( ()=> misc_helper.consoleTimeEnd(start_date, "startMakeIndexes_a_0") )
-    }
-    
-   
-   
-   
     function googlePostTsvToLocal_a_1(post_obj_file) {
-      var start_date =Date.now();
-      return read_tsv_url(graph_constants.POST_GOOGLE_DATA)
+        var start_date = Date.now();
+        return read_tsv_url(graph_constants.POST_GOOGLE_DATA)
             .then(author_book_obj=> {
                 var file_name = fromAppRoot(post_obj_file);
                 return objDataToCode(author_book_obj, file_name);
             })
-              .then( ()=> misc_helper.consoleTimeEnd(start_date, "googlePostTsvToLocal_a_1") )
+            .then(()=> misc_helper.consoleTimeEnd(start_date, "googlePostTsvToLocal_a_1"))
     }
 
 
-
     function googleQualityTsvToLocal_a_2(quality_obj_file) {
-      var start_date =Date.now();
-      return read_tsv_url(graph_constants.QUALITY_GOOGLE_DATA)
+        var start_date = Date.now();
+        return read_tsv_url(graph_constants.QUALITY_GOOGLE_DATA)
             .then(quality_obj=> {
                 var file_name = fromAppRoot(quality_obj_file);
                 return objDataToCode(quality_obj, file_name);
             })
-              .then( ()=> misc_helper.consoleTimeEnd(start_date, "googleQualityTsvToLocal_a_2") )
+            .then(()=> misc_helper.consoleTimeEnd(start_date, "googleQualityTsvToLocal_a_2"))
     }
 
-  
-   
-   function googlePdfRsdPodcastToLocal_a_3(rsd_file, rsd_information, media_type) {
-     var start_date =Date.now();
-      return  getCsv(rsd_information)
+
+    function googlePdfRsdPodcastToLocal_a_3(rsd_file, rsd_information, media_type) {
+        var start_date = Date.now();
+        return getCsv(rsd_information)
             .then(rsd_obj=> {
                 var file_name = fromAppRoot(rsd_file);
                 return objDataToCode(rsd_obj, file_name);
             })
-             .then( ()=> misc_helper.consoleTimeEnd(start_date, "googlePdfRsdPodcastToLocal_a_3"+media_type) )
+            .then(()=> misc_helper.consoleTimeEnd(start_date, "googlePdfRsdPodcastToLocal_a_3" + media_type))
     }
-   
-  
+
+
 /////////////////////////////////////////////////////////////////////
 
     function saveGoogle(podcast_information, rsd_information, pdf_information) {      // mediaToTestData/File
@@ -83,57 +68,25 @@ function objDataToCode(media_values, file_name){
         var pdf_promise = getCsv(pdf_information);
         return Promise.all([podcast_promise, rsd_promise, pdf_promise]).spread(function (podcast_csv, rsd_csv, pdf_csv) {
             var all_csv = {podcast_csv, rsd_csv, pdf_csv};
-            var test_promise = new Promise(function (resolve, reject) {
-                setTimeout(resolve, 0, all_csv);
-            });
+            let test_promise = Promise.resolve(all_csv);
             return test_promise;
         })
     }
 
 
-//////////////////////////////////////////////////////////////////////
-    function getAllCsv(podcast_information, rsd_information, pdf_information) {   //  urlAllCsv
-        var podcast_promise = getCsv(podcast_information);
-        var rsd_promise = getCsv(rsd_information);
-        var pdf_promise = getCsv(pdf_information);
-        return Promise.all([podcast_promise, rsd_promise, pdf_promise])
-            .spread(function (podcast_csv, rsd_csv, pdf_csv) {
-                let {podcast_books, podcast_descriptions, podcast_authors} = podcast_build.podcastRead(podcast_csv);
-                let {pdf_books, pdf_descriptions, pdf_authors} = pdf_build.pdfRead(pdf_csv);
-                let {rsd_books, rsd_descriptions, rsd_authors} = rsd_build.rsdRead(rsd_csv);
-                let book_list = Object.assign({}, podcast_books, pdf_books, rsd_books);
-                let author_list = Object.assign({}, podcast_authors, pdf_authors, rsd_authors);
-                if ('' in author_list) {
-                    delete author_list[''];
-                }
-                var all_csv = {book_list, author_list, podcast_descriptions, pdf_descriptions, rsd_descriptions};
-                var test_promise = new Promise(function (resolve, reject) {
-                    setTimeout(resolve, 0, all_csv);
-                });
-                return test_promise;
-            })
-    }
-
     function getFromCsvFile(podcast_csv, rsd_csv, pdf_csv) {  /// fileCsv
-
         let {rsd_books, rsd_descriptions, rsd_authors} = rsd_build.rsdRead(rsd_csv);
-        //*bert
-
-
-
         let {podcast_books, podcast_descriptions, podcast_authors} = podcast_build.podcastRead(podcast_csv);
         let {pdf_books, pdf_descriptions, pdf_authors} = pdf_build.pdfRead(pdf_csv);
-        
+
         let book_list = Object.assign({}, podcast_books, pdf_books, rsd_books);
         let author_list = Object.assign({}, podcast_authors, pdf_authors, rsd_authors);
-        
+
         if ('' in author_list) {
             delete author_list[''];
         }
         var all_csv = {book_list, author_list, podcast_descriptions, pdf_descriptions, rsd_descriptions};
-        var test_promise = new Promise(function (resolve, reject) {
-            setTimeout(resolve, 0, all_csv);
-        });
+        let test_promise = Promise.resolve(all_csv);
         return test_promise;
     }
 
@@ -155,15 +108,14 @@ function objDataToCode(media_values, file_name){
     }
 
     return {
-        csvFromFiles, csvFromUrl,
-        
+    
         startMakeIndexes_a_0,
-        googlePostTsvToLocal_a_1, 
-        googleQualityTsvToLocal_a_2, 
-   
-        
-         googlePdfRsdPodcastToLocal_a_3, 
-        getAllCsv, saveGoogle, getFromCsvFile
+        googlePostTsvToLocal_a_1,
+        googleQualityTsvToLocal_a_2,
+
+
+        googlePdfRsdPodcastToLocal_a_3,
+        saveGoogle, getFromCsvFile
     };
 
 }
