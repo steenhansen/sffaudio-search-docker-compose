@@ -8,7 +8,7 @@ module.exports = function build_page(nodes_object, edges_object, graph_object, r
                 return `
 
 <!-- start widget -->
-
+  
 
  ${widget_html}
 

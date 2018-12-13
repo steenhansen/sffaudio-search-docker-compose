@@ -171,7 +171,13 @@ function widgetHtml(graph_div_id, author_links, book_links) {
 </style>
     <div id="my--network">
       
-    
+      <div style="text-align: center ;   font-size:  x-large; font-family: Arial, Helvetica, sans-serif;">
+  Search SFFaudio's Online Content
+</div>
+
+<div style="text-align: center;    font-size: larger;"> Authors with online content</div>
+
+
          <div id="all--filter--authors" style="">
          <div id='filter--authors' style='display:none'>
               </div>
@@ -209,7 +215,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
                     
             <button id='help--filter' onClick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL'); ">Help</button>        
      </div>
-<div style="display:inline-block"> Stories with online content</div>
+<div style="text-align: center;    font-size: larger;"> Stories with online content</div>
          
          <div id="all--filter--books" style="height:600px; ">
          <div id='filter--books' style='display:none'>
