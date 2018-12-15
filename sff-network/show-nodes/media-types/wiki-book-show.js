@@ -10,6 +10,7 @@ module.exports = function (graph_db) {
             this.goto_url = book_url;
                  this.node_type = 'L_BOOK_WIKI';
                  this.title = "Click for story's Wikipedia entry";
+                  this.label =    "Wikipedia entry" ;
         }
 
 

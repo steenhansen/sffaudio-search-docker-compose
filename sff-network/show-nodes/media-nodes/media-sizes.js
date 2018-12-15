@@ -9,7 +9,7 @@ var media_sizes = {
         },
         FONT_COLORS: {
             L_AUTHOR: 'black',
-            L_BOOK: 'red',
+            L_BOOK: 'white',
             L_AUTHOR_POST: 'white',
             L_AUTHOR_WIKI: 'white'
         },
@@ -29,12 +29,16 @@ var media_sizes = {
             L_AUTHOR: 'white',
           
             L_BOOK_POST: 'white',
-            L_AUTHOR_WIKI: 'white',
+            L_PODCAST: 'white',
              L_RSD: 'white',
-            L_PDF: 'white'
+            L_BOOK_WIKI: 'white',
+            L_PDF: 'white',
+            L_PAGE_PODCASTS: 'white',
+            L_PAGE_PDFS: 'white',
+            L_PAGE_RSDS: 'white'
         },
         FONT_SIZES: {
-            L_BOOK: 16,L_AUTHOR: 12,  L_BOOK_POST: 12, L_AUTHOR_WIKI: 12, L_RSD: 12, L_PDF:12
+            L_BOOK: 32,L_AUTHOR: 12,  L_BOOK_POST: 12, L_AUTHOR_WIKI: 12, L_RSD: 12, L_PDF:12
         },
         ICON_COLORS: {
         // NB, inject these colors as the base color, so the L_PDF should be red, but we can make the swirl blue instead, as we gotta do the background anyways

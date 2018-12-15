@@ -7,7 +7,8 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
     var my = {
         network_graph: {},
         last_selected_media: '',
-        my_nodes: []
+        my_nodes: [],
+        my_edges:[]
     };
 
 my.graphSize=function(movement_dir){
@@ -32,10 +33,10 @@ if (movement_dir==='+'){
     my.loadGraph = function (graph_id, nodes_string, edges_string, graph_physics) {
         var container = document.getElementById(graph_id);
         this.my_nodes = new vis.DataSet(nodes_string);
-        var edges = new vis.DataSet(edges_string);
+        this.my_edges = new vis.DataSet(edges_string);
         var data = {
             nodes: this.my_nodes,
-            edges: edges
+            edges:  this.my_edges
         };
         var options = {
             groups: sff_vars.graph_vars.node_icons,
@@ -48,6 +49,7 @@ if (movement_dir==='+'){
 
     function injectLoadNew(graph_id) {
         my.addClickOnEvent();
+        my.addHoverOnEvents();
         addLoadNewGraph(graph_id);
     };
 
@@ -58,6 +60,34 @@ if (movement_dir==='+'){
         } else {
             sff_vars.filter_names.selectMedia(graph_info.strip_author, 'yes_scroll')
         }
+    }
+
+    my.changeGroupIcon=function(node_id, group_icon){
+          this.my_nodes.update({id: node_id, group: group_icon});
+    
+    }
+
+// if (params.nodes.length > 0) {
+    my.addHoverOnEvents = function () {
+            var self = this;
+            my.network_graph.on("hoverNode", function (params) {
+              var the_node = self.my_nodes.get(params.node);
+              var node_type = the_node.node_type;
+              var hover_group = 'H' + node_type.substring(1);
+              self.my_nodes.update({id: the_node.id, group: hover_group});
+                 my.network_graph.canvas.body.container.style.cursor = 'pointer';
+            });
+
+            my.network_graph.on("blurNode", function (params) {
+                var the_node = self.my_nodes.get(params.node);
+                  self.my_nodes.update({id: the_node.id, group: the_node.node_type});
+                 my.network_graph.canvas.body.container.style.cursor = 'default';
+            });
+            
+            
+            
+           
+            
     }
 
     my.addClickOnEvent = function () {

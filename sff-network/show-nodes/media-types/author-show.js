@@ -18,6 +18,7 @@ module.exports = function (data_repository) {
             this.strip_author = strip_author;
             this.node_type = 'L_AUTHOR';
               this.title = "Click for author's stories & posts";
+            //  this.size=25;
         }
 
         static sendAuthor(strip_author, ParseNeo, update_index) {

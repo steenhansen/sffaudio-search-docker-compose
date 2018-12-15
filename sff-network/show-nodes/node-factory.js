@@ -37,8 +37,8 @@ module.exports = function (data_repository) {
             const {post_title, sorted_label, post_slug, strip_author} = media_node.properties;
             new_node = new PostNode(node_id, db_version, post_title, sorted_label, post_slug, strip_author);
         } else if (node_group === 'L_AUTHOR_WIKI') {
-            const {wiki_author, strip_author, author_url} = media_node.properties;
-            new_node = new WikiAuthorNode(node_id, db_version, wiki_author, strip_author, author_url);
+                  const {author_name, wiki_author, strip_author, author_url} = media_node.properties;
+            new_node = new WikiAuthorNode(node_id, db_version, wiki_author, strip_author, author_url, author_name);
         } else if (node_group === 'L_BOOK_WIKI') {
             const {wiki_book, under_title, book_url} = media_node.properties;
             new_node = new WikiBookNode(node_id, db_version, wiki_book, under_title, book_url);

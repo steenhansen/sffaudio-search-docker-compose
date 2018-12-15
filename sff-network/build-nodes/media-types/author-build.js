@@ -49,6 +49,7 @@ module.exports = function (build_repository) {
         findAuthorWiki(pdf_csv) {
             let author_wikis = {};
             for (let pdf_object of pdf_csv) {
+           
                 let {title_with_authors, under_title, full_title, last_first_underscores, author_wiki}=pdf_object;
                var strip_author = last_first_underscores[0];
                 author_wikis[strip_author] = author_wiki;
@@ -63,7 +64,6 @@ module.exports = function (build_repository) {
                 if (author_wiki !== '') {
                     var neo4j_promise = build_repository.insertAWikiAuthor(author_wiki, strip_author);
                     my_promises.push(neo4j_promise);
-
                 }
             }
             return my_promises;

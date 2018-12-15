@@ -58,8 +58,8 @@ function loadScripts() {
     if (('vis' in window) && ('pdfjs-dist/build/pdf' in window) && ('Promise' in window) && ('fetch' in window)) {
         sff_browser_js_start('polyfill_none');
     } else {
-        var vis_code_2 = 'https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/vis.min.js';
-        var vis_css_2 = 'https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/vis-network.min.css';
+        var vis_code_2 = 'https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js';
+        var vis_css_2 = 'https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css';
 
         if ('vis' in window) {
             getPdf();

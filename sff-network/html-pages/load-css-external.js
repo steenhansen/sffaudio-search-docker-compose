@@ -4,8 +4,8 @@ module.exports =  function (graph_background, graph_container_id) {
 var canvas_height = '400px;';
 
 var load_css_external = `
+<script src="/vis_no_hover_edges.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css" rel="stylesheet" type="text/css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.550/pdf.min.js"></script>
 

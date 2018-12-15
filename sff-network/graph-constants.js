@@ -28,15 +28,18 @@ var graph_constants = {
     // sff_vars.graph_vars.edge_options         // network_options more better name
     EDGE_OPTIONS: {
     edges: {
+        chosen:{edge: false},
         color: {
             color: 'darkgray',
-            highlight: 'dimgray',
+            hover:'darkgray',
             opacity: 1.0
         },
+        hoverWidth: 1,
        selectionWidth: 1,
         width: 1,
     },
      interaction:{
+    hover:true,
     tooltipDelay:1234}
 },
     

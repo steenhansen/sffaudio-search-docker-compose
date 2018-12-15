@@ -90,26 +90,45 @@ let nothing_icon = svg_icons.nothing_icon();
         let close_post = svg_icons.close_icon(graph_constants.POST_COLOR);
 
 
-        let icon_all_podcasts = svg_icons.allPodcasts(ICON_COLORS.L_AUTHOR_WIKI);
-        let icon_all_pdfs = svg_icons.allPdfs(ICON_COLORS.L_AUTHOR_WIKI);
-
-        let icon_all_rsds = svg_icons.allRsds(ICON_COLORS.L_AUTHOR_WIKI);
+        let icon_all_podcasts = svg_icons.allPodcasts('none');
+        let hover_all_podcasts = svg_icons.allPodcasts('#ffffff');
 
 
-        let icon_wikipedia = svg_icons.wikipedia_icon(ICON_COLORS.L_AUTHOR_WIKI);
-        let icon_author = svg_icons.author_icon(ICON_COLORS.L_AUTHOR);
-        let icon_post = svg_icons.post_icon(ICON_COLORS.L_AUTHOR_POST);
 
-        let icon_book_post = svg_icons.post_icon(ICON_COLORS.L_AUTHOR_POST);
+        let icon_all_pdfs = svg_icons.allPdfs('none');
+        let hover_all_pdfs = svg_icons.allPdfs('#ffffff');
 
 
-        let icon_book = svg_icons.book_icon(ICON_COLORS.L_BOOK);
-        let icon_pdf = svg_icons.pdf_icon(ICON_COLORS.L_PDF);
-        let icon_podcast = svg_icons.podcast_icon(ICON_COLORS.L_PODCAST);
+
+        let icon_all_rsds = svg_icons.allRsds('none');
+        let hover_all_rsds = svg_icons.allRsds('#ffffff');
+
+
+        let icon_wikipedia = svg_icons.wikipedia_icon('none');
+        let hover_wikipedia = svg_icons.wikipedia_icon('#ffffff');
+        
+        
+        
+        
+        let icon_post = svg_icons.post_icon('none');
+        let hover_post = svg_icons.post_icon('#ffffff');
+
+        let icon_book_post = svg_icons.post_icon('none');
+        let hover_book_post = svg_icons.post_icon('#ffffff');
+
+
+        let icon_pdf = svg_icons.pdf_icon('none');
+        let hover_pdf = svg_icons.pdf_icon('#ffffff');
+        
+        
+        
+        let icon_podcast = svg_icons.podcast_icon('none');
+        let hover_podcast = svg_icons.podcast_icon('#ffffff');
 
         let icon_rsd_video = svg_icons.rsd_video(graph_constants.RSD_COLOR);  
   
-  let icon_rsd_solid = svg_icons.rsd_icon('#fffeff');  
+  let icon_rsd_solid = svg_icons.rsd_icon('none'); 
+    let hover_rsd_solid = svg_icons.rsd_icon('#ffffff');  
   
     let icon_help = svg_icons.help_icon('#ffff00');  
     let icon_filter = svg_icons.filter_icon('#123456');  
@@ -119,6 +138,16 @@ let nothing_icon = svg_icons.nothing_icon();
      
      
          let icon_arrow = svg_icons.arrow_icon('#123456'); 
+
+
+let icon_book = svg_icons.book_icon('none');
+let hover_book = svg_icons.book_icon('#ffffff');
+
+
+let icon_author = svg_icons.author_icon('none');
+let hover_author = svg_icons.author_icon('#ffffff');
+
+
 
         const icons_string = `{ 
 
@@ -141,29 +170,32 @@ I_NOTHING: ${nothing_icon},
 
     
     
-   L_PAGE_PODCASTS: ${ icon_all_podcasts},
-   L_PAGE_PDFS: ${ icon_all_pdfs},
-   L_PAGE_RSDS: ${ icon_all_rsds},
+   L_PAGE_PODCASTS: ${ icon_all_podcasts},  H_PAGE_PODCASTS: ${ hover_all_podcasts},
+   L_PAGE_PDFS: ${ icon_all_pdfs},H_PAGE_PDFS: ${ hover_all_pdfs},
+   L_PAGE_RSDS: ${ icon_all_rsds}, H_PAGE_RSDS: ${ hover_all_rsds},
     
-          L_PDF: ${icon_pdf},
-            L_AUTHOR: ${icon_author},
-            L_PODCAST: ${icon_podcast},
+      
+   
+            
+            
+L_PDF: ${icon_pdf}, H_PDF: ${hover_pdf},
+            L_PODCAST: ${icon_podcast},H_PODCAST: ${hover_podcast},
               
-              L_RSD: ${icon_rsd_solid},
+              L_RSD: ${icon_rsd_solid},   H_RSD: ${hover_rsd_solid},
               
               L_RSD_VIDEO: ${icon_rsd_video},
               
               
               
-            L_AUTHOR_POST: ${icon_post},
-            L_BOOK_POST: ${icon_book_post},
+            L_AUTHOR_POST: ${icon_post}, H_AUTHOR_POST: ${hover_post},
+            L_BOOK_POST: ${icon_book_post}, H_BOOK_POST: ${hover_book_post},
             
 
+             L_AUTHOR: ${icon_author}, H_AUTHOR: ${hover_author},
+            L_BOOK: ${icon_book},         H_BOOK: ${hover_book},     
     
-            L_BOOK: ${icon_book},        
-    
-            L_BOOK_WIKI: ${icon_wikipedia},
-            L_AUTHOR_WIKI: ${icon_wikipedia},
+            L_BOOK_WIKI: ${icon_wikipedia},H_BOOK_WIKI: ${hover_wikipedia},
+            L_AUTHOR_WIKI: ${icon_wikipedia},H_AUTHOR_WIKI: ${hover_wikipedia},
      
             
             
