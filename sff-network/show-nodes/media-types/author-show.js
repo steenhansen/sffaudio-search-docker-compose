@@ -1,4 +1,4 @@
-MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
+HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
 const {AUTHOR_PAGE_TYPE} = rootAppRequire('sff-network/graph-constants');
@@ -8,7 +8,7 @@ module.exports = function (data_repository) {
     var BookData = rootAppRequire('sff-network/show-nodes/media-types/book-show')(data_repository)  // show_repository
     var PostData = rootAppRequire('sff-network/show-nodes/media-types/post-show')(data_repository)  // show_repository
 
-    class AuthorData extends MediaShow {
+    class AuthorData extends HoverIcon {
 
 
 
@@ -28,7 +28,7 @@ module.exports = function (data_repository) {
                     var db_version = graph_collection[0].records[0]._fields[db_version_index];
                     var parse_neo = new ParseNeo(graph_collection, 'author');
                     var nodes_object = parse_neo.getAuthorGraph(strip_author);
-                    var number_columns = MediaShow.numberColumns(nodes_object);
+                    var number_columns = HoverIcon.numberColumns(nodes_object);
                     var post_edges = parse_neo.edgesAuthorPost(number_columns, 'L_AUTHOR_POST');
                     var book_edges = parse_neo.edgesAuthorBook(number_columns, 'L_BOOK');
                     var wiki_author_edges = parse_neo.edgesAuthorWiki(number_columns, 'L_AUTHOR_WIKI');
@@ -62,8 +62,8 @@ module.exports = function (data_repository) {
         }
 
 
-        setGroupColor(color_index) {
-            super.setGroupColor(color_index)
+        setGroupColor() {
+            super.setGroupColor()
         }
 
         setPosition2(x_y_pos) {     //L_AUTHOR
@@ -80,7 +80,7 @@ module.exports = function (data_repository) {
             var middle_height = div_height / 2;
             var middle_width = div_width / 2;
 
-            var number_columns = MediaShow.numberColumns(sorted_nodes);
+            var number_columns = HoverIcon.numberColumns(sorted_nodes);
             sorted_nodes = BookData.bookPositions2(sorted_nodes, middle_height, number_columns);
             sorted_nodes = PostData.postPositions2(sorted_nodes, middle_height, number_columns);
             var positioned_nodes = []

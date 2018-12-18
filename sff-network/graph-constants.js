@@ -68,7 +68,8 @@ var graph_constants = {
 
     BOOK_AUTHOR_DELIMITER : '^',
 
-	POST_LINK: "http://www.sffaudio.com/", 
+//	POST_LINK: "http://www.sffaudio.com/", 
+    HEROKU_URL: "https://sffaudio-test-neo4j.herokuapp.com/",
 
 	MEDIA_LINK_DIR: "https://www.sffaudio.com/podcasts/", 
 	PODCAST_LINK: "https://www.sffaudio.com/?p=", 

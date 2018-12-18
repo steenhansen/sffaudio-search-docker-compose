@@ -1,5 +1,5 @@
 //var Media2Node = rootAppRequire('sff-network/node-types/media-2node')
-MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
+HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
 var LabelPositions = rootAppRequire('sff-network/show-nodes/label-positions')
 var graph_constants = rootAppRequire('sff-network/graph-constants')
 
@@ -11,13 +11,13 @@ module.exports = function (graph_repository) {
 
     //  var author_2node = rootAppRequire('./sff-network/node-types/author-2node')(graph_repository)
 
-    class PostData extends MediaShow {
+    class PostData extends HoverIcon {
    
         constructor(node_id, db_version, post_title, sorted_label, post_slug, strip_author) {
             super(node_id, db_version, post_title, sorted_label);
             this.post_slug = post_slug;
             this.strip_author = strip_author;
-            this.goto_url = graph_constants.POST_LINK + post_slug;
+            this.goto_url = post_slug;
             this.sorted_label = post_slug;
             this.node_type = 'L_AUTHOR_POST';
             this.title = "Click for author's SFFaudio post";

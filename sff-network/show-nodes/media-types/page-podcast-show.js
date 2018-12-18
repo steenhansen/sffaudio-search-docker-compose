@@ -1,9 +1,9 @@
 
-MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
+HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
 
 module.exports = function (graph_db) {
 
-    class PagePodcastData extends MediaShow {
+    class PagePodcastData extends HoverIcon {
         constructor(node_id, db_version, page_title, pages_url) {
            super(node_id, db_version, page_title, page_title);
             this.goto_url = pages_url;

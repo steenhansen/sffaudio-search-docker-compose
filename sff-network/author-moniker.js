@@ -92,9 +92,7 @@ class AuthorMoniker {
 
     fmlSpaces() {
         var first_middle_last = this.first_name + ' ' + this.spaces_middle + ' ' + this.last_name;
-        console.log('ddddddddddddddddddddd0',  this.first_name , '**', this.spaces_middle, '**,', this.last_name)
         first_middle_last = first_middle_last.replace(/\s\s+/g, ' ');
-        console.log('ddddddddddddddddddddd1', first_middle_last)
         return first_middle_last;
     }
 

@@ -1,10 +1,10 @@
 
 
-MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
+HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
 
 module.exports = function (graph_db) {
 
-    class RsdData extends MediaShow {
+    class RsdData extends HoverIcon {
 
 
         constructor(node_id, db_version, rsd_title, rsd_url, rsd_pdf_link, rsd_description, video_link, under_title, last_first_underscores) {

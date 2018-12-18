@@ -15,12 +15,12 @@ module.exports = function (build_repository) {
             var my_promises = [];
             for (let title_with_authors in book_list) {
                 let {sorted_label, esc_book_title, under_title, last_first_underscores}  = book_list[title_with_authors];
-                const book_promise = BookBuild.addABook(sorted_label, esc_book_title, under_title, last_first_underscores)
-                my_promises.push(book_promise);
-                for (let strip_author of last_first_underscores) {
-                    var author_book_edge = build_repository.linkAuthorToBook(strip_author, under_title)
-                    my_promises.push(author_book_edge);
-                }
+                    const book_promise = BookBuild.addABook(sorted_label, esc_book_title, under_title, last_first_underscores)
+                    my_promises.push(book_promise);
+                    for (let strip_author of last_first_underscores) {
+                        var author_book_edge = build_repository.linkAuthorToBook(strip_author, under_title)
+                        my_promises.push(author_book_edge);
+                    }
             }
             return my_promises;
         }

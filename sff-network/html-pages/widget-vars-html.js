@@ -1,11 +1,12 @@
 
-MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show');
+HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon');
  var graph_constants = rootAppRequire('sff-network/graph-constants');
-
+ var svg_icons = rootAppRequire('./sff-network/html-pages/svg-icons');
+ //var graph_icons = rootAppRequire('./sff-network/html-pages/graph-icons');
 // build_widget
 function widgetVars(graph_id, nodes_object, edges_object, graph_object) {
 
-var icons_string = MediaShow.authorIconColors();
+var icons_string = HoverIcon.authorIconColors();
 
     if (nodes_object.length > 10) {
         graph_object.graph_physics = false;
@@ -26,6 +27,7 @@ var icons_string = MediaShow.authorIconColors();
 var edge_options = JSON.stringify(edge_options_json);
 
 var post_proxy_absolute = graph_constants.ROUTE_POST_PROXY + "?absolute_url=";
+
 
     var media_html = `
 <script>
@@ -57,6 +59,9 @@ sff_vars.post_vars={
 
 
 function widgetHtml(graph_div_id, author_links, book_links) {
+let zoom_in = svg_icons.zoom_in_icon('blue');
+let zoom_out = svg_icons.zoom_out_icon('blue');
+let get_help = svg_icons.get_help_icon('blue');
 
     var media_html = `
 <style>
@@ -196,24 +201,52 @@ function widgetHtml(graph_div_id, author_links, book_links) {
 
 
     <div style='clear:both'> 
-        <button id='clear--filter' onClick="
-            document.getElementById('filter--text').value = '';
-        sff_vars.filter_names.stopFiltering();" disabled="true">Clear Filter</button>
+
+    
+
+        <button id='do--filter' 
+            onClick="
+                var search_for = document.getElementById('filter--text').value;
+                sff_vars.filter_names.filterMedia(search_for);
+            " 
+        disabled="true">Filter authors &amp; stories </button>
+
+
         <input id='filter--text'
-            placeholder="Filter authors & stories"
+            placeholder="Filter Authors & Stories"
          type='text'
           oninput=" if (this.value.length>0){
                         document.getElementById('clear--filter').disabled = false;
+                        document.getElementById('do--filter').disabled = false;
                     }else{
                         document.getElementById('clear--filter').disabled = true;
+                        document.getElementById('do--filter').disabled = true;
                     }
-                    sff_vars.filter_names.filterMedia(this); "/>
+                    //sff_vars.filter_names.filterMedia(this);
+                     "/>
+                    
+                   <button id='clear--filter' onClick="
+            document.getElementById('filter--text').value = '';
+        sff_vars.filter_names.stopFiltering();
+        "
+         disabled="true">Clear Filter</button>         
+                           
+                           
+                                <div  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="control--boxes" >
+        <img id="help--filter"  src="${get_help}" class="control--symbols">
+          </div>        
+                           
+                    <div  onclick="sff_vars.graph_procs.graphSize('+');" class="control--boxes" >
+        <img id="grow--filter"  src="${zoom_in}" class="control--symbols">
+          </div>
+                    
+                                        <div  onclick="sff_vars.graph_procs.graphSize('-');" class="control--boxes" >
+        <img id="shrink--filter"  src="${zoom_out}" class="control--symbols">
+          </div>
+          
                     
                     
-                     <button id='shrink--filter' onClick=" sff_vars.graph_procs.graphSize('-'); ">-</button>   
-                     <button id='grow--filter' onClick=" sff_vars.graph_procs.graphSize('+'); ">+</button>   
-                    
-            <button id='help--filter' onClick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL'); ">Help</button>        
+        
      </div>
 <div style="text-align: center;    font-size: larger;"> Stories with online content</div>
          

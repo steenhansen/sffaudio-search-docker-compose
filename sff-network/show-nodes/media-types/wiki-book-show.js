@@ -1,8 +1,8 @@
 //var Media2Node = rootAppRequire('sff-network/node-types/media-2node')
-MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
+HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
 module.exports = function (graph_db) {
 
-    class WikiBookNode extends MediaShow {
+    class WikiBookNode extends HoverIcon {
         constructor(node_id, db_version, wiki_book, under_title, book_url) {
 
             super(node_id, db_version, '', under_title);

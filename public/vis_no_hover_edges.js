@@ -55193,7 +55193,7 @@ var SelectionHandler = function () {
       if (obj instanceof Node) {
         this.hoverObj.nodes[obj.id] = obj;
       } else {
-       // this.hoverObj.edges[obj.id] = obj;        // q*bert
+       // this.hoverObj.edges[obj.id] = obj;        // q*bert steen
       }
     }
 

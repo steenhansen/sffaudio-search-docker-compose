@@ -1,10 +1,10 @@
-MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
+HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
 
 
      
 module.exports = function (graph_db) {
 
-    class WikiAuthorData extends MediaShow {
+    class WikiAuthorData extends HoverIcon {
 
 
         constructor(node_id, db_version, wiki_author, strip_author, wiki_url, author_name) {

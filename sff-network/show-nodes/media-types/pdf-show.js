@@ -1,8 +1,8 @@
-MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
+HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
 
 module.exports = function (graph_db) {
 
-    class PdfData extends MediaShow {
+    class PdfData extends HoverIcon {
 
         constructor(node_id, db_version, pdf_title, book_title, under_title, pdf_url, last_first_underscores, pdf_country) {
             super(node_id, db_version, pdf_title, under_title);

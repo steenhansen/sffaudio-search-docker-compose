@@ -66,33 +66,42 @@ if (movement_dir==='+'){
           this.my_nodes.update({id: node_id, group: group_icon});
     
     }
-
+////////////////////////////////////////////////////////////
 // if (params.nodes.length > 0) {
-    my.addHoverOnEvents = function () {
-            var self = this;
-            my.network_graph.on("hoverNode", function (params) {
-              var the_node = self.my_nodes.get(params.node);
-              var node_type = the_node.node_type;
-              var hover_group = 'H' + node_type.substring(1);
-              self.my_nodes.update({id: the_node.id, group: hover_group});
-                 my.network_graph.canvas.body.container.style.cursor = 'pointer';
-            });
-
-            my.network_graph.on("blurNode", function (params) {
-                var the_node = self.my_nodes.get(params.node);
-                  self.my_nodes.update({id: the_node.id, group: the_node.node_type});
-                 my.network_graph.canvas.body.container.style.cursor = 'default';
-            });
-            
-            
-            
-           
-            
-    }
+my.addHoverOnEvents = function () {
+    var self = this;
+    my.network_graph.on("hoverNode", function (params) {
+        var the_node = self.my_nodes.get(params.node);
+        var node_type = the_node.node_type;
+        if (node_type.indexOf('HELP_') === 0) {
+            var hover_name = node_type.substring(5);
+        } else {
+            var hover_name = node_type.substring(2);
+        }
+        var hover_group = 'H_' + hover_name;
+        self.my_nodes.update({id: the_node.id, group: hover_group});
+        my.network_graph.canvas.body.container.style.cursor = 'pointer';
+    });
+////////////////////////////////////////////////////////////
+    my.network_graph.on("blurNode", function (params) {
+        var the_node = self.my_nodes.get(params.node);
+        var node_type = the_node.node_type;
+        if (node_type.indexOf('HELP_') === 0) {
+            var hover_name = node_type.substring(5);
+        } else {
+            var hover_name = node_type.substring(2);
+        }
+        var node_group = 'N_' + hover_name;
+        self.my_nodes.update({id: the_node.id, group: node_group});
+        my.network_graph.canvas.body.container.style.cursor = 'default';
+    });
+}
+////////////////////////////////////////////////////////////
 
     my.addClickOnEvent = function () {
         var self = this;
         my.network_graph.on("click", function (params) {
+         console.log(' help flloook', params.nodes.length);
             if (params.nodes.length>0){
                     var node_id = params.nodes[0]
                     var the_node = self.my_nodes.get(node_id)
@@ -108,7 +117,9 @@ if (movement_dir==='+'){
                     var last_first_underscores = the_node.last_first_underscores;
                     var podcast_url = the_node.podcast_url;
                     var pdf_country = the_node.pdf_country;   // Canada
-                    if (node_type.indexOf('HELP_')>=0) {
+                    
+                    if (node_type.indexOf('HELP_')===0) {
+                        console.log(' help flloook', the_node.node_type);
                         sff_vars.graph_procs.loadAuthorNew(the_node.node_type)
                     } else if (node_type == 'L_BOOK') {
                         my.loadBookNew(last_first_underscores, under_title)
@@ -120,11 +131,14 @@ if (movement_dir==='+'){
                         sff_vars.podcast_procs.loadPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast');
                     } else if (node_type == 'L_RSD') {
                         sff_vars.rsd_procs.loadRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd');
+                    } else if (node_type == 'L_RSD_VIDEO') {
+                        sff_vars.rsd_procs.loadRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd');
                     } else if (node_type == 'L_AUTHOR_POST') {  
                         sff_vars.post_procs.loadPost(goto_url, strip_author, 'post');
                     } else if (node_type == 'L_BOOK_POST') {
                         sff_vars.book_post_procs.loadBookPost(goto_url, strip_author, under_title, 'post');
                     } else if (typeof goto_url !== 'undefined') {
+                    console.log('ddddddddddddd, ', node_type);
                         window.location = goto_url;
                     }
             }
@@ -133,11 +147,13 @@ if (movement_dir==='+'){
 
     function addLoadNewGraph(graph_id) {
         my.network_graph.loadAuthorOrBook = function (absolute_json_url) {
+  
             fetch(absolute_json_url)
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (myJson) {
+                      console.log('fetch ....', myJson);
                     if (my.network_graph !== null) {
                         my.network_graph.destroy();
                         my.network_graph = null;

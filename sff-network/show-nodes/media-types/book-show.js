@@ -1,5 +1,5 @@
 var LabelPositions = rootAppRequire('sff-network/show-nodes/label-positions')
-var MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
+var HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
 const {BOTTOM_COLUMNS_Y_OFFSET, HORIZONTAL_COLUMNS, X_NODE_SEPARATION, Y_NODE_SEPARATION, VERTICAL_STAGGER}=LabelPositions
 var misc_helper = rootAppRequire('sff-network/misc-helper')
 const {BOOK_PAGE_TYPE} = rootAppRequire('sff-network/graph-constants');
@@ -8,7 +8,7 @@ const program_variables = rootAppRequire('sff-network/program-variables.js');
 
 module.exports = function (data_repository) {
 
-    class BookData extends MediaShow {
+    class BookData extends HoverIcon {
 
         constructor(node_id, db_version, book_title, sorted_label, under_title, last_first_underscores) {
             super(node_id, db_version, book_title, sorted_label);

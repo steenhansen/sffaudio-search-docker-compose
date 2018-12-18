@@ -1,10 +1,22 @@
 
+
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+const heroku_url = graph_constants.HEROKU_URL;
+
+const vis_no_hover_edges_js = heroku_url + "vis_no_hover_edges.js"
 module.exports =  function (graph_background, graph_container_id) {
 
 var canvas_height = '400px;';
 
 var load_css_external = `
-<script src="/vis_no_hover_edges.js"></script>
+
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script> -->
+
+
+<script src="${vis_no_hover_edges_js}"></script>
+
+
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css" rel="stylesheet" type="text/css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.550/pdf.min.js"></script>
@@ -47,7 +59,7 @@ var load_css_external = `
         }      
         
         #filter--text {
-             width: 60%;
+             width: 30%;
         }
         
            .current__media{

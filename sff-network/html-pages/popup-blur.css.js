@@ -1,6 +1,7 @@
-//MediaShow = rootAppRequire('sff-network/show-nodes/media-nodes/media-show')
+//HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
  var graph_constants = rootAppRequire('sff-network/graph-constants');
  var svg_icons = rootAppRequire('./sff-network/html-pages/svg-icons');
+//var graph_icons = rootAppRequire('./sff-network/html-pages/graph-icons');
 
 var popup_blur_js = `
 //popup-blur.css.js
@@ -253,7 +254,11 @@ z-index:3;
 
 .control--boxes{
 display:inline-block;
- width:16%;
+ width:3%;
+ vertical-align: middle;
+ float: right;
+ margin-right:14px;
+ padding-top:1px;
 }
 
 .control--symbols{

@@ -83,8 +83,7 @@ sff_vars.filter_names = (function (graph_id) {
         }
     }
 
-    my.filterMedia = function (filter_elem) {
-        var search_for = filter_elem.value;
+    my.filterMedia = function (search_for) {
         var search_underscore = alphaUnderscore(search_for);
         if (search_underscore === '') {
             my.stopFiltering()

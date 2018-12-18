@@ -1,5 +1,19 @@
  const my_media_array = [
  {
+  "episode number": "504",
+  "post id": "59294",
+  "publish date": "2018-12-17 00:01",
+  "kind": "AUDIOBOOK",
+  "participants": "",
+  "narrator": "Phil Chenevert",
+  "file name": "SFFaudioPodcast504.mp3",
+  "byte size": "229,471,021",
+  "hh:mm:ss": "5:21:50",
+  "book title": "The Jungle Book",
+  "book author": "Rudyard Kipling",
+  "about": ""
+ },
+ {
   "episode number": "503",
   "post id": "59270",
   "publish date": "2018-12-10 00:01",

@@ -79,7 +79,9 @@ module.exports = function (graph_db) {
         let {podcast_books, podcast_descriptions, podcast_authors} = podcast_build.podcastRead(podcast_csv);
         let {pdf_books, pdf_descriptions, pdf_authors} = pdf_build.pdfRead(pdf_csv);
 
-        let book_list = Object.assign({}, podcast_books, pdf_books, rsd_books);
+      let book_list = Object.assign({}, podcast_books, pdf_books, rsd_books);
+  
+        
         let author_list = Object.assign({}, podcast_authors, pdf_authors, rsd_authors);
 
         if ('' in author_list) {
