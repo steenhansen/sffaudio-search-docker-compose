@@ -286,15 +286,15 @@ function storyEnterPress(e){
                            
         <span  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="info--circle"" title="Show Help">
             <img  src="${get_help}" class="control--symbols">
-        </div>        
+        </span>        
                            
         <span  onclick="sff_vars.graph_procs.graphSize('+');" class="info--circle"" title="Zoom In">
             <img  src="${zoom_in}" class="control--symbols">
-        </div>
+        </span>
                     
         <span  onclick="sff_vars.graph_procs.graphSize('-');" class="info--circle"" title="Zoom Out">
             <img  src="${zoom_out}" class="control--symbols">
-        </div>
+        </span>
     </div>
      
      
