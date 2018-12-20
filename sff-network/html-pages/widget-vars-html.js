@@ -237,17 +237,17 @@ function storyEnterPress(e){
                       sff_vars.filter_names.stopFilteringAuthors();
                     "  >Clear Filter</button>         
                            
-        <div  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="info--circle" title="Show Help">
+        <span  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="info--circle" title="Show Help">
             <img src="${get_help}" class="control--symbols">
-        </div>        
+        </span>        
                            
-        <div  onclick="sff_vars.graph_procs.graphSize('+');" class="info--circle"" title="Zoom In">
+        <span  onclick="sff_vars.graph_procs.graphSize('+');" class="info--circle"" title="Zoom In">
             <img src="${zoom_in}" class="control--symbols">
-        </div>
+        </span>
                     
-        <div  onclick="sff_vars.graph_procs.graphSize('-');" class="info--circle"" title="Zoom Out">
+        <span  onclick="sff_vars.graph_procs.graphSize('-');" class="info--circle"" title="Zoom Out">
             <img src="${zoom_out}" class="control--symbols">
-        </div>
+        </span>
     </div>
 
 
@@ -284,15 +284,15 @@ function storyEnterPress(e){
                       sff_vars.filter_names.stopFilteringStories();
                     "  >Clear Filter</button>         
                            
-        <div  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="info--circle"" title="Show Help">
+        <span  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="info--circle"" title="Show Help">
             <img  src="${get_help}" class="control--symbols">
         </div>        
                            
-        <div  onclick="sff_vars.graph_procs.graphSize('+');" class="info--circle"" title="Zoom In">
+        <span  onclick="sff_vars.graph_procs.graphSize('+');" class="info--circle"" title="Zoom In">
             <img  src="${zoom_in}" class="control--symbols">
         </div>
                     
-        <div  onclick="sff_vars.graph_procs.graphSize('-');" class="info--circle"" title="Zoom Out">
+        <span  onclick="sff_vars.graph_procs.graphSize('-');" class="info--circle"" title="Zoom Out">
             <img  src="${zoom_out}" class="control--symbols">
         </div>
     </div>
