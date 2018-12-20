@@ -91,18 +91,18 @@ let nothing_icon = graph_icons.nothing_icon();
         let close_post = graph_icons.close_icon(graph_constants.POST_COLOR);
 
 
-        let icon_all_podcasts = graph_icons.allPodcasts('none');
-        let hover_all_podcasts = graph_icons.allPodcasts('#ffffff');
-
-
-
-        let icon_all_pdfs = graph_icons.allPdfs('none');
-        let hover_all_pdfs = graph_icons.allPdfs('#ffffff');
-
-
-
-        let icon_all_rsds = graph_icons.allRsds('none');
-        let hover_all_rsds = graph_icons.allRsds('#ffffff');
+        // let icon_all_podcasts = graph_icons.allPodcasts('none');
+        // let hover_all_podcasts = graph_icons.allPodcasts('#ffffff');
+        //
+        //
+        //
+        // let icon_all_pdfs = graph_icons.allPdfs('none');
+        // let hover_all_pdfs = graph_icons.allPdfs('#ffffff');
+        //
+        //
+        //
+        // let icon_all_rsds = graph_icons.allRsds('none');
+        // let hover_all_rsds = graph_icons.allRsds('#ffffff');
 
 
         let icon_wikipedia = graph_icons.wikipedia_icon('none');
@@ -181,10 +181,7 @@ I_NOTHING: ${nothing_icon},
        
 
     
-    
-   N_PAGE_PODCASTS: ${ icon_all_podcasts},  H_PAGE_PODCASTS: ${ hover_all_podcasts},
-   N_PAGE_PDFS: ${ icon_all_pdfs},H_PAGE_PDFS: ${ hover_all_pdfs},
-   N_PAGE_RSDS: ${ icon_all_rsds}, H_PAGE_RSDS: ${ hover_all_rsds},
+
     
       
    

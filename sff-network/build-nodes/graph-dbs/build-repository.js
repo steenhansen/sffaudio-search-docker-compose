@@ -12,65 +12,12 @@ module.exports = class BuildRepository {
     }
     
     
-    
-
-
-
-    insertAPdf(new_info, new_link, book_title, under_title, last_first_underscores, pdf_country) {
-    // MERGE ==15321  CREATE == 13878
-        var sql = `WITH {db_version} AS v_db_version
-          MATCH (n_page_pdfs:L_PAGE_PDFS)
-          WHERE n_page_pdfs.db_version = v_db_version
-        MERGE ( n_pdf:L_PDF   
-                                    {pdf_title:{new_info},
-                                     pdf_url:{new_link}, 
-                                     book_title:{book_title},
-                                     under_title:{under_title}, 
-                                     last_first_underscores:{last_first_underscores},
-                                     pdf_country:{pdf_country} ,
-                                     
-                                      db_version:v_db_version    })-[r_pdf_to_pages:L_PDF_TO_PAGES]->(n_page_pdfs)`;
-        var params = {new_info, new_link, book_title, under_title, last_first_underscores, pdf_country};
-        return this.addVersionSql(sql, params);
-    }
-    
-  linkAuthorToBook(strip_author, under_title) {
-        var sql = ` WITH {db_version} AS v_db_version
-                   MATCH (n_author:L_AUTHOR),(n_book:L_BOOK)
-                   WHERE n_author.strip_author = {strip_author}
-                     AND n_book.under_title = {under_title}
-                     AND n_author.db_version = v_db_version
-                     AND n_book.db_version = v_db_version
-                  MERGE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
-        var params = {strip_author, under_title};
-        return this.addVersionSql(sql, params);
-    }
-    
-    
-
-  linkAuthorToBook(strip_author, under_title) {
-        var sql = ` WITH {db_version} AS v_db_version
-                   MATCH (n_author:L_AUTHOR),(n_book:L_BOOK)
-                   WHERE n_author.strip_author = {strip_author}
-                     AND n_book.under_title = {under_title}
-                     AND n_author.db_version = v_db_version
-                     AND n_book.db_version = v_db_version
-                  MERGE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
-        var params = {strip_author, under_title};
-        return this.addVersionSql(sql, params);
-    }
-
-
-
-
-    // rsd_url??
+        // rsd_url??
     insertAnRsd(rsd_title, under_title, rsd_description, rsd_link, rsd_pdf_link, video_link, last_first_underscores) {
         var sql = ` WITH {db_version} AS v_db_version
-          MATCH (n_page_rsds:L_PAGE_RSDS)
-          WHERE n_page_rsds.db_version = v_db_version
-              MERGE (n_rsd:L_RSD { rsd_title: {rsd_title}, 	under_title : {under_title}, 	rsd_description : {rsd_description}, rsd_url : {rsd_link}, 
+               MERGE (n_rsd:L_RSD { rsd_title: {rsd_title}, 	under_title : {under_title}, 	rsd_description : {rsd_description}, rsd_url : {rsd_link}, 
               rsd_pdf_link : {rsd_pdf_link},  video_link : {video_link},  last_first_underscores : {last_first_underscores}, db_version: v_db_version})
-                 -[r_podcasts_to_rsds:L_RSDS_TO_PAGES]->(n_page_rsds)`;
+               `;
         var params = {
             rsd_title,
             under_title,
@@ -82,6 +29,66 @@ module.exports = class BuildRepository {
         };
         return this.addVersionSql(sql, params);
     }
+
+    insertAPodcast(podcast_title, under_title, podcast_link, podcast_id, last_first_underscores) {
+        var sql = `WITH {db_version} AS v_db_version
+           MERGE (n_podcast:L_PODCAST { podcast_title: {podcast_title}, 	under_title : {under_title}, podcast_url : {podcast_link}, podcast_id : {podcast_id},
+            last_first_underscores : {last_first_underscores},db_version:v_db_version})`;
+        var params = {podcast_title, under_title, podcast_link, podcast_id, last_first_underscores};
+        return this.addVersionSql(sql, params);
+    }
+
+
+    insertAPdf(new_info, new_link, book_title, under_title, last_first_underscores, pdf_country) {
+    // MERGE ==15321  CREATE == 13878
+        var sql = `WITH {db_version} AS v_db_version
+        MERGE ( n_pdf:L_PDF   
+                                    {pdf_title:{new_info},
+                                     pdf_url:{new_link}, 
+                                     book_title:{book_title},
+                                     under_title:{under_title}, 
+                                     last_first_underscores:{last_first_underscores},
+                                     pdf_country:{pdf_country} ,
+                                     
+                                      db_version:v_db_version    })`;
+        var params = {new_info, new_link, book_title, under_title, last_first_underscores, pdf_country};
+        return this.addVersionSql(sql, params);
+    }
+    
+    
+    
+    
+    
+    
+  linkAuthorToBook(strip_author, under_title) {
+        var sql = ` WITH {db_version} AS v_db_version
+                   MATCH (n_author:L_AUTHOR),(n_book:L_BOOK)
+                   WHERE n_author.strip_author = {strip_author}
+                     AND n_book.under_title = {under_title}
+                     AND n_author.db_version = v_db_version
+                     AND n_book.db_version = v_db_version
+                  MERGE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
+        var params = {strip_author, under_title};
+        return this.addVersionSql(sql, params);
+    }
+    
+    
+
+  linkAuthorToBook(strip_author, under_title) {
+        var sql = ` WITH {db_version} AS v_db_version
+                   MATCH (n_author:L_AUTHOR),(n_book:L_BOOK)
+                   WHERE n_author.strip_author = {strip_author}
+                     AND n_book.under_title = {under_title}
+                     AND n_author.db_version = v_db_version
+                     AND n_book.db_version = v_db_version
+                  MERGE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
+        var params = {strip_author, under_title};
+        return this.addVersionSql(sql, params);
+    }
+
+
+
+
 
 
     insertRsdsOfBook() {           //EDGE!!!
@@ -122,16 +129,7 @@ module.exports = class BuildRepository {
     }
 
 
-    insertAPodcast(podcast_title, under_title, podcast_link, podcast_id, last_first_underscores) {
-        var sql = `WITH {db_version} AS v_db_version
-          MATCH (n_page_podcasts:L_PAGE_PODCASTS)
-          WHERE n_page_podcasts.db_version = v_db_version
-           MERGE (n_podcast:L_PODCAST { podcast_title: {podcast_title}, 	under_title : {under_title}, podcast_url : {podcast_link}, podcast_id : {podcast_id},
-            last_first_underscores : {last_first_underscores},db_version:v_db_version})
-           -[r_podcasts_to_pages:L_PODCASTS_TO_PAGES]->(n_page_podcasts)`;
-        var params = {podcast_title, under_title, podcast_link, podcast_id, last_first_underscores};
-        return this.addVersionSql(sql, params);
-    }
+
 
 
 // // deleteEverything
@@ -146,27 +144,27 @@ module.exports = class BuildRepository {
 
 
 
-    insertRsdPage() {
-        var sql = ` WITH  {db_version} AS v_db_version
-                            MERGE (n_page_rsds:L_PAGE_RSDS { page_title:"All Rsds", pages_url:"http://www.sffaudio.com/reading-short-and-deep/", db_version:v_db_version})`;
-        var params = {};
-        return this.addVersionSql(sql, params);
-    }
-
-    insertPodcastPage() {
-        var sql = ` WITH  {db_version} AS v_db_version
-                            MERGE (n_page_podcasts:L_PAGE_PODCASTS { page_title:"All Podcasts", pages_url:"http://www.sffaudio.com/the-sffaudio-podcast/", db_version:v_db_version})`;
-        var params = {};
-        return this.addVersionSql(sql, params);
-    }
-
-
-    insertPdfPage() {
-        var sql = ` WITH  {db_version} AS v_db_version
-                            MERGE (n_page_pdfs:L_PAGE_PDFS { page_title:"All Pdfs", pages_url:"http://www.sffaudio.com/public-domain-pdf-page/", db_version:v_db_version})`;
-        var params = {};
-        return this.addVersionSql(sql, params);
-    }
+    // insertRsdPage() {
+    //     var sql = ` WITH  {db_version} AS v_db_version
+    //                         MERGE (n_page_rsds:L_PAGE_RSDS { page_title:"All Rsds", pages_url:"http://www.sffaudio.com/reading-short-and-deep/", db_version:v_db_version})`;
+    //     var params = {};
+    //     return this.addVersionSql(sql, params);
+    // }
+    //
+    // insertPodcastPage() {
+    //     var sql = ` WITH  {db_version} AS v_db_version
+    //                         MERGE (n_page_podcasts:L_PAGE_PODCASTS { page_title:"All Podcasts", pages_url:"http://www.sffaudio.com/the-sffaudio-podcast/", db_version:v_db_version})`;
+    //     var params = {};
+    //     return this.addVersionSql(sql, params);
+    // }
+    //
+    //
+    // insertPdfPage() {
+    //     var sql = ` WITH  {db_version} AS v_db_version
+    //                         MERGE (n_page_pdfs:L_PAGE_PDFS { page_title:"All Pdfs", pages_url:"http://www.sffaudio.com/public-domain-pdf-page/", db_version:v_db_version})`;
+    //     var params = {};
+    //     return this.addVersionSql(sql, params);
+    // }
 
 
     insertAuthor(full_author, strip_author, sorted_label) {

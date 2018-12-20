@@ -9,10 +9,7 @@ module.exports = function (data_repository) {
     var WikiAuthorNode = rootAppRequire('sff-network/show-nodes/media-types/wiki-author-show')(data_repository)
     var WikiBookNode = rootAppRequire('sff-network/show-nodes/media-types/wiki-book-show')(data_repository)
     var RsdNode = rootAppRequire('sff-network/show-nodes/media-types/rsd-show')(data_repository)
-    var PagePdfNode = rootAppRequire('sff-network/show-nodes/media-types/page-pdf-show')(data_repository)
-    var PageRsdfNode = rootAppRequire('sff-network/show-nodes/media-types/page-rsd-show')(data_repository)
-    var PagePodcastNode = rootAppRequire('sff-network/show-nodes/media-types/page-podcast-show')(data_repository)
-
+    
     function nodeFactory(media_node, author_or_book) {
         const node_id = media_node.identity.low
         const node_group = media_node.labels[0];
@@ -42,15 +39,6 @@ module.exports = function (data_repository) {
         } else if (node_group === 'L_BOOK_WIKI') {
             const {wiki_book, under_title, book_url} = media_node.properties;
             new_node = new WikiBookNode(node_id, db_version, wiki_book, under_title, book_url);
-        } else if (node_group === 'L_PAGE_PDFS') {
-            const {page_title, pages_url} = media_node.properties;
-            new_node = new PagePdfNode(node_id, db_version,page_title, pages_url);
-         } else if (node_group === 'L_PAGE_RSDS') {
-            const {page_title, pages_url} = media_node.properties;
-            new_node = new PageRsdfNode(node_id, db_version,page_title, pages_url);
-         } else if (node_group === 'L_PAGE_PODCASTS') {
-            const {page_title, pages_url} = media_node.properties;
-            new_node = new PagePodcastNode(node_id, db_version,page_title, pages_url);
         } else if (node_group === 'L_BOOK_POST') {
            const {post_title, sorted_label, post_slug, strip_author,under_title} = media_node.properties;
             new_node = new BookPostNode(node_id, db_version, post_title, sorted_label, post_slug, strip_author,under_title); 

@@ -55,18 +55,24 @@ class reloadBase {
 
 
                         .then(()=>misc_helper.waitSeconds(graphene_wait_seconds, number_authors))       // 20=4.3
-                        .then(()=>graphs_edges.buildPodcastsPage_b_4(build_repository, show_or_hide_seconds))
-
-
-                        .then(()=>misc_helper.waitSeconds(0, number_authors))
+                      
+                      //  .then(()=>graphs_edges.buildPodcastsPage_b_4(build_repository, show_or_hide_seconds))
+   //                     .then(()=>misc_helper.waitSeconds(0, number_authors))
+                        
+                        
+                        
                         .then(()=>graphs_edges.buildAllPosts_b_3(build_repository, show_or_hide_seconds))
                         .then(()=>misc_helper.waitSeconds(0, number_authors))
 
 
-                        .then(()=>graphs_edges.buildPdfsPage_b_5(build_repository, show_or_hide_seconds))
-                        .then(()=>misc_helper.waitSeconds(0, number_authors))
-                        .then(()=>graphs_edges.buildRsdsPage_b_6(build_repository, show_or_hide_seconds))
-                        .then(()=>misc_helper.waitSeconds(0, number_authors))
+                        //.then(()=>graphs_edges.buildPdfsPage_b_5(build_repository, show_or_hide_seconds))
+     //                   .then(()=>misc_helper.waitSeconds(0, number_authors))
+     
+                        //.then(()=>graphs_edges.buildRsdsPage_b_6(build_repository, show_or_hide_seconds))
+       //                 .then(()=>misc_helper.waitSeconds(0, number_authors))
+     
+     
+     
                         .then(()=>graphs_edges.buildBookPosts_b_7(build_repository, show_or_hide_seconds))
                         .then(()=>misc_helper.waitSeconds(0, number_authors))
                         .then(()=>graphs_edges.buildPodcasts_b_8(build_repository, show_or_hide_seconds))

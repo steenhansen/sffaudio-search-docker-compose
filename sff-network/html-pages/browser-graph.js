@@ -101,7 +101,6 @@ my.addHoverOnEvents = function () {
     my.addClickOnEvent = function () {
         var self = this;
         my.network_graph.on("click", function (params) {
-         console.log(' help flloook', params.nodes.length);
             if (params.nodes.length>0){
                     var node_id = params.nodes[0]
                     var the_node = self.my_nodes.get(node_id)
@@ -119,7 +118,6 @@ my.addHoverOnEvents = function () {
                     var pdf_country = the_node.pdf_country;   // Canada
                     
                     if (node_type.indexOf('HELP_')===0) {
-                        console.log(' help flloook', the_node.node_type);
                         sff_vars.graph_procs.loadAuthorNew(the_node.node_type)
                     } else if (node_type == 'L_BOOK') {
                         my.loadBookNew(last_first_underscores, under_title)

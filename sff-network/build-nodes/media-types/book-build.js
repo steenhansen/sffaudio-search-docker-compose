@@ -54,14 +54,18 @@ module.exports = function (build_repository) {
         }
 
 
-        static addPdfsPage() {
-            return build_repository.insertPdfPage();
-        }
+
 
         static addWikiStories() {
             return build_repository.insertWikiStories();
         }
-
+        
+        // static addPdfsPage() {
+        //     return build_repository.insertPdfPage();
+        // }
+        
+        
+        
     }
     return BookBuild;
 }

@@ -78,46 +78,47 @@ module.exports = function (graph_db) {
             return Promise.all([neo4j_promise4]);
         }
 
-        static getBookNodes(under_title) {
+       
+ static getBookNodes(under_title) {
                       var sql = ` // ShowRepository.getBookNodes
 			 MATCH (n_version:L_VERSION) 
-			            RETURN '' AS r_author_to_book, '' AS r_book_to_media, '' AS r_book_wiki_to_book, '' AS r_all_pages, '' AS n_all_pages, '' AS n_author,
-			                   '' AS n_book, '' AS n_book_wiki, '' AS n_pdf_or_rsd_or_podcast, n_version.current_version AS v_new_db_version
+			            RETURN '' AS r_author_to_book, '' AS r_book_to_media, '' AS r_book_wiki_to_book, 
+			                    '' AS n_author, '' AS n_book, '' AS n_book_wiki, '' AS n_pdf_or_rsd_or_podcast, n_version.current_version AS v_new_db_version
     			UNION
                          MATCH (n_version:L_VERSION) 
                           WITH n_version.current_version as v_new_db_version, {under_title} AS v_under_title
-                         MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_media:L_BOOK_TO_PDF]-(n_pdf_or_rsd_or_podcast:L_PDF)-[r_all_pages:L_PDF_TO_PAGES]-(n_all_pages:L_PAGE_PDFS)
+                         MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_media:L_BOOK_TO_PDF]-(n_pdf_or_rsd_or_podcast:L_PDF)
                          WHERE n_book.under_title = v_under_title  
                            AND n_book.db_version=v_new_db_version
-                        RETURN r_author_to_book, r_book_to_media, '' AS r_book_wiki_to_book, r_all_pages, n_all_pages, n_author, n_book, '' AS n_book_wiki, n_pdf_or_rsd_or_podcast, v_new_db_version
+                        RETURN r_author_to_book, r_book_to_media, '' AS r_book_wiki_to_book, n_author, n_book, '' AS n_book_wiki, n_pdf_or_rsd_or_podcast, v_new_db_version
                 UNION                    
                          MATCH (n_version:L_VERSION) 
                           WITH n_version.current_version as v_new_db_version, {under_title} AS v_under_title
-                         MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_media:L_BOOK_TO_PODCAST]-(n_pdf_or_rsd_or_podcast:L_PODCAST)-[r_all_pages:L_PODCASTS_TO_PAGES]-(n_all_pages:L_PAGE_PODCASTS)
+                         MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_media:L_BOOK_TO_PODCAST]-(n_pdf_or_rsd_or_podcast:L_PODCAST)
                          WHERE n_book.under_title = v_under_title 
                            AND n_book.db_version=v_new_db_version
-                        RETURN r_author_to_book, r_book_to_media, '' AS r_book_wiki_to_book, r_all_pages, n_all_pages, n_author, n_book, '' AS n_book_wiki, n_pdf_or_rsd_or_podcast, v_new_db_version         
+                        RETURN r_author_to_book, r_book_to_media, '' AS r_book_wiki_to_book, n_author, n_book, '' AS n_book_wiki, n_pdf_or_rsd_or_podcast, v_new_db_version         
                 UNION 
                          MATCH (n_version:L_VERSION) 
                           WITH n_version.current_version as v_new_db_version, {under_title} AS v_under_title
-                         MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_media:L_BOOK_TO_RSD]-(n_pdf_or_rsd_or_podcast:L_RSD) -[r_all_pages:L_RSDS_TO_PAGES]-(n_all_pages:L_PAGE_RSDS)
+                         MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_media:L_BOOK_TO_RSD]-(n_pdf_or_rsd_or_podcast:L_RSD) 
                          WHERE n_book.under_title = v_under_title 
                            AND n_book.db_version=v_new_db_version
-                        RETURN r_author_to_book, r_book_to_media, '' AS r_book_wiki_to_book, r_all_pages, n_all_pages,  n_author, n_book, '' AS n_book_wiki,  n_pdf_or_rsd_or_podcast, v_new_db_version  
+                        RETURN r_author_to_book, r_book_to_media, '' AS r_book_wiki_to_book, n_author, n_book, '' AS n_book_wiki,  n_pdf_or_rsd_or_podcast, v_new_db_version  
                 UNION 
                          MATCH (n_version:L_VERSION) 
                           WITH n_version.current_version as v_new_db_version, {under_title} AS v_under_title
                          MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_media:L_BOOK_TO_POST]-(n_pdf_or_rsd_or_podcast:L_BOOK_POST)
                          WHERE n_book.under_title = v_under_title 
                            AND n_book.db_version=v_new_db_version
-                        RETURN r_author_to_book, r_book_to_media, '' AS r_book_wiki_to_book, '' AS r_all_pages, '' AS n_all_pages,  n_author, n_book, '' AS n_book_wiki,  n_pdf_or_rsd_or_podcast, v_new_db_version 
+                        RETURN r_author_to_book, r_book_to_media, '' AS r_book_wiki_to_book, n_author, n_book, '' AS n_book_wiki,  n_pdf_or_rsd_or_podcast, v_new_db_version 
 				UNION	
 						MATCH (n_version:L_VERSION) 
                          WITH n_version.current_version as v_new_db_version, {under_title} AS v_under_title
 						MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
                         WHERE n_book.under_title = v_under_title 
                           AND n_book.db_version=v_new_db_version
-						RETURN '' AS r_author_to_book, '' AS r_book_to_media, r_book_wiki_to_book, '' AS r_all_pages, '' AS n_all_pages, '' AS n_author, n_book, n_book_wiki,  '' AS n_pdf_or_rsd_or_podcast, v_new_db_version  
+						RETURN '' AS r_author_to_book, '' AS r_book_to_media, r_book_wiki_to_book, '' AS n_author, n_book, n_book_wiki,  '' AS n_pdf_or_rsd_or_podcast, v_new_db_version  
                      `;
                      
                      
@@ -127,7 +128,6 @@ module.exports = function (graph_db) {
             var neo4j_promise = graph_db.sqlParams(sql, params)
             return Promise.all([neo4j_promise]);
         }
-
         static  booksNextVersion() {
             var sql = ` // ShowRepository.booksNextVersion()
                           MATCH (n_version:L_VERSION) 

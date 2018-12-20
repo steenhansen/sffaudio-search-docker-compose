@@ -85,10 +85,10 @@ function sff_leave(id){
     mediaLink(book_name) {
         var [under_title, book_title, sorted_label, strip_author]= book_name;
         var shrunkArticles = this.shrinkAAnThe(book_title, sorted_label);
-        var author_colons_title = strip_author + '::' + under_title + URL_SEPARATOR;
+        var title_separator =  under_title + URL_SEPARATOR;
         var book_html = `
              <div   class="book__choice"  
-                    id="${author_colons_title}" 
+                    id="${title_separator}" 
                     onclick="sff__b('${strip_author}','${under_title}') "
                     onmouseenter="sff_enter('${sorted_label}');"
                     onmouseleave="sff_leave('${sorted_label}');">

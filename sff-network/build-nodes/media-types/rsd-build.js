@@ -102,9 +102,9 @@ module.exports = function (build_repository) {
             // return my_promises;
         }
 
-        static addRsdsPage() {
-            return build_repository.insertRsdPage();
-        }
+        // static addRsdsPage() {
+        //     return build_repository.insertRsdPage();
+        // }
 
     }
 

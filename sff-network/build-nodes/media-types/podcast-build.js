@@ -88,9 +88,9 @@ module.exports = function (build_repository) {
         }
 
 
-        static addPodcastsPage() {
-            return build_repository.insertPodcastPage();
-        }
+        // static addPodcastsPage() {
+        //     return build_repository.insertPodcastPage();
+        // }
 
     }
 

@@ -18,13 +18,18 @@ sff_vars.vars_events = (function () {
            sff_vars.path_name = window.location.pathname;
     };
 
-
+ my.resizeFunc = function (){
+       document.getElementById("popup--container").style.width = window.innerWidth + 'px';
+}
 
     my.initEvents = function () {
         window.onpopstate =sff_vars.history_state.onPopState;
         window.onkeydown = function( event ) {
             sff_vars.blur_procs.keyDowns(event)
         };
+        window.addEventListener('resize',  my.resizeFunc)
+        
+        
     };
 
     return my;

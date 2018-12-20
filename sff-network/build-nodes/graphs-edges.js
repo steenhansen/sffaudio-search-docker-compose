@@ -124,27 +124,27 @@ module.exports = function (obj_dir) {
             )
     }
 
-
-    function buildPodcastsPage_b_4(build_repository, show_or_hide_seconds) {
-        var start_date = Date.now();
-        var podcast_build = rootAppRequire('./sff-network/build-nodes/media-types/podcast-build')(build_repository)
-        return podcast_build.addPodcastsPage()
-            .then(()=> misc_helper.consoleTimeEnd(start_date, "buildPodcastsPage_b_4", show_or_hide_seconds))
-    }
-
-    function buildPdfsPage_b_5(build_repository, show_or_hide_seconds) {
-        var start_date = Date.now();
-        var book_build = rootAppRequire('./sff-network/build-nodes/media-types/book-build')(build_repository)
-        return book_build.addPdfsPage()
-            .then(()=> misc_helper.consoleTimeEnd(start_date, "buildPdfsPage_b_5", show_or_hide_seconds))
-    }
-
-    function buildRsdsPage_b_6(build_repository, show_or_hide_seconds) {
-        var start_date = Date.now();
-        var rsd_build = rootAppRequire('./sff-network/build-nodes/media-types/rsd-build')(build_repository)
-        return rsd_build.addRsdsPage()
-            .then(()=> misc_helper.consoleTimeEnd(start_date, "buildRsdsPage_b_6", show_or_hide_seconds))
-    }
+    //
+    // function buildPodcastsPage_b_4(build_repository, show_or_hide_seconds) {
+    //     var start_date = Date.now();
+    //     var podcast_build = rootAppRequire('./sff-network/build-nodes/media-types/podcast-build')(build_repository)
+    //     return podcast_build.addPodcastsPage()
+    //         .then(()=> misc_helper.consoleTimeEnd(start_date, "buildPodcastsPage_b_4", show_or_hide_seconds))
+    // }
+    //
+    // function buildPdfsPage_b_5(build_repository, show_or_hide_seconds) {
+    //     var start_date = Date.now();
+    //     var book_build = rootAppRequire('./sff-network/build-nodes/media-types/book-build')(build_repository)
+    //     return book_build.addPdfsPage()
+    //         .then(()=> misc_helper.consoleTimeEnd(start_date, "buildPdfsPage_b_5", show_or_hide_seconds))
+    // }
+    //
+    // function buildRsdsPage_b_6(build_repository, show_or_hide_seconds) {
+    //     var start_date = Date.now();
+    //     var rsd_build = rootAppRequire('./sff-network/build-nodes/media-types/rsd-build')(build_repository)
+    //     return rsd_build.addRsdsPage()
+    //         .then(()=> misc_helper.consoleTimeEnd(start_date, "buildRsdsPage_b_6", show_or_hide_seconds))
+    // }
 
     function buildBookPosts_b_7(build_repository, show_or_hide_seconds) {
         var start_date = Date.now();
@@ -253,9 +253,9 @@ module.exports = function (obj_dir) {
         buildAllBooks_b_1,
         buildAllAuthors_b_2,
         buildAllPosts_b_3,
-        buildPodcastsPage_b_4,
-        buildPdfsPage_b_5,
-        buildRsdsPage_b_6,
+        // buildPodcastsPage_b_4,
+        // buildPdfsPage_b_5,
+        // buildRsdsPage_b_6,
         buildBookPosts_b_7,
         buildPodcasts_b_8,
         buildPdfs_b_9,

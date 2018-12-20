@@ -45,19 +45,14 @@ sff_vars.filter_names = (function (graph_id) {
         }
     }
 
-    my.stopFiltering = function () {
-        showHideFiltered('all_media');
-        clearFiltered('filter--authors');
-        clearFiltered('filter--books');
-    }
-    
+ 
     function makeFilters(search_underscore, all_name, filter_name, div_class_name) {
         clearFiltered(filter_name);
         var all_div = document.getElementById(all_name);
         var filter_div = document.getElementById(filter_name);
         var all_children = all_div.querySelectorAll(div_class_name);
         for (var i = 0; i < all_children.length; i++) {
-            var choice_node = all_children[i]
+            var choice_node = all_children[i];
             var div_id = choice_node.id;
             if (div_id !== '') {
                 if (div_id.indexOf(search_underscore) > -1) {
@@ -68,32 +63,57 @@ sff_vars.filter_names = (function (graph_id) {
             }
         }
     }
-
-    function showHideFiltered(showing_type) {   // filtered_media / all_media
+//////////////////////////
+   my.stopFilteringAuthors = function () {
+        my.showHideFilteredAuthors('all_media');
+        clearFiltered('filter--authors');
+    }
+    
+     my.showHideFilteredAuthors = function (showing_type) {   // filtered_media / all_media
         if (showing_type === 'all_media') {
             sff_vars.helpers.setDisplay("all--authors", 'block');
-            sff_vars.helpers.setDisplay("all--books", 'block');
             sff_vars.helpers.setDisplay('filter--authors', 'none');
-            sff_vars.helpers.setDisplay('filter--books', 'none');
         } else {
             sff_vars.helpers.setDisplay("all--authors", 'none');
-            sff_vars.helpers.setDisplay("all--books", 'none');
             sff_vars.helpers.setDisplay('filter--authors', 'block');
+        }
+    }
+
+    my.filterAuthors = function (search_for) {
+        var search_underscore = alphaUnderscore(search_for);
+        if (search_underscore === '') {
+            my.stopFilteringAuthors()
+        } else {
+            makeFilters(search_underscore, 'all--authors', 'filter--authors', 'div.author__choice');
+            my.showHideFilteredAuthors('filtered_media');
+        }
+    }
+
+   my.stopFilteringStories = function () {
+        my.showHideFilteredStories('all_media');
+        clearFiltered('filter--books');
+    }
+    
+     my.showHideFilteredStories = function (showing_type) {   // filtered_media / all_media
+        if (showing_type === 'all_media') {
+            sff_vars.helpers.setDisplay("all--books", 'block');
+            sff_vars.helpers.setDisplay('filter--books', 'none');
+        } else {
+            sff_vars.helpers.setDisplay("all--books", 'none');
             sff_vars.helpers.setDisplay('filter--books', 'block');
         }
     }
 
-    my.filterMedia = function (search_for) {
+    my.filterStories = function (search_for) {
         var search_underscore = alphaUnderscore(search_for);
         if (search_underscore === '') {
-            my.stopFiltering()
+            my.stopFilteringStories()
         } else {
-            makeFilters(search_underscore, 'all--authors', 'filter--authors', 'div.author__choice');
             makeFilters(search_underscore, 'all--books', 'filter--books', 'div.book__choice');
-            showHideFiltered('filtered_media');
+            my.showHideFilteredStories('filtered_media');
         }
     }
-
+//////////////
     function spacesToUrlSeparator(author_title) {
         var underscore_author_title = author_title.replace(/ /g, '${URL_SEPARATOR}');
         return underscore_author_title;

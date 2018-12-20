@@ -33,9 +33,9 @@ var media_sizes = {
              L_RSD: 'white',
             L_BOOK_WIKI: 'white',
             L_PDF: 'white',
-            L_PAGE_PODCASTS: 'white',
-            L_PAGE_PDFS: 'white',
-            L_PAGE_RSDS: 'white'
+          //  L_PAGE_PODCASTS: 'white',
+         //   L_PAGE_PDFS: 'white',
+          //  L_PAGE_RSDS: 'white'
         },
         FONT_SIZES: {
             L_BOOK: 32,L_AUTHOR: 12,  L_BOOK_POST: 12, L_AUTHOR_WIKI: 12, L_RSD: 12, L_PDF:12

@@ -54,12 +54,21 @@ var load_css_external = `
              background-color: ${graph_background};
                   
         }
-        #clear--filter{
-               width: 20%;
+
+        #do--story--filter{
+             /*  width: 20%;   */
+        }      
+
+        #clear--story--filter{
+             /*  width: 20%;   */
         }      
         
-        #filter--text {
-             width: 30%;
+        #filter--story--text {
+             width: 20%;
+        }
+        
+        #filter--author--text {
+             width: 20%;
         }
         
            .current__media{

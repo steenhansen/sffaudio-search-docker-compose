@@ -191,63 +191,115 @@ let get_help = svg_icons.get_help_icon('blue');
             </div>
         </div>
 
+<script>
+function authorEnterPress(e){  
+    var event = e || window.event;
+    var charCode = event.which || event.keyCode;
+    if ( charCode == '13' ) {
+        var search_for = document.getElementById('filter--author--text').value;
+        sff_vars.filter_names.filterAuthors(search_for);
+    }
+}
+function storyEnterPress(e){  
+    var event = e || window.event;
+    var charCode = event.which || event.keyCode;
+    if ( charCode == '13' ) {
+        var search_for = document.getElementById('filter--story--text').value;
+        sff_vars.filter_names.filterStories(search_for);
+    }
+}
+</script>  
+ <div style='clear:both'> 
+        Filter author list by:
+        <input id='filter--author--text' placeholder="Author filter" type='text'
+        
+            onkeypress =" authorEnterPress()  "
+        
+              oninput=" if (this.value.length>0){
+                            document.getElementById('clear--author--filter').disabled = false;
+                            document.getElementById('do--author--filter').disabled = false;
+                        }else{
+                            document.getElementById('clear--author--filter').disabled = true;
+                            document.getElementById('do--author--filter').disabled = true;
+                        }" />
+                        
+                      
+                        
+                        
+                        
+        <button id='do--author--filter' disabled="true" 
+            onClick=" var search_for = document.getElementById('filter--author--text').value;
+                      sff_vars.filter_names.filterAuthors(search_for);
+            ">Filter Authors </button>          
+                    
+        <button id='clear--author--filter' disabled="true" 
+            onClick=" document.getElementById('filter--author--text').value = '';
+                      sff_vars.filter_names.stopFilteringAuthors();
+                    "  >Clear Filter</button>         
+                           
+        <div  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="info--circle" title="Show Help">
+            <img src="${get_help}" class="control--symbols">
+        </div>        
+                           
+        <div  onclick="sff_vars.graph_procs.graphSize('+');" class="info--circle"" title="Zoom In">
+            <img src="${zoom_in}" class="control--symbols">
+        </div>
+                    
+        <div  onclick="sff_vars.graph_procs.graphSize('-');" class="info--circle"" title="Zoom Out">
+            <img src="${zoom_out}" class="control--symbols">
+        </div>
+    </div>
+
+
+
 
 
 <div >
-<div id='stable-redraw-height'></div>
-         <div id="${graph_div_id}">
-         </div>
+        <div id='stable-redraw-height'></div>
+         <div id="${graph_div_id}"></div>
 </div>
 
 
+
+
+
     <div style='clear:both'> 
-
-    
-
-        <button id='do--filter' 
-            onClick="
-                var search_for = document.getElementById('filter--text').value;
-                sff_vars.filter_names.filterMedia(search_for);
-            " 
-        disabled="true">Filter authors &amp; stories </button>
-
-
-        <input id='filter--text'
-            placeholder="Filter Authors & Stories"
-         type='text'
-          oninput=" if (this.value.length>0){
-                        document.getElementById('clear--filter').disabled = false;
-                        document.getElementById('do--filter').disabled = false;
-                    }else{
-                        document.getElementById('clear--filter').disabled = true;
-                        document.getElementById('do--filter').disabled = true;
-                    }
-                    //sff_vars.filter_names.filterMedia(this);
-                     "/>
+        Filter story list by:
+        <input id='filter--story--text' placeholder="Story filter" type='text'
+          onkeypress =" storyEnterPress()  "
+              oninput=" if (this.value.length>0){
+                            document.getElementById('clear--story--filter').disabled = false;
+                            document.getElementById('do--story--filter').disabled = false;
+                        }else{
+                            document.getElementById('clear--story--filter').disabled = true;
+                            document.getElementById('do--story--filter').disabled = true;
+                        }" />
+        <button id='do--story--filter' disabled="true" 
+            onClick=" var search_for = document.getElementById('filter--story--text').value;
+                      sff_vars.filter_names.filterStories(search_for);
+            ">Filter Stories </button>          
                     
-                   <button id='clear--filter' onClick="
-            document.getElementById('filter--text').value = '';
-        sff_vars.filter_names.stopFiltering();
-        "
-         disabled="true">Clear Filter</button>         
+        <button id='clear--story--filter' disabled="true" 
+            onClick=" document.getElementById('filter--story--text').value = '';
+                      sff_vars.filter_names.stopFilteringStories();
+                    "  >Clear Filter</button>         
                            
+        <div  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="info--circle"" title="Show Help">
+            <img  src="${get_help}" class="control--symbols">
+        </div>        
                            
-                                <div  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="control--boxes" >
-        <img id="help--filter"  src="${get_help}" class="control--symbols">
-          </div>        
-                           
-                    <div  onclick="sff_vars.graph_procs.graphSize('+');" class="control--boxes" >
-        <img id="grow--filter"  src="${zoom_in}" class="control--symbols">
-          </div>
+        <div  onclick="sff_vars.graph_procs.graphSize('+');" class="info--circle"" title="Zoom In">
+            <img  src="${zoom_in}" class="control--symbols">
+        </div>
                     
-                                        <div  onclick="sff_vars.graph_procs.graphSize('-');" class="control--boxes" >
-        <img id="shrink--filter"  src="${zoom_out}" class="control--symbols">
-          </div>
-          
-                    
-                    
-        
-     </div>
+        <div  onclick="sff_vars.graph_procs.graphSize('-');" class="info--circle"" title="Zoom Out">
+            <img  src="${zoom_out}" class="control--symbols">
+        </div>
+    </div>
+     
+     
+     
+     
 <div style="text-align: center;    font-size: larger;"> Stories with online content</div>
          
          <div id="all--filter--books" style="height:600px; ">
@@ -262,7 +314,7 @@ let get_help = svg_icons.get_help_icon('blue');
      
 </div>
 <script>
-    document.getElementById('filter--text').value = '';
+    document.getElementById('filter--story--text').value = '';
 </script>
  `;
     return media_html;

@@ -251,8 +251,12 @@ z-index:3;
     top:100px;
 }
 
-
 .control--boxes{
+display:inline-block;
+ width:16%;
+}
+
+.info--circle{
 display:inline-block;
  width:3%;
  vertical-align: middle;
