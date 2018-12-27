@@ -27,7 +27,7 @@ const program_variables = fromAppRoot('sff-network/program-variables.js');
 const popup_pdf = rootAppRequire('sff-network/show-nodes/media-nodes/popup-pdf');
 const popup_podcast = rootAppRequire('sff-network/show-nodes/media-nodes/popup-podcast');
 const popup_rsd = rootAppRequire('sff-network/show-nodes/media-nodes/popup-rsd');
-const popup_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup-post');
+const popup_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup-author-post');
 const popup_book_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup-book-post');
 const sff_helpers_js = rootAppRequire('sff-network/html-pages/helper-functions');
 

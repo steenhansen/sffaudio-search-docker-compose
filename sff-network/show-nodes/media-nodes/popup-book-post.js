@@ -5,13 +5,22 @@ sff_vars.book_post_procs = (function (post_close_svg, post_proxy) {
 
     var my = {};
 
-    my.loadBookPost = function (pdf_url, strip_author, under_title, req_query_view) {
+
+    my.historyBookPost = function (pdf_url, strip_author, under_title, req_query_view, sorted_choice) {
         document.getElementById("my--graph").style.display="none"; 
         if (req_query_view) {
-            sff_vars.history_state.pushBookView(strip_author, under_title, req_query_view);
+            sff_vars.history_state.pushBookView(strip_author, under_title, req_query_view, sorted_choice);
         } else {
             sff_vars.history_state.pushBook(strip_author, under_title);
         }
+          my.startBookPost(pdf_url);
+    }
+
+    my.setupBookPost = function(){}
+    
+    my.startBookPost = function (pdf_url) {
+        document.getElementById("my--graph").style.display="none"; 
+       
         sff_vars.helpers.setDisplay('close--icon', 'none');
         document.getElementById('close--icon').src = post_close_svg;     /// q*bert
         sff_vars.helpers.setDisplay('popup--container', 'block');

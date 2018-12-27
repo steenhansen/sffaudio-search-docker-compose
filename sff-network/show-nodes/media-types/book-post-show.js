@@ -13,7 +13,7 @@ module.exports = function (graph_repository) {
     class BookPostNode extends HoverIcon {
 
 
-        constructor(node_id, db_version, post_title, sorted_label, post_slug, strip_author, under_title) {
+        constructor(node_id, db_version, post_title, sorted_label, post_slug, strip_author, under_title, book_post_count) {
 
 
             super(node_id, db_version, post_title, sorted_label);
@@ -25,7 +25,7 @@ module.exports = function (graph_repository) {
             this.under_title = under_title;
             this.node_type = 'L_BOOK_POST';
                    this.title = "Click for story's SFFaudio post";
-    
+            this.sorted_choice = book_post_count;
         }
 
 

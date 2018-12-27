@@ -56,9 +56,9 @@ if (movement_dir==='+'){
     my.startGraph = function (graph_id, nodes_string, edges_string, graph_physics) {
         my.loadGraph(graph_id, nodes_string, edges_string, graph_info.graph_physics);
         if (graph_info.graph_type == '${BOOK_PAGE_TYPE}') {
-            sff_vars.filter_names.selectMedia(graph_info.under_title, 'yes_scroll')
+            sff_vars.filter_names.selectMedia(graph_info.under_title, 'BOOK-CHOICE')
         } else {
-            sff_vars.filter_names.selectMedia(graph_info.strip_author, 'yes_scroll')
+            sff_vars.filter_names.selectMedia(graph_info.strip_author, 'AUTHOR-CHOICE')
         }
     }
 
@@ -72,28 +72,32 @@ my.addHoverOnEvents = function () {
     var self = this;
     my.network_graph.on("hoverNode", function (params) {
         var the_node = self.my_nodes.get(params.node);
-        var node_type = the_node.node_type;
-        if (node_type.indexOf('HELP_') === 0) {
-            var hover_name = node_type.substring(5);
-        } else {
-            var hover_name = node_type.substring(2);
+       if (the_node.node_type){
+         var node_type = the_node.node_type;
+         if (node_type.indexOf('HELP_') === 0) {
+              var hover_name = node_type.substring(5);
+            } else {
+               var hover_name = node_type.substring(2);
+            }
+            var hover_group = 'H_' + hover_name;
+            self.my_nodes.update({id: the_node.id, group: hover_group});
+         my.network_graph.canvas.body.container.style.cursor = 'pointer';
         }
-        var hover_group = 'H_' + hover_name;
-        self.my_nodes.update({id: the_node.id, group: hover_group});
-        my.network_graph.canvas.body.container.style.cursor = 'pointer';
     });
 ////////////////////////////////////////////////////////////
     my.network_graph.on("blurNode", function (params) {
         var the_node = self.my_nodes.get(params.node);
-        var node_type = the_node.node_type;
-        if (node_type.indexOf('HELP_') === 0) {
-            var hover_name = node_type.substring(5);
-        } else {
-            var hover_name = node_type.substring(2);
+        if (the_node.node_type){
+            var node_type = the_node.node_type;
+            if (node_type.indexOf('HELP_') === 0) {
+             var hover_name = node_type.substring(5);
+            } else {
+             var hover_name = node_type.substring(2);
+            }
+            var node_group = 'N_' + hover_name;
+            self.my_nodes.update({id: the_node.id, group: node_group});
+            my.network_graph.canvas.body.container.style.cursor = 'default';
         }
-        var node_group = 'N_' + hover_name;
-        self.my_nodes.update({id: the_node.id, group: node_group});
-        my.network_graph.canvas.body.container.style.cursor = 'default';
     });
 }
 ////////////////////////////////////////////////////////////
@@ -117,26 +121,29 @@ my.addHoverOnEvents = function () {
                     var podcast_url = the_node.podcast_url;
                     var pdf_country = the_node.pdf_country;   // Canada
                     
+                    var sorted_choice = the_node.sorted_choice
+                    
                     if (node_type.indexOf('HELP_')===0) {
                         sff_vars.graph_procs.loadAuthorNew(the_node.node_type)
                     } else if (node_type == 'L_BOOK') {
-                        my.loadBookNew(last_first_underscores, under_title)
+                        my.loadBookNew(last_first_underscores, under_title)           // why my.
                     } else if (node_type == 'L_AUTHOR') {
-                        my.loadAuthorNew(strip_author)
+                        my.loadAuthorNew(strip_author)                          // why my.
                     } else if (node_type == 'L_PDF') {
-                        sff_vars.pdf_procs.loadPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf');
+                        sff_vars.pdf_procs.historyPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf', sorted_choice);
                     } else if (node_type == 'L_PODCAST') {
-                        sff_vars.podcast_procs.loadPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast');
+                        sff_vars.podcast_procs.historyPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast', sorted_choice);
                     } else if (node_type == 'L_RSD') {
-                        sff_vars.rsd_procs.loadRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd');
+                        sff_vars.rsd_procs.historyRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd', sorted_choice);
                     } else if (node_type == 'L_RSD_VIDEO') {
-                        sff_vars.rsd_procs.loadRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd');
+                        sff_vars.rsd_procs.historyRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd', sorted_choice);
                     } else if (node_type == 'L_AUTHOR_POST') {  
-                        sff_vars.post_procs.loadPost(goto_url, strip_author, 'post');
+                        sff_vars.author_post_procs.historyAuthorPost(goto_url, strip_author, 'post_author', sorted_choice);
                     } else if (node_type == 'L_BOOK_POST') {
-                        sff_vars.book_post_procs.loadBookPost(goto_url, strip_author, under_title, 'post');
+                        
+                        sff_vars.book_post_procs.historyBookPost(goto_url, strip_author, under_title, 'post_book', sorted_choice);
                     } else if (typeof goto_url !== 'undefined') {
-                    console.log('ddddddddddddd, ', node_type);
+                    console.log('typeof goto_url !== undefined ', node_type);
                         window.location = goto_url;
                     }
             }
@@ -151,18 +158,21 @@ my.addHoverOnEvents = function () {
                     return response.json();
                 })
                 .then(function (myJson) {
-                      console.log('fetch ....', myJson);
                     if (my.network_graph !== null) {
                         my.network_graph.destroy();
                         my.network_graph = null;
                     }
+
+
+
                     var fetch_nodes = JSON.parse(myJson.nodes_string)
+                    sff_vars.graph_vars.nodes_string = fetch_nodes;  
                     var fetch_edges = JSON.parse(myJson.edges_string);
                     var fetch_options = JSON.parse(myJson.graph_string);
                     if (fetch_options.strip_author.indexOf('HELP_')>=0) {     
                         fetch_nodes =  sff_vars.help_nodes[fetch_options.strip_author]; 
                         fetch_edges= sff_vars.HELP_ALL_EDGES ;  
-                    }                    
+                    }              
                     sff_vars.graph_procs.loadGraph(graph_id, fetch_nodes, fetch_edges, fetch_options.graph_physics);
                 });
         };
@@ -170,9 +180,8 @@ my.addHoverOnEvents = function () {
 
 //http://localhost:5000/?author=philip_k_dick
     my.loadAuthorNew = function (strip_author) {
-        if (sff_vars.filter_names.selectMedia(strip_author, 'no_scroll')) {
+        if (sff_vars.filter_names.selectMedia(strip_author, 'AUTHOR-CHOICE')) {
             var author_json = sff_vars.history_state.pushAuthor(strip_author);
-
             my.network_graph.loadAuthorOrBook(author_json);
         }
     }
@@ -180,7 +189,7 @@ my.addHoverOnEvents = function () {
 //http://localhost:5000/?book=beyond_lies_the_wub
     my.loadBookNew = function (strip_author, under_title) {
         var author_colons_title = strip_author + '::' + under_title;
-        if (sff_vars.filter_names.selectMedia(author_colons_title, 'no_scroll')) {
+        if (sff_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')) {
             var book_json = sff_vars.history_state.pushBook(strip_author, under_title);
             my.network_graph.loadAuthorOrBook(book_json);
         }
@@ -198,6 +207,26 @@ my.addHoverOnEvents = function () {
     sff_vars.graph_vars.graph_info,
     sff_vars.graph_vars.edge_options
 ))
+
+
+window.sff__a = sff_vars.graph_procs.loadAuthorNew;
+window.sff__v = sff_vars.helpers.setVisible;
+window.sff__h = sff_vars.helpers.setHidden; 
+
+window.sff__b = sff_vars.graph_procs.loadBookNew;
+function sff_enter(id){
+	document.getElementById(id + '_article').style.visibility='visible';
+	document.getElementById(id + '_rest' ).style.height='5.5em';
+	document.getElementById(id + '_rest' ).style.position='relative';
+	document.getElementById(id + '_rest' ).style.backgroundColor='yellow';
+}
+
+function sff_leave(id){
+	document.getElementById(id + '_article').style.visibility='hidden';
+	document.getElementById(id + '_rest' ).style.height='1em';  
+	document.getElementById(id + '_rest' ).style.position='static';
+	document.getElementById(id + '_rest' ).style.backgroundColor='transparent';
+}
 
 // browser-graph end
 

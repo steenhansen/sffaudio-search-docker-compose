@@ -76,7 +76,7 @@ sff_vars.blur_procs = (function (pop_up_id) {
         var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         var canvas_left_px = screen_width * 0.05;
         mp3_player.style.left = canvas_left_px + "px";
-        mp3_player.style.width = screen_width * 0.9 + "px";
+        //mp3_player.style.width = screen_width * 0.9 + "px";
     }
 
     my.screenHeightPx = function () {
@@ -86,10 +86,7 @@ sff_vars.blur_procs = (function (pop_up_id) {
 
     my.blockPage = function (container_id) {
         var screen_height_px = my.screenHeightPx();
-        document.getElementById(container_id).style.height = screen_height_px;
-        document.getElementById(container_id).style.width = window.screen.width + 'px';
         var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        document.getElementById('close--icon').style.left = (screen_width * 0.9) + 'px';
         sff_vars.helpers.setDisplay(container_id, 'block');
         sff_vars.helpers.setDisplay('close--icon', 'block');
     }
@@ -114,16 +111,16 @@ let prev_page = svg_icons.prev_icon(graph_constants.PDF_COLOR);
 
 
 var popup_blur_html = `  
-   <div id='popup--container'>
+   <div id='popup--container' >
     <div class='opaque--cover' ></div>
     
-
+ <div id="media--title">&nbsp;</div>
 
     <div id="close--enclosure" onclick="sff_vars.blur_procs.closePopUp();">
         <img id="close--icon" src="" alt="Smiley face">
     </div>
 
-    <div id="media--title">&nbsp;</div>
+   
     
     
 
@@ -190,7 +187,7 @@ var popup_blur_html = `
 </div>
 
 
-<img id='pdf--loading' src='/gifer_com_loader.gif' >
+
          
          
     `;
@@ -210,7 +207,7 @@ z-index:3;
  position:absolute; 
   display:none; 
    padding-top:32px; 
-   width:100%;
+   width:85%;
 }
 
 
@@ -249,6 +246,7 @@ z-index:3;
   display:none; 
    text-align:center;
     top:100px;
+    width:480px;
 }
 
 .control--boxes{
@@ -257,12 +255,16 @@ display:inline-block;
 }
 
 .info--circle{
+
 display:inline-block;
- width:3%;
+ width:13%;
  vertical-align: middle;
- float: right;
+ float: left;
  margin-right:14px;
  padding-top:1px;
+/* position:relative;
+ top:-22px;
+ left:238px; */
 }
 
 .control--symbols{
@@ -278,12 +280,10 @@ position:absolute;
  display:block;
   z-index:333; 
   left:-24px;
+  width:100%;
+  top:150px;
 }
 
-#pdf--loading{
-left:50%; 
-margin-left:-105px
-}
 
 
 
@@ -300,27 +300,31 @@ position:absolute;
 
 #close--enclosure{
  z-index:333;
- position:absolute; 
+/* position:absolute;*/ 
  left:0px; 
  width:24px; 
  height:24px; 
  cursor:pointer;
+ float:right;
 }
 
 #close--icon{
 z-index:333; 
-position:absolute; 
+position:relative; 
 left:0px; 
-width:100%; 
-height:100%; 
+width:24px; 
+height:24px; 
 padding:4px
+display: block;
+float:right;
 
 }
 
 #pdf--loading{
+   left:175px; 
     position:absolute; 
     z-index:4;
-    top:200px;
+    top:300px;
     display:none;
 }
 
@@ -328,9 +332,10 @@ padding:4px
 #popup--container {
 display:none;
   width: 100%;
-  height: 1000px;
+  /* height: 1000px; */
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   
 text-align:right;  
 display:none; 

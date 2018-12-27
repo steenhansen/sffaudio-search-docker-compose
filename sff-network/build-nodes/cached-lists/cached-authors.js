@@ -16,17 +16,7 @@ class CachedAuthors extends CachedBase {
         this.odd_even_class = 'odd__author';
     }
 
-    mediaCss() {
-        var author_css = `
-<script>
-window.sff__a = sff_vars.graph_procs.loadAuthorNew;
-window.sff__v = sff_vars.helpers.setVisible;
-window.sff__h = sff_vars.helpers.setHidden; 
-</script>
-
-`;
-        return author_css;
-    }
+    
 
     repositoryCall(new_db_version, all_links) {
         return VersionRepository.saveAuthors(new_db_version, all_links);
@@ -53,10 +43,10 @@ window.sff__h = sff_vars.helpers.setHidden;
             middle_names = '&nbsp;';
         }
         var odd_even_class = this.oddEvenClass();
-
+var title_separator =  strip_author + '__'; 
         var author_html = `
              <div   class='author__choice ${odd_even_class}' 
-                    id="${strip_author}_"       
+                    id="${title_separator}"       
                     onclick="sff__a('${strip_author}') "
                     onmouseenter="sff__v('${strip_author}_mid');"
                     onmouseleave="sff__h('${strip_author}_mid');" >

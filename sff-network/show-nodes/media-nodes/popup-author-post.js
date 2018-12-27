@@ -1,22 +1,25 @@
 
 
 var load_css_external = `
-// popup-post
-sff_vars.post_procs = (function (post_close_svg, post_proxy) {
+// popup-author-post
+sff_vars.author_post_procs = (function (post_close_svg, post_proxy) {
 
     var my = {};
 
-    my.loadPost = function (pdf_url, strip_author, req_query_view) {
+    my.historyAuthorPost = function (pdf_url, strip_author, req_query_view, sorted_choice) {
     document.getElementById("my--graph").style.display="none"; 
         if (req_query_view === '') {
             sff_vars.history_state.pushAuthor(strip_author);
         } else {
-            sff_vars.history_state.pushAuthorView(strip_author, req_query_view);
+            sff_vars.history_state.pushAuthorView(strip_author, req_query_view, sorted_choice);
         }
-        my.loadPostForPodcast(pdf_url);
+        my.startAuthorPost(pdf_url);
     }
 
-    my.loadPostForPodcast = function (pdf_url) {
+
+    my.setupAuthorPost = function(){}
+
+    my.startAuthorPost = function (pdf_url) {
         sff_vars.helpers.setDisplay('close--icon', 'none');
         document.getElementById('close--icon').src = post_close_svg;     /// q*bert
         sff_vars.helpers.setDisplay('popup--container', 'block');
@@ -38,6 +41,26 @@ sff_vars.post_procs = (function (post_close_svg, post_proxy) {
                 var post_height = document.getElementById("post--container").offsetHeight + 200;
                 document.getElementById('popup--container').style.height = post_height + 'px';
                 sff_vars.blur_procs.blockPage('popup--container');
+                
+                        ////////////////////////////////////
+          var header_height = sff_vars.helpers.computedValue("sff--header", "height");
+          
+           var my_network = document.getElementById("my--network")
+           var popup_container = document.getElementById("popup--container")
+        
+        popup_container.style.top = my_network.style.top  + header_height*1.7;
+        popup_container.style.left = my_network.style.left + 20;
+        
+        popup_container.style.height = '100%' ; //my_network.style.height;
+        
+        var network_width = sff_vars.helpers.computedValue("my--network", "width");
+        
+        popup_container.style.width = network_width-30;
+
+        
+        ////////////////////////////////////
+                
+                
             });
 
         sff_vars.blur_procs.postPdfWidth('post--container');
@@ -46,7 +69,7 @@ sff_vars.post_procs = (function (post_close_svg, post_proxy) {
     return my;
 
 }(sff_vars.graph_vars.node_icons.I_CLOSE_POST.image, sff_vars.post_vars.post_proxy))
-// popup-post end
+// popup-author-post end
 `;
 module.exports = load_css_external; 
 

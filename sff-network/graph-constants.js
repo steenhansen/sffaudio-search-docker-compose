@@ -4,6 +4,12 @@ const the_colors =["red", "#666600", "olive", "green", "blue", "indigo", "violet
 
 
 
+if (process.env.PORT){
+    var node_url = "http://localhost:" + process.env.PORT + "/"
+}else {
+   var node_url = "https://sffaudio-test-neo4j.herokuapp.com/"
+}
+
 const rotate_colors = the_colors.concat(the_colors);
 
 // local 26 records config
@@ -11,7 +17,9 @@ const rotate_colors = the_colors.concat(the_colors);
 
 var graph_constants = {
 
-    URL_SEPARATOR : '-',         // - or _
+
+// __ .. ::
+    URL_SEPARATOR : '-',         // __ is for last char of author id, .. is for last char of book id, :: is for author::book
 
 	AUTHOR_PAGE_TYPE : 'AUTHOR_PAGE',
 	BOOK_PAGE_TYPE: 'BOOK_PAGE',
@@ -69,7 +77,7 @@ var graph_constants = {
     BOOK_AUTHOR_DELIMITER : '^',
 
 //	POST_LINK: "http://www.sffaudio.com/", 
-    HEROKU_URL: "https://sffaudio-test-neo4j.herokuapp.com/",
+    HEROKU_URL: node_url,                      //"https://sffaudio-test-neo4j.herokuapp.com/",
 
 	MEDIA_LINK_DIR: "https://www.sffaudio.com/podcasts/", 
 	PODCAST_LINK: "https://www.sffaudio.com/?p=", 

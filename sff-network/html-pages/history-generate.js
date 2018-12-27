@@ -1,14 +1,19 @@
 // history-generate   
 var history_generate = `
 //history-generate
+
+
+
+
+
 sff_vars.history_generate = (function () {
 
-    var my = {};
-    
-    my.bookHistoryView = function (req_query_view, strip_author, under_title) {
 
-        function bookPostView(graph_node) {
+  function bookPostView(graph_node) {
             return graph_node.group === 'N_BOOK_POST';
+        }
+                function authorPostView(graph_node) {
+            return graph_node.group === 'N_AUTHOR_POST';
         }
 
         function pdfView(graph_node) {
@@ -23,29 +28,34 @@ sff_vars.history_generate = (function () {
             return graph_node.group === 'N_PODCAST'; ///last_first_underscores
         }
 
+
+    var my = {};
+    
+    my.bookHistoryView = function (req_query_view, strip_author, under_title) {
         sff_vars.history_state.pushBook(strip_author, under_title);
-        if (req_query_view === 'post') {
+        if (req_query_view === 'post_book') {
             var book_view = sff_vars.graph_vars.nodes_string.find(bookPostView);                  //  http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=post           
             if (book_view) {
-                sff_vars.book_post_procs.loadBookPost(book_view.goto_url, book_view.strip_author, book_view.under_title, req_query_view);
+                sff_vars.book_post_procs.historyBookPost(book_view.goto_url, book_view.strip_author, book_view.under_title, req_query_view);
             }
         } else if (req_query_view === 'pdf') {
             var pdf_view = sff_vars.graph_vars.nodes_string.find(pdfView);         //             http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=pdf
+            
+            
             if (pdf_view) {
-                sff_vars.pdf_procs.loadPdf(pdf_view.goto_url, pdf_view.book_title, pdf_view.label, pdf_view.last_first_underscores, pdf_view.under_title, req_query_view);
+                sff_vars.pdf_procs.historyPdf(pdf_view.goto_url, pdf_view.book_title, pdf_view.label, pdf_view.last_first_underscores, pdf_view.under_title, req_query_view);
             }
         } else if (req_query_view === 'rsd') {
             var rsd_view = sff_vars.graph_vars.nodes_string.find(rsdView);         //             http://www.sff_test.com/?book=beyond_lies_the_wub&author=philip_k_dick&view=rsd
           
-          console.log('123789 rsd_view===', rsd_view);
-          
+             
             if (rsd_view) {
-                sff_vars.rsd_procs.loadRsd(rsd_view.goto_url, rsd_view.rsd_description, rsd_view.label, rsd_view.rsd_pdf_link, rsd_view.video_link, rsd_view.under_title, rsd_view.last_first_underscores, req_query_view);
+                sff_vars.rsd_procs.historyRsd(rsd_view.goto_url, rsd_view.rsd_description, rsd_view.label, rsd_view.rsd_pdf_link, rsd_view.video_link, rsd_view.under_title, rsd_view.last_first_underscores, req_query_view);
             }
         } else if (req_query_view === 'podcast') {
             var podcast_view = sff_vars.graph_vars.nodes_string.find(podcastView);         //             http://www.sff_test.com/?book=beyond_lies_the_wub&author=philip_k_dick&view=podcast
             if (podcast_view) {
-                sff_vars.podcast_procs.loadPodcast(podcast_view.goto_url, podcast_view.podcast_url, podcast_view.under_title, podcast_view.last_first_underscores, req_query_view);
+                sff_vars.podcast_procs.historyPodcast(podcast_view.goto_url, podcast_view.podcast_url, podcast_view.under_title, podcast_view.last_first_underscores, req_query_view,  sorted_choice);
             }
         }
 
@@ -53,15 +63,13 @@ sff_vars.history_generate = (function () {
 
     my.authorHistoryView = function (req_query_view, strip_author) {
 
-        function authorPostView(graph_node) {
-            return graph_node.group === 'L_AUTHOR_POST';
-        }
+
 
         sff_vars.history_state.pushAuthor(strip_author);
-        if (req_query_view === 'post') {
+        if (req_query_view === 'post_author') {
             var author_view = sff_vars.graph_vars.nodes_string.find(authorPostView);      //                 http://localhost:5000/?author=philip_k_dick&view=post        
             if (author_view) {
-                sff_vars.post_procs.loadPost(author_view.goto_url, author_view.strip_author, req_query_view);
+                sff_vars.author_post_procs.historyAuthorPost(author_view.goto_url, author_view.strip_author, req_query_view);
             }
         }
     }

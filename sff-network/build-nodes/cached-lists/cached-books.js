@@ -10,7 +10,7 @@ var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 var fs = require('fs');
 
-const {URL_SEPARATOR}=graph_constants;
+///const {URL_SEPARATOR}=graph_constants;
 
 class CachedBooks extends CachedBase {
 
@@ -21,35 +21,7 @@ class CachedBooks extends CachedBase {
 //http://localhost:5000/?author=philip_k_dick&book=adjustment_team
 
 
-    mediaCss() {
-
-        var book_css = `
-        
-       
-<script>
-window.sff__b = sff_vars.graph_procs.loadBookNew;
-//window.sff__38 = sff_vars.helpers.setHeight38;
-//window.sff__16 = sff_vars.helpers.setHeight16;
-function sff_enter(id){
-	document.getElementById(id + '_article').style.visibility='visible';
-	document.getElementById(id + '_rest' ).style.height='5.5em';
-	document.getElementById(id + '_rest' ).style.position='relative';
-	document.getElementById(id + '_rest' ).style.backgroundColor='yellow';
-}
-
-function sff_leave(id){
-	document.getElementById(id + '_article').style.visibility='hidden';
-	document.getElementById(id + '_rest' ).style.height='1em';  
-	document.getElementById(id + '_rest' ).style.position='static';
-	document.getElementById(id + '_rest' ).style.backgroundColor='transparent';
-}
-
-</script>
-
-
-`;
-        return book_css;
-    }
+   
 
 
     repositoryCall(new_db_version, all_links) {
@@ -85,7 +57,7 @@ function sff_leave(id){
     mediaLink(book_name) {
         var [under_title, book_title, sorted_label, strip_author]= book_name;
         var shrunkArticles = this.shrinkAAnThe(book_title, sorted_label);
-        var title_separator =  under_title + URL_SEPARATOR;
+        var title_separator =  under_title + '..';         ////// will be ...
         var book_html = `
              <div   class="book__choice"  
                     id="${title_separator}" 

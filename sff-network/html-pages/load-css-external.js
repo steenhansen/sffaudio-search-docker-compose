@@ -68,7 +68,7 @@ var load_css_external = `
         }
         
         #filter--author--text {
-             width: 20%;
+             width: 70px;
         }
         
            .current__media{

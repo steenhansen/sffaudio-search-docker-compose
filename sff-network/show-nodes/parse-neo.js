@@ -29,6 +29,9 @@ module.exports = function (graph_repository) {
     class ParseNeo {
 
         constructor(graph_collection, author_or_book) {
+        
+        nodeFactory.resetChoiceCounts();
+        
             this.author_or_book = author_or_book;
             this.node_relationships = {};
             this.nodes_2string = {};
@@ -88,7 +91,7 @@ module.exports = function (graph_repository) {
                     var field_data = this.data_fields[i];
                     if ((field_data !== null) && (typeof field_data.identity !== 'undefined')) {
                         var identity_int = field_data.identity.low;
-                        var node_2object = nodeFactory(field_data, this.author_or_book);
+                        var node_2object = nodeFactory.makeNode(field_data);
                         // if (node_2object instanceof VersionShow) {
                         //     this.nodes_2string['EMPTY_ICON'] = node_2object;
                         // } else 

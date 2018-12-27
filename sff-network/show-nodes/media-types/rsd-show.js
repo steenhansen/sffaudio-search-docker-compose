@@ -7,7 +7,7 @@ module.exports = function (graph_db) {
     class RsdData extends HoverIcon {
 
 
-        constructor(node_id, db_version, rsd_title, rsd_url, rsd_pdf_link, rsd_description, video_link, under_title, last_first_underscores) {
+        constructor(node_id, db_version, rsd_title, rsd_url, rsd_pdf_link, rsd_description, video_link, under_title, last_first_underscores, rsd_count) {
             super(node_id, db_version, rsd_title, rsd_url);
              this.goto_url = rsd_url;
                
@@ -23,6 +23,7 @@ module.exports = function (graph_db) {
                   
                   }
                      this.title = 'Click to listen & read';
+                     this.sorted_choice = rsd_count;
         }
 
 

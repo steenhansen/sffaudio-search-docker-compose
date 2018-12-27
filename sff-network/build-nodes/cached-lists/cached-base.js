@@ -32,8 +32,8 @@ class CachedBase {
             media_data_2[distinct_title_name] = media_small
         }
         var all_links_2 = Object.values(media_data_2).join("\n");
-        var the_css = this.mediaCss();
-        var all_links = the_css + '<div style="clear: both;"></div>' + all_links_2 + '<div style="clear: both;"></div>';
+
+        var all_links = '<div style="clear: both;"></div>' + all_links_2 + '<div style="clear: both;"></div>';
         return this.repositoryCall(new_db_version, all_links);
     }
 

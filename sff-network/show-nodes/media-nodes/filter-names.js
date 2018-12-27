@@ -9,7 +9,7 @@ sff_vars.filter_names = (function (graph_id) {
         last_selected_media: ''
     };
 
-    my.selectMedia = function (media_id_short, scroll_media) {
+   my.clearLast = function () {
         if (my.last_selected_media !== '') {
             var elem = document.getElementById(my.last_selected_media);
             if (elem) {
@@ -20,15 +20,23 @@ sff_vars.filter_names = (function (graph_id) {
                 elem_filter.classList.remove('current__media');
             }
         }
-        var media_id = media_id_short + '${URL_SEPARATOR}';
+       
+    }
+
+
+    my.selectMedia = function (media_id_short, author_book_choice) {
+        my.clearLast()
+        if (author_book_choice === 'BOOK-CHOICE'){
+            var author_book_array = media_id_short.split('::');
+            var under_title = author_book_array[1];
+            
+          var media_id = under_title + '..';        /// will be ...
+        }else{
+          var media_id = media_id_short + '__';
+        }
         var elem = document.getElementById(media_id);
         if (elem != null) {
             elem.classList.add('current__media');
-            if (scroll_media == 'yes_scroll') {
-                elem.scrollIntoView();
-                var container = document.getElementById(graph_id);
-                container.scrollIntoView();
-            }
         }
         var elem_filter = document.getElementById('filter'  + '${URL_SEPARATOR}' + media_id);
         if (elem_filter != null) {
@@ -51,6 +59,7 @@ sff_vars.filter_names = (function (graph_id) {
         var all_div = document.getElementById(all_name);
         var filter_div = document.getElementById(filter_name);
         var all_children = all_div.querySelectorAll(div_class_name);
+var number_viewable = 0;
         for (var i = 0; i < all_children.length; i++) {
             var choice_node = all_children[i];
             var div_id = choice_node.id;
@@ -59,10 +68,31 @@ sff_vars.filter_names = (function (graph_id) {
                     var copy_choice = choice_node.cloneNode(true);
                     copy_choice.id = 'filter' + '${URL_SEPARATOR}' + copy_choice.id;
                     filter_div.appendChild(copy_choice);
+                    number_viewable++;
+                    var on_click_func = choice_node.onclick;
+                    var func_str = on_click_func.toString();
+                    var func_array= func_str.split("'");
+                    var last_func_array = func_array;
                 }
             }
         }
+        if (number_viewable===1){
+            return func_array;
+        
+        }else{
+            return '';
+        }
     }
+    
+   my.nothingFound = function (no_such_type) {
+         sff_vars.filter_names.clearLast();
+         var nodes_string = no_such_type;
+         var edges_string =[]
+         var graph_physics = {'barnesHut': {'avoidOverlap': 1}};
+         sff_vars.graph_procs.loadGraph('my--graph', nodes_string, edges_string,graph_physics);
+    }
+    
+    
 //////////////////////////
    my.stopFilteringAuthors = function () {
         my.showHideFilteredAuthors('all_media');
@@ -76,17 +106,24 @@ sff_vars.filter_names = (function (graph_id) {
         } else {
             sff_vars.helpers.setDisplay("all--authors", 'none');
             sff_vars.helpers.setDisplay('filter--authors', 'block');
+            
+            return 17;
         }
     }
 
     my.filterAuthors = function (search_for) {
+        var strip_author='';
         var search_underscore = alphaUnderscore(search_for);
         if (search_underscore === '') {
-            my.stopFilteringAuthors()
+            my.stopFilteringAuthors();
         } else {
-            makeFilters(search_underscore, 'all--authors', 'filter--authors', 'div.author__choice');
-            my.showHideFilteredAuthors('filtered_media');
+            var func_array = makeFilters(search_underscore, 'all--authors', 'filter--authors', 'div.author__choice');
+            if (func_array.length>0){
+                var strip_author = func_array[1];
+                my.showHideFilteredAuthors('filtered_media');
+            }
         }
+        return strip_author;
     }
 
    my.stopFilteringStories = function () {
@@ -109,9 +146,16 @@ sff_vars.filter_names = (function (graph_id) {
         if (search_underscore === '') {
             my.stopFilteringStories()
         } else {
-            makeFilters(search_underscore, 'all--books', 'filter--books', 'div.book__choice');
+           var func_array= makeFilters(search_underscore, 'all--books', 'filter--books', 'div.book__choice');
+           if (func_array.length>3){
             my.showHideFilteredStories('filtered_media');
+                   var strip_author = func_array[1];
+                   var under_title = func_array[3];
+                    var author_book={strip_author:strip_author, under_title:under_title};
+                    return author_book;
+           }
         }
+           return '';
     }
 //////////////
     function spacesToUrlSeparator(author_title) {

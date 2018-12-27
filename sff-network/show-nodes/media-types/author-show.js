@@ -6,7 +6,7 @@ var misc_helper = rootAppRequire('sff-network/misc-helper');
 module.exports = function (data_repository) {
 
     var BookData = rootAppRequire('sff-network/show-nodes/media-types/book-show')(data_repository)  // show_repository
-    var PostData = rootAppRequire('sff-network/show-nodes/media-types/post-show')(data_repository)  // show_repository
+    var PostData = rootAppRequire('sff-network/show-nodes/media-types/author-post-show')(data_repository)  // show_repository
 
     class AuthorData extends HoverIcon {
 

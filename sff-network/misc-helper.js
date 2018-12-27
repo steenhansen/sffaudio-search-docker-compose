@@ -11,7 +11,7 @@ function theLastNameFirst(full_name, split_char) {
     var spaces_names = first_whole_name.split(split_char);
     var last_name = spaces_names.pop();
     if (spaces_names.length == 0) {
-        var first_name = '-';
+        var first_name = URL_SEPARATOR;            ///'-';
     } else {
         var first_name = spaces_names.join(split_char);
     }

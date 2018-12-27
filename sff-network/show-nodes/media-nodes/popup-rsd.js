@@ -15,7 +15,6 @@ sff_vars.rsd_procs = (function (rsd_close_svg) {
     }
 
     my.videoEmbed = function (video_link) {
-    console.log(' my.videoEmbed  video_link=', video_link)
         if (video_link.indexOf('archive.org') > 0) {
             var archive_arr = video_link.split('/download/');
             var archive_rest = archive_arr[1];
@@ -32,21 +31,27 @@ sff_vars.rsd_procs = (function (rsd_close_svg) {
         return '';
     }
 
-    my.loadRsd = function (goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, req_query_view) {
+
+  my.historyRsd = function (goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, req_query_view, sorted_choice) {
         document.getElementById("my--graph").style.display="none"; 
         if (req_query_view) {
-            sff_vars.history_state.pushBookView(last_first_underscores, under_title, req_query_view);
+            sff_vars.history_state.pushBookView(last_first_underscores, under_title, req_query_view, sorted_choice);
         } else {
             sff_vars.history_state.pushBook(last_first_underscores, under_title);
         }
+        my.startRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores)
+  }
+        
+        
+    my.startRsd = function (goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores) {
+      
         sff_vars.helpers.setDisplay('media--title', 'block');
-//console.log(' my.loadRsd  loadVideo=', loadVideo)
         if (video_link !== '') {
             var video_embed = my.videoEmbed(video_link);
             my.loadVideo(video_embed, label, rsd_description, under_title, last_first_underscores);
         } else {
             sff_vars.helpers.setDisplay("video--container", 'none');
-            sff_vars.pdf_procs.loadPdfForRsd(rsd_pdf_link, label, rsd_description, last_first_underscores, under_title);
+            sff_vars.pdf_procs.startPdf(rsd_pdf_link, label, rsd_description, last_first_underscores, under_title);
         }
         this.rsd_mp3=goto_url;
         document.getElementById('close--icon').src = rsd_close_svg;

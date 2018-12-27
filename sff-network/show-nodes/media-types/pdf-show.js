@@ -4,7 +4,7 @@ module.exports = function (graph_db) {
 
     class PdfData extends HoverIcon {
 
-        constructor(node_id, db_version, pdf_title, book_title, under_title, pdf_url, last_first_underscores, pdf_country) {
+        constructor(node_id, db_version, pdf_title, book_title, under_title, pdf_url, last_first_underscores, pdf_country, pdf_count) {
             super(node_id, db_version, pdf_title, under_title);
             this.book_title = book_title;
             this.under_title = under_title;
@@ -14,6 +14,7 @@ module.exports = function (graph_db) {
             this.node_type = 'L_PDF';
             this.pdf_country=pdf_country;
                this.title = "Click for story's PDF";
+               this.sorted_choice = pdf_count;
         }
 
     }

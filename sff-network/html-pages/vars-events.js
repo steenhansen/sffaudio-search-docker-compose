@@ -19,7 +19,6 @@ sff_vars.vars_events = (function () {
     };
 
  my.resizeFunc = function (){
-       document.getElementById("popup--container").style.width = window.innerWidth + 'px';
 }
 
     my.initEvents = function () {
