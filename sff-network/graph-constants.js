@@ -4,7 +4,7 @@ const the_colors =["red", "#666600", "olive", "green", "blue", "indigo", "violet
 
 
 
-if (process.env.PORT){
+if (process.env.PORT==5000){
     var node_url = "http://localhost:" + process.env.PORT + "/"
 }else {
    var node_url = "https://sffaudio-test-neo4j.herokuapp.com/"
