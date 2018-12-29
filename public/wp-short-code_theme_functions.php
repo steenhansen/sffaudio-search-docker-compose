@@ -1,5 +1,7 @@
 <?php
 
+// public_html/wp-content/themes/revolution-code-blue2/functions.php
+
 function redirectAfterHeader($new_location)
 {
     echo "<meta http-equiv='Refresh' content='0;url=$new_location' />";
@@ -84,6 +86,9 @@ function media_graph_component()  //  [media-graph-component]
     $url_with_parameters = getQueryParameters($widget_url, $get_author, $get_book, $get_view);
     leaveIfMobile($url_with_parameters);
     $graph_html = curlGetContents($url_with_parameters);
+    
+    $no_doctype_html = str_replace("<!DOCTYPE html>", "", $graph_html);
+    
     $from_php_js_html = <<<JAVASCRIPT_HTML
         <script>
             window.sff_php_vars={ 
@@ -91,7 +96,7 @@ function media_graph_component()  //  [media-graph-component]
 			    "php_author": "$get_author",
 			    "php_book"  : "$get_book" };
         </script>
-        $graph_html
+        $no_doctype_html
 JAVASCRIPT_HTML;
     return $from_php_js_html;
 }

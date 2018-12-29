@@ -417,10 +417,6 @@ function inputSearch(e){
 
     </div>
 
-ater div
-
-
-
  `;
     return media_html;
 }
