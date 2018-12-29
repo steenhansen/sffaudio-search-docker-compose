@@ -1,6 +1,6 @@
+let {AUTHOR_BOOK_SEPARATOR, END_BOOK_LIST, END_AUTHOR_LIST} = rootAppRequire('sff-network/graph-constants');
 
-
-module.exports =  function (URL_SEPARATOR) {
+module.exports =  function (URL_SEPARATOR) {    // why is this passed into closure??
 
 var filter_names = `
 // filter-names
@@ -8,6 +8,92 @@ sff_vars.filter_names = (function (graph_id) {
     var my = {
         last_selected_media: ''
     };
+
+     function makeFilters(search_underscore, all_name, filter_name, div_class_name) {
+        clearFiltered(filter_name);
+        var all_div = document.getElementById(all_name);
+        var filter_div = document.getElementById(filter_name);
+        var all_children = all_div.getElementsByClassName(div_class_name);  
+        var matching_authors = [];
+        for (var i = 0; i < all_children.length; i++) {
+            var choice_node = all_children[i];
+            var div_id = choice_node.id;
+            if (div_id !== '') {
+                if (div_id.indexOf(search_underscore) > -1) {
+                    var copy_choice = choice_node.cloneNode(true);
+                    copy_choice.id = 'filter' + '${URL_SEPARATOR}' + copy_choice.id;
+                    filter_div.appendChild(copy_choice);
+                    var on_click_func = choice_node.onclick;
+                    var func_str = on_click_func.toString();
+                    var func_array= func_str.split("('");
+                    matching_authors.push(func_array[1]);
+                }
+            }
+        }
+        return matching_authors;
+    }
+    my.filterAuthors = function (search_for) {
+        var strip_author='';
+        var search_underscore = alphaUnderscore(search_for);
+        if (search_underscore === '') {
+            my.stopFilteringAuthors();
+        } else {
+            var matching_authors = makeFilters(search_underscore, 'all--authors', 'filter--authors', 'author__choice');
+            if (matching_authors.length==0){
+                my.showHideFilteredAuthors('all_media');
+            }else{
+                var author_comma = matching_authors[0];
+                var func_array= author_comma.split("'");
+                var strip_author = func_array[0];
+                my.showHideFilteredAuthors('filtered_media');
+            }
+        }
+        return strip_author;
+    }
+    my.filterStories = function (search_for) {
+        var author_book = ''
+        var search_underscore = alphaUnderscore(search_for);
+        if (search_underscore === '') {
+            my.stopFilteringStories()
+        } else {
+           var matching_stories= makeFilters(search_underscore, 'all--books', 'filter--books', 'book__choice');
+           if (matching_stories.length==0){
+                my.showHideFilteredStories('all_media');
+            }else{
+                var author_comma_book = matching_stories[0];
+                  var func_array= author_comma_book.split("'");
+                     var strip_author = func_array[0];
+                    var under_title = func_array[2];
+                  author_book={strip_author:strip_author, under_title:under_title};
+                my.showHideFilteredStories('filtered_media');
+            }
+        }
+           return author_book;
+    }
+
+my.colorAuthors = function(){
+     sff_vars.filter_names.authorsBooksColor('gray', '#cccccc')
+}
+
+my.colorBooks = function(){
+     sff_vars.filter_names.authorsBooksColor('#cccccc', 'gray' )
+}
+
+my.authorsBooksColor = function(author_color, book_color){
+    document.getElementById('authors--title').style.backgroundColor =  author_color;
+    document.getElementById('books--title').style.backgroundColor =  book_color;
+    document.getElementById('all--filter--authors').style.backgroundColor =  author_color;
+    document.getElementById('all--filter--books').style.backgroundColor =  book_color;
+}
+
+
+
+
+    
+
+    
+
+
 
    my.clearLast = function () {
         if (my.last_selected_media !== '') {
@@ -27,12 +113,12 @@ sff_vars.filter_names = (function (graph_id) {
     my.selectMedia = function (media_id_short, author_book_choice) {
         my.clearLast()
         if (author_book_choice === 'BOOK-CHOICE'){
-            var author_book_array = media_id_short.split('::');
+            var author_book_array = media_id_short.split('${AUTHOR_BOOK_SEPARATOR}');
             var under_title = author_book_array[1];
             
-          var media_id = under_title + '..';        /// will be ...
+          var media_id = under_title + '${END_BOOK_LIST}';        /// will be ...
         }else{
-          var media_id = media_id_short + '__';
+          var media_id = media_id_short + '${END_AUTHOR_LIST}';
         }
         var elem = document.getElementById(media_id);
         if (elem != null) {
@@ -54,35 +140,7 @@ sff_vars.filter_names = (function (graph_id) {
     }
 
  
-    function makeFilters(search_underscore, all_name, filter_name, div_class_name) {
-        clearFiltered(filter_name);
-        var all_div = document.getElementById(all_name);
-        var filter_div = document.getElementById(filter_name);
-        var all_children = all_div.querySelectorAll(div_class_name);
-var number_viewable = 0;
-        for (var i = 0; i < all_children.length; i++) {
-            var choice_node = all_children[i];
-            var div_id = choice_node.id;
-            if (div_id !== '') {
-                if (div_id.indexOf(search_underscore) > -1) {
-                    var copy_choice = choice_node.cloneNode(true);
-                    copy_choice.id = 'filter' + '${URL_SEPARATOR}' + copy_choice.id;
-                    filter_div.appendChild(copy_choice);
-                    number_viewable++;
-                    var on_click_func = choice_node.onclick;
-                    var func_str = on_click_func.toString();
-                    var func_array= func_str.split("'");
-                    var last_func_array = func_array;
-                }
-            }
-        }
-        if (number_viewable===1){
-            return func_array;
-        
-        }else{
-            return '';
-        }
-    }
+   
     
    my.nothingFound = function (no_such_type) {
          sff_vars.filter_names.clearLast();
@@ -111,19 +169,9 @@ var number_viewable = 0;
         }
     }
 
-    my.filterAuthors = function (search_for) {
-        var strip_author='';
-        var search_underscore = alphaUnderscore(search_for);
-        if (search_underscore === '') {
-            my.stopFilteringAuthors();
-        } else {
-            var func_array = makeFilters(search_underscore, 'all--authors', 'filter--authors', 'div.author__choice');
-            if (func_array.length>0){
-                var strip_author = func_array[1];
-                my.showHideFilteredAuthors('filtered_media');
-            }
-        }
-        return strip_author;
+    my.stopFiltering =function(){
+     my.stopFilteringAuthors();
+      my.stopFilteringStories()
     }
 
    my.stopFilteringStories = function () {
@@ -141,22 +189,7 @@ var number_viewable = 0;
         }
     }
 
-    my.filterStories = function (search_for) {
-        var search_underscore = alphaUnderscore(search_for);
-        if (search_underscore === '') {
-            my.stopFilteringStories()
-        } else {
-           var func_array= makeFilters(search_underscore, 'all--books', 'filter--books', 'div.book__choice');
-           if (func_array.length>3){
-            my.showHideFilteredStories('filtered_media');
-                   var strip_author = func_array[1];
-                   var under_title = func_array[3];
-                    var author_book={strip_author:strip_author, under_title:under_title};
-                    return author_book;
-           }
-        }
-           return '';
-    }
+
 //////////////
     function spacesToUrlSeparator(author_title) {
         var underscore_author_title = author_title.replace(/ /g, '${URL_SEPARATOR}');

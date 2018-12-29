@@ -1,6 +1,7 @@
 /*
  node reload-local ../config.local-neo4j.js
  node reload-local ../config.local-neo4j.js   sff-network/build-nodes/test-obj-data/every-type/
+ node reload-local ../config.local-neo4j.js  sff-network/build-nodes/test-obj-data/full-data/
 
  node reload-local ../config.graphene.js
  node reload-local ../config.graphene.js      sff-network/build-nodes/test-obj-data/every-type/

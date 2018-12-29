@@ -111,17 +111,21 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
         } else {
             var graph_type = sff_vars.graph_vars.graph_info.graph_type;
             if (graph_type === '${AUTHOR_PAGE_TYPE}') {
+                //sff_vars.filter_names.colorAuthors();
                 if (sff_vars.strip_author.indexOf('HELP_') >= 0) {
                     sff_vars.graph_vars.edges_string = sff_vars.HELP_ALL_EDGES;
                     sff_vars.graph_vars.nodes_string = sff_vars.help_nodes[sff_vars.strip_author];
                 } else {
                     sff_vars.graph_vars.nodes_string = sff_vars.NO_SUCH_AUTHOR;
+                    
                 }
             } else {
+           //     sff_vars.filter_names.colorBooks();
                 sff_vars.graph_vars.nodes_string = sff_vars.NO_SUCH_BOOK
             }
         }
     }
+
 </script>
     
 <script>
@@ -149,6 +153,11 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     ${popup_blur.popup_blur_js}
     ${load_scripts}
     
+      if (sff_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
+            sff_vars.filter_names.colorAuthors();
+     } else {
+             sff_vars.filter_names.colorBooks();
+     }
     sff_vars.graph_procs.doGraph();
     function mainStart(polyfill_error){
         sff_vars.vars_events.initEvents();

@@ -4,6 +4,9 @@ HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon');
  var svg_icons = rootAppRequire('./sff-network/html-pages/svg-icons');
  //var graph_icons = rootAppRequire('./sff-network/html-pages/graph-icons');
 // build_widget
+
+let {AUTHOR_BOOK_SEPARATOR} = rootAppRequire('sff-network/graph-constants');
+
 function widgetVars(graph_id, nodes_object, edges_object, graph_object) {
 
 var icons_string = HoverIcon.authorIconColors();
@@ -59,9 +62,13 @@ sff_vars.post_vars={
 
 
 function widgetHtml(graph_div_id, author_links, book_links) {
+
+
 let zoom_in = svg_icons.zoom_in_icon('blue');
 let zoom_out = svg_icons.zoom_out_icon('blue');
 let get_help = svg_icons.get_help_icon('blue');
+let fit_canvas = svg_icons.get_fit_icon('blue');
+let reset_search = svg_icons.get_reset_icon('#cccccc');
 
     var media_html = `
 <style>
@@ -174,7 +181,80 @@ let get_help = svg_icons.get_help_icon('blue');
         
         
 </style>
+<script>
+        
+function chooseIfSingleAuthor(){
+     var search_for = document.getElementById('filter--author--text').value;
+     var strip_author = sff_vars.filter_names.filterAuthors(search_for);
+     if (strip_author!==''){
+         sff_vars.graph_procs.loadAuthorNew(strip_author);
+         sff_vars.filter_names.selectMedia(strip_author, 'AUTHOR-CHOICE')
+           sff_vars.filter_names.colorAuthors();
+         return strip_author;
+     }else{
+        return false;
+     }
+}
 
+function chooseIfSingleBook(){
+var search_for = document.getElementById('filter--author--text').value;
+    var author_book = sff_vars.filter_names.filterStories(search_for);
+          if (author_book!==''){
+              var strip_author = author_book.strip_author;
+              var under_title = author_book.under_title;
+              sff_vars.graph_procs.loadBookNew(strip_author, under_title);
+              var author_book = strip_author +'${AUTHOR_BOOK_SEPARATOR}'+under_title;
+               sff_vars.filter_names.selectMedia(author_book, 'BOOK-CHOICE')
+                          sff_vars.filter_names.colorBooks();
+
+              var book_object = {strip_author:strip_author, under_title:under_title};
+              return book_object;
+          }else{
+            return false;
+          }
+
+}
+
+function inputEnterPress(e){  
+   var event = e || window.event;
+     var charCode = event.which || event.keyCode;
+     var search_for = document.getElementById('filter--author--text').value;
+    if (charCode == '13'){
+        if (search_for) {
+            var strip_author=chooseIfSingleAuthor();
+            if (strip_author){
+                sff_vars.filter_names.filterStories(search_for);
+               sff_vars.filter_names.showHideFilteredStories('filtered_media');
+            }else{
+                  var book_object = chooseIfSingleBook();
+                 if (book_object){
+                     sff_vars.filter_names.showHideFilteredAuthors('filtered_media');
+                 }else{
+                      sff_vars.filter_names.nothingFound(sff_vars.NO_SUCH_BOOK);
+                 }
+            }
+        }else{
+            sff_vars.filter_names.showHideFilteredStories('all_media');
+            sff_vars.filter_names.showHideFilteredAuthors('all_media');
+        }
+     }
+}
+
+function inputSearch(e){  
+    var search_for = document.getElementById('filter--author--text').value;
+    if (search_for===''){
+        search_for='...'; 
+        sff_vars.filter_names.stopFiltering();
+    }else{
+        search_for = '"'+ search_for + '"'; 
+    }
+   var author_button = 'Search authors for\\n' + search_for; 
+   var story_button = 'Search stories for\\n' + search_for; 
+    document.getElementById('do--author--filter').innerText =author_button;
+    document.getElementById('do--story--filter').innerText =story_button;
+}
+
+</script> 
 
     <div id="my--network">
       
@@ -183,36 +263,69 @@ let get_help = svg_icons.get_help_icon('blue');
       <div id="sff--header" style="text-align: center ;   font-size:  x-large; font-family: Arial, Helvetica, sans-serif;">
         Search SFFaudio's Online Content
         </div>
+        
+        
+                <div style="display:flex; background-color:#cccccc">
+        
+                  <button id='do--author--filter'  style=" flex-grow:1;     margin: 4px;"
+                                    onClick="
+                                     var found_author = chooseIfSingleAuthor();
+                                      if (!found_author){
+                                        sff_vars.filter_names.nothingFound(sff_vars.NO_SUCH_AUTHOR);
+                                      }
+                        ">Search authors for<br>...</button>        
+
+                    <div style=" text-align:center; display:inline-block; flex-grow:0;  width:155px;">                     
+                         Search for:<br>
+                <input id='filter--author--text' placeholder="search for..." type='text'
+                  style=""
+                    onkeypress =" inputEnterPress()  "
+                    oninput="inputSearch()" />
+                                
+                     </div>  
+                    
+                <button id='do--story--filter'  style=" flex-grow:1;     margin: 4px; "
+                    onClick=" var found_book = chooseIfSingleBook();
+                            
+                              if (!found_book){
+                                    sff_vars.filter_names.nothingFound(sff_vars.NO_SUCH_BOOK);
+                              }
+                               "  >Search stories for ...</button>         
+                                   
+                       
+
+
+            </div>  
+        
+        
 
 
 <div style='background-color:#cccccc'>
 
 
-<div style="display:flex; height:27px">
 
-        <div style="width:50%; text-align:center;  font-size: larger;"> Authors</div>
+
+        <div style="display:flex; height:27px">
         
-      
-        
-        
-        <div >
-                <span  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="info--circle" title="Show Help">
-                    <img src="${get_help}" class="control--symbols">
-                </span>        
-                                   
-                <span  onclick="sff_vars.graph_procs.graphSize('+');" class="info--circle" title="Zoom In">
-                    <img src="${zoom_in}" class="control--symbols">
-                </span>
-                            
-                <span  onclick="sff_vars.graph_procs.graphSize('-');" class="info--circle" title="Zoom Out">
-                    <img src="${zoom_out}" class="control--symbols">
-                </span>
-        </div>
-        
-          <div style="width:50%;  text-align:center;   font-size: larger;"> Stories</div>
-        
-        
-</div>        
+                <div id='authors--title' style="width:50%; text-align:center;  font-size: larger;"> Authors</div>
+                
+                             <div >
+                       
+                                <span style="width:9px; margin-left:-19px; margin-top:-1px;" 
+                                    onclick="sff_vars.filter_names.stopFiltering();
+                                     document.getElementById('filter--author--text').value='';
+                                                " class="info--circle" title="Reset Search">
+                            <img src="${reset_search}" class="control--symbols" style="background-color:#cccccc; padding-bottom:6px;">
+                        </span>
+                        
+                        
+                </div>
+
+                
+                  <div  id='books--title' style="width:50%;  text-align:center;   font-size: larger;"> Stories</div>
+                
+                
+        </div>        
         
         
         
@@ -240,77 +353,7 @@ let get_help = svg_icons.get_help_icon('blue');
        
         
         
-        <script>
         
-function chooseIfSingleAuthor(){
-     var search_for = document.getElementById('filter--author--text').value;
-     var strip_author = sff_vars.filter_names.filterAuthors(search_for);
-     if (strip_author!==''){
-         sff_vars.graph_procs.loadAuthorNew(strip_author);
-         sff_vars.filter_names.selectMedia(strip_author, 'AUTHOR-CHOICE')
-         return strip_author;
-     }else{
-        return false;
-     }
-}
-
-function chooseIfSingleBook(){
-var search_for = document.getElementById('filter--author--text').value;
-    var author_book = sff_vars.filter_names.filterStories(search_for);
-          if (author_book!==''){
-              var strip_author = author_book.strip_author;
-              var under_title = author_book.under_title;
-              sff_vars.graph_procs.loadBookNew(strip_author, under_title);
-              var author_book = strip_author +'::'+under_title;
-               sff_vars.filter_names.selectMedia(author_book, 'BOOK-CHOICE')
-              var book_object = {strip_author:strip_author, under_title:under_title};
-              return book_object;
-          }else{
-            return false;
-          }
-
-}
-
-function inputEnterPress(e){  
-   var event = e || window.event;
-     var charCode = event.which || event.keyCode;
-     var search_for = document.getElementById('filter--author--text').value;
-    if (charCode == '13'){
-        if (search_for) {
-            var strip_author=chooseIfSingleAuthor();
-            if (strip_author){
-               sff_vars.filter_names.showHideFilteredStories('filtered_media');
-            }else{
-                  var book_object = chooseIfSingleBook();
-                 if (book_object){
-                     sff_vars.filter_names.showHideFilteredAuthors('filtered_media');
-                 }else{
-                      sff_vars.filter_names.nothingFound(sff_vars.NO_SUCH_BOOK);
-                 }
-            }
-        }else{
-            sff_vars.filter_names.showHideFilteredStories('all_media');
-            sff_vars.filter_names.showHideFilteredAuthors('all_media');
-        }
-     }
-}
-
-function inputSearch(e){  
-    var search_for = document.getElementById('filter--author--text').value;
-    if (search_for===''){
-        search_for='...'; 
-        sff_vars.filter_names.stopFilteringAuthors();
-        sff_vars.filter_names.stopFilteringStories();
-    }else{
-        search_for = '"'+ search_for + '"'; 
-    }
-   var author_button = 'Search authors for\\n' + search_for; 
-   var story_button = 'Search stories for\\n' + search_for; 
-    document.getElementById('do--author--filter').innerText =author_button;
-    document.getElementById('do--story--filter').innerText =story_button;
-}
-
-</script> 
        
 
         
@@ -319,39 +362,8 @@ function inputSearch(e){
 </div>
 
 
- <br>
-        <div style="display:flex;">
-        
-      <button id='do--author--filter'  style=" flex-grow:1;"
-                        onClick="
-                         var found_author = chooseIfSingleAuthor();
-                          sff_vars.filter_names.stopFilteringAuthors();
-                          if (!found_author){
-                            sff_vars.filter_names.nothingFound(sff_vars.NO_SUCH_AUTHOR);
-                          }
-            ">Search authors for<br>...</button>        
 
-            <div style=" text-align:center; display:inline-block; flex-grow:0;  width:155px;">                     
-                 Search for:<br>
-        <input id='filter--author--text' placeholder="search for..." type='text'
-          style=""
-            onkeypress =" inputEnterPress()  "
-            oninput="inputSearch()" />
-                        
-             </div>  
-                    
-        <button id='do--story--filter'  style=" flex-grow:1; "
-            onClick=" var found_book = chooseIfSingleBook();
-                      sff_vars.filter_names.stopFilteringStories();
-                      if (!found_book){
-                            sff_vars.filter_names.nothingFound(sff_vars.NO_SUCH_BOOK);
-                      }
-                       "  >Search stories for ...</button>         
-                           
-               
-
-
-</div>   
+ 
 
 
 <div >
@@ -361,7 +373,45 @@ function inputSearch(e){
 </div>
 
 
+ <div style="display:flex; height:27px">
+        
+              
+                
+              
+                
+                
+                <div  style="position:relative; width:100%">
+                        <span  style="position:relative; top:-26px; width:13px;"
+                                  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');" class="info--circle" title="Show Help">
+                            <img src="${get_help}" class="control--symbols">
+                        </span>        
+                                           
+                        
+                              <span   style="position:relative; top:-26px; width:13px;"
+                              onclick="sff_vars.graph_procs.fitCanvas();" class="info--circle" title="Zoom Out">
+                            <img src="${fit_canvas}" class="control--symbols">
+                        </span>
 
+
+                        <span   style="position:relative; top:-26px; width:13px; float:right" 
+                        onclick="sff_vars.graph_procs.graphSize('+');" class="info--circle" title="Zoom In">
+                            <img src="${zoom_in}" class="control--symbols">
+                        </span>
+                                    
+                        <span   style="position:relative; top:-26px; width:13px; float:right"
+                        onclick="sff_vars.graph_procs.graphSize('-');" class="info--circle" title="Zoom Out">
+                            <img src="${zoom_out}" class="control--symbols">
+                        </span>
+                        
+
+                        
+                </div>
+                
+                 
+                
+                
+        </div>        
+        
 
 
 

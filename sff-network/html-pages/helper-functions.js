@@ -60,6 +60,9 @@ my.objectIsEmpty  = function(obj) {
         document.getElementById(elem_id).style.visibility = 'hidden';
     };
 
+
+
+
     return my;
 
 }()); 

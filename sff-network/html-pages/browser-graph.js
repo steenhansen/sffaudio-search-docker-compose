@@ -1,5 +1,6 @@
-
-let {BOOK_PAGE_TYPE} = rootAppRequire('sff-network/graph-constants');
+let {BOOK_PAGE_TYPE, AUTHOR_PAGE_TYPE, AUTHOR_BOOK_SEPARATOR,
+MAX_ZOOM,MIN_ZOOM,ZOOM_STEP
+} = rootAppRequire('sff-network/graph-constants');
 
 var load_css_external = `
 // browser-graph
@@ -10,25 +11,40 @@ sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_in
         my_nodes: [],
         my_edges:[]
     };
-
+    
+    ////////////////////////////////////////////////////////////
+   my.addOnZoomEvents = function () {
+        var self = this;
+        my.network_graph.on("zoom", function (params) {
+            if (params.direction==='+'){
+                if (params.scale>${MAX_ZOOM}){
+                      my.network_graph.moveTo( {scale:${MAX_ZOOM}});
+                 }
+            
+            }else{
+              if (params.scale<${MIN_ZOOM}){
+                      my.network_graph.moveTo( {scale:${MIN_ZOOM}});
+                 }
+            }
+        });
+    }
 my.graphSize=function(movement_dir){
-var current_scale =  my.network_graph.getScale();
-
-if (movement_dir==='+'){
-   if (current_scale<99){
-    current_scale += 0.1;
+    var current_scale =  my.network_graph.getScale();
+    if (movement_dir==='+'){
+        if (current_scale<=${MAX_ZOOM}){
+            current_scale += ${ZOOM_STEP};
+        }
+    }else{
+        if (current_scale>=${MIN_ZOOM}){
+            current_scale -= ${ZOOM_STEP};
+        }
     }
-}else{
-    if (current_scale>0.1){
-        current_scale -= 0.1;
-    }
-
+    my.network_graph.moveTo( {scale:current_scale});
 }
 
- my.network_graph.moveTo( {scale:current_scale});
-
+ my.fitCanvas=function(){
+    my.network_graph.fit();
 }
-
 
     my.loadGraph = function (graph_id, nodes_string, edges_string, graph_physics) {
         var container = document.getElementById(graph_id);
@@ -50,13 +66,15 @@ if (movement_dir==='+'){
     function injectLoadNew(graph_id) {
         my.addClickOnEvent();
         my.addHoverOnEvents();
+        my.addOnZoomEvents();
         addLoadNewGraph(graph_id);
     };
 
     my.startGraph = function (graph_id, nodes_string, edges_string, graph_physics) {
         my.loadGraph(graph_id, nodes_string, edges_string, graph_info.graph_physics);
         if (graph_info.graph_type == '${BOOK_PAGE_TYPE}') {
-            sff_vars.filter_names.selectMedia(graph_info.under_title, 'BOOK-CHOICE')
+         var author_colons_title = graph_info.strip_author + '${AUTHOR_BOOK_SEPARATOR}' + graph_info.under_title;
+            sff_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')
         } else {
             sff_vars.filter_names.selectMedia(graph_info.strip_author, 'AUTHOR-CHOICE')
         }
@@ -66,18 +84,28 @@ if (movement_dir==='+'){
           this.my_nodes.update({id: node_id, group: group_icon});
     
     }
+    
+
 ////////////////////////////////////////////////////////////
-// if (params.nodes.length > 0) {
 my.addHoverOnEvents = function () {
     var self = this;
     my.network_graph.on("hoverNode", function (params) {
         var the_node = self.my_nodes.get(params.node);
        if (the_node.node_type){
-         var node_type = the_node.node_type;
-         if (node_type.indexOf('HELP_') === 0) {
-              var hover_name = node_type.substring(5);
+            var node_type = the_node.node_type;
+            if (node_type.indexOf('HELP_') === 0) {
+                  var hover_name = node_type.substring(5);
             } else {
                var hover_name = node_type.substring(2);
+                if (node_type == 'L_BOOK') {
+                       if (  sff_vars.graph_vars.graph_info.graph_type === '${BOOK_PAGE_TYPE}') {
+                               return
+                       }
+                } else if (node_type == 'L_AUTHOR') {
+                        if (  sff_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
+                            return
+                        }
+                }
             }
             var hover_group = 'H_' + hover_name;
             self.my_nodes.update({id: the_node.id, group: hover_group});
@@ -105,6 +133,7 @@ my.addHoverOnEvents = function () {
     my.addClickOnEvent = function () {
         var self = this;
         my.network_graph.on("click", function (params) {
+       
             if (params.nodes.length>0){
                     var node_id = params.nodes[0]
                     var the_node = self.my_nodes.get(node_id)
@@ -122,13 +151,17 @@ my.addHoverOnEvents = function () {
                     var pdf_country = the_node.pdf_country;   // Canada
                     
                     var sorted_choice = the_node.sorted_choice
-                    
+                  
                     if (node_type.indexOf('HELP_')===0) {
                         sff_vars.graph_procs.loadAuthorNew(the_node.node_type)
                     } else if (node_type == 'L_BOOK') {
-                        my.loadBookNew(last_first_underscores, under_title)           // why my.
+                           if (  sff_vars.graph_vars.graph_info.graph_type !== '${BOOK_PAGE_TYPE}') {
+                                my.loadBookNew(last_first_underscores, under_title)           // why my.
+                        }
                     } else if (node_type == 'L_AUTHOR') {
-                        my.loadAuthorNew(strip_author)                          // why my.
+                        if (  sff_vars.graph_vars.graph_info.graph_type !== '${AUTHOR_PAGE_TYPE}') {
+                            my.loadAuthorNew(strip_author)                          // why my.
+                        }
                     } else if (node_type == 'L_PDF') {
                         sff_vars.pdf_procs.historyPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf', sorted_choice);
                     } else if (node_type == 'L_PODCAST') {
@@ -143,7 +176,6 @@ my.addHoverOnEvents = function () {
                         
                         sff_vars.book_post_procs.historyBookPost(goto_url, strip_author, under_title, 'post_book', sorted_choice);
                     } else if (typeof goto_url !== 'undefined') {
-                    console.log('typeof goto_url !== undefined ', node_type);
                         window.location = goto_url;
                     }
             }
@@ -173,7 +205,10 @@ my.addHoverOnEvents = function () {
                         fetch_nodes =  sff_vars.help_nodes[fetch_options.strip_author]; 
                         fetch_edges= sff_vars.HELP_ALL_EDGES ;  
                     }              
+                    
+                    
                     sff_vars.graph_procs.loadGraph(graph_id, fetch_nodes, fetch_edges, fetch_options.graph_physics);
+                    sff_vars.graph_vars.graph_info.graph_type = fetch_options.graph_type;
                 });
         };
     }
@@ -182,15 +217,17 @@ my.addHoverOnEvents = function () {
     my.loadAuthorNew = function (strip_author) {
         if (sff_vars.filter_names.selectMedia(strip_author, 'AUTHOR-CHOICE')) {
             var author_json = sff_vars.history_state.pushAuthor(strip_author);
+           sff_vars.filter_names.colorAuthors();
             my.network_graph.loadAuthorOrBook(author_json);
         }
     }
 
 //http://localhost:5000/?book=beyond_lies_the_wub
     my.loadBookNew = function (strip_author, under_title) {
-        var author_colons_title = strip_author + '::' + under_title;
+        var author_colons_title = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
         if (sff_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')) {
             var book_json = sff_vars.history_state.pushBook(strip_author, under_title);
+                 sff_vars.filter_names.colorBooks();
             my.network_graph.loadAuthorOrBook(book_json);
         }
     }
@@ -231,8 +268,6 @@ function sff_leave(id){
 // browser-graph end
 
 `;
-
-
 
 
 module.exports = load_css_external; 

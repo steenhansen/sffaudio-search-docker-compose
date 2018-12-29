@@ -1,5 +1,8 @@
 require('../../../sff-network/global-require')
 
+let {END_AUTHOR_LIST} = rootAppRequire('sff-network/graph-constants');
+
+
 var CachedBase = rootAppRequire('sff-network/build-nodes/cached-lists/cached-base');
 AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 
@@ -43,7 +46,7 @@ class CachedAuthors extends CachedBase {
             middle_names = '&nbsp;';
         }
         var odd_even_class = this.oddEvenClass();
-var title_separator =  strip_author + '__'; 
+var title_separator =  strip_author + END_AUTHOR_LIST; 
         var author_html = `
              <div   class='author__choice ${odd_even_class}' 
                     id="${title_separator}"       

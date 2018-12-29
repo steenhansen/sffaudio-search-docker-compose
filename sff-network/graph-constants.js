@@ -17,8 +17,14 @@ const rotate_colors = the_colors.concat(the_colors);
 
 var graph_constants = {
 
+    MAX_ZOOM: 2,
+    MIN_ZOOM: 0.25,
+    ZOOM_STEP: 0.1, 
 
-// __ .. ::
+ END_AUTHOR_LIST : '__',
+ END_BOOK_LIST : '..',
+ AUTHOR_BOOK_SEPARATOR : '::',
+
     URL_SEPARATOR : '-',         // __ is for last char of author id, .. is for last char of book id, :: is for author::book
 
 	AUTHOR_PAGE_TYPE : 'AUTHOR_PAGE',
@@ -48,7 +54,10 @@ var graph_constants = {
     },
      interaction:{
     hover:true,
-    tooltipDelay:1234}
+    hoverConnectedEdges:false,
+    //tooltipDelay:1234
+    
+    }
 },
     
     GRAPH_CONTAINER_ID : 'my--graph',

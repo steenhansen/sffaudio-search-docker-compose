@@ -339,7 +339,7 @@ display:none;
   
 text-align:right;  
 display:none; 
-z-index:1; 
+z-index:10; 
      position:absolute; 
      top:0; 
      left:0; 

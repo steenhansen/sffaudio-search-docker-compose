@@ -23,7 +23,7 @@ module.exports = function (graph_db) {
 
         /*
          VersionRepository.updateDbVersion()
-         .then( (new_db_version)=>console.log('new_version==', new_db_version));
+         .then( (new_db_version)=>clog('new_version==', new_db_version));
          */
 
         static saveAuthors(db_version, all_links) {
@@ -142,7 +142,7 @@ module.exports = function (graph_db) {
 
         /*
          VersionRepository.deleteUnused(123)
-         .then( (db_version_counts)=>console.log('db_version_counts==', db_version_counts));
+         .then( (db_version_counts)=>clog('db_version_counts==', db_version_counts));
          */
         static deleteUnused_d_4(next_db_version, limit_records = DELETE_UNUSED_RECORDS) {
             var unused_sql = ` // VersionRepository.deleteUnused.unused_sql        

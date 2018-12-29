@@ -20,11 +20,15 @@ app.get(program_variables.ROUTE_RESOLVE_PDF, function (req, res) {
 })
 
 app.get(graph_constants.ROUTE_POST_PROXY, function (req, res) {
-    const sff_audio_url = req.query.absolute_url;
-    serverResponse.sffAudioPostPiece(sff_audio_url)
-        .then((end_pdf_url)=> {
-            res.send(end_pdf_url)
+    const sff_url_post = req.query.absolute_url;
+    serverResponse.sffAudioPostPiece(sff_url_post)
+        .then((sff_post_html)=> {
+            res.send(sff_post_html)
         })
+        .catch(function (post_error) {
+            var error_message = post_error.statusCode;
+           res.send(`A ${error_message} error message is being returned from <br>${sff_url_post}`)
+        });
 })
 
 

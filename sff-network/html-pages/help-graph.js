@@ -18,7 +18,7 @@ sff_vars.help_nodes= {
 "HELP_ALL" : [ {"id": 900, "group":"I_HELP", "node_type":"I_HELP", ${help_font}, "label":"Help" },
                {"id": 901, "group":"N_AUTHOR", "node_type":"HELP_AUTHOR", "title":"Click for author help"},
                {"id": 902, "group":"N_BOOK", "node_type":"HELP_BOOK", "title":"Click for book help"},
-               {"id": 903, "group":"N_PDF", "node_type":"HELP_PDF", "title":"Click for pdf help"},
+               {"id": 903, "group":"N_PDF", "node_type":"HELP_PDF", "title":"Click for PDF help"},
                {"id": 904, "group":"N_AUTHOR_POST", "node_type":"HELP_AUTHOR_POST", "title":"Click for author post help"},
                {"id": 905, "group":"N_RSD", "node_type":"HELP_RSD", "title":"Click for RSD help"},
                {"id": 906, "group":"N_PODCAST", "node_type":"HELP_PODCAST", "title":"Click for podcast help"},
@@ -34,21 +34,21 @@ sff_vars.help_nodes= {
             
 "HELP_BOOK":[ {"group":"N_BOOK", "node_type":"HELP_BOOK", ${help_font},
                "label":"View podcasts, posts, RSDs," + "\\n" +
-                       "pdfs & Wikipedia" + "\\n" +
+                       "PDFs & Wikipedia" + "\\n" +
                        "entries of stories." }],
             
 "HELP_PDF":[ {"group":"N_PDF", "node_type":"HELP_PDF", ${help_font},
-              "label":"View or download story pdfs" }],   
+              "label":"View or download story PDFs" }],   
             
 "HELP_AUTHOR_POST":[ {"group":"N_AUTHOR_POST", "node_type":"HELP_AUTHOR_POST", ${help_font},
                       "label":"View a story or author post" }],   
             
 "HELP_RSD":[ {"group":"N_RSD", "node_type":"HELP_RSD", ${help_font},
-              "label":"Listen to an RSD podcast and" + "\\n" +
-                      "read the accompanying pdf" }],            
+              "label":"Listen to an RSD podcast &" + "\\n" +
+                      "read the accompanying PDF" }],            
             
 "HELP_PODCAST":[ {"group":"N_PODCAST", "node_type":"HELP_PODCAST", ${help_font},
-              "label":"Listen to an SFF-Audio podcast and" + "\\n" +
+              "label":"Listen to an SFFaudio podcast &" + "\\n" +
                       "read the accompanying show notes" }],                  
             
             
@@ -70,8 +70,8 @@ sff_vars.help_nodes= {
                     
 "HELP_FILTER":[ {"group":"N_FILTER", "node_type":"HELP_FILTER", ${help_font},
                  "label":"Filter authors & books."     + "\\n" +
-                         "Entering 'moore' will result"  + "\\n" +
-                         "authors named 'moore' and"    + "\\n" +
+                         "Entering 'Moore' will result"  + "\\n" +
+                         "authors named 'moore' &"    + "\\n" +
                          "stories written by someone"  + "\\n" +
                          "named 'moore' being shown." }],
                                           

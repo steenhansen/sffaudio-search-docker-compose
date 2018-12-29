@@ -9,7 +9,7 @@ var graph_constants = rootAppRequire('sff-network/graph-constants');
 var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 var fs = require('fs');
-
+const {END_BOOK_LIST}=graph_constants;
 ///const {URL_SEPARATOR}=graph_constants;
 
 class CachedBooks extends CachedBase {
@@ -57,7 +57,7 @@ class CachedBooks extends CachedBase {
     mediaLink(book_name) {
         var [under_title, book_title, sorted_label, strip_author]= book_name;
         var shrunkArticles = this.shrinkAAnThe(book_title, sorted_label);
-        var title_separator =  under_title + '..';         ////// will be ...
+        var title_separator =  under_title + END_BOOK_LIST;         ////// will be ...
         var book_html = `
              <div   class="book__choice"  
                     id="${title_separator}" 

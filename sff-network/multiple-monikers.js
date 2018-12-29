@@ -2,7 +2,7 @@ AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
 var graph_constants = rootAppRequire('sff-network/graph-constants');
-const { BOOK_AUTHOR_DELIMITER}=graph_constants;
+const {BOOK_AUTHOR_DELIMITER}=graph_constants;
 
 class MultipleMonikers {
 
@@ -26,12 +26,31 @@ class MultipleMonikers {
         return this.firstMiddleLastArray;
     }
 
+    replaceNoSpaceInitial(match, initial_dot_inital_dot, no_space_last_name, offset, string) {
+        return initial_dot_inital_dot + ' ' + no_space_last_name;
+    }
+
+    fixJuniorMd() {
+        this.multiple_fixed = []
+        for (var a_name of  this.multiple_names) {
+            var trim_name = a_name.trim();
+            if (trim_name !== '') {
+                trim_name = trim_name.replace("~ Jr.", ", Jr.");
+                trim_name = trim_name.replace("~ M.D.", ", M.D.");
+                var no_spaces_after_initial = /([A-Za-z])\.([A-Za-z]{2,})/;     // H.P.Lovecraft matches 'P.Lovecraft'
+                if (trim_name.match(no_spaces_after_initial)) {
+                    var alpha_dot_alpha = /(.*[A-Za-z]\.)([A-Za-z]{2,})/;         // (H.P.) (Lovecraft)
+                    var trim_name = trim_name.replace(alpha_dot_alpha, this.replaceNoSpaceInitial);
+                }
+                this.multiple_fixed.push(trim_name);
+            }
+        }
+    }
+
     blankExtras(string_with_extras) {
         var shrink_string = string_with_extras.replace(", editor", " ");
         var shrink_string = shrink_string.replace("ascribed to ", " ");
         var shrink_string = shrink_string.replace("edited by ", " ");
-
-
         shrink_string = shrink_string.replace(", translated ", " ");
         return shrink_string;
     }
@@ -44,20 +63,11 @@ class MultipleMonikers {
         var multiples_work = multiples_work.replace(/ and /gi, ", ");
         var two_commas = /,\s*,/;
         var multiples_work = multiples_work.replace(two_commas, ',');
+
+
         this.multiple_names = multiples_work.split(',');
     }
 
-    fixJuniorMd() {
-        this.multiple_fixed = []
-        for (var a_name of  this.multiple_names) {
-            var trim_name = a_name.trim();
-            if (trim_name !== '') {
-                trim_name = trim_name.replace("~ Jr.", ", Jr.");
-                trim_name = trim_name.replace("~ M.D.", ", M.D.");
-                this.multiple_fixed.push(trim_name);
-            }
-        }
-    }
 
     multipleMiddles() {
         var author_moniker = new AuthorMoniker();

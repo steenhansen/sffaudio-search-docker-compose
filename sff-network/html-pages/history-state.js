@@ -1,3 +1,5 @@
+let {AUTHOR_BOOK_SEPARATOR} = rootAppRequire('sff-network/graph-constants');
+
 var sff_history_state = `
 //history-state
 sff_vars.history_state = (function (path_name) {
@@ -31,7 +33,7 @@ function typeSortedChoiceFindFactory(_node_type, _sorted_choice){
     my.pushBook = function (strip_author, under_title) {
         var page_type = 't::book';
         var page_query = path_name + '?book=' + under_title + '&author=' + strip_author;
-        var author_colons_book = strip_author + '::' + under_title;
+        var author_colons_book = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
         var url_type = sff_vars.ajax_url + sff_vars.ROUTE_START_BOOK + strip_author + '/' + under_title;
         statePush(page_type, url_type, author_colons_book, page_query);
         return url_type;
@@ -40,7 +42,7 @@ function typeSortedChoiceFindFactory(_node_type, _sorted_choice){
     my.replaceBook = function (strip_author, under_title) {
         var page_type = 't::book';
         var page_query = path_name + '?book=' + under_title + '&author=' + strip_author;
-        var author_colons_book = strip_author + '::' + under_title;
+        var author_colons_book = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
         var url_type = sff_vars.ajax_url + sff_vars.ROUTE_START_BOOK + strip_author + '/' + under_title;
         stateReplace(page_type, url_type, author_colons_book, page_query);
         return url_type;
@@ -93,7 +95,7 @@ function typeSortedChoiceFindFactory(_node_type, _sorted_choice){
     my.pushBookView = function (strip_author, under_title, view_type, sorted_choice) {
         var page_type = 't::book::view';
         var page_query = path_name + '?book=' + under_title + '&author=' + strip_author + '&view=' + view_type + '&choice=' + sorted_choice;
-        var author_colons_book = strip_author + '::' + under_title;
+        var author_colons_book = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
 
         var url_type = sff_vars.ajax_url + sff_vars.ROUTE_START_BOOK + strip_author + '/' + under_title + '/' + view_type + '/' + sorted_choice;
         statePush(page_type, url_type, author_colons_book, page_query, view_type, sorted_choice);

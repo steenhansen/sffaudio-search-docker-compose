@@ -14,6 +14,187 @@ function htmlDataImage(svg_icon) {
     return uri_icon;
 }
 
+
+function get_reset_icon(w_color){
+var svg_all = `
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 24 24"
+   xml:space="preserve"
+   sodipodi:docname="reset_5.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   width="24"
+   height="24"><metadata
+   id="metadata55"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs53" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1653"
+   inkscape:window-height="898"
+   id="namedview51"
+   showgrid="false"
+   inkscape:zoom="20.813841"
+   inkscape:cx="27.128736"
+   inkscape:cy="6.171115"
+   inkscape:window-x="211"
+   inkscape:window-y="44"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="Layer_1" />
+
+
+<circle
+   style="display:inline;fill:${w_color};fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+   id="path27"
+   cx="11.761299"
+   cy="12.156503"
+   r="10.530442" />
+<g
+   id="layer3"
+   style="display:inline;fill:#000000"
+   transform="matrix(0.24103886,0,0,0.24103886,9.0909551,-28.53524)"><path
+     d="m 9.567215,132.91196 c 12.252363,0 23.000263,6.56277 28.947265,16.34571 l 7.023438,-4.26563 0.371094,23.5293 -20.757813,-11.14844 7.457031,-4.52734 c -4.708475,-7.79125 -13.240653,-12.99219 -23.041015,-12.99219 -11.451862,0 -21.187899,7.02473 -25.09375,17.06641 -0.0871,0.26815 -0.145476,0.53489 -0.283203,0.84765 -0.963293,2.14015 -3.17013,3.23707 -4.929688,2.44922 -1.152943,-0.51869 -1.873612,-1.75509 -1.882812,-3.23242 0.01607,-0.70514 0.277733,-1.54297 0.591796,-2.37109 4.902733,-12.67635 17.220338,-21.70118 31.597657,-21.70118 z m -33.615235,35.9375 20.757813,11.14844 -7.457031,4.52735 c 4.708474,7.79123 13.240654,12.99218 23.041015,12.99218 11.451859,0 21.1879,-7.02472 25.09375,-17.0664 0.0871,-0.26815 0.145476,-0.53489 0.283203,-0.84766 0.963294,-2.14014 3.170131,-3.23707 4.929688,-2.44922 1.152944,0.5187 1.873612,1.75511 1.882812,3.23242 -0.01607,0.70515 -0.277733,1.54298 -0.591796,2.3711 -4.902733,12.67635 -17.22034,21.70117 -31.597657,21.70117 -12.25236294,0 -23.000262,-6.56278 -28.947265,-16.3457 l -7.023438,4.26562 z"
+     id="rect4208"
+     style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.79999995;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="scccccscccccscccscccccsccc" /></g></svg>
+`;
+    return htmlDataImage(svg_all);
+}
+
+
+function get_fit_icon(w_color){
+var svg_all = `
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 24 24"
+   xml:space="preserve"
+   sodipodi:docname="fit_2.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   width="24"
+   height="24"><metadata
+   id="metadata55"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs53" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1653"
+   inkscape:window-height="745"
+   id="namedview51"
+   showgrid="false"
+   inkscape:zoom="5.96"
+   inkscape:cx="64.862559"
+   inkscape:cy="31.450237"
+   inkscape:window-x="99"
+   inkscape:window-y="148"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="Layer_1" />
+
+
+<circle
+   style="display:inline;fill:#a0a0a0;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+   id="path27"
+   cx="11.761299"
+   cy="12.156503"
+   r="10.530442" /><g
+   id="g12"
+   transform="matrix(0.03743491,0,0,0.03743491,-10.296927,-2.7096473)">
+	<g
+   id="g10">
+		
+	<g
+   id="g6"
+   transform="matrix(7.9446675,0,0,7.9446675,396.66417,203.46109)"><g
+     id="g4"><polygon
+       points="49.554,28.942 49.55,0.004 20.612,0 29.065,8.454 8.454,29.07 0,20.614 0.005,49.549 28.942,49.554 20.485,41.105 41.105,20.487 "
+       id="polygon2" /></g></g><g
+   id="g8"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g10-8"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g12-2"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g14"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g16-5"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g18-1"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g20"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g22"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g24"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g26"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g28"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g30"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g32"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g34"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /><g
+   id="g36"
+   transform="matrix(11.906878,0,0,11.906878,944.2092,767.91086)" /></g>
+</g>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</svg>
+`;
+    return htmlDataImage(svg_all);
+}
+
+
 function get_help_icon(w_color){
 var svg_all = `
 <svg
@@ -382,6 +563,8 @@ function last_icon(w_color) {
 
 // these are all dataImages
 module.exports = {
+get_reset_icon,
+get_fit_icon,
 get_help_icon,
 zoom_out_icon, zoom_in_icon, download_mp3_icon, download_pdf_icon,
 first_icon, last_icon, prev_icon, next_icon}

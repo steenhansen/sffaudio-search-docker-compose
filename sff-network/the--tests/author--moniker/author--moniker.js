@@ -10,6 +10,8 @@ var multiple_monikers = new MultipleMonikers();
 
 
 var test_arr=[
+'H.P. Lovecraft',
+'H.P.Lovecraft',
 'The Brothers Grimm',
 'Kurt Vonnegut Jr.',
 'Anthony K. Van Riper',
