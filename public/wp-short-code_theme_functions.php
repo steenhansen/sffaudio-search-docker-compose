@@ -87,7 +87,9 @@ function media_graph_component()  //  [media-graph-component]
     leaveIfMobile($url_with_parameters);
     $graph_html = curlGetContents($url_with_parameters);
     
-    $no_doctype_html = str_replace("<!DOCTYPE html>", "", $graph_html);
+    
+    $iosMetaViewPort__webHtmlJavascript =  explode( '<!-- end widget intro. NB, this text is used by PHP -->', $graph_html );
+    $web_html_javascript = $iosMetaViewPort__webHtmlJavascript[1];
     
     $from_php_js_html = <<<JAVASCRIPT_HTML
         <script>
@@ -96,7 +98,7 @@ function media_graph_component()  //  [media-graph-component]
 			    "php_author": "$get_author",
 			    "php_book"  : "$get_book" };
         </script>
-        $no_doctype_html
+        $web_html_javascript
 JAVASCRIPT_HTML;
     return $from_php_js_html;
 }

@@ -35,6 +35,7 @@ var post_proxy_absolute = graph_constants.ROUTE_POST_PROXY + "?absolute_url=";
     var media_html = `
 <script>
 // server-to-browser
+
     sff_vars.graph_vars={  
         graph_id:"${graph_id}",
         edge_options:${edge_options},
@@ -72,6 +73,29 @@ let reset_search = svg_icons.get_reset_icon('#cccccc');
 
     var media_html = `
 <style>
+
+ ::-webkit-scrollbar {
+    width: 12px !important;
+ }
+
+ /* Track */
+::-webkit-scrollbar-track {
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
+   -webkit-border-radius: 10px !important;
+   border-radius: 10px !important;
+ }
+
+ /* Handle */
+ ::-webkit-scrollbar-thumb {
+   -webkit-border-radius: 10px !important;
+   border-radius: 10px !important;
+   background: #41617D !important; 
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5) !important; 
+
+ }
+ ::-webkit-scrollbar-thumb:window-inactive {
+   background: #41617D !important; 
+ }
   
          #all--filter--authors {
            height:100px; 
@@ -285,7 +309,8 @@ function inputSearch(e){
                      </div>  
                     
                 <button id='do--story--filter'  style=" flex-grow:1;     margin: 4px; "
-                    onClick=" var found_book = chooseIfSingleBook();
+                    onClick="
+                     var found_book = chooseIfSingleBook();
                             
                               if (!found_book){
                                     sff_vars.filter_names.nothingFound(sff_vars.NO_SUCH_BOOK);

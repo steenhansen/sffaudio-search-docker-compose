@@ -2,7 +2,7 @@ var sff_vars_events = `
 // vars-events
  
 window.sff_vars={};
- 
+
 sff_vars.vars_events = (function () {
 
     var my = {};

@@ -35,7 +35,7 @@ function typeSortedChoiceFindFactory(_node_type, _sorted_choice){
         var page_query = path_name + '?book=' + under_title + '&author=' + strip_author;
         var author_colons_book = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
         var url_type = sff_vars.ajax_url + sff_vars.ROUTE_START_BOOK + strip_author + '/' + under_title;
-        statePush(page_type, url_type, author_colons_book, page_query);
+        statePush(page_type, url_type, author_colons_book, page_query, '', '');
         return url_type;
     };
 
@@ -65,7 +65,7 @@ function typeSortedChoiceFindFactory(_node_type, _sorted_choice){
         history.replaceState(push_state, "ignored_title", page_query);
     };
 
-    statePush = function (page_type, url_type, page_name, page_query, view_type='', sorted_choice='') {
+    statePush = function (page_type, url_type, page_name, page_query, view_type, sorted_choice) {
         var push_state = {
             page_type: page_type,
             url_type: url_type,
@@ -80,7 +80,7 @@ function typeSortedChoiceFindFactory(_node_type, _sorted_choice){
         var page_type = 't::author';
         var page_query = path_name + '?author=' + strip_author;
         var url_type = sff_vars.ajax_url + '/author/' + strip_author;
-        statePush(page_type, url_type, strip_author, page_query);
+        statePush(page_type, url_type, strip_author, page_query, '', '');
         return url_type;
     };
 

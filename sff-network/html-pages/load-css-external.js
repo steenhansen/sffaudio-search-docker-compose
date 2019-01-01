@@ -10,6 +10,26 @@ var canvas_height = '400px;';
 var load_css_external = `
 
 
+<script>
+
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+
+    var message = [
+      'Message: ' + msg,
+      'URL: ' + url,
+      'Line: ' + lineNo,
+      'Column: ' + columnNo,
+      'Error object: ' + JSON.stringify(error)
+    ].join(' - ');
+
+    console.log(message);
+
+  return false;
+};
+</script>
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script> 
 
 
