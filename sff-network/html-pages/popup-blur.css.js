@@ -134,17 +134,15 @@ var popup_blur_html = `
   
 
     <audio id="mp3--player" controls="controls"
-           style="  "
            src="" title="Right Click, and choose 'Save audio as ...' in context menu">
         Your browser does not support the <code>audio</code> element.
     </audio>
 
 
-    <div id="post--container"
-         style="  ">
+    <div id="post--container">
     </div>
 
-   <div id="video--container" style=" "> 
+   <div id="video--container"> 
          <iframe id="video--player" type="text/html" width="640" height="360" src=""
   frameborder="0"></iframe>
   
@@ -254,18 +252,6 @@ display:inline-block;
  width:16%;
 }
 
-.info--circle{
-
-display:inline-block;
- width:13%;
- vertical-align: middle;
- float: left;
- margin-right:14px;
- padding-top:1px;
-/* position:relative;
- top:-22px;
- left:238px; */
-}
 
 .control--symbols{
 z-index:333;  

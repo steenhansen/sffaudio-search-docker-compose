@@ -158,12 +158,13 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
      } else {
              sff_vars.filter_names.colorBooks();
      }
-    sff_vars.graph_procs.doGraph();
+     
+
+    sff_vars.graph_procs.doGraph(sff_php_vars.php_search);
+    
     function mainStart(polyfill_error){
-        sff_vars.vars_events.initEvents();
-        
-// q*bert        
-       sff_vars.history_generate.startHistoryView('${req_query_view}', sff_vars.strip_author, '${under_title}')
+       sff_vars.vars_events.initEvents();
+       sff_vars.history_generate.startHistoryView('${req_query_view}', sff_vars.strip_author, '${under_title}');
     }
 
 </script>`;

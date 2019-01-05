@@ -33,6 +33,7 @@ sff_vars.filter_names = (function (graph_id) {
         return matching_authors;
     }
     my.filterAuthors = function (search_for) {
+
         var strip_author='';
         var search_underscore = alphaUnderscore(search_for);
         if (search_underscore === '') {
@@ -109,25 +110,27 @@ my.authorsBooksColor = function(author_color, book_color){
        
     }
 
+    my.highlightSelection = function(media_id){
+        var elem = document.getElementById(media_id);
+        if (elem != null) {
+            elem.classList.add('current__media');
+            elem.scrollIntoView();
+                var container = document.getElementById(graph_id);
+                container.scrollIntoView();
+        }
+    }
 
     my.selectMedia = function (media_id_short, author_book_choice) {
         my.clearLast()
         if (author_book_choice === 'BOOK-CHOICE'){
             var author_book_array = media_id_short.split('${AUTHOR_BOOK_SEPARATOR}');
             var under_title = author_book_array[1];
-            
-          var media_id = under_title + '${END_BOOK_LIST}';        /// will be ...
+          var media_id = under_title + '${END_BOOK_LIST}';        
         }else{
           var media_id = media_id_short + '${END_AUTHOR_LIST}';
         }
-        var elem = document.getElementById(media_id);
-        if (elem != null) {
-            elem.classList.add('current__media');
-        }
-        var elem_filter = document.getElementById('filter'  + '${URL_SEPARATOR}' + media_id);
-        if (elem_filter != null) {
-            elem_filter.classList.add('current__media');
-        }
+        my.highlightSelection(media_id)
+        my.highlightSelection('filter'  + '${URL_SEPARATOR}' + media_id)
         my.last_selected_media = media_id;
         return true;
     }
@@ -147,7 +150,8 @@ my.authorsBooksColor = function(author_color, book_color){
          var nodes_string = no_such_type;
          var edges_string =[]
          var graph_physics = {'barnesHut': {'avoidOverlap': 1}};
-         sff_vars.graph_procs.loadGraph('my--graph', nodes_string, edges_string,graph_physics);
+         var no_php_search = '';
+         sff_vars.graph_procs.loadGraph('my--graph', nodes_string, edges_string, graph_physics, no_php_search);
     }
     
     

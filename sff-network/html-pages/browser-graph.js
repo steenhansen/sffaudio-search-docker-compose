@@ -46,8 +46,10 @@ my.graphSize=function(movement_dir){
     my.network_graph.fit();
 }
 
-    my.loadGraph = function (graph_id, nodes_string, edges_string, graph_physics) {
+    my.loadGraph = function (graph_id, nodes_string, edges_string, graph_physics, php_search_term) {
+
         var container = document.getElementById(graph_id);
+        // here we have loaded random data if none to see!!
         this.my_nodes = new vis.DataSet(nodes_string);
         this.my_edges = new vis.DataSet(edges_string);
         var data = {
@@ -61,6 +63,12 @@ my.graphSize=function(movement_dir){
         my.network_graph = new vis.Network(container, data, options);
         my.network_graph.setOptions(edge_options);
         injectLoadNew(graph_id);
+         if (php_search_term!==''){
+                  document.getElementById('filter--author--text').value=php_search_term;
+            sff_vars.vars_events.executeSearch(php_search_term);
+            sff_vars.vars_events.filterResetButton();  
+
+            }         
     };
 
     function injectLoadNew(graph_id) {
@@ -70,19 +78,20 @@ my.graphSize=function(movement_dir){
         addLoadNewGraph(graph_id);
     };
 
-    my.startGraph = function (graph_id, nodes_string, edges_string, graph_physics) {
-        my.loadGraph(graph_id, nodes_string, edges_string, graph_info.graph_physics);
-        if (graph_info.graph_type == '${BOOK_PAGE_TYPE}') {
-         var author_colons_title = graph_info.strip_author + '${AUTHOR_BOOK_SEPARATOR}' + graph_info.under_title;
-            sff_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')
-        } else {
-            sff_vars.filter_names.selectMedia(graph_info.strip_author, 'AUTHOR-CHOICE')
+    my.startGraph = function (graph_id, nodes_string, edges_string, graph_physics, php_search_term) {
+        my.loadGraph(graph_id, nodes_string, edges_string, graph_info.graph_physics, php_search_term);
+        if (php_search_term===''){
+            if (graph_info.graph_type == '${BOOK_PAGE_TYPE}') {
+                var author_colons_title = graph_info.strip_author + '${AUTHOR_BOOK_SEPARATOR}' + graph_info.under_title;
+                sff_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')
+            } else {
+                sff_vars.filter_names.selectMedia(graph_info.strip_author, 'AUTHOR-CHOICE')
+            }
         }
     }
 
     my.changeGroupIcon=function(node_id, group_icon){
           this.my_nodes.update({id: node_id, group: group_icon});
-    
     }
     
 
@@ -183,6 +192,8 @@ my.addHoverOnEvents = function () {
     }
 
     function addLoadNewGraph(graph_id) {
+ 
+    
         my.network_graph.loadAuthorOrBook = function (absolute_json_url) {
   
             fetch(absolute_json_url)
@@ -205,9 +216,8 @@ my.addHoverOnEvents = function () {
                         fetch_nodes =  sff_vars.help_nodes[fetch_options.strip_author]; 
                         fetch_edges= sff_vars.HELP_ALL_EDGES ;  
                     }              
-                    
-                    
-                    sff_vars.graph_procs.loadGraph(graph_id, fetch_nodes, fetch_edges, fetch_options.graph_physics);
+              var no_php_search = '';      
+                    sff_vars.graph_procs.loadGraph(graph_id, fetch_nodes, fetch_edges, fetch_options.graph_physics, no_php_search);
                     sff_vars.graph_vars.graph_info.graph_type = fetch_options.graph_type;
                 });
         };
@@ -232,8 +242,8 @@ my.addHoverOnEvents = function () {
         }
     }
 
-    my.doGraph = function () {
-        my.startGraph(graph_id, nodes_string, edges_string, graph_info.graph_physics);
+    my.doGraph = function (php_search_term) {
+        my.startGraph(graph_id, nodes_string, edges_string, graph_info.graph_physics, php_search_term);
     }
 
     return my;

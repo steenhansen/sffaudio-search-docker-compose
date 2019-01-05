@@ -16,7 +16,6 @@ class CachedAuthors extends CachedBase {
 
     constructor() {
         super('author-cache');
-        this.odd_even_class = 'odd__author';
     }
 
     
@@ -25,16 +24,7 @@ class CachedAuthors extends CachedBase {
         return VersionRepository.saveAuthors(new_db_version, all_links);
     }
 
-    oddEvenClass() {
-        var odd_even_class = this.odd_even_class;
-        if (odd_even_class === 'odd__author') {
-            this.odd_even_class = 'even__author';
-        } else {
-            this.odd_even_class = 'odd__author';
 
-        }
-        return odd_even_class;
-    }
 
 
     mediaLink(author_names) {
@@ -45,10 +35,10 @@ class CachedAuthors extends CachedBase {
         if (middle_names === '') {
             middle_names = '&nbsp;';
         }
-        var odd_even_class = this.oddEvenClass();
+   
 var title_separator =  strip_author + END_AUTHOR_LIST; 
         var author_html = `
-             <div   class='author__choice ${odd_even_class}' 
+             <div   class='author__choice' 
                     id="${title_separator}"       
                     onclick="sff__a('${strip_author}') "
                     onmouseenter="sff__v('${strip_author}_mid');"

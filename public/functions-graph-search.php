@@ -1,6 +1,14 @@
 <?php
 
-// public_html/wp-content/themes/revolution-code-blue2/functions.php
+/*
+ * public_html/wp-content/themes/revolution-code-blue2/functions.php
+ * 
+ *   include 'functions-graph-search.php';
+ */
+
+
+
+// public_html/wp-content/themes/revolution-code-blue2/functions-graph-search.php
 
 function redirectAfterHeader($new_location)
 {
@@ -75,28 +83,51 @@ function getQueryParameters($widget_url, $get_author, $get_book, $get_view)
     return $author_book_view;
 }
 
+// s=philip+k+dick => search_term=philip-k-dick
+function whatSearch($search_term){                  
+    if ($search_term){
+        $search_dashes = str_replace('+', '-', $search_term);
+    }else{
+        $search_dashes = '';
+    }
+    return $search_dashes;
+}
+
+function mobileRedirect($mobile_leaving_pages, $url_with_parameters){
+     $php_filename = basename(__FILE__);
+     if (in_array($php_filename, $mobile_leaving_pages)) {
+         leaveIfMobile($url_with_parameters);
+     }
+}
+
+function phpCodeOnly($url_with_parameters){
+    $graph_html = curlGetContents($url_with_parameters);
+    $iosMetaViewPort__webHtmlJavascript = explode('<!-- end widget intro. NB, this text is used by PHP -->', $graph_html);
+    $web_html_javascript = $iosMetaViewPort__webHtmlJavascript[1];
+    return $web_html_javascript;
+}
 
 // https://www.sffaudio.com/about/
-function media_graph_component()  //  [media-graph-component]
-{
+function media_graph_component(){  //  [media-graph-component]
+    $mobile_leaving_pages = array('about.php', '');    
     $widget_url = 'https://sffaudio-test-neo4j.herokuapp.com';
     $get_author = @$_GET['author'];
     $get_book = @$_GET['book'];
     $get_view = @$_GET['view'];
+
     $url_with_parameters = getQueryParameters($widget_url, $get_author, $get_book, $get_view);
-    leaveIfMobile($url_with_parameters);
-    $graph_html = curlGetContents($url_with_parameters);
-    
-    
-    $iosMetaViewPort__webHtmlJavascript =  explode( '<!-- end widget intro. NB, this text is used by PHP -->', $graph_html );
-    $web_html_javascript = $iosMetaViewPort__webHtmlJavascript[1];
+    mobileRedirect($mobile_leaving_pages, $url_with_parameters);
+    $search_dashes = whatSearch(@$_GET['s']);
+    $web_html_javascript= phpCodeOnly($url_with_parameters);
     
     $from_php_js_html = <<<JAVASCRIPT_HTML
         <script>
             window.sff_php_vars={ 
 			    "php_url"   : "$widget_url",
 			    "php_author": "$get_author",
-			    "php_book"  : "$get_book" };
+			    "php_book"  : "$get_book",
+			    "php_search": "$search_dashes"             // if not '' then inject into text box, fix 'reset' and then run ....
+			       };
         </script>
         $web_html_javascript
 JAVASCRIPT_HTML;
@@ -104,5 +135,5 @@ JAVASCRIPT_HTML;
 }
 
 if (function_exists('add_shortcode')) {
-    add_shortcode('media-graph-component', media_graph_component);
+    add_shortcode('graph_search', graph_search);
 }
