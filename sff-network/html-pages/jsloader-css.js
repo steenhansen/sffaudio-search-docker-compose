@@ -159,7 +159,7 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
              sff_vars.filter_names.colorBooks();
      }
      
-
+//sff_php_vars.php_search='zelazny'
     sff_vars.graph_procs.doGraph(sff_php_vars.php_search);
     
     function mainStart(polyfill_error){

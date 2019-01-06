@@ -50,7 +50,7 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
             if (sff_php_vars.php_url === 'not a php host') {
                  var url_type3 =  '//' + window.location.host + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
             }else{
-                var url_type3 =  sff_php_vars.ajax_url + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
+                var url_type3 =  sff_vars.ajax_url + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
             }
             fetch(url_type3)
                 .then(function (response) {

@@ -67,7 +67,7 @@ my.graphSize=function(movement_dir){
                   document.getElementById('filter--author--text').value=php_search_term;
             sff_vars.vars_events.executeSearch(php_search_term);
             sff_vars.vars_events.filterResetButton();  
-
+            sff_vars.vars_events.inputSearch();
             }         
     };
 
