@@ -96,8 +96,7 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     
 <script>
     sff_js_vars.strip_author = "${strip_author}";
-    sff_js_vars.default_authors =
-    ${nodes_and_edges_str}
+    sff_js_vars.default_authors = ${nodes_and_edges_str};
     
     
     if (sff_js_vars.helpers.objectIsEmpty(sff_js_vars.graph_vars.nodes_string)) {

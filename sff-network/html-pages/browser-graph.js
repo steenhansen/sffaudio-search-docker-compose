@@ -48,6 +48,10 @@ my.graphSize=function(movement_dir){
 
     my.loadGraph = function (graph_id, nodes_string, edges_string, graph_physics, php_search_term) {
 
+console.log('loadGraph  nodes_string =',nodes_string);
+console.log('loadGraph  php_search_term =',php_search_term);
+
+
         var container = document.getElementById(graph_id);
         // here we have loaded random data if none to see!!
         this.my_nodes = new vis.DataSet(nodes_string);

@@ -125,7 +125,7 @@ function initialDefaultPage(req_query) {
                 var empty_node={};
                 var empty_edges={};
                 var empty_info={}
-            console.log('initialDefaultPage', query_choice)
+          //  console.log('initialDefaultPage', query_choice)
                 return media_page(empty_node, empty_edges, empty_info, query_view, query_choice, random_default_authors);
             })
 }
@@ -137,7 +137,7 @@ function bookOrAuthorPage(req_query) {
             var query_view = queryView(req_query);
                 var query_choice = queryChoice(req_query);
             var empty_default_authors='{}';
-            console.log('bookOrAuthorPage', query_choice)
+           // console.log('bookOrAuthorPage', query_choice)
             return media_page(nodes_object, edges_object, graph_info, query_view, query_choice, empty_default_authors);
                 
         })

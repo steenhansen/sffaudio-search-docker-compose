@@ -70,17 +70,25 @@ if (!class_exists('SffGraphSearch')) {
             return $page_data;
         }
 
-        static function getQueryParameters($widget_url, $get_author, $get_book, $get_view)
+        static function getQueryParameters($widget_url, $get_author, $get_book, $get_view, $get_choice)
         {
             if ($get_book) {
                 if ($get_view) {
-                    $author_book_view = "$widget_url?book=$get_book&author=$get_author&view=$get_view";
+                    if ($get_choice){
+                        $author_book_view = "$widget_url?book=$get_book&author=$get_author&view=$get_view&choice=$get_choice";
+                    }else{
+                        $author_book_view = "$widget_url?book=$get_book&author=$get_author&view=$get_view";
+                    }
                 } else {
                     $author_book_view = "$widget_url?book=$get_book&author=$get_author";
                 }
             } else if ($get_author) {
                 if ($get_view) {
-                    $author_book_view = "$widget_url?author=$get_author&view=$get_view";
+                   if ($get_choice){
+                       $author_book_view = "$widget_url?author=$get_author&view=$get_view&choice=$get_choice";
+                   }else {
+                       $author_book_view = "$widget_url?author=$get_author&view=$get_view";
+                   }
                 } else {
                     $author_book_view = "$widget_url?author=$get_author";
                 }
@@ -134,8 +142,9 @@ ini_set('display_errors', 1);
         $get_author = @$_GET['author'];
         $get_book = @$_GET['book'];
         $get_view = @$_GET['view'];
+        $get_choice = @$_GET['choice'];
 
-        $url_with_parameters = SffGraphSearch::getQueryParameters($widget_url, $get_author, $get_book, $get_view);
+        $url_with_parameters = SffGraphSearch::getQueryParameters($widget_url, $get_author, $get_book, $get_view, $get_choice);
         SffGraphSearch::mobileRedirect($mobile_leaving_pages, $url_with_parameters);
           $search_dashes = SffGraphSearch::whatSearch(@$_POST['search_term']);
         $web_html_javascript = SffGraphSearch::phpCodeOnly($url_with_parameters);
