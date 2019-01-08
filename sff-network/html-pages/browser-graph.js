@@ -46,25 +46,23 @@ my.graphSize=function(movement_dir){
     my.network_graph.fit();
 }
 
-    my.loadGraph = function (graph_id, nodes_string, edges_string, graph_physics, php_search_term) {
-
-console.log('loadGraph  nodes_string =',nodes_string);
-console.log('loadGraph  php_search_term =',php_search_term);
-
-
-        var container = document.getElementById(graph_id);
-        // here we have loaded random data if none to see!!
-        this.my_nodes = new vis.DataSet(nodes_string);
-        this.my_edges = new vis.DataSet(edges_string);
-        var data = {
+    my.loadGraph = function (graph_id, nodes_array, edges_array, graph_physics, php_search_term) {
+        if (php_search_term!==''){
+            nodes_array=[];
+            edges_array=[];
+        }
+        var container_elem = document.getElementById(graph_id);
+        this.my_nodes = new vis.DataSet(nodes_array);
+        this.my_edges = new vis.DataSet(edges_array);
+        var graph_data = {
             nodes: this.my_nodes,
             edges:  this.my_edges
         };
-        var options = {
+        var graph_options = {
             groups: sff_js_vars.graph_vars.node_icons,
             physics: graph_physics,
         };
-        my.network_graph = new vis.Network(container, data, options);
+        my.network_graph = new vis.Network(container_elem, graph_data, graph_options);
         my.network_graph.setOptions(edge_options);
         injectLoadNew(graph_id);
          if (php_search_term!==''){
@@ -169,11 +167,11 @@ my.addHoverOnEvents = function () {
                         sff_js_vars.graph_procs.loadAuthorNew(the_node.node_type)
                     } else if (node_type == 'L_BOOK') {
                            if (  sff_js_vars.graph_vars.graph_info.graph_type !== '${BOOK_PAGE_TYPE}') {
-                                my.loadBookNew(last_first_underscores, under_title)           // why my.
+                                my.loadBookNew(last_first_underscores, under_title)        
                         }
                     } else if (node_type == 'L_AUTHOR') {
                         if (  sff_js_vars.graph_vars.graph_info.graph_type !== '${AUTHOR_PAGE_TYPE}') {
-                            my.loadAuthorNew(strip_author)                          // why my.
+                            my.loadAuthorNew(strip_author)                      
                         }
                     } else if (node_type == 'L_PDF') {
                         sff_js_vars.pdf_procs.historyPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf', sorted_choice);
@@ -186,7 +184,6 @@ my.addHoverOnEvents = function () {
                     } else if (node_type == 'L_AUTHOR_POST') {  
                         sff_js_vars.author_post_procs.historyAuthorPost(goto_url, strip_author, 'post_author', sorted_choice);
                     } else if (node_type == 'L_BOOK_POST') {
-                        
                         sff_js_vars.book_post_procs.historyBookPost(goto_url, strip_author, under_title, 'post_book', sorted_choice);
                     } else if (typeof goto_url !== 'undefined') {
                         window.location = goto_url;
@@ -196,10 +193,7 @@ my.addHoverOnEvents = function () {
     }
 
     function addLoadNewGraph(graph_id) {
- 
-    
         my.network_graph.loadAuthorOrBook = function (absolute_json_url) {
-  
             fetch(absolute_json_url)
                 .then(function (response) {
                     return response.json();
@@ -209,9 +203,6 @@ my.addHoverOnEvents = function () {
                         my.network_graph.destroy();
                         my.network_graph = null;
                     }
-
-
-
                     var fetch_nodes = JSON.parse(myJson.nodes_string)
                     sff_js_vars.graph_vars.nodes_string = fetch_nodes;  
                     var fetch_edges = JSON.parse(myJson.edges_string);
@@ -280,7 +271,6 @@ function sff_leave(id){
 }
 
 // browser-graph end
-
 `;
 
 

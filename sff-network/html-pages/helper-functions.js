@@ -60,8 +60,15 @@ my.objectIsEmpty  = function(obj) {
         document.getElementById(elem_id).style.visibility = 'hidden';
     };
 
+    my.busyCursor = function (){
+        var body_elem = document.getElementsByTagName("BODY")[0];
+        body_elem.classList.add('busy--cursor');
+    };
 
-
+    my.normalCursor = function (){
+        var body_elem = document.getElementsByTagName("BODY")[0];
+        body_elem.classList.remove('busy--cursor');
+    };
 
     return my;
 

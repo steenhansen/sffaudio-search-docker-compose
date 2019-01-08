@@ -12,18 +12,18 @@ sff_js_vars.podcast_procs = (function (podcast_close_svg) {
       window.location = this.podcast_mp3;
     }
     
-    my.historyPodcast = function (goto_url, podcast_url, under_title, strip_author, req_query_view, sorted_choice) {
+    my.historyPodcast = function (goto_url, podcast_post_url, under_title, strip_author, req_query_view, sorted_choice) {
          document.getElementById("my--graph").style.display="none"; 
         if (req_query_view) {
             sff_js_vars.history_state.pushViewBook(strip_author, under_title, req_query_view, sorted_choice);
         } else {
             sff_js_vars.history_state.pushBook(strip_author, under_title);
         }
-        my.startPodcast(goto_url, podcast_url)
+        my.startPodcast(goto_url, podcast_post_url)
     }
     
 
-    my.startPodcast = function (goto_url, podcast_url) {
+    my.startPodcast = function (goto_url, podcast_post_url) {
          sff_js_vars.helpers.setDisplay('download--podcast--mp3', 'block');
         sff_js_vars.helpers.setDisplay('pdf--controller', 'none');
         document.getElementById('media--title').innerHTML = '';
@@ -32,7 +32,7 @@ sff_js_vars.podcast_procs = (function (podcast_close_svg) {
         
         this.podcast_mp3=goto_url;
         
-        sff_js_vars.author_post_procs.startAuthorPost(podcast_url)
+        sff_js_vars.author_post_procs.startAuthorPost(podcast_post_url)
         .then(  function(){ 
             document.getElementById("post--container").style.display='block';
             var media_height =sff_js_vars.helpers.computedHeight('mp3--player');

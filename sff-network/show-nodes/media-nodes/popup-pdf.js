@@ -13,10 +13,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         pdf_url:''
     };
 
-
     my.historyPdf = function (pdf_url, book_title, label, last_first_underscores, under_title, req_query_view, sorted_choice) {
-    console.log('historyPdf sorted_choice', sorted_choice)
-        // document.getElementById("my--graph").style.display="none"; 
         this.pdf_url = pdf_url;
         if (req_query_view) {
             sff_js_vars.history_state.pushViewBook(last_first_underscores, under_title, req_query_view, sorted_choice);
@@ -25,7 +22,6 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         }
         my.startPdf(pdf_url, book_title, label, last_first_underscores, under_title);
     }
-
 
     my.clearCanvas = function (canvas_id) {
         var pdf_canvas = document.getElementById(canvas_id);
@@ -40,12 +36,11 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         sff_js_vars.helpers.setDisplay(my.canvas_id, 'block');
         document.getElementById('close--icon').src = pdf_close_svg;
         document.getElementById('media--title').innerHTML = book_title + ' - ' + label;
-       // sff_js_vars.blur_procs.blockPage('popup--container');
         sff_js_vars.helpers.setDisplay('pdf--loading', 'block');
     }
-    
 
     my.startPdf = function (pdf_url, book_title, label) {
+        sff_js_vars.helpers.busyCursor();
        this.pdf_url = pdf_url;
         my.setupPdf(book_title, label);
             if (sff_php_vars.php_url === 'not a php host') {
@@ -60,7 +55,10 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                 })
                  .then(function (resolved_pdf_url) {
                      my.readPdf(resolved_pdf_url);
-                 });
+                 })
+                  .finally( function (){
+                sff_js_vars.helpers.normalCursor();
+            })    
     }
     
     my.readPdf = function (pdf_url) {
@@ -71,7 +69,6 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                         my.pdf_document = loaded_pdf;
                         my.last_page = loaded_pdf.numPages;
                         my.loadOnePage(1);
-                        //sff_js_vars.blur_procs.postPdfWidth('pdf--controller');
                         sff_js_vars.helpers.setDisplay('pdf--controller', 'block');
                     }).catch(function (e) {
                     var error_name = e.name;
@@ -85,16 +82,15 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                 })
             }).catch(function (e) {
                 my.downloadPdf();             // bypass CORS error SEC7118 on IE 11, Windows 7&8 bug
-        })
+                 })
+            .finally( function (){
+                sff_js_vars.helpers.normalCursor();
+            })     
     }
 
    my.downloadPdf = function (){
         window.location = this.pdf_url;
     }
-    
-
-
-
 
     my.changePage = function (page_change) {
         if (page_change === 0) {
@@ -118,23 +114,14 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         var pager_top =sff_js_vars.helpers.computedValue('pdf--controller', 'top');
         document.getElementById("pdf--canvas").style.top = pager_height + pager_top + 'px'
         var screen_height_px = sff_js_vars.blur_procs.overlayHeightPx();
-
-          var header_height = sff_js_vars.helpers.computedValue("sff--header", "height");
-          
-           var my_network = document.getElementById("my--network")
-           var popup_container = document.getElementById("popup--container")
-        
+        var header_height = sff_js_vars.helpers.computedValue("sff--header", "height");
+        var my_network = document.getElementById("my--network")
+        var popup_container = document.getElementById("popup--container")
         popup_container.style.height = screen_height_px;
         popup_container.style.top = my_network.style.top  + header_height*1.7;
         popup_container.style.left = my_network.style.left + 20;
-        
-        
         var network_width = sff_js_vars.helpers.computedValue("my--network", "width");
-        
         popup_container.style.width = network_width-30;
-
-        
-        ////////////////////////////////////
         sff_js_vars.helpers.setDisplay('pdf--loading', 'none');
     }
 

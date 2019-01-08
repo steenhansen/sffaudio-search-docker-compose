@@ -51,6 +51,13 @@ ga('send', 'pageview');
          /*   font: 12pt arial;  */
             background-color: #eeffee;
         }
+        
+body.busy--cursor * {
+    cursor: progress;
+}
+        
+        
+        
         #my--network {
             display: flex;
             flex-direction: column;

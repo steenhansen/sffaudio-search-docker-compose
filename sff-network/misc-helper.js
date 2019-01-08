@@ -116,6 +116,7 @@ function consoleTimeEnd(start_date, interval_name, show_or_hide_seconds='') {
     }
 }
 
+
 module.exports = {
     consoleTimeEnd,
     waitSeconds,
