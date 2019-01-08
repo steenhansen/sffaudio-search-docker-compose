@@ -172,7 +172,6 @@ my.addHoverOnEvents = function () {
                             my.loadAuthorNew(strip_author)                          // why my.
                         }
                     } else if (node_type == 'L_PDF') {
-                        console.log('addClickOnEvent sorted_choice', sorted_choice);
                         sff_js_vars.pdf_procs.historyPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf', sorted_choice);
                     } else if (node_type == 'L_PODCAST') {
                         sff_js_vars.podcast_procs.historyPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast', sorted_choice);

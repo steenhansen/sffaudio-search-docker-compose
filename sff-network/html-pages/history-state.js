@@ -129,7 +129,6 @@ function typeSortedChoiceFindFactory(_node_type, _sorted_choice){
     
 
      my.popViewBook=function(page_name, url_type, view_type, sorted_choice){
-     console.log('popViewBook sorted_choice', sorted_choice);
                   sff_js_vars.graph_procs.network_graph.loadAuthorOrBook(url_type);
                 sff_js_vars.filter_names.selectMedia(page_name, 'BOOK-CHOICE');
                 if ( view_type=='pdf'){

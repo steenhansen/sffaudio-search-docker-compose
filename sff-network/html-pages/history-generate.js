@@ -32,7 +32,6 @@ sff_js_vars.history_generate = (function () {
     var my = {};
     
     my.bookHistoryView = function (req_query_view, strip_author, under_title, req_query_choice) {
-    console.log('bookHistoryView', under_title, req_query_choice);
         sff_js_vars.history_state.pushBook(strip_author, under_title);
         if (req_query_view === 'post_book') {
             var book_view = sff_js_vars.graph_vars.nodes_string.find(bookPostView);                  //  http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=post           
@@ -74,7 +73,6 @@ sff_js_vars.history_generate = (function () {
     }
 
     my.startHistoryView = function (req_query_view, strip_author, under_title, req_query_choice) {
-    console.log('startHistoryView');
         if (sff_php_vars.php_url === 'not a php host') {
             if (under_title) {
                 sff_js_vars.history_generate.bookHistoryView(req_query_view, strip_author, under_title, req_query_choice);
