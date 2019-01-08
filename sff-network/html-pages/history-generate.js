@@ -36,7 +36,7 @@ sff_js_vars.history_generate = (function () {
         if (req_query_view === 'post_book') {
             var book_view = sff_js_vars.graph_vars.nodes_string.find(bookPostView);                  //  http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=post           
             if (book_view) {
-                sff_js_vars.book_post_procs.historyBookPost(book_view.goto_url, book_view.strip_author, book_view.under_title, req_query_view);
+                sff_js_vars.book_post_procs.historyBookPost(book_view.goto_url, book_view.strip_author, book_view.under_title, req_query_view, req_query_choice);
             }
         } else if (req_query_view === 'pdf') {
             var pdf_view = sff_js_vars.graph_vars.nodes_string.find(pdfView);         //             http://localhost:5000/?book=beyond_lies_the_wub&author=philip_k_dick&view=pdf&choice=1
@@ -45,15 +45,24 @@ sff_js_vars.history_generate = (function () {
             }
         } else if (req_query_view === 'rsd') {
             var rsd_view = sff_js_vars.graph_vars.nodes_string.find(rsdView);         //             http://www.sff_test.com/?book=beyond_lies_the_wub&author=philip_k_dick&view=rsd
-          
-             
             if (rsd_view) {
-                sff_js_vars.rsd_procs.historyRsd(rsd_view.goto_url, rsd_view.rsd_description, rsd_view.label, rsd_view.rsd_pdf_link, rsd_view.video_link, rsd_view.under_title, rsd_view.last_first_underscores, req_query_view);
+              var goto_url=rsd_view.goto_url;
+              var rsd_description=rsd_view.rsd_description;
+              var label=rsd_view.label;
+              var rsd_pdf_link=rsd_view.rsd_pdf_link;
+              var video_link=rsd_view.video_link;
+              var under_title=rsd_view.under_title;
+               var last_first_underscores=rsd_view.last_first_underscores;
+              sff_js_vars.rsd_procs.historyRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, req_query_view, req_query_choice);
             }
         } else if (req_query_view === 'podcast') {
             var podcast_view = sff_js_vars.graph_vars.nodes_string.find(podcastView);         //             http://www.sff_test.com/?book=beyond_lies_the_wub&author=philip_k_dick&view=podcast
             if (podcast_view) {
-                sff_js_vars.podcast_procs.historyPodcast(podcast_view.goto_url, podcast_view.podcast_url, podcast_view.under_title, podcast_view.last_first_underscores, req_query_view,  sorted_choice);
+                var goto_url=podcast_view.goto_url;
+                var podcast_url=podcast_view.podcast_url;
+                var under_title=podcast_view.under_title;
+                var last_first_underscores=podcast_view.last_first_underscores;
+                sff_js_vars.podcast_procs.historyPodcast(goto_url, podcast_url, under_title, last_first_underscores, req_query_view,  req_query_choice);
             }
         }
 
