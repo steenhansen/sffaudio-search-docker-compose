@@ -4,7 +4,7 @@ module.exports =  function (URL_SEPARATOR) {    // why is this passed into closu
 
 var filter_names = `
 // filter-names
-sff_vars.filter_names = (function (graph_id) {
+sff_js_vars.filter_names = (function (graph_id) {
     var my = {
         last_selected_media: ''
     };
@@ -73,11 +73,11 @@ sff_vars.filter_names = (function (graph_id) {
     }
 
 my.colorAuthors = function(){
-     sff_vars.filter_names.authorsBooksColor('gray', '#cccccc')
+     sff_js_vars.filter_names.authorsBooksColor('gray', '#cccccc')
 }
 
 my.colorBooks = function(){
-     sff_vars.filter_names.authorsBooksColor('#cccccc', 'gray' )
+     sff_js_vars.filter_names.authorsBooksColor('#cccccc', 'gray' )
 }
 
 my.authorsBooksColor = function(author_color, book_color){
@@ -146,12 +146,12 @@ my.authorsBooksColor = function(author_color, book_color){
    
     
    my.nothingFound = function (no_such_type) {
-         sff_vars.filter_names.clearLast();
+         sff_js_vars.filter_names.clearLast();
          var nodes_string = no_such_type;
          var edges_string =[]
          var graph_physics = {'barnesHut': {'avoidOverlap': 1}};
          var no_php_search = '';
-         sff_vars.graph_procs.loadGraph('my--graph', nodes_string, edges_string, graph_physics, no_php_search);
+         sff_js_vars.graph_procs.loadGraph('my--graph', nodes_string, edges_string, graph_physics, no_php_search);
     }
     
     
@@ -163,11 +163,11 @@ my.authorsBooksColor = function(author_color, book_color){
     
      my.showHideFilteredAuthors = function (showing_type) {   // filtered_media / all_media
         if (showing_type === 'all_media') {
-            sff_vars.helpers.setDisplay("all--authors", 'block');
-            sff_vars.helpers.setDisplay('filter--authors', 'none');
+            sff_js_vars.helpers.setDisplay("all--authors", 'block');
+            sff_js_vars.helpers.setDisplay('filter--authors', 'none');
         } else {
-            sff_vars.helpers.setDisplay("all--authors", 'none');
-            sff_vars.helpers.setDisplay('filter--authors', 'block');
+            sff_js_vars.helpers.setDisplay("all--authors", 'none');
+            sff_js_vars.helpers.setDisplay('filter--authors', 'block');
             
             return 17;
         }
@@ -185,11 +185,11 @@ my.authorsBooksColor = function(author_color, book_color){
     
      my.showHideFilteredStories = function (showing_type) {   // filtered_media / all_media
         if (showing_type === 'all_media') {
-            sff_vars.helpers.setDisplay("all--books", 'block');
-            sff_vars.helpers.setDisplay('filter--books', 'none');
+            sff_js_vars.helpers.setDisplay("all--books", 'block');
+            sff_js_vars.helpers.setDisplay('filter--books', 'none');
         } else {
-            sff_vars.helpers.setDisplay("all--books", 'none');
-            sff_vars.helpers.setDisplay('filter--books', 'block');
+            sff_js_vars.helpers.setDisplay("all--books", 'none');
+            sff_js_vars.helpers.setDisplay('filter--books', 'block');
         }
     }
 
@@ -214,7 +214,7 @@ my.authorsBooksColor = function(author_color, book_color){
 
     return my;
     
-}(sff_vars.graph_vars.graph_id))
+}(sff_js_vars.graph_vars.graph_id))
 // filter-names end
 `;
 return filter_names;

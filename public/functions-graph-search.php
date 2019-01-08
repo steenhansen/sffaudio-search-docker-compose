@@ -8,6 +8,7 @@
  *    add [graph-search-component] to the HTML
  */
 
+// in https://www.sffaudio.com/search/ with 'Default Template'
 
 // public_html/wp-content/themes/revolution-code-blue2/functions-graph-search.php
 
@@ -136,7 +137,7 @@ ini_set('display_errors', 1);
 
         $url_with_parameters = SffGraphSearch::getQueryParameters($widget_url, $get_author, $get_book, $get_view);
         SffGraphSearch::mobileRedirect($mobile_leaving_pages, $url_with_parameters);
-          $search_dashes = SffGraphSearch::whatSearch(@$_GET['s']);
+          $search_dashes = SffGraphSearch::whatSearch(@$_POST['search_term']);
         $web_html_javascript = SffGraphSearch::phpCodeOnly($url_with_parameters);
 
         $from_php_js_html = <<<JAVASCRIPT_HTML

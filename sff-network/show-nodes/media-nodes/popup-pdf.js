@@ -1,7 +1,7 @@
 
     var load_css_external = `
 //popup-pdf    
-sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
+sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
 
     var my = {
         canvas_id: canvas_id,
@@ -15,12 +15,13 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
 
 
     my.historyPdf = function (pdf_url, book_title, label, last_first_underscores, under_title, req_query_view, sorted_choice) {
+    console.log('historyPdf sorted_choice', sorted_choice)
         // document.getElementById("my--graph").style.display="none"; 
         this.pdf_url = pdf_url;
         if (req_query_view) {
-            sff_vars.history_state.pushBookView(last_first_underscores, under_title, req_query_view, sorted_choice);
+            sff_js_vars.history_state.pushViewBook(last_first_underscores, under_title, req_query_view, sorted_choice);
         } else {
-            sff_vars.history_state.pushBook(last_first_underscores, under_title);
+            sff_js_vars.history_state.pushBook(last_first_underscores, under_title);
         }
         my.startPdf(pdf_url, book_title, label, last_first_underscores, under_title);
     }
@@ -33,14 +34,14 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     }
 
     my.setupPdf = function (book_title, label) {   
-        sff_vars.helpers.setDisplay("video--container", 'none');
-        sff_vars.helpers.setDisplay("media--title", 'block');
+        sff_js_vars.helpers.setDisplay("video--container", 'none');
+        sff_js_vars.helpers.setDisplay("media--title", 'block');
         my.clearCanvas(my.canvas_id);
-        sff_vars.helpers.setDisplay(my.canvas_id, 'block');
+        sff_js_vars.helpers.setDisplay(my.canvas_id, 'block');
         document.getElementById('close--icon').src = pdf_close_svg;
         document.getElementById('media--title').innerHTML = book_title + ' - ' + label;
-       // sff_vars.blur_procs.blockPage('popup--container');
-        sff_vars.helpers.setDisplay('pdf--loading', 'block');
+       // sff_js_vars.blur_procs.blockPage('popup--container');
+        sff_js_vars.helpers.setDisplay('pdf--loading', 'block');
     }
     
 
@@ -48,9 +49,9 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
        this.pdf_url = pdf_url;
         my.setupPdf(book_title, label);
             if (sff_php_vars.php_url === 'not a php host') {
-                 var url_type3 =  '//' + window.location.host + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
+                 var url_type3 =  '//' + window.location.host + '/' + sff_js_vars.SFF_RESOLVE_PDF + pdf_url;
             }else{
-                var url_type3 =  sff_vars.ajax_url + '/' + sff_vars.SFF_RESOLVE_PDF + pdf_url;
+                var url_type3 =  sff_js_vars.ajax_url + '/' + sff_js_vars.SFF_RESOLVE_PDF + pdf_url;
             }
             fetch(url_type3)
                 .then(function (response) {
@@ -70,8 +71,8 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                         my.pdf_document = loaded_pdf;
                         my.last_page = loaded_pdf.numPages;
                         my.loadOnePage(1);
-                        //sff_vars.blur_procs.postPdfWidth('pdf--controller');
-                        sff_vars.helpers.setDisplay('pdf--controller', 'block');
+                        //sff_js_vars.blur_procs.postPdfWidth('pdf--controller');
+                        sff_js_vars.helpers.setDisplay('pdf--controller', 'block');
                     }).catch(function (e) {
                     var error_name = e.name;
                     if (error_name === "MissingPDFException") {
@@ -112,32 +113,29 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
 
 
     my.fixHeights = function (pdf_canvas_height) {
-        var media_height =sff_vars.helpers.computedHeight('media--title');
-        var pager_height =sff_vars.helpers.computedHeight('pdf--controller');
-        var pager_top =sff_vars.helpers.computedValue('pdf--controller', 'top');
-    
-        var pop_cont_height = media_height + pager_height + pdf_canvas_height;
-        document.getElementById("popup--container").style.height = pop_cont_height + 'px';
+        var media_height =sff_js_vars.helpers.computedHeight('media--title');
+        var pager_height =sff_js_vars.helpers.computedHeight('pdf--controller');
+        var pager_top =sff_js_vars.helpers.computedValue('pdf--controller', 'top');
         document.getElementById("pdf--canvas").style.top = pager_height + pager_top + 'px'
-        
-        ////////////////////////////////////
-          var header_height = sff_vars.helpers.computedValue("sff--header", "height");
+        var screen_height_px = sff_js_vars.blur_procs.overlayHeightPx();
+
+          var header_height = sff_js_vars.helpers.computedValue("sff--header", "height");
           
            var my_network = document.getElementById("my--network")
            var popup_container = document.getElementById("popup--container")
         
+        popup_container.style.height = screen_height_px;
         popup_container.style.top = my_network.style.top  + header_height*1.7;
         popup_container.style.left = my_network.style.left + 20;
         
-        popup_container.style.height = '100%' ; //my_network.style.height;
         
-        var network_width = sff_vars.helpers.computedValue("my--network", "width");
+        var network_width = sff_js_vars.helpers.computedValue("my--network", "width");
         
         popup_container.style.width = network_width-30;
 
         
         ////////////////////////////////////
-        sff_vars.helpers.setDisplay('pdf--loading', 'none');
+        sff_js_vars.helpers.setDisplay('pdf--loading', 'none');
     }
 
     my.renderOnePage = function (pdf_page) {
@@ -165,7 +163,7 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                 pdf_page.render(render_context).then(function () {
                     my.fixHeights(my.pdf_canvas_height)
                     
-                     sff_vars.blur_procs.blockPage('popup--container');
+                     sff_js_vars.blur_procs.blockPage('popup--container');
                     
                     
                 });
@@ -178,8 +176,8 @@ sff_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     
     return my;
 
-}(  sff_vars.pdf_vars.canvas_id,
-    sff_vars.graph_vars.node_icons.I_CLOSE_PDF.image
+}(  sff_js_vars.pdf_vars.canvas_id,
+    sff_js_vars.graph_vars.node_icons.I_CLOSE_PDF.image
 ))
 //popup-pdf 
 `;

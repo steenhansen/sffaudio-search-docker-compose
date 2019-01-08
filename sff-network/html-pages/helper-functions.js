@@ -1,6 +1,6 @@
 var sff_helpers_js = `
 // helper-functions
-sff_vars.helpers = (function () {
+sff_js_vars.helpers = (function () {
 
     var my = {};
 

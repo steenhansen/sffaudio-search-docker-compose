@@ -6,15 +6,15 @@ var sff_help_graph = `
 <script>
 // help-graph
 
-sff_vars.NO_SUCH_AUTHOR=[{"group":"I_NOTHING", ${error_font},
+sff_js_vars.NO_SUCH_AUTHOR=[{"group":"I_NOTHING", ${error_font},
             "title" : "click on an author above",
             "label":"Author is not in the database"}];
 
-sff_vars.NO_SUCH_BOOK=[{"group":"I_NOTHING", ${error_font},
+sff_js_vars.NO_SUCH_BOOK=[{"group":"I_NOTHING", ${error_font},
              "title" : "click on a story below",
              "label":"Story is not in the database"}];
 
-sff_vars.help_nodes= {
+sff_js_vars.help_nodes= {
 "HELP_ALL" : [ {"id": 900, "group":"I_HELP", "node_type":"I_HELP", ${help_font}, "label":"Help" },
                {"id": 901, "group":"N_AUTHOR", "node_type":"HELP_AUTHOR", "title":"Click for author help"},
                {"id": 902, "group":"N_BOOK", "node_type":"HELP_BOOK", "title":"Click for book help"},
@@ -81,7 +81,7 @@ sff_vars.help_nodes= {
             };
 
 
-sff_vars.HELP_ALL_EDGES= [
+sff_js_vars.HELP_ALL_EDGES= [
               {"from": 900,"to": 901 },
               {"from": 900,"to": 902 },
               {"from": 900,"to": 903 },

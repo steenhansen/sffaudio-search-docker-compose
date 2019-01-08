@@ -4,7 +4,7 @@ MAX_ZOOM,MIN_ZOOM,ZOOM_STEP
 
 var load_css_external = `
 // browser-graph
-sff_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_info, edge_options) {
+sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_info, edge_options) {
     var my = {
         network_graph: {},
         last_selected_media: '',
@@ -57,7 +57,7 @@ my.graphSize=function(movement_dir){
             edges:  this.my_edges
         };
         var options = {
-            groups: sff_vars.graph_vars.node_icons,
+            groups: sff_js_vars.graph_vars.node_icons,
             physics: graph_physics,
         };
         my.network_graph = new vis.Network(container, data, options);
@@ -65,9 +65,9 @@ my.graphSize=function(movement_dir){
         injectLoadNew(graph_id);
          if (php_search_term!==''){
                   document.getElementById('filter--author--text').value=php_search_term;
-            sff_vars.vars_events.executeSearch(php_search_term);
-            sff_vars.vars_events.filterResetButton();  
-            sff_vars.vars_events.inputSearch();
+            sff_js_vars.vars_events.executeSearch(php_search_term);
+            sff_js_vars.vars_events.filterResetButton();  
+            sff_js_vars.vars_events.inputSearch();
             }         
     };
 
@@ -83,9 +83,9 @@ my.graphSize=function(movement_dir){
         if (php_search_term===''){
             if (graph_info.graph_type == '${BOOK_PAGE_TYPE}') {
                 var author_colons_title = graph_info.strip_author + '${AUTHOR_BOOK_SEPARATOR}' + graph_info.under_title;
-                sff_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')
+                sff_js_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')
             } else {
-                sff_vars.filter_names.selectMedia(graph_info.strip_author, 'AUTHOR-CHOICE')
+                sff_js_vars.filter_names.selectMedia(graph_info.strip_author, 'AUTHOR-CHOICE')
             }
         }
     }
@@ -107,11 +107,11 @@ my.addHoverOnEvents = function () {
             } else {
                var hover_name = node_type.substring(2);
                 if (node_type == 'L_BOOK') {
-                       if (  sff_vars.graph_vars.graph_info.graph_type === '${BOOK_PAGE_TYPE}') {
+                       if (  sff_js_vars.graph_vars.graph_info.graph_type === '${BOOK_PAGE_TYPE}') {
                                return
                        }
                 } else if (node_type == 'L_AUTHOR') {
-                        if (  sff_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
+                        if (  sff_js_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
                             return
                         }
                 }
@@ -162,28 +162,29 @@ my.addHoverOnEvents = function () {
                     var sorted_choice = the_node.sorted_choice
                   
                     if (node_type.indexOf('HELP_')===0) {
-                        sff_vars.graph_procs.loadAuthorNew(the_node.node_type)
+                        sff_js_vars.graph_procs.loadAuthorNew(the_node.node_type)
                     } else if (node_type == 'L_BOOK') {
-                           if (  sff_vars.graph_vars.graph_info.graph_type !== '${BOOK_PAGE_TYPE}') {
+                           if (  sff_js_vars.graph_vars.graph_info.graph_type !== '${BOOK_PAGE_TYPE}') {
                                 my.loadBookNew(last_first_underscores, under_title)           // why my.
                         }
                     } else if (node_type == 'L_AUTHOR') {
-                        if (  sff_vars.graph_vars.graph_info.graph_type !== '${AUTHOR_PAGE_TYPE}') {
+                        if (  sff_js_vars.graph_vars.graph_info.graph_type !== '${AUTHOR_PAGE_TYPE}') {
                             my.loadAuthorNew(strip_author)                          // why my.
                         }
                     } else if (node_type == 'L_PDF') {
-                        sff_vars.pdf_procs.historyPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf', sorted_choice);
+                        console.log('addClickOnEvent sorted_choice', sorted_choice);
+                        sff_js_vars.pdf_procs.historyPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf', sorted_choice);
                     } else if (node_type == 'L_PODCAST') {
-                        sff_vars.podcast_procs.historyPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast', sorted_choice);
+                        sff_js_vars.podcast_procs.historyPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast', sorted_choice);
                     } else if (node_type == 'L_RSD') {
-                        sff_vars.rsd_procs.historyRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd', sorted_choice);
+                        sff_js_vars.rsd_procs.historyRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd', sorted_choice);
                     } else if (node_type == 'L_RSD_VIDEO') {
-                        sff_vars.rsd_procs.historyRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd', sorted_choice);
+                        sff_js_vars.rsd_procs.historyRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd', sorted_choice);
                     } else if (node_type == 'L_AUTHOR_POST') {  
-                        sff_vars.author_post_procs.historyAuthorPost(goto_url, strip_author, 'post_author', sorted_choice);
+                        sff_js_vars.author_post_procs.historyAuthorPost(goto_url, strip_author, 'post_author', sorted_choice);
                     } else if (node_type == 'L_BOOK_POST') {
                         
-                        sff_vars.book_post_procs.historyBookPost(goto_url, strip_author, under_title, 'post_book', sorted_choice);
+                        sff_js_vars.book_post_procs.historyBookPost(goto_url, strip_author, under_title, 'post_book', sorted_choice);
                     } else if (typeof goto_url !== 'undefined') {
                         window.location = goto_url;
                     }
@@ -209,25 +210,25 @@ my.addHoverOnEvents = function () {
 
 
                     var fetch_nodes = JSON.parse(myJson.nodes_string)
-                    sff_vars.graph_vars.nodes_string = fetch_nodes;  
+                    sff_js_vars.graph_vars.nodes_string = fetch_nodes;  
                     var fetch_edges = JSON.parse(myJson.edges_string);
                     var fetch_options = JSON.parse(myJson.graph_string);
                     if (fetch_options.strip_author.indexOf('HELP_')>=0) {     
-                        fetch_nodes =  sff_vars.help_nodes[fetch_options.strip_author]; 
-                        fetch_edges= sff_vars.HELP_ALL_EDGES ;  
+                        fetch_nodes =  sff_js_vars.help_nodes[fetch_options.strip_author]; 
+                        fetch_edges= sff_js_vars.HELP_ALL_EDGES ;  
                     }              
               var no_php_search = '';      
-                    sff_vars.graph_procs.loadGraph(graph_id, fetch_nodes, fetch_edges, fetch_options.graph_physics, no_php_search);
-                    sff_vars.graph_vars.graph_info.graph_type = fetch_options.graph_type;
+                    sff_js_vars.graph_procs.loadGraph(graph_id, fetch_nodes, fetch_edges, fetch_options.graph_physics, no_php_search);
+                    sff_js_vars.graph_vars.graph_info.graph_type = fetch_options.graph_type;
                 });
         };
     }
 
 //http://localhost:5000/?author=philip_k_dick
     my.loadAuthorNew = function (strip_author) {
-        if (sff_vars.filter_names.selectMedia(strip_author, 'AUTHOR-CHOICE')) {
-            var author_json = sff_vars.history_state.pushAuthor(strip_author);
-           sff_vars.filter_names.colorAuthors();
+        if (sff_js_vars.filter_names.selectMedia(strip_author, 'AUTHOR-CHOICE')) {
+            var author_json = sff_js_vars.history_state.pushAuthor(strip_author);
+           sff_js_vars.filter_names.colorAuthors();
             my.network_graph.loadAuthorOrBook(author_json);
         }
     }
@@ -235,9 +236,9 @@ my.addHoverOnEvents = function () {
 //http://localhost:5000/?book=beyond_lies_the_wub
     my.loadBookNew = function (strip_author, under_title) {
         var author_colons_title = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
-        if (sff_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')) {
-            var book_json = sff_vars.history_state.pushBook(strip_author, under_title);
-                 sff_vars.filter_names.colorBooks();
+        if (sff_js_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')) {
+            var book_json = sff_js_vars.history_state.pushBook(strip_author, under_title);
+                 sff_js_vars.filter_names.colorBooks();
             my.network_graph.loadAuthorOrBook(book_json);
         }
     }
@@ -248,19 +249,19 @@ my.addHoverOnEvents = function () {
 
     return my;
     
-}(sff_vars.graph_vars.graph_id,
-    sff_vars.graph_vars.nodes_string,
-    sff_vars.graph_vars.edges_string,
-    sff_vars.graph_vars.graph_info,
-    sff_vars.graph_vars.edge_options
+}(sff_js_vars.graph_vars.graph_id,
+    sff_js_vars.graph_vars.nodes_string,
+    sff_js_vars.graph_vars.edges_string,
+    sff_js_vars.graph_vars.graph_info,
+    sff_js_vars.graph_vars.edge_options
 ))
 
 
-window.sff__a = sff_vars.graph_procs.loadAuthorNew;
-window.sff__v = sff_vars.helpers.setVisible;
-window.sff__h = sff_vars.helpers.setHidden; 
+window.sff__a = sff_js_vars.graph_procs.loadAuthorNew;
+window.sff__v = sff_js_vars.helpers.setVisible;
+window.sff__h = sff_js_vars.helpers.setHidden; 
 
-window.sff__b = sff_vars.graph_procs.loadBookNew;
+window.sff__b = sff_js_vars.graph_procs.loadBookNew;
 function sff_enter(id){
 	document.getElementById(id + '_article').style.visibility='visible';
 	document.getElementById(id + '_rest' ).style.height='5.5em';

@@ -36,7 +36,7 @@ var post_proxy_absolute = graph_constants.ROUTE_POST_PROXY + "?absolute_url=";
 <script>
 // server-to-browser
 
-    sff_vars.graph_vars={  
+    sff_js_vars.graph_vars={  
         graph_id:"${graph_id}",
         edge_options:${edge_options},
         node_icons:${icons_string},  
@@ -46,12 +46,12 @@ var post_proxy_absolute = graph_constants.ROUTE_POST_PROXY + "?absolute_url=";
 }    
 
 
-sff_vars.pdf_vars={  
+sff_js_vars.pdf_vars={  
         canvas_id:'pdf--canvas'
 }    
 
 
-sff_vars.post_vars={  
+sff_js_vars.post_vars={  
 
         post_proxy:"${post_proxy_absolute}"
 }    
@@ -308,12 +308,12 @@ let fit_canvas = svg_icons.get_fit_icon('blue');
                   <button id='do--author--filter' 
                                     onClick="
                                         var search_term = document.getElementById('filter--author--text').value;
-                                     var found_author = sff_vars.vars_events.chooseIfSingleAuthor(search_term);
-                                      sff_vars.filter_names.showHideFilteredAuthors('filtered_media');
+                                     var found_author = sff_js_vars.vars_events.chooseIfSingleAuthor(search_term);
+                                      sff_js_vars.filter_names.showHideFilteredAuthors('filtered_media');
                                       if (found_author){
-                                       sff_vars.vars_events.filterResetButton();
+                                       sff_js_vars.vars_events.filterResetButton();
                                       }else{
-                                        sff_vars.filter_names.nothingFound(sff_vars.NO_SUCH_AUTHOR);
+                                        sff_js_vars.filter_names.nothingFound(sff_js_vars.NO_SUCH_AUTHOR);
                                          
                                       }
                                       
@@ -328,17 +328,17 @@ let fit_canvas = svg_icons.get_fit_icon('blue');
                        
                          <div id='reset--center'> 
                         <button id='do--reset'  style="display:none"
-                                    onclick="sff_vars.filter_names.stopFiltering();
+                                    onclick="sff_js_vars.filter_names.stopFiltering();
                                              document.getElementById('filter--author--text').value='';
-                                             sff_vars.vars_events.filterSearchForText();
+                                             sff_js_vars.vars_events.filterSearchForText();
                                                 " >Reset Search</button>   
                        
                         </div>
                 
                 <input id='filter--author--text' placeholder="search for..." type='text'
-                    onkeypress =" sff_vars.vars_events.inputEnterPress(); "
-                    oninput="sff_vars.vars_events.inputSearch();
-                    sff_vars.vars_events.filterSearchForText();
+                    onkeypress =" sff_js_vars.vars_events.inputEnterPress(); "
+                    oninput="sff_js_vars.vars_events.inputSearch();
+                    sff_js_vars.vars_events.filterSearchForText();
                              " />
                                 
                      </div>  
@@ -346,7 +346,7 @@ let fit_canvas = svg_icons.get_fit_icon('blue');
                 <button id='do--story--filter'  
                     onClick="
                          var search_term = document.getElementById('filter--author--text').value;
-                           sff_vars.vars_events.bookSearch(search_term)
+                           sff_js_vars.vars_events.bookSearch(search_term)
                                "  >Search stories for<br>...</button>         
                                    
                        
@@ -429,24 +429,24 @@ let fit_canvas = svg_icons.get_fit_icon('blue');
                 
                 <div id="bottom--move--up">
                         <span class='bottom--icon'
-                                  onclick=" sff_vars.graph_procs.loadAuthorNew('HELP_ALL');"  title="Show Help">
+                                  onclick=" sff_js_vars.graph_procs.loadAuthorNew('HELP_ALL');"  title="Show Help">
                             <img src="${get_help}" class="control--symbols">
                         </span>        
                                            
                         
                               <span  class='bottom--icon'
-                              onclick="sff_vars.graph_procs.fitCanvas();"  title="Zoom Out">
+                              onclick="sff_js_vars.graph_procs.fitCanvas();"  title="Zoom Out">
                             <img src="${fit_canvas}" class="control--symbols">
                         </span>
 
 
            		  <span    class='bottom--icon' style='float:right'
-                        onclick="sff_vars.graph_procs.graphSize('+');" title="Zoom In">
+                        onclick="sff_js_vars.graph_procs.graphSize('+');" title="Zoom In">
                             <img src="${zoom_in}" class="control--symbols">
                         </span>
                                     
                         <span   class='bottom--icon' style='float:right'
-                        onclick="sff_vars.graph_procs.graphSize('-');" title="Zoom Out">
+                        onclick="sff_js_vars.graph_procs.graphSize('-');" title="Zoom Out">
                             <img src="${zoom_out}" class="control--symbols">
                         </span>
 						

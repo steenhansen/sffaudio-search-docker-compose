@@ -108,16 +108,24 @@ function queryView(req_query) {
     }
     return query_view;
 }
-
+function queryChoice(req_query) {
+    if (typeof req_query.choice === 'undefined') {
+        var query_choice = '';
+    } else {
+        var query_choice = req_query.choice;
+    }
+    return query_choice;
+}
 
 function initialDefaultPage(req_query) {
   return defaultAuthors()
             .then(function (random_default_authors) {
                 var query_view = queryView(req_query);
+                var query_choice = queryChoice(req_query);
                 var empty_node={};
                 var empty_edges={};
                 var empty_info={}
-                return media_page(empty_node, empty_edges, empty_info, query_view, random_default_authors);
+                return media_page(empty_node, empty_edges, empty_info, query_view, query_choice, random_default_authors);
             })
 }
 
@@ -126,8 +134,9 @@ function bookOrAuthorPage(req_query) {
         .then(function (nodes_and_edges) {
             let {nodes_object, edges_object, graph_info} =nodes_and_edges;
             var query_view = queryView(req_query);
+                var query_choice = queryChoice(req_query);
             var empty_default_authors='{}';
-            return media_page(nodes_object, edges_object, graph_info, query_view, empty_default_authors);
+            return media_page(nodes_object, edges_object, graph_info, query_view, query_choice, empty_default_authors);
                 
         })
 }

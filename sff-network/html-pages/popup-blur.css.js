@@ -5,18 +5,18 @@
 
 var popup_blur_js = `
 //popup-blur.css.js
-sff_vars.blur_procs = (function (pop_up_id) {
+sff_js_vars.blur_procs = (function (pop_up_id) {
 
     var my = {};
 
     my.keyDowns = function (event) {
         var key_code = event.keyCode;
         if (key_code == 27) {
-            sff_vars.blur_procs.closePopUp();
+            sff_js_vars.blur_procs.closePopUp();
         } else if (key_code == 37) {
-            sff_vars.pdf_procs.loadOnePage('-');
+            sff_js_vars.pdf_procs.loadOnePage('-');
         } else if (key_code == 39) {
-            sff_vars.pdf_procs.loadOnePage('+');
+            sff_js_vars.pdf_procs.loadOnePage('+');
         }
     };
 
@@ -36,32 +36,32 @@ sff_vars.blur_procs = (function (pop_up_id) {
         var under_title = getQueryVariable('book');
         var strip_author = getQueryVariable('author');
         if (under_title) {
-            sff_vars.history_state.replaceBook(strip_author, under_title);
+            sff_js_vars.history_state.replaceBook(strip_author, under_title);
         } else {
-            sff_vars.history_state.replaceAuthor(strip_author);
+            sff_js_vars.history_state.replaceAuthor(strip_author);
         }
         if (window.location.search == '') {
             window.history.forward();
         }
-        sff_vars.helpers.setDisplay(pop_up_id, 'none');
-        sff_vars.helpers.setDisplay('media--title', 'none');
-        sff_vars.helpers.setDisplay('mp3--player', 'none');
-        sff_vars.helpers.setDisplay('post--container', 'none');
+        sff_js_vars.helpers.setDisplay(pop_up_id, 'none');
+        sff_js_vars.helpers.setDisplay('media--title', 'none');
+        sff_js_vars.helpers.setDisplay('mp3--player', 'none');
+        sff_js_vars.helpers.setDisplay('post--container', 'none');
         document.getElementById('post--container').innerHTML = '';
-        sff_vars.helpers.setDisplay('pdf--controller', 'none');
-        sff_vars.helpers.setDisplay('pdf--canvas', 'none');
-        sff_vars.pdf_procs.clearCanvas('pdf--canvas');
-        sff_vars.helpers.setDisplay('pdf--loading', 'none');
-        sff_vars.helpers.setDisplay('video--container', 'none');
+        sff_js_vars.helpers.setDisplay('pdf--controller', 'none');
+        sff_js_vars.helpers.setDisplay('pdf--canvas', 'none');
+        sff_js_vars.pdf_procs.clearCanvas('pdf--canvas');
+        sff_js_vars.helpers.setDisplay('pdf--loading', 'none');
+        sff_js_vars.helpers.setDisplay('video--container', 'none');
         
-        sff_vars.helpers.setDisplay('download--rsd--mp3', 'none');
-        sff_vars.helpers.setDisplay('download--podcast--mp3', 'none');
+        sff_js_vars.helpers.setDisplay('download--rsd--mp3', 'none');
+        sff_js_vars.helpers.setDisplay('download--podcast--mp3', 'none');
         document.getElementById('video--player').src = '';
         document.getElementById("my--graph").style.display="block"; 
     }
 
     my.postPdfWidth = function (post_pdf_container) {
-        sff_vars.helpers.setDisplay(post_pdf_container, 'block');
+        sff_js_vars.helpers.setDisplay(post_pdf_container, 'block');
         var post_container = document.getElementById(post_pdf_container);
         var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         post_container.style.left = screen_width * 0.05 + "px";
@@ -70,7 +70,7 @@ sff_vars.blur_procs = (function (pop_up_id) {
 
     my.mp3load = function (goto_url) {
         var mp3_player = document.getElementById("mp3--player");
-        sff_vars.helpers.setDisplay("mp3--player", 'block');
+        sff_js_vars.helpers.setDisplay("mp3--player", 'block');
         mp3_player.src = goto_url;
         mp3_player.load();
         var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -78,17 +78,23 @@ sff_vars.blur_procs = (function (pop_up_id) {
         mp3_player.style.left = canvas_left_px + "px";
         //mp3_player.style.width = screen_width * 0.9 + "px";
     }
-
-    my.screenHeightPx = function () {
-        var screen_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientheight;
-        return screen_height + 'px';
+    
+    my.overlayHeightPx = function () {
+        var window_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientheight;
+        var screen_height = document.documentElement.scrollHeight; 
+            if (screen_height>window_height){
+                var overlay_height= screen_height;
+            }else{
+                var overlay_height =window_height;
+            }
+        return overlay_height + 'px';
     }
 
     my.blockPage = function (container_id) {
-        var screen_height_px = my.screenHeightPx();
+      //  var screen_height_px = my.overlayHeightPx();
         var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        sff_vars.helpers.setDisplay(container_id, 'block');
-        sff_vars.helpers.setDisplay('close--icon', 'block');
+        sff_js_vars.helpers.setDisplay(container_id, 'block');
+        sff_js_vars.helpers.setDisplay('close--icon', 'block');
     }
 
     return my;
@@ -116,7 +122,7 @@ var popup_blur_html = `
     
  <div id="media--title">&nbsp;</div>
 
-    <div id="close--enclosure" onclick="sff_vars.blur_procs.closePopUp();">
+    <div id="close--enclosure" onclick="sff_js_vars.blur_procs.closePopUp();">
         <img id="close--icon" src="" alt="Smiley face">
     </div>
 
@@ -124,11 +130,11 @@ var popup_blur_html = `
     
     
 
- <div  onclick="sff_vars.rsd_procs.downloadMp3();"  id="download--rsd--mp3"  >
+ <div  onclick="sff_js_vars.rsd_procs.downloadMp3();"  id="download--rsd--mp3"  >
         <img src="${download_rsd_mp3}" class="control--symbols">
   </div>
   
- <div  onclick="sff_vars.podcast_procs.downloadMp3();"  id="download--podcast--mp3"  >
+ <div  onclick="sff_js_vars.podcast_procs.downloadMp3();"  id="download--podcast--mp3"  >
         <img src="${download_podcast_mp3}" class="control--symbols">
   </div>
   
@@ -150,27 +156,27 @@ var popup_blur_html = `
 
 <div id="pdf--controller" >
 
-    <div  onclick="sff_vars.pdf_procs.loadOnePage(1);" class="control--boxes" >
+    <div  onclick="sff_js_vars.pdf_procs.loadOnePage(1);" class="control--boxes" >
         <img id="first--icon" src="${first_page}"  class="control--symbols">
     </div>
 
-    <div  onclick="sff_vars.pdf_procs.loadOnePage('-');" class="control--boxes" >
+    <div  onclick="sff_js_vars.pdf_procs.loadOnePage('-');" class="control--boxes" >
         <img id="first--icon"  src="${prev_page}" class="control--symbols">
   </div>
 
 
-  <div  onclick="sff_vars.pdf_procs.downloadPdf();" class="control--boxes" >
+  <div  onclick="sff_js_vars.pdf_procs.downloadPdf();" class="control--boxes" >
         <img id="download--pdf"  src="${download_pdf}" class="control--symbols">
   </div>
 
 
 
 
-    <div  onclick="sff_vars.pdf_procs.loadOnePage('+');" class="control--boxes">
+    <div  onclick="sff_js_vars.pdf_procs.loadOnePage('+');" class="control--boxes">
         <img id="first--icon" src="${next_page}"  class="control--symbols">
   </div>
 
-    <div  onclick="sff_vars.pdf_procs.loadOnePage(0);" class="control--boxes" >
+    <div  onclick="sff_js_vars.pdf_procs.loadOnePage(0);" class="control--boxes" >
         <img id="first--icon"  src="${last_page}" class="control--symbols">
           </div>
           
@@ -190,7 +196,7 @@ var popup_blur_html = `
          
     `;
 
-// sff_vars.graph_vars.node_icons.I_CLOSE_PDF.image
+// sff_js_vars.graph_vars.node_icons.I_CLOSE_PDF.image
 
 
 

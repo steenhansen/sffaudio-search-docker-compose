@@ -32,7 +32,7 @@ const popup_book_post = rootAppRequire('sff-network/show-nodes/media-nodes/popup
 const sff_helpers_js = rootAppRequire('sff-network/html-pages/helper-functions');
 
 
-module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view, nodes_and_edges_str) {
+module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view, req_query_choice, nodes_and_edges_str) {
     if (graph_object.under_title) {
         var under_title = graph_object.under_title;
     } else {
@@ -83,7 +83,7 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 
 
 
-    sff_vars.vars_events.initVars();
+    sff_js_vars.vars_events.initVars();
     ${js_constants}
     ${sff_helpers_js}
     ${history_state}
@@ -95,33 +95,33 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     ${help_vars}  
     
 <script>
-    sff_vars.strip_author = "${strip_author}";
-    sff_vars.default_authors =
+    sff_js_vars.strip_author = "${strip_author}";
+    sff_js_vars.default_authors =
     ${nodes_and_edges_str}
     
     
-    if (sff_vars.helpers.objectIsEmpty(sff_vars.graph_vars.nodes_string)) {
-        if (sff_vars.strip_author === '') {
-            var rand_index = Math.floor((Math.random() * sff_vars.default_authors.length));
-            sff_vars.graph_vars.nodes_string = sff_vars.default_authors[rand_index].nodes_object;
-            sff_vars.graph_vars.edges_string = sff_vars.default_authors[rand_index].edges_object;
-            sff_vars.graph_vars.graph_info = sff_vars.default_authors[rand_index].graph_info;
-            var strip_author = sff_vars.default_authors[rand_index].graph_info.strip_author;
-            sff_vars.strip_author = strip_author;
+    if (sff_js_vars.helpers.objectIsEmpty(sff_js_vars.graph_vars.nodes_string)) {
+        if (sff_js_vars.strip_author === '') {
+            var rand_index = Math.floor((Math.random() * sff_js_vars.default_authors.length));
+            sff_js_vars.graph_vars.nodes_string = sff_js_vars.default_authors[rand_index].nodes_object;
+            sff_js_vars.graph_vars.edges_string = sff_js_vars.default_authors[rand_index].edges_object;
+            sff_js_vars.graph_vars.graph_info = sff_js_vars.default_authors[rand_index].graph_info;
+            var strip_author = sff_js_vars.default_authors[rand_index].graph_info.strip_author;
+            sff_js_vars.strip_author = strip_author;
         } else {
-            var graph_type = sff_vars.graph_vars.graph_info.graph_type;
+            var graph_type = sff_js_vars.graph_vars.graph_info.graph_type;
             if (graph_type === '${AUTHOR_PAGE_TYPE}') {
-                //sff_vars.filter_names.colorAuthors();
-                if (sff_vars.strip_author.indexOf('HELP_') >= 0) {
-                    sff_vars.graph_vars.edges_string = sff_vars.HELP_ALL_EDGES;
-                    sff_vars.graph_vars.nodes_string = sff_vars.help_nodes[sff_vars.strip_author];
+                //sff_js_vars.filter_names.colorAuthors();
+                if (sff_js_vars.strip_author.indexOf('HELP_') >= 0) {
+                    sff_js_vars.graph_vars.edges_string = sff_js_vars.HELP_ALL_EDGES;
+                    sff_js_vars.graph_vars.nodes_string = sff_js_vars.help_nodes[sff_js_vars.strip_author];
                 } else {
-                    sff_vars.graph_vars.nodes_string = sff_vars.NO_SUCH_AUTHOR;
+                    sff_js_vars.graph_vars.nodes_string = sff_js_vars.NO_SUCH_AUTHOR;
                     
                 }
             } else {
-           //     sff_vars.filter_names.colorBooks();
-                sff_vars.graph_vars.nodes_string = sff_vars.NO_SUCH_BOOK
+           //     sff_js_vars.filter_names.colorBooks();
+                sff_js_vars.graph_vars.nodes_string = sff_js_vars.NO_SUCH_BOOK
             }
         }
     }
@@ -153,18 +153,18 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     ${popup_blur.popup_blur_js}
     ${load_scripts}
     
-      if (sff_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
-            sff_vars.filter_names.colorAuthors();
+      if (sff_js_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
+            sff_js_vars.filter_names.colorAuthors();
      } else {
-             sff_vars.filter_names.colorBooks();
+             sff_js_vars.filter_names.colorBooks();
      }
      
 //sff_php_vars.php_search='zelazny'
-    sff_vars.graph_procs.doGraph(sff_php_vars.php_search);
+    sff_js_vars.graph_procs.doGraph(sff_php_vars.php_search);
     
     function mainStart(polyfill_error){
-       sff_vars.vars_events.initEvents();
-       sff_vars.history_generate.startHistoryView('${req_query_view}', sff_vars.strip_author, '${under_title}');
+       sff_js_vars.vars_events.initEvents();
+       sff_js_vars.history_generate.startHistoryView('${req_query_view}', sff_js_vars.strip_author, '${under_title}', '${req_query_choice}');
     }
 
 </script>`;

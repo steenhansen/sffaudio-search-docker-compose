@@ -39,7 +39,7 @@ var graph_constants = {
     POST_COLOR:"#019CCD",
     WIKI_COLOR: '#FF7F01',
     
-    // sff_vars.graph_vars.edge_options         // network_options more better name
+    // sff_js_vars.graph_vars.edge_options         // network_options more better name
     EDGE_OPTIONS: {
     edges: {
         chosen:{edge: false},
