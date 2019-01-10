@@ -7,7 +7,7 @@ const the_colors =["red", "#666600", "olive", "green", "blue", "indigo", "violet
 if (process.env.PORT==5000){
     var node_url = "http://localhost:" + process.env.PORT + "/"
 }else {
-   var node_url = "https://sffaudio-test-neo4j.herokuapp.com/"
+   var node_url = "https://sffaudio-search.herokuapp.com/"
 }
 
 const rotate_colors = the_colors.concat(the_colors);
@@ -86,7 +86,7 @@ var graph_constants = {
     BOOK_AUTHOR_DELIMITER : '^',
 
 //	POST_LINK: "http://www.sffaudio.com/", 
-    HEROKU_URL: node_url,                      //"https://sffaudio-test-neo4j.herokuapp.com/",
+    HEROKU_URL: node_url,                      //"https://sffaudio-search.herokuapp.com/",
 
 	MEDIA_LINK_DIR: "https://www.sffaudio.com/podcasts/", 
 	

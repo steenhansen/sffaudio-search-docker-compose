@@ -138,7 +138,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
     
         $mobile_leaving_pages = array('about.php', '');
-        $widget_url = 'https://sffaudio-test-neo4j.herokuapp.com';
+        $widget_url = 'https://sffaudio-search.herokuapp.com';
         $get_author = @$_GET['author'];
         $get_book = @$_GET['book'];
         $get_view = @$_GET['view'];

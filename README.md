@@ -5,11 +5,11 @@
 
 
 
-https://www.sffaudio.com/about/?book=beyond-lies-the-wub&author=philip-k-dick
+https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick
 
-https://www.sffaudio.com/about/?book=beyond-lies-the-wub&author=philip-k-dick&view=rsd
+https://www.sffaudio.com/search/?author=philip-k-dick
 
 
 
-https://sffaudio-test-neo4j.herokuapp.com/
+https://sffaudio-search.herokuapp.com/
 

@@ -3,9 +3,9 @@
 cd into the git directory
 
 
-    heroku logs -a sffaudio-test-neo4j
+    heroku logs -a sffaudio-search
 
-    heroku run bash -a sffaudio-test-neo4j
+    heroku run bash -a sffaudio-search
     
     node reload-heroku
 
