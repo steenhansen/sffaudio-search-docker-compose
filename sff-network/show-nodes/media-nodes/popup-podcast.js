@@ -24,10 +24,13 @@ sff_js_vars.podcast_procs = (function (podcast_close_svg) {
     
 
     my.startPodcast = function (goto_url, podcast_post_url) {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        sff_js_vars.blur_procs.blockPage('popup--container');
+
+
          sff_js_vars.helpers.setDisplay('download--podcast--mp3', 'block');
         sff_js_vars.helpers.setDisplay('pdf--controller', 'none');
         document.getElementById('media--title').innerHTML = '';
-        sff_js_vars.blur_procs.blockPage('popup--container');
         sff_js_vars.blur_procs.mp3load(goto_url);
         
         this.podcast_mp3=goto_url;

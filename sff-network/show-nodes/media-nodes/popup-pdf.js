@@ -40,6 +40,11 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     }
 
     my.startPdf = function (pdf_url, book_title, label) {
+    
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    sff_js_vars.blur_procs.blockPage('popup--container');
+    
+    
         sff_js_vars.helpers.busyCursor();
        this.pdf_url = pdf_url;
         my.setupPdf(book_title, label);
@@ -81,15 +86,15 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                     }
                 })
             }).catch(function (e) {
-                my.downloadPdf();             // bypass CORS error SEC7118 on IE 11, Windows 7&8 bug
+              //  my.downloadPdf(e);             // bypass CORS error SEC7118 on IE 11, Windows 7&8 bug
                  })
             .finally( function (){
                 sff_js_vars.helpers.normalCursor();
             })     
     }
 
-   my.downloadPdf = function (){
-        window.location = this.pdf_url;
+   my.downloadPdf = function (error){    // e=== Error: Invalid parameter object: need either .data, .range or .url
+        window.location = this.pdf_url;  // https://stackoverflow.com/questions/24646732/sec7118-xmlhttprequest-cors-ie-console-message
     }
 
     my.changePage = function (page_change) {
@@ -150,7 +155,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                 pdf_page.render(render_context).then(function () {
                     my.fixHeights(my.pdf_canvas_height)
                     
-                     sff_js_vars.blur_procs.blockPage('popup--container');
+                   //  sff_js_vars.blur_procs.blockPage('popup--container');
                     
                     
                 });

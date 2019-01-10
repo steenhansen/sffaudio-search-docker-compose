@@ -62,10 +62,10 @@ sff_js_vars.blur_procs = (function (pop_up_id) {
 
     my.postPdfWidth = function (post_pdf_container) {
         sff_js_vars.helpers.setDisplay(post_pdf_container, 'block');
-        var post_container = document.getElementById(post_pdf_container);
-        var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        post_container.style.left = screen_width * 0.05 + "px";
-        post_container.style.width = screen_width * 0.9 + "px";
+      //  var post_container = document.getElementById(post_pdf_container);
+      //  var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    //    post_container.style.left = screen_width * 0.05 + "px";
+      //  post_container.style.width = screen_width * 0.9 + "px";
     }
 
     my.mp3load = function (goto_url) {
@@ -224,6 +224,8 @@ text-align:left;
     background-color:white; 
     color:black;
  top:100px;
+ padding-left:32px;
+ width:100%;
 }
 
 #download--rsd--mp3{

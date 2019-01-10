@@ -1,5 +1,47 @@
  const my_media_array = [
  {
+  "episode number": "507",
+  "post id": "59387",
+  "publish date": "2019-01-07 00:01",
+  "kind": "AUDIOBOOK/READALONG",
+  "participants": "Jesse, Mr Jim Moon, Maissa Bessada, Wayne June",
+  "narrator": "Mr Jim Moon",
+  "file name": "SFFaudioPodcast507.mp3",
+  "byte size": "129,034,966",
+  "hh:mm:ss": "3:36:54",
+  "book title": "Seaton's Aunt",
+  "book author": "Walter de la Mare",
+  "about": ""
+ },
+ {
+  "episode number": "506",
+  "post id": "59363",
+  "publish date": "2018-12-31 00:01",
+  "kind": "READALONG",
+  "participants": "Jesse, Scott, Paul Weimer",
+  "narrator": "",
+  "file name": "SFFaudioPodcast506.mp3",
+  "byte size": "35,674,416",
+  "hh:mm:ss": "0:57:28",
+  "book title": "Brain Wave",
+  "book author": "Poul Anderson",
+  "about": ""
+ },
+ {
+  "episode number": "505",
+  "post id": "59347",
+  "publish date": "2018-12-24 00:01",
+  "kind": "READALONG",
+  "participants": "Jesse, Julie Davis, Maissa Bessada",
+  "narrator": "",
+  "file name": "SFFaudioPodcast505.mp3",
+  "byte size": "65,059,054",
+  "hh:mm:ss": "1:45:54",
+  "book title": "The Jungle Book",
+  "book author": "Rudyard Kipling",
+  "about": ""
+ },
+ {
   "episode number": "504",
   "post id": "59294",
   "publish date": "2018-12-17 00:01",

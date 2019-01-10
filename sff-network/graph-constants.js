@@ -89,7 +89,8 @@ var graph_constants = {
     HEROKU_URL: node_url,                      //"https://sffaudio-test-neo4j.herokuapp.com/",
 
 	MEDIA_LINK_DIR: "https://www.sffaudio.com/podcasts/", 
-	PODCAST_LINK: "https://www.sffaudio.com/?p=", 
+	
+	WP_SHORT_POST: "https://www.sffaudio.com/?p=", 
 
     ROUTE_POST_PROXY : '/post-proxy',
 

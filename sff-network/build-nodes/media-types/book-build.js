@@ -12,6 +12,7 @@ module.exports = function (build_repository) {
         }
 
         static addBooksNew(book_list) {
+        //  console.log('addBooksNew book_list = ', book_list)
             var my_promises = [];
             for (let title_with_authors in book_list) {
                 let {sorted_label, esc_book_title, under_title, last_first_underscores}  = book_list[title_with_authors];

@@ -30,7 +30,6 @@ module.exports = function (build_repository) {
         //   CLASS AuthorDb --- ????
         addAuthors(book_authors) {
             var my_promises = [];
-
             var author_moniker = new AuthorMoniker();
             for (let strip_author in book_authors) {
                 if (!this.processed_authors.includes(strip_author)) {

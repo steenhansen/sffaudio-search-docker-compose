@@ -44,7 +44,9 @@ sff_js_vars.rsd_procs = (function (rsd_close_svg) {
         
         
     my.startRsd = function (goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores) {
-      
+              document.body.scrollTop = document.documentElement.scrollTop = 0;
+              sff_js_vars.blur_procs.blockPage('popup--container');
+              
         sff_js_vars.helpers.setDisplay('media--title', 'block');
         if (video_link !== '') {
             var video_embed = my.videoEmbed(video_link);
@@ -55,7 +57,7 @@ sff_js_vars.rsd_procs = (function (rsd_close_svg) {
         }
         this.rsd_mp3=goto_url;
         document.getElementById('close--icon').src = rsd_close_svg;
-        sff_js_vars.blur_procs.blockPage('popup--container');
+
         sff_js_vars.helpers.setDisplay('post--container', 'none');
         sff_js_vars.blur_procs.mp3load(goto_url);
             sff_js_vars.helpers.setDisplay('download--rsd--mp3', 'block');
@@ -66,7 +68,7 @@ sff_js_vars.rsd_procs = (function (rsd_close_svg) {
         sff_js_vars.helpers.setDisplay("media--title", 'block');
         document.getElementById('close--icon').src = rsd_close_svg;
         document.getElementById('media--title').innerHTML = book_title + ' - ' + label;
-        sff_js_vars.blur_procs.blockPage('popup--container');
+        //sff_js_vars.blur_procs.blockPage('popup--container');
         sff_js_vars.helpers.setDisplay('pdf--loading', 'block');
         sff_js_vars.helpers.setDisplay('pdf--loading', 'none');
         document.getElementById('video--player').src = video_embed;

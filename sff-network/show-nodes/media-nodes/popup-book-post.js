@@ -19,10 +19,16 @@ sff_js_vars.book_post_procs = (function (post_close_svg, post_proxy) {
     my.setupBookPost = function(){}
     
     my.startBookPost = function (book_post_url) {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        sff_js_vars.blur_procs.blockPage('popup--container');
+
+    
+    
+      sff_js_vars.helpers.setDisplayNone('pdf--canvas');
     sff_js_vars.helpers.busyCursor(); 
         document.getElementById("my--graph").style.display="none"; 
        
-        sff_js_vars.helpers.setDisplay('close--icon', 'none');
+        sff_js_vars.helpers.setDisplay('close--icon', 'block');
         document.getElementById('close--icon').src = post_close_svg;     /// q*bert
         sff_js_vars.helpers.setDisplay('popup--container', 'block');
         sff_js_vars.helpers.setDisplay('pdf--controller', 'none');
@@ -40,7 +46,6 @@ sff_js_vars.book_post_procs = (function (post_close_svg, post_proxy) {
                 document.getElementById("post--container").innerHTML = post_html;
                 var post_height = document.getElementById("post--container").offsetHeight + 200;
                 document.getElementById('popup--container').style.height = post_height + 'px';
-                sff_js_vars.blur_procs.blockPage('popup--container');
                 sff_js_vars.blur_procs.postPdfWidth('post--container');
             })
          .finally( function (){

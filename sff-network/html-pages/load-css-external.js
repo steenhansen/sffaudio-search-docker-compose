@@ -56,7 +56,7 @@ body.busy--cursor * {
     cursor: progress;
 }
         
-        
+
         
         #my--network {
             display: flex;
@@ -64,6 +64,14 @@ body.busy--cursor * {
             width: 570px;
             height: 800px;
         }
+        
+        @media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+    #my--network {
+        width: 100%;
+    }
+}  
      
      #stable-redraw-height{
      width: 0%;
