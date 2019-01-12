@@ -1,0 +1,39 @@
+Loading Heroku data from Google spreadsheets
+000 secs startMakeIndexes_a_0
+002 secs googlePostTsvToLocal_a_1
+000 secs googleQualityTsvToLocal_a_2
+002 secs googlePdfRsdPodcastToLocal_a_3google_rsd
+002 secs googlePdfRsdPodcastToLocal_a_3google_podcast
+005 secs googlePdfRsdPodcastToLocal_a_3google_pdf
+002 secs buildAllAuthors_b_2
+    waiting for 30 seconds.
+005 secs buildAllBooks_b_1
+    waiting for 30 seconds.
+354 secs buildAllPosts_b_3
+reload-url-db TypeError: firstMiddleLast is not iterable
+    at Function.addBookPosts (/app/sff-network/build-nodes/media-types/post-build.js:46:43)
+    at Object.buildBookPosts_b_7 (/app/sff-network/build-nodes/graphs-edges.js:153:42)
+    at dbIsCreated.then.then.then.then.then.then.then.then.then.then.then (/app/sff-network/build-nodes/graph-dbs/reload-base
+.js:76:48)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+000 secs makeNewCaches_d_3
+
+
+
+
+06 fwd="69.172.166.89" dyno=web.1 connect=2ms service=2237ms status=200 bytes=505 protocol=https                                                                                                           
+2019-01-12T02:00:52.293899+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: TypeError: Cannot read property '_fields' of undefined                                                             
+2019-01-12T02:00:52.293919+00:00 app[web.1]: at VersionRepository.getBooks.then (/app/sff-network/build-nodes/cached-lists/cached-books.js:75:68)                                                          
+2019-01-12T02:00:52.293922+00:00 app[web.1]: at <anonymous>                                                                                                                                                
+2019-01-12T02:00:52.293924+00:00 app[web.1]: at process._tickCallback (internal/process/next_tick.js:188:7)                                                                                                
+2019-01-12T02:00:52.294009+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch  
+block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)                                                                                                                    
+2019-01-12T02:00:52.294240+00:00 app[web.1]: (node:4) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the 
+ Node.js process with a non-zero exit code.                                                                                                                                                                
+2019-01-12T02:01:22.199932+00:00 heroku[router]: at=error code=H12 desc="Request timeout" method=GET path="/?book,beyond-lies-the-wub&author,philip-k-dick" host=sffaudio-search.herokuapp.com request_id= 
+46c1ef4a-30ed-4287-bf08-1f2a5d97f84b fwd="69.172.166.89" dyno=web.1 connect=1ms service=30000ms status=503 bytes=0 protocol=https                                                                          
+2019-01-12T02:01:22.904699+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=sffaudio-search.herokuapp.com request_id=8d4708f6-526a-458e-a54e-b1dfd159d16e fwd="69.172.166.89" dyno=web.1  
+connect=1ms service=28ms status=200 bytes=1434 protocol=https                                                                                                                                              
+2019-01-12T02:01:56.364417+00:00 heroku[run.5554]: Process exited with status 127                                                                                                                          
+PS D:\github\neo>                                                                                                                                                                                          

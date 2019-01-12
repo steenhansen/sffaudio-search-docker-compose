@@ -123,7 +123,7 @@ class reloadBase {
                             console.log('reload-url-db', e);
                         })
                         .finally(()=> {
-                            //console.log('    reload-db done');
+                            console.log('    reload-db done');
                             return;
                             //process.exit();
                         })
