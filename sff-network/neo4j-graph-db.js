@@ -24,22 +24,28 @@ module.exports = function (version_num) {
             var limit_sql = ' LIMIT ' + params.record_limit;
         }
         var limited_sql = sql + limit_sql;
-
         var neo4j_promise = neo4j_session.run(limited_sql, params)
             .then((result)=> {
-            
-         //                   if (limited_sql.includes('ShowRepository.getAuthorsNodes')) {
-         //    console.log(' params.db_version  === ', result, params, limited_sql )
-         //    console.log(' result.records22 ', result.records[0]);
-         // }
-       //  stop();
-            
+
+                //                   if (limited_sql.includes('ShowRepository.getAuthorsNodes')) {
+                //    console.log(' params.db_version  === ', result, params, limited_sql )
+                //    console.log(' result.records22 ', result.records[0]);
+                // }
+                //  stop();
+
                 return result
             })
 
             .catch(function (error) {
+                console.log('####################')
                 console.log(error);
-                console.log('rrrrrrrrrrrrrrrrrrrrrrrr', params, 'sssssssssssss', sql, 'jjjjjjjjjjj')
+                console.log('####################')
+                console.log(params)
+                console.log('####################')
+                console.log(sql)
+                console.log('####################')
+                console.log(limited_sql)
+                console.log('####################')
                 process.exit()
             });
 
@@ -47,7 +53,7 @@ module.exports = function (version_num) {
     }
 
 
-    function checkDbAlive() {           // checkDbAlive
+    function checkDbAlive() {
         var test_sql = ` WITH "neo4j is alive" AS alive_test
                        RETURN alive_test `;
         neo4j_session.run(test_sql)
@@ -58,12 +64,12 @@ module.exports = function (version_num) {
                 console.log('Stopping on error:', xxx);
                 process.exit();
             })
-            // .then((value) => {
-            //     var number_db_nodes = value.records[0]._fields[0].low
-            //     console.log('Neo4j database has', number_db_nodes, 'nodes')
-            // }, (reason) => {
-            //     console.log('rejection', value)
-            // })
+        // .then((value) => {
+        //     var number_db_nodes = value.records[0]._fields[0].low
+        //     console.log('Neo4j database has', number_db_nodes, 'nodes')
+        // }, (reason) => {
+        //     console.log('rejection', value)
+        // })
 
 
     }

@@ -1,6 +1,6 @@
 var graph_constants = rootAppRequire('sff-network/graph-constants');
 var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
-graph_db.checkDbAlive()
+//graph_db.checkDbAlive()
 var data_repository = rootAppRequire('sff-network/show-nodes/graph-dbs/show-repository')(graph_db);
 
 var author_data = rootAppRequire('sff-network/show-nodes/media-types/author-show')(data_repository)
