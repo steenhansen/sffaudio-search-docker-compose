@@ -12,6 +12,31 @@ var background_color = graph_constants.GRAPH_BACKGROUND;
 
 
 
+function fit_graph_shape(w_color) {
+    var svg_wikipedia = `
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" height="1000" width="1000" version="1.1" x="0" y="0" viewBox="0 0 1000 1000" xml:space="preserve">
+<style>.s0{fill:#010002;stroke-width:1.4;}</style><g transform="translate(129.2705,362.2655)">
+<circle cx="371.8" cy="137" r="468.8" style="fill:${w_color};stroke-width:39.1"/></g><g transform="matrix(1.5429094,0,0,1.5429094,-417.98011,-115.87001)">
+<g transform="matrix(7.9446675,0,0,7.9446675,396.66417,203.46109)"><polygon points="0 49.5 28.9 49.6 20.5 41.1 41.1 20.5 49.6 28.9 49.6 0 20.6 0 29.1 8.5 8.5 29.1 0 20.6 "/></g></g></svg>
+`;
+    return visJsGraphShape(svg_wikipedia);
+}
+
+
+
+
+// warning the google 'G' when optimizing must keep "Namespaces:xlink" and NOT "Remove IDs (breaks gradients)"
+function google_icon(w_color) {
+    var svg_all = `
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1000" version="1.1" id="svg16" width="1000" height="1000">
+<metadata id="metadata20"/><defs id="defs3"><path id="a" d="M44.5 20H24v8.5H35.8C34.7 33.9 30.1 37 24 37 16.8 37 11 31.2 11 24c0-7.2 5.8-13 13-13 3.1 0 5.9 1.1 8.1 2.9L38.5 7.5C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24c0 12.2 9.8 22 22 22 11 0 21-8 21-22 0-1.3-0.2-2.7-0.5-4z"/></defs><clipPath id="b"><use xlink:href="#a" overflow="visible" id="use5" x="0" y="0" width="100" height="100"/></clipPath><g transform="translate(-392.34236,805.44068)" id="g844">
+<circle r="468.8" cy="-301.24" cx="889.45" id="circle838" style="fill:${w_color};stroke-width:39.1"/><g id="g1408" transform="matrix(15.694894,0,0,15.694894,517.30265,-684.05273)"><g id="g1401"><path clip-path="url(#b)" d="M0 37V11l17 13z" id="path8" fill="#fbbc05"/><path clip-path="url(#b)" d="M0 11 17 24 24 17.9 48 14V0H0Z" id="path10" fill="#ea4335"/><path clip-path="url(#b)" d="M0 37 30 14 37.9 15 48 0V48H0Z" id="path12" fill="#34a853"/><path clip-path="url(#b)" d="M48 48 17 24 13 21 48 11Z" id="path14" fill="#4285f4"/></g></g></g></svg>
+`;
+    return visJsGraphShape(svg_all);
+}
+
+
+
 
 function zoom_out_shape(w_color) {
     var svg_wikipedia = `
@@ -191,15 +216,6 @@ function filter_shrink(w_color) {
     return visJsGraphShape(svg_filter);
 }
 
-function nothing_icon() {
-    var svg_all = `
-<svg viewBox="0 0 130 130"  xmlns="http://www.w3.org/2000/svg">
- <g id="g916">
- </g>
-</svg>
-`;
-    return visJsGraphShape(svg_all);
-}
 
 
 
@@ -230,6 +246,7 @@ function help_icon(w_color) {
 
 // these are all graphShapes
 module.exports = {
+fit_graph_shape,
     arrow_icon,
     zoom_out_shape,
     zoom_in_shape,
@@ -246,7 +263,7 @@ module.exports = {
     rsd_icon,
     rsd_video,
     help_icon,
-    nothing_icon,
+    google_icon,
     filter_grow,
     filter_shrink,
     filter_icon,

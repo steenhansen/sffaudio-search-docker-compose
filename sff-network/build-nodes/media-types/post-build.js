@@ -1,7 +1,7 @@
 MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build');
 
 var misc_helper = rootAppRequire('sff-network/misc-helper');
-
+var multiple_monikers = new MultipleMonikers();
 var graph_constants = rootAppRequire('sff-network/graph-constants');
 const {BOOK_AUTHOR_DELIMITER, WP_SHORT_POST}=graph_constants;
 module.exports = function (build_repository) {
@@ -19,7 +19,7 @@ module.exports = function (build_repository) {
                 if (under_title === '') {
                     var graph_title = book_author['title'];
                     var author = book_author['author'];
-                    var sff_post_url = WP_SHORT_POST + book_author['id'];
+                    var sff_post_url = book_author['id'];
                     var strip_author = misc_helper.alphaUnderscore(author);
                     var post_promise = build_repository.savePosts(strip_author, sff_post_url, graph_title, graph_title);
                     post_promises.push(post_promise);
@@ -36,22 +36,29 @@ module.exports = function (build_repository) {
                 var graph_title = book_author['title'];
                 var author = book_author['author'];
                 var book = book_author['book'];
-                var sff_post_url =  WP_SHORT_POST + book_author['id'];
-                var strip_author = misc_helper.alphaUnderscore(author);
+                var sff_post_url = book_author['id'];
                 var under_title = misc_helper.alphaUnderscore(book);
                 if (under_title) {
                     var author_obj = {};
-                    author_obj[strip_author] = author;
-                    var author_nodes = author_build.addAuthors(author_obj);
-                    post_promises.push(author_nodes);
-                    var title_with_authors = under_title + BOOK_AUTHOR_DELIMITER + this.strip_author;
+                    var multiple_monikers = new MultipleMonikers();
+                    var last_first_underscores = multiple_monikers.lastUnderscore();
+                    var firstMiddleLast = multiple_monikers.firstMiddleLast();
+                    for (var an_author of firstMiddleLast) {
+                        var strip_author = misc_helper.alphaUnderscore(an_author);
+                        author_obj[strip_author] = an_author;
+                        var author_nodes = author_build.addAuthors(author_obj);
+                        post_promises.push(author_nodes);
+                    }
+                    var title_with_authors = multiple_monikers.titleWithAuthors(under_title);
                     var book_obj = {
                         sorted_label: under_title,
                         esc_book_title: book,
                         under_title: under_title,
-                        last_first_underscores: [strip_author]
+                        last_first_underscores: last_first_underscores
                     };
-                    var book_nodes = book_build.addBooksNew({title_with_authors: book_obj});
+                    var ojbect_of_book = {};
+                    ojbect_of_book[title_with_authors] = book_obj;
+                    var book_nodes = book_build.addBooksNew(ojbect_of_book);
                     post_promises.push(book_nodes);
                     var post_promise = build_repository.saveBookPost(strip_author, under_title, sff_post_url, graph_title, graph_title);
                     post_promises.push(post_promise);

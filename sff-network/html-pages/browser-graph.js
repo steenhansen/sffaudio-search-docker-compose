@@ -144,7 +144,6 @@ my.addHoverOnEvents = function () {
     my.addClickOnEvent = function () {
         var self = this;
         my.network_graph.on("click", function (params) {
-       
             if (params.nodes.length>0){
                     var node_id = params.nodes[0]
                     var the_node = self.my_nodes.get(node_id)

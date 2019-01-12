@@ -35,7 +35,7 @@ function spacesToUrlSeparator(author_title) {
 
 function stripToLower(csv_string) {
     var lower_csv = csv_string.toLowerCase();
-    var lower_stripped = lower_csv.replace(/[^0-9a-z ]/gi, '');
+    var lower_stripped = lower_csv.replace(/[^0-9a-z -]/gi, '');
     return lower_stripped.trim();
 }
 

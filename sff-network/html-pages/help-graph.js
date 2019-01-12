@@ -6,13 +6,19 @@ var sff_help_graph = `
 <script>
 // help-graph
 
-sff_js_vars.NO_SUCH_AUTHOR=[{"group":"I_NOTHING", ${error_font},
-            "title" : "click on an author above",
-            "label":"Author is not in the database"}];
+sff_js_vars.NO_SUCH_AUTHOR=[{"id":800, 
+            "group":"N_GOOGLE", ${error_font},
+            "title" : "Click to search for text on Google",
+            "goto_url": "_http://www.google.com_",
+            "node_type": "G_GOOGLE",
+            "label":"_Author is not in the database_"}];
 
-sff_js_vars.NO_SUCH_BOOK=[{"group":"I_NOTHING", ${error_font},
-             "title" : "click on a story below",
-             "label":"Story is not in the database"}];
+sff_js_vars.NO_SUCH_BOOK=[{ "id":801,
+            "group":"N_GOOGLE", ${error_font},
+             "title" :  "Click to search for text on Google",
+            "goto_url": "_http://www.google.com_",
+            "node_type": "G_GOOGLE",
+             "label":"_Story is not in the database_"}];
 
 sff_js_vars.help_nodes= {
 "HELP_ALL" : [ {"id": 900, "group":"I_HELP", "node_type":"I_HELP", ${help_font}, "label":"Help" },
@@ -26,7 +32,13 @@ sff_js_vars.help_nodes= {
                {"id": 908, "group":"N_ZOOM_IN", "node_type":"HELP_ZOOM_IN", "title":"Click for zoom in help"},         
                {"id": 909, "group":"N_FILTER", "node_type":"HELP_FILTER", "title":"Click for filter help"},
                {"id": 910, "group":"N_ZOOM_OUT", "node_type":"HELP_ZOOM_OUT", "title":"Click for zoom out help"},
-               {"id": 911, "group":"N_ARROW", "node_type":"HELP_ARROW", "title":"Click for drag help"}          ],
+               {"id": 911, "group":"N_ARROW", "node_type":"HELP_ARROW", "title":"Click for drag help"}, 
+               
+               {"id": 912, "group":"N_FIT", "node_type":"HELP_FIT", "title":"Click for resize help"}, 
+              {"id": 913, "group":"N_GOOGLE", "node_type":"HELP_GOOGLE", "title":"Click for Google help"} 
+               
+               
+                        ],
                         
 "HELP_AUTHOR":[ {"group":"N_AUTHOR", "node_type":"HELP_AUTHOR", ${help_font},
                  "label":"View stories, posts & Wikipedia" + "\\n" +
@@ -76,10 +88,24 @@ sff_js_vars.help_nodes= {
                          "named 'moore' being shown." }],
                                           
 "HELP_ARROW":[ {"group":"N_ARROW", "node_type":"HELP_ARROW", ${help_font},
-                 "label":"Drag graph with mouse" }]                         
+                 "label":"Drag graph with mouse" }],                         
             
-            };
+            
 
+"HELP_FIT":[ {"group":"N_FIT", "node_type":"HELP_FIT", ${help_font},
+                 "label":"Click to resize graph" }],                         
+            
+           
+
+
+"HELP_GOOGLE":[ {"group":"N_GOOGLE", "node_type":"HELP_GOOGLE", ${help_font},
+                 "label":"Use Google's text search" }]                         
+            
+           
+
+
+
+};
 
 sff_js_vars.HELP_ALL_EDGES= [
               {"from": 900,"to": 901 },
@@ -93,6 +119,8 @@ sff_js_vars.HELP_ALL_EDGES= [
               {"from": 900,"to": 909 },
               {"from": 900,"to": 910 },
               {"from": 900,"to": 911 },
+              {"from": 900,"to": 912 },
+              {"from": 900,"to": 913 },
               ];
 // help-graph end
 </script>

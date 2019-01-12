@@ -1,7 +1,8 @@
 
 let {AUTHOR_BOOK_SEPARATOR} = rootAppRequire('sff-network/graph-constants');
 
-var sff_js_vars_events = `
+var sff_js_vars_events;
+sff_js_vars_events = `
 // vars-events
  
 window.sff_js_vars={};
@@ -78,7 +79,7 @@ my.inputSearch= function(e){
 }
  
     my.executeSearch=function(search_term){
-
+      
           var strip_author=my.chooseIfSingleAuthor(search_term);
             if (strip_author){
                 sff_js_vars.filter_names.filterStories(search_term);
@@ -86,8 +87,8 @@ my.inputSearch= function(e){
             }else{
                 my.bookSearch(search_term)
             }
-}
-    
+    }
+        
     
     my.bookSearch = function(search_term){
     var book_object = my.chooseIfSingleBook(search_term);
@@ -110,6 +111,13 @@ my.inputSearch= function(e){
     
     
     my.chooseIfSingleAuthor=function(search_term){       
+        var not_found_text = search_term + '" not found.\\nSearch for text on Google?';
+        sff_js_vars.NO_SUCH_AUTHOR[0].label = 'Author "' + not_found_text;
+        sff_js_vars.NO_SUCH_BOOK[0].label = 'Story "' + not_found_text;
+        var search_pluses = search_term.replace(' ', '+');
+        var google_search ="http://www.google.com/?q=" + search_pluses + "+site%3Awww.sffaudio.com" 
+        sff_js_vars.NO_SUCH_AUTHOR[0].goto_url =google_search;
+        sff_js_vars.NO_SUCH_BOOK[0].goto_url =google_search;
      var strip_author = sff_js_vars.filter_names.filterAuthors(search_term);
      if (strip_author!==''){
          sff_js_vars.graph_procs.loadAuthorNew(strip_author);

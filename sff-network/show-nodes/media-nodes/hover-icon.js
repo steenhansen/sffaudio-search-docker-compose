@@ -83,7 +83,7 @@ class HoverIcon {
       //  let no_such_author = svg_icons.no_such_author('pink');
 
       //  let no_such_book = svg_icons.no_such_book('#FFF933');
-let nothing_icon = graph_icons.nothing_icon();
+
 
         let close_pdf = graph_icons.close_icon(graph_constants.PDF_COLOR);
         let close_rsd = graph_icons.close_icon(graph_constants.RSD_COLOR);
@@ -103,6 +103,12 @@ let nothing_icon = graph_icons.nothing_icon();
         //
         // let icon_all_rsds = graph_icons.allRsds('none');
         // let hover_all_rsds = graph_icons.allRsds('#ffffff');
+
+let google_icon = graph_icons.google_icon('none');
+let nothing_hover = graph_icons.google_icon('#ffffff');
+
+let fit_icon = graph_icons.fit_graph_shape('none');
+let fit_hover = graph_icons.fit_graph_shape('#ffffff');
 
 
         let icon_wikipedia = graph_icons.wikipedia_icon('none');
@@ -167,7 +173,7 @@ let shape_hover_arrow=graph_icons.arrow_icon('#ffffff');
 
         const icons_string = `{ 
 
-I_NOTHING: ${nothing_icon},
+
     
     I_HELP: ${icon_help},
    
@@ -185,7 +191,8 @@ I_NOTHING: ${nothing_icon},
     
       
    
-            
+            N_FIT: ${fit_icon}, H_FIT: ${fit_hover},
+            N_GOOGLE: ${google_icon}, H_GOOGLE: ${nothing_hover},
             
 N_PDF: ${icon_pdf}, H_PDF: ${hover_pdf},
             N_PODCAST: ${icon_podcast},H_PODCAST: ${hover_podcast},

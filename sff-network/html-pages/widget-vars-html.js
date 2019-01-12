@@ -435,7 +435,7 @@ let fit_canvas = svg_icons.get_fit_icon('blue');
                                            
                         
                               <span  class='bottom--icon'
-                              onclick="sff_js_vars.graph_procs.fitCanvas();"  title="Zoom Out">
+                              onclick="sff_js_vars.graph_procs.fitCanvas();"  title="Resize Graph">
                             <img src="${fit_canvas}" class="control--symbols">
                         </span>
 
