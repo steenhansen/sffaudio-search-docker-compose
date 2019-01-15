@@ -1,7 +1,6 @@
+module.exports = function (main_start_proc_name) {
 
-module.exports =  function (main_start_proc_name) {
-
-var load_scripts = `
+    var load_scripts = `
 // load-scripts
 var sff_browser_js_start = ${main_start_proc_name};
 
@@ -60,14 +59,13 @@ function loadScripts() {
     } else {
         var vis_code_2 = 'https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js';
         var vis_css_2 = 'https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css';
-
         if ('vis' in window) {
             getPdf();
         } else {
             loadCss(vis_css_2);
             loadScript(vis_code_2, getPdf);
         }
-
+        
         function getPdf() {
             if ('pdfjs-dist/build/pdf' in window) {
                 getPromiseAndFetch();
@@ -118,7 +116,7 @@ function loadScripts() {
 loadScripts();
 //load-scripts end
 `;
-return load_scripts;
+    return load_scripts;
 
 }
 

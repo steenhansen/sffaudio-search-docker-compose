@@ -4,24 +4,19 @@ var uniqid = require('uniqid');
 
 
 class CachedBase {
-
+    
     constructor(cache_file) {
         this.cache_file = cache_file;
     }
 
-
-
-
-
-    static urlGetAuthorBook(request_query, get_type) {
-        if (typeof request_query[get_type] !== 'undefined') {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
+    // static urlGetAuthorBook(request_query, get_type) {
+    //     if (typeof request_query[get_type] !== 'undefined') {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    
     makeDbCache(sorted_media, new_db_version) {
         var media_data_2 = {}
         for (let i = 0; i < sorted_media.records.length; i++) {
@@ -36,8 +31,6 @@ class CachedBase {
         var all_links = '<div style="clear: both;"></div>' + all_links_2 + '<div style="clear: both;"></div>';
         return this.repositoryCall(new_db_version, all_links);
     }
-
-  
 
 
 }

@@ -1,19 +1,20 @@
 let {AUTHOR_BOOK_SEPARATOR, END_BOOK_LIST, END_AUTHOR_LIST} = rootAppRequire('sff-network/graph-constants');
 
-module.exports =  function (URL_SEPARATOR) {    // why is this passed into closure??
+module.exports =  function (URL_SEPARATOR) {    
 
 var filter_names = `
 // filter-names
 sff_js_vars.filter_names = (function (graph_id) {
+
     var my = {
         last_selected_media: ''
     };
 
-     function makeFilters(search_underscore, all_name, filter_name, div_class_name) {
+    function makeFilters(search_underscore, all_name, filter_name, div_class_name) {
         clearFiltered(filter_name);
         var all_div = document.getElementById(all_name);
         var filter_div = document.getElementById(filter_name);
-        var all_children = all_div.getElementsByClassName(div_class_name);  
+        var all_children = all_div.getElementsByClassName(div_class_name);
         var matching_authors = [];
         for (var i = 0; i < all_children.length; i++) {
             var choice_node = all_children[i];
@@ -25,26 +26,26 @@ sff_js_vars.filter_names = (function (graph_id) {
                     filter_div.appendChild(copy_choice);
                     var on_click_func = choice_node.onclick;
                     var func_str = on_click_func.toString();
-                    var func_array= func_str.split("('");
+                    var func_array = func_str.split("('");
                     matching_authors.push(func_array[1]);
                 }
             }
         }
         return matching_authors;
     }
-    my.filterAuthors = function (search_for) {
 
-        var strip_author='';
+    my.filterAuthors = function (search_for) {
+        var strip_author = '';
         var search_underscore = alphaUnderscore(search_for);
         if (search_underscore === '') {
             my.stopFilteringAuthors();
         } else {
             var matching_authors = makeFilters(search_underscore, 'all--authors', 'filter--authors', 'author__choice');
-            if (matching_authors.length==0){
+            if (matching_authors.length == 0) {
                 my.showHideFilteredAuthors('all_media');
-            }else{
+            } else {
                 var author_comma = matching_authors[0];
-                var func_array= author_comma.split("'");
+                var func_array = author_comma.split("'");
                 var strip_author = func_array[0];
                 my.showHideFilteredAuthors('filtered_media');
             }
@@ -57,46 +58,37 @@ sff_js_vars.filter_names = (function (graph_id) {
         if (search_underscore === '') {
             my.stopFilteringStories()
         } else {
-           var matching_stories= makeFilters(search_underscore, 'all--books', 'filter--books', 'book__choice');
-           if (matching_stories.length==0){
+            var matching_stories = makeFilters(search_underscore, 'all--books', 'filter--books', 'book__choice');
+            if (matching_stories.length == 0) {
                 my.showHideFilteredStories('all_media');
-            }else{
+            } else {
                 var author_comma_book = matching_stories[0];
-                  var func_array= author_comma_book.split("'");
-                     var strip_author = func_array[0];
-                    var under_title = func_array[2];
-                  author_book={strip_author:strip_author, under_title:under_title};
+                var func_array = author_comma_book.split("'");
+                var strip_author = func_array[0];
+                var under_title = func_array[2];
+                author_book = {strip_author: strip_author, under_title: under_title};
                 my.showHideFilteredStories('filtered_media');
             }
         }
-           return author_book;
+        return author_book;
     }
 
-my.colorAuthors = function(){
-     sff_js_vars.filter_names.authorsBooksColor('gray', '#cccccc')
-}
+    my.colorAuthors = function () {
+        sff_js_vars.filter_names.authorsBooksColor('gray', '#cccccc')
+    }
 
-my.colorBooks = function(){
-     sff_js_vars.filter_names.authorsBooksColor('#cccccc', 'gray' )
-}
+    my.colorBooks = function () {
+        sff_js_vars.filter_names.authorsBooksColor('#cccccc', 'gray')
+    }
 
-my.authorsBooksColor = function(author_color, book_color){
-    document.getElementById('authors--title').style.backgroundColor =  author_color;
-    document.getElementById('books--title').style.backgroundColor =  book_color;
-    document.getElementById('all--filter--authors').style.backgroundColor =  author_color;
-    document.getElementById('all--filter--books').style.backgroundColor =  book_color;
-}
+    my.authorsBooksColor = function (author_color, book_color) {
+        document.getElementById('authors--title').style.backgroundColor = author_color;
+        document.getElementById('books--title').style.backgroundColor = book_color;
+        document.getElementById('all--filter--authors').style.backgroundColor = author_color;
+        document.getElementById('all--filter--books').style.backgroundColor = book_color;
+    }
 
-
-
-
-    
-
-    
-
-
-
-   my.clearLast = function () {
+    my.clearLast = function () {
         if (my.last_selected_media !== '') {
             var elem = document.getElementById(my.last_selected_media);
             if (elem) {
@@ -107,30 +99,30 @@ my.authorsBooksColor = function(author_color, book_color){
                 elem_filter.classList.remove('current__media');
             }
         }
-       
+
     }
 
-    my.highlightSelection = function(media_id){
+    my.highlightSelection = function (media_id) {
         var elem = document.getElementById(media_id);
         if (elem != null) {
             elem.classList.add('current__media');
             elem.scrollIntoView();
-                var container = document.getElementById(graph_id);
-                container.scrollIntoView();
+            var container = document.getElementById(graph_id);
+            container.scrollIntoView();
         }
     }
 
     my.selectMedia = function (media_id_short, author_book_choice) {
         my.clearLast()
-        if (author_book_choice === 'BOOK-CHOICE'){
+        if (author_book_choice === 'BOOK-CHOICE') {
             var author_book_array = media_id_short.split('${AUTHOR_BOOK_SEPARATOR}');
             var under_title = author_book_array[1];
-          var media_id = under_title + '${END_BOOK_LIST}';        
-        }else{
-          var media_id = media_id_short + '${END_AUTHOR_LIST}';
+            var media_id = under_title + '${END_BOOK_LIST}';
+        } else {
+            var media_id = media_id_short + '${END_AUTHOR_LIST}';
         }
         my.highlightSelection(media_id)
-        my.highlightSelection('filter'  + '${URL_SEPARATOR}' + media_id)
+        my.highlightSelection('filter' + '${URL_SEPARATOR}' + media_id)
         my.last_selected_media = media_id;
         return true;
     }
@@ -141,49 +133,42 @@ my.authorsBooksColor = function(author_color, book_color){
             the_container.removeChild(the_container.firstChild);
         }
     }
-
- 
-   
     
-   my.nothingFound = function (no_such_type) {
-         sff_js_vars.filter_names.clearLast();
-         var nodes_string = no_such_type;
-         var edges_string =[]
-         var graph_physics = {'barnesHut': {'avoidOverlap': 1}};
-         var no_php_search = '';
-         sff_js_vars.graph_procs.loadGraph('my--graph', nodes_string, edges_string, graph_physics, no_php_search);
+    my.nothingFound = function (no_such_type) {
+        sff_js_vars.filter_names.clearLast();
+        var nodes_string = no_such_type;
+        var edges_string = []
+        var graph_physics = {'barnesHut': {'avoidOverlap': 1}};
+        var no_php_search = '';
+        sff_js_vars.graph_procs.loadGraph('my--graph', nodes_string, edges_string, graph_physics, no_php_search);
     }
     
-    
-//////////////////////////
-   my.stopFilteringAuthors = function () {
+    my.stopFilteringAuthors = function () {
         my.showHideFilteredAuthors('all_media');
         clearFiltered('filter--authors');
     }
-    
-     my.showHideFilteredAuthors = function (showing_type) {   // filtered_media / all_media
+
+    my.showHideFilteredAuthors = function (showing_type) {  
         if (showing_type === 'all_media') {
             sff_js_vars.helpers.setDisplay("all--authors", 'block');
             sff_js_vars.helpers.setDisplay('filter--authors', 'none');
         } else {
             sff_js_vars.helpers.setDisplay("all--authors", 'none');
             sff_js_vars.helpers.setDisplay('filter--authors', 'block');
-            
-            return 17;
         }
     }
 
-    my.stopFiltering =function(){
-     my.stopFilteringAuthors();
-      my.stopFilteringStories()
+    my.stopFiltering = function () {
+        my.stopFilteringAuthors();
+        my.stopFilteringStories()
     }
 
-   my.stopFilteringStories = function () {
+    my.stopFilteringStories = function () {
         my.showHideFilteredStories('all_media');
         clearFiltered('filter--books');
     }
-    
-     my.showHideFilteredStories = function (showing_type) {   // filtered_media / all_media
+
+    my.showHideFilteredStories = function (showing_type) {   
         if (showing_type === 'all_media') {
             sff_js_vars.helpers.setDisplay("all--books", 'block');
             sff_js_vars.helpers.setDisplay('filter--books', 'none');
@@ -193,8 +178,6 @@ my.authorsBooksColor = function(author_color, book_color){
         }
     }
 
-
-//////////////
     function spacesToUrlSeparator(author_title) {
         var underscore_author_title = author_title.replace(/ /g, '${URL_SEPARATOR}');
         return underscore_author_title;
@@ -213,7 +196,7 @@ my.authorsBooksColor = function(author_color, book_color){
     }
 
     return my;
-    
+
 }(sff_js_vars.graph_vars.graph_id))
 // filter-names end
 `;

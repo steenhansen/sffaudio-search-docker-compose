@@ -10,7 +10,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         pdf_document: '',
         current_page: 0,
         last_page: 0,
-        pdf_url:''
+        pdf_url: ''
     };
 
     my.historyPdf = function (pdf_url, book_title, label, last_first_underscores, under_title, req_query_view, sorted_choice) {
@@ -29,7 +29,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         pdf_context.clearRect(0, 0, pdf_canvas.width, pdf_canvas.height);
     }
 
-    my.setupPdf = function (book_title, label) {   
+    my.setupPdf = function (book_title, label) {
         sff_js_vars.helpers.setDisplay("video--container", 'none');
         sff_js_vars.helpers.setDisplay("media--title", 'block');
         my.clearCanvas(my.canvas_id);
@@ -40,32 +40,29 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     }
 
     my.startPdf = function (pdf_url, book_title, label) {
-    
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    sff_js_vars.blur_procs.blockPage('popup--container');
-    
-    
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        sff_js_vars.blur_procs.blockPage('popup--container');
         sff_js_vars.helpers.busyCursor();
-       this.pdf_url = pdf_url;
+        this.pdf_url = pdf_url;
         my.setupPdf(book_title, label);
-            if (sff_php_vars.php_url === 'not a php host') {
-                 var url_type3 =  '//' + window.location.host + '/' + sff_js_vars.SFF_RESOLVE_PDF + pdf_url;
-            }else{
-                var url_type3 =  sff_js_vars.ajax_url + '/' + sff_js_vars.SFF_RESOLVE_PDF + pdf_url;
-            }
-            fetch(url_type3)
-                .then(function (response) {
-                    var text_promise = response.text();
-                    return text_promise;
-                })
-                 .then(function (resolved_pdf_url) {
-                     my.readPdf(resolved_pdf_url);
-                 })
-                  .finally( function (){
+        if (sff_php_vars.php_url === 'not a php host') {
+            var url_type3 = '//' + window.location.host + '/' + sff_js_vars.SFF_RESOLVE_PDF + pdf_url;
+        } else {
+            var url_type3 = sff_js_vars.ajax_url + '/' + sff_js_vars.SFF_RESOLVE_PDF + pdf_url;
+        }
+        fetch(url_type3)
+            .then(function (response) {
+                var text_promise = response.text();
+                return text_promise;
+            })
+            .then(function (resolved_pdf_url) {
+                my.readPdf(resolved_pdf_url);
+            })
+            .finally(function () {
                 sff_js_vars.helpers.normalCursor();
-            })    
+            })
     }
-    
+
     my.readPdf = function (pdf_url) {
         fetch(pdf_url)
             .then(function (end_pdf_url) {
@@ -86,14 +83,14 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                     }
                 })
             }).catch(function (e) {
-              //  my.downloadPdf(e);             // bypass CORS error SEC7118 on IE 11, Windows 7&8 bug
-                 })
-            .finally( function (){
+            my.downloadPdf(e);             // bypass CORS error SEC7118 on IE 11, Windows 7&8 bug
+        })
+            .finally(function () {
                 sff_js_vars.helpers.normalCursor();
-            })     
+            })
     }
 
-   my.downloadPdf = function (error){    // e=== Error: Invalid parameter object: need either .data, .range or .url
+    my.downloadPdf = function (error) {    // e=== Error: Invalid parameter object: need either .data, .range or .url
         window.location = this.pdf_url;  // https://stackoverflow.com/questions/24646732/sec7118-xmlhttprequest-cors-ie-console-message
     }
 
@@ -112,21 +109,20 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         return new_page;
     }
 
-
     my.fixHeights = function (pdf_canvas_height) {
-        var media_height =sff_js_vars.helpers.computedHeight('media--title');
-        var pager_height =sff_js_vars.helpers.computedHeight('pdf--controller');
-        var pager_top =sff_js_vars.helpers.computedValue('pdf--controller', 'top');
+        var media_height = sff_js_vars.helpers.computedHeight('media--title');
+        var pager_height = sff_js_vars.helpers.computedHeight('pdf--controller');
+        var pager_top = sff_js_vars.helpers.computedValue('pdf--controller', 'top');
         document.getElementById("pdf--canvas").style.top = pager_height + pager_top + 'px'
         var screen_height_px = sff_js_vars.blur_procs.overlayHeightPx();
         var header_height = sff_js_vars.helpers.computedValue("sff--header", "height");
         var my_network = document.getElementById("my--network")
         var popup_container = document.getElementById("popup--container")
         popup_container.style.height = screen_height_px;
-        popup_container.style.top = my_network.style.top  + header_height*1.7;
+        popup_container.style.top = my_network.style.top + header_height * 1.7;
         popup_container.style.left = my_network.style.left + 20;
         var network_width = sff_js_vars.helpers.computedValue("my--network", "width");
-        popup_container.style.width = network_width-30;
+        popup_container.style.width = network_width - 30;
         sff_js_vars.helpers.setDisplay('pdf--loading', 'none');
     }
 
@@ -154,21 +150,15 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                 var render_context = my.renderOnePage(pdf_page);
                 pdf_page.render(render_context).then(function () {
                     my.fixHeights(my.pdf_canvas_height)
-                    
-                   //  sff_js_vars.blur_procs.blockPage('popup--container');
-                    
-                    
                 });
             }), function (reason) {
             console.error(reason);
         };
     };
-    
- 
-    
+
     return my;
 
-}(  sff_js_vars.pdf_vars.canvas_id,
+}(sff_js_vars.pdf_vars.canvas_id,
     sff_js_vars.graph_vars.node_icons.I_CLOSE_PDF.image
 ))
 //popup-pdf 

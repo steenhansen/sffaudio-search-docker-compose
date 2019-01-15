@@ -54,6 +54,8 @@ function getRedirects(a_node, field_name) {
             var end_redirect_url = '';
             fulfill({end_redirect_url, node_id, field_name})
         } else {
+        
+        
             request.get({
                 url: get_url,
                 method: "HEAD",
@@ -65,6 +67,9 @@ function getRedirects(a_node, field_name) {
                 var end_redirect_url = response.request.uri.href;
                 fulfill({end_redirect_url, node_id, field_name})
             })
+            
+            
+            
         }
     })
 

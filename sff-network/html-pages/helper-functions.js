@@ -4,30 +4,20 @@ sff_js_vars.helpers = (function () {
 
     var my = {};
 
-
-
-  my.computedValue = function (element_id, value_name) {
+    my.computedValue = function (element_id, value_name) {
         var html_element = document.getElementById(element_id);
         var computed_style = window.getComputedStyle(html_element);
         var computed_height = parseInt(computed_style.getPropertyValue(value_name), 10);
         return computed_height;
     }
 
-
-
-  my.computedHeight = function (element_id) {
+    my.computedHeight = function (element_id) {
         return my.computedValue(element_id, 'height');
     }
 
-
-
-my.objectIsEmpty  = function(obj) {
-    return Object.keys(obj).length === 0;
-}
-
-
-
-
+    my.objectIsEmpty = function (obj) {
+        return Object.keys(obj).length === 0;
+    }
 
     my.setDisplay = function (elem_id, display_value) {
         document.getElementById(elem_id).style.display = display_value;
@@ -60,19 +50,19 @@ my.objectIsEmpty  = function(obj) {
         document.getElementById(elem_id).style.visibility = 'hidden';
     };
 
-    my.busyCursor = function (){
+    my.busyCursor = function () {
         var body_elem = document.getElementsByTagName("BODY")[0];
         body_elem.classList.add('busy--cursor');
     };
 
-    my.normalCursor = function (){
+    my.normalCursor = function () {
         var body_elem = document.getElementsByTagName("BODY")[0];
         body_elem.classList.remove('busy--cursor');
     };
 
     return my;
 
-}()); 
+}());
 // helper-functions-end
 `;
 module.exports = sff_helpers_js;

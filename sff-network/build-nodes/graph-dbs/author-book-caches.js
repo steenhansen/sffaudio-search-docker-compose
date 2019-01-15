@@ -20,7 +20,7 @@ function makeNewCaches_d_0(next_db_version, obj_dir, show_or_hide_seconds) {
     var start_date = Date.now();
     var quality_obj_file = obj_dir + 'quality-obj.js';
     var quality_books_authors = require(quality_obj_file);
-    cached_defaults.makeDbCache(next_db_version, quality_books_authors)
+    return cached_defaults.makeDbCache(next_db_version, quality_books_authors)
         .then(()=> {
             misc_helper.consoleTimeEnd(start_date, "makeNewCaches_d_0", show_or_hide_seconds);
         })

@@ -1,8 +1,12 @@
 HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
-MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
+//MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
 const {AUTHOR_PAGE_TYPE} = rootAppRequire('sff-network/graph-constants');
 var misc_helper = rootAppRequire('sff-network/misc-helper');
+
+ // const CachedClear = rootAppRequire('sff-network/build-nodes/cached-lists/cached-clear');
+
+  
 module.exports = function (data_repository) {
 
     var BookData = rootAppRequire('sff-network/show-nodes/media-types/book-show')(data_repository)  // show_repository
@@ -10,15 +14,12 @@ module.exports = function (data_repository) {
 
     class AuthorData extends HoverIcon {
 
-
-
         constructor(node_id, db_version, author_name, strip_author) {
             const sorted_label = misc_helper.theLastNameFirst(author_name, ' ');
             super(node_id, db_version, author_name, sorted_label);
             this.strip_author = strip_author;
             this.node_type = 'L_AUTHOR';
-              this.title = "Click for author's stories & posts";
-            //  this.size=25;
+            this.title = "Click for author's stories & posts";
         }
 
         static sendAuthor(strip_author, ParseNeo, update_index) {
@@ -51,16 +52,9 @@ module.exports = function (data_repository) {
             return author_json;
         }
 
-      
-
-
-
-
-
         setSizesColor(page_type) {
             super.setSizesColor(page_type, 'L_AUTHOR')
         }
-
 
         setGroupColor() {
             super.setGroupColor()
@@ -73,8 +67,7 @@ module.exports = function (data_repository) {
         setAuthorPos(x_y_pos) {
             super.setPosition2(x_y_pos)
         }
-
-
+        
 // showAuthor
         static  setUpAuthor2(strip_author, sorted_nodes, div_height, div_width) {      // author_data
             var middle_height = div_height / 2;

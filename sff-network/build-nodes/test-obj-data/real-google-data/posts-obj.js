@@ -119,27 +119,6 @@
   "": ""
  },
  {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
   "id": "http://www.sffaudio.com/?p=31390",
   "title": "Review",
   "author": "Eva Gabrielsson and Marie-Francoise Colombani",
@@ -148,246 +127,267 @@
  },
  {
   "id": "http://www.sffaudio.com/?p=17270",
-  "title": "Review of \"Turjan of Miir\" by Jack Vance",
-  "author": "review-of-turjan-of-miir-by-jack-vance",
-  "book": "",
+  "title": "Review",
+  "author": "Jack Vance",
+  "book": "Turjan of Miir",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3571",
-  "title": "Review of <b>52, Parts 1 and 2</b> by Greg Cox",
-  "author": "review-of-52-parts-1-and-2-by-greg-cox",
-  "book": "",
+  "title": "Review",
+  "author": "Greg Cox",
+  "book": "52",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2036",
-  "title": "Review of <B>A Connecticut Yankee In King Arthur's Court</B> by Mark Twain",
-  "author": "review-of-a-connecticut-yankee-in-king-arthurs-court-by-mark-twain",
-  "book": "",
+  "title": "Review",
+  "author": "Mark Twain",
+  "book": "A Connecticut Yankee In King Arthur's Court",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1767",
-  "title": "Review of <B>A War Of Gifts - An Ender Story</B> by Orson Scott Card",
-  "author": "review-of-a-war-of-gifts-an-ender-story-by-orson-scott-card",
-  "book": "",
+  "title": "Review",
+  "author": "Orson Scott Card",
+  "book": "A War Of Gifts - An Ender Story",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=654",
-  "title": "Review of <b>Anne Manx on Amazonia</b>",
-  "author": "review-of-anne-manx-on-amazonia",
-  "book": "",
+  "title": "Review",
+  "author": "Larry Weiner",
+  "book": "Anne Manx on Amazonia",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=429",
-  "title": "Review of <b>Archibald MacLeish's The Fall Of The City</b>",
-  "author": "review-of-archibald-macleishs-the-fall-of-the-city-radio-drama",
-  "book": "",
+  "title": "Review",
+  "author": "Archibald MacLeish",
+  "book": "The Fall Of The City",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1583",
-  "title": "Review of <B>Armageddon's Children</B> by Terry Brooks",
-  "author": "review-of-armageddons-children-by-terry-brooks",
-  "book": "",
+  "title": "Review",
+  "author": "Terry Brooks",
+  "book": "Armageddon's Children",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1382",
-  "title": "Review of <B>Billibub Baddings And The Case Of The Singing Sword</B> by Tee Morris",
-  "author": "review-of-billibub-baddings-and-the-case-of-the-singing-sword-by-tee-morris",
-  "book": "",
+  "title": "Review",
+  "author": "Tee Morris",
+  "book": "Billibub Baddings And The Case Of The Singing Sword",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2773",
-  "title": "Review of <b>Book of a Thousand Days</b> by Shannon Hale",
-  "author": "review-of-book-of-a-thousand-days-by-shannon-hale",
-  "book": "",
+  "title": "Review",
+  "author": "Shannon Hale",
+  "book": "Book of a Thousand Days",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=669",
-  "title": "Review of <B>Callahan's Con</B> by Spider Robinson",
-  "author": "review-of-callahans-con-by-spider-robinson",
-  "book": "",
+  "title": "Review",
+  "author": "Spider Robinson",
+  "book": "Callahan's Con",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=455",
-  "title": "Review of <B>Cell</B> by Stephen King",
-  "author": "review-of-cell-by-stephen-king",
-  "book": "",
+  "title": "Review",
+  "author": "Stephen King",
+  "book": "Cell",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1076",
-  "title": "Review of <B>Dark Tower II: The Drawing of the Three</B> by Stephen King",
-  "author": "review-of-dark-tower-ii-the-drawing-of-the-three",
-  "book": "",
+  "title": "Review",
+  "author": "Stephen King",
+  "book": "Dark Tower II: The Drawing of the Three",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1743",
-  "title": "Review of <B>Dirk Gently's Holistic Detective Agency</B> RADIO DRAMA",
-  "author": "review-of-dirk-gentlys-holistic-detective-agency-radio-drama",
-  "book": "",
+  "title": "Review",
+  "author": "Douglas Adams",
+  "book": "Dirk Gently's Holistic Detective Agency",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3636",
-  "title": "Review of <b>Elantris</b> by Brandon Sanderson",
-  "author": "review-of-elantris-by-brandon-sanderson",
-  "book": "",
+  "title": "Review",
+  "author": "Brandon Sanderson",
+  "book": "Elantris",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2770",
-  "title": "Review of <b>Enna Burning</b> by Shannon Hale",
-  "author": "review-of-enna-burning-by-shannon-hale",
-  "book": "",
+  "title": "Review",
+  "author": "Shannon Hale",
+  "book": "Enna Burning",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2801",
-  "title": "Review of <B>Fangland</B> by John Marks",
-  "author": "review-of-fangland-by-john-marks",
-  "book": "",
+  "title": "Review",
+  "author": "John Marks",
+  "book": "Fangland",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2492",
-  "title": "Review of <b>Halo: Contact Harvest</b> by Joseph Staten",
-  "author": "review-of-halo-contact-harvest-by-joseph-staten",
-  "book": "",
+  "title": "Review",
+  "author": "Joseph Staten",
+  "book": "Halo: Contact Harvest",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2983",
-  "title": "Review of <B>Hide and Seek</B> by Jack Ketchum",
-  "author": "review-of-hide-and-seek-by-jack-ketchum",
-  "book": "",
+  "title": "Review",
+  "author": "Jack Ketchum",
+  "book": "Hide and Seek",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1263",
-  "title": "Review of <b>How to Survive a Robot Uprising</b> by Daniel H. Wilson",
-  "author": "review-of-how-to-survive-a-robot-uprising-by-daniel-h-wilson",
-  "book": "",
+  "title": "Review",
+  "author": "Daniel H. Wilson",
+  "book": "How to Survive a Robot Uprising",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3402",
-  "title": "Review of <B>If I Were You</B> by L. Ron Hubbard",
-  "author": "review-of-if-i-were-you-by-l-ron-hubbard",
-  "book": "",
+  "title": "Review",
+  "author": "L. Ron Hubbard",
+  "book": "If I Were You",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2530",
-  "title": "Review of <b>Infected</b> by Scott Sigler",
-  "author": "review-of-infected-by-scott-sigler",
-  "book": "",
+  "title": "Review",
+  "author": "Scott Sigler",
+  "book": "Infected",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2606",
-  "title": "Review of <B>Invasion of the Body Snatchers</B> by Jack Finney",
-  "author": "review-of-invasion-of-the-body-snatchers-by-jack-finney",
-  "book": "",
+  "title": "Review",
+  "author": "Jack Finney",
+  "book": "Invasion of the Body Snatchers",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1106",
-  "title": "Review of <B>Isaac Asimov's All-Time Favorite Science Fiction Stories, Volume 1</B>",
-  "author": "review-of-isaac-asimovs-all-time-favorite-science-fiction-stories-volume-1",
-  "book": "",
+  "title": "Review",
+  "author": "Isaac Asimov",
+  "book": "Isaac Asimov's All-Time Favorite Science Fiction Stories, Volume 1",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3276",
-  "title": "Review of <b>Journey to the Center of the Earth</b> by Jules Verne",
-  "author": "review-of-journey-to-the-center-of-the-earth-by-jules-verne",
-  "book": "",
+  "title": "Review",
+  "author": "Jules Verne",
+  "book": "Journey to the Center of the Earth",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=726",
-  "title": "Review of <b>Journey to the Center of the Earth</b> by Jules Verne",
-  "author": "review-of-alien-voices-journey-to-the-center-of-the-earth-by-jules-verne",
-  "book": "",
-  "": ""
- },
- {
-  "id": "http://www.sffaudio.com/?p=1064",
-  "title": "Review of <B>Legends: Stories from the Masters of Fantasy: Volume 1</B>",
-  "author": "review-of-legends-stories-from-the-masters-of-fantasy-volume-1",
-  "book": "",
+  "title": "Review of Alien Voices",
+  "author": "Jules Verne",
+  "book": "Journey to the Center of the Earth",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1378",
-  "title": "Review of <B>Local Custom</B> by Sharon Lee and Steve Miller",
-  "author": "review-of-local-custom-by-sharon-lee-and-steve-miller",
-  "book": "",
+  "title": "Review",
+  "author": "Sharon Lee and Steve Miller",
+  "book": "Local Custom",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=732",
-  "title": "Review of <b>Look to Windward</b> by Iain M. Banks",
-  "author": "audiobook-review-look-to-windward-by-iain-m-banks",
-  "book": "",
+  "title": "Review",
+  "author": "Iain M. Banks",
+  "book": "Look to Windward",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2908",
-  "title": "Review of <b>Magic Kingdom for Sale: Sold!</b> by Terry Brooks",
-  "author": "review-of-magic-kingdom-for-sale-sold-by-terry-brooks",
-  "book": "",
+  "title": "Review",
+  "author": "Terry Brooks",
+  "book": "Magic Kingdom for Sale: Sold!",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=465",
-  "title": "Review of <b>Magic Street</b> by Orson Scott Card",
-  "author": "review-of-magic-street-by-orson-scott-card",
-  "book": "",
+  "title": "Review",
+  "author": "Orson Scott Card",
+  "book": "Magic Street",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2256",
-  "title": "Review of <B>Mainspring</B> by Jay Lake",
-  "author": "review-of-mainspring-by-jay-lake",
-  "book": "",
+  "title": "Review",
+  "author": "Jay Lake",
+  "book": "Mainspring",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1801",
-  "title": "Review of <b>Master Of Space And Time</b> by Rudy Rucker",
-  "author": "review-of-master-of-space-and-time-by-rudy-rucker",
-  "book": "",
+  "title": "Review",
+  "author": "Rudy Rucker",
+  "book": "Master Of Space And Time",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2400",
-  "title": "Review of <b>Melting Stones</b> by Tamora Pierce",
-  "author": "review-of-melting-stones-by-tamora-pierce",
-  "book": "",
+  "title": "Review",
+  "author": "Tamora Pierce",
+  "book": "Melting Stones",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3501",
-  "title": "Review of <b>METAtropolis</b>",
-  "author": "review-of-metatropolis",
-  "book": "",
+  "title": "Review",
+  "author": "Jay Lake, Tobias Buckell, Elizabeth Bear, John Scalzi, and Karl Shroeder",
+  "book": "METAtropolis",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1197",
-  "title": "Review of <B>Rocket Ship Galileo</B> by Robert A. Heinlein",
-  "author": "review-of-rocket-ship-galileo-by-robert-heinlein",
+  "title": "Review",
+  "author": "Robert A. Heinlein",
+  "book": "Rocket Ship Galileo",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
   "book": "",
   "": ""
  },
@@ -6727,9 +6727,9 @@
   "": ""
  },
  {
-  "id": "",
-  "title": "",
-  "author": "",
+  "id": "http://www.sffaudio.com/?p=1064",
+  "title": "Review of <B>Legends: Stories from the Masters of Fantasy: Volume 1</B>",
+  "author": "review-of-legends-stories-from-the-masters-of-fantasy-volume-1",
   "book": "",
   "": ""
  },

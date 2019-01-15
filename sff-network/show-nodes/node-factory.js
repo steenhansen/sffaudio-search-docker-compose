@@ -1,3 +1,6 @@
+require('../../sff-network/global-require')
+
+
 module.exports = function (data_repository) {
 
 
@@ -67,8 +70,8 @@ module.exports = function (data_repository) {
             new_node = new WikiBookNode(node_id, db_version, wiki_book, under_title, book_url);
         } else if (node_group === 'L_BOOK_POST') {
             my.book_post_count++;
-            const {post_title, sorted_label, post_slug, strip_author, under_title} = media_node.properties;
-            new_node = new BookPostNode(node_id, db_version, post_title, sorted_label, post_slug, strip_author, under_title, my.book_post_count);
+            const {post_title, sorted_label, post_slug, last_first_underscores, under_title} = media_node.properties;
+            new_node = new BookPostNode(node_id, db_version, post_title, sorted_label, post_slug, last_first_underscores, under_title, my.book_post_count);
         } else {
             console.log('media_node, in nodefactory    !!!!!!!', node_group)
             new_node = null;

@@ -1,7 +1,9 @@
 //var VersionShow = rootAppRequire('sff-network/show-nodes/media-types/version-show')
 
 
+require('../../sff-network/global-require')
 
+//console.log('global.rootAppRequire 11', rootAppRequire)
 
 
 function sortByValues(node_hash) {

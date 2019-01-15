@@ -47,24 +47,14 @@ module.exports = function (build_repository) {
             }
             return my_promises;
         }
-
-
+        
         static addPdfsOfBook() {
             return build_repository.insertPdfsOfBook();
         }
 
-
-
-
         static addWikiStories() {
             return build_repository.insertWikiStories();
         }
-        
-        // static addPdfsPage() {
-        //     return build_repository.insertPdfPage();
-        // }
-        
-        
         
     }
     return BookBuild;

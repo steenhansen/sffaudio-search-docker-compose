@@ -291,7 +291,6 @@ var miscMethods = {
 
     readUrlFile: function (file_url) {
         return new Promise(function (fulfill, reject) {
-
             if (validUrl.isUri(file_url)) {
                 request.get(file_url, function (e, response, body) {
                     if (e) {

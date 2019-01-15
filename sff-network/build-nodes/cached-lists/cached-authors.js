@@ -11,21 +11,21 @@ var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 
 
-
 class CachedAuthors extends CachedBase {
+
+    static checkCache(current_db_version) {
+        if (current_db_version !== CachedAuthors.db_version) {
+            CachedAuthors.author_cache = false;
+        }
+    }
 
     constructor() {
         super('author-cache');
     }
 
-    
-
     repositoryCall(new_db_version, all_links) {
         return VersionRepository.saveAuthors(new_db_version, all_links);
     }
-
-
-
 
     mediaLink(author_names) {
         var author_moniker = new AuthorMoniker();
@@ -35,8 +35,7 @@ class CachedAuthors extends CachedBase {
         if (middle_names === '') {
             middle_names = '&nbsp;';
         }
-   
-var title_separator =  strip_author + END_AUTHOR_LIST; 
+        var title_separator = strip_author + END_AUTHOR_LIST;
         var author_html = `
              <div   class='author__choice' 
                     id="${title_separator}"       
@@ -51,14 +50,25 @@ var title_separator =  strip_author + END_AUTHOR_LIST;
     }
 
     getCache() {
-                return VersionRepository.getAuthors()
-                    .then((authors_html_db)=> {
-                        var authors_cache = authors_html_db.records[0]._fields[0];
-                        return authors_cache;
-                    })
+        if (CachedAuthors.author_cache) {
+            return CachedAuthors.author_cache;
+        } else {
+            return VersionRepository.getAuthors()
+                .then((authors_html_db)=> {
+                    var db_version = authors_html_db.records[0]._fields[0];
+                    CachedAuthors.db_version = db_version;
+                    var authors_cache = authors_html_db.records[0]._fields[1];
+                    CachedAuthors.author_cache = authors_cache;
+                    return authors_cache;
+                })
+        }
     }
 
 
 }
 
+if (typeof CachedAuthors.author_cache === 'undefined') {
+    CachedAuthors.db_version = 0;
+    CachedAuthors.author_cache = false;
+}
 module.exports = CachedAuthors;

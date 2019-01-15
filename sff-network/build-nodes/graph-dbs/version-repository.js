@@ -38,7 +38,7 @@ module.exports = function (graph_db) {
                          WITH n_version.current_version as v_db_version
                           MATCH ( n_authors_list:L_AUTHOR_LIST)
                          WHERE n_authors_list.db_version=v_db_version
-                         RETURN n_authors_list.all_links `;
+                         RETURN v_db_version, n_authors_list.all_links `;
             var params = {};
             return graph_db.sqlParams(sql, params);
         }
@@ -56,7 +56,7 @@ module.exports = function (graph_db) {
                          WITH n_version.current_version as v_db_version
                           MATCH ( n_books_list:L_BOOK_LIST)
                          WHERE n_books_list.db_version=v_db_version
-                         RETURN n_books_list.all_links `;
+                         RETURN v_db_version, n_books_list.all_links `;
             var params = {};
             return graph_db.sqlParams(sql, params);
         }
@@ -74,7 +74,7 @@ module.exports = function (graph_db) {
                          WITH n_version.current_version as v_db_version
                           MATCH (n_default:L_DEFAULT )
                          WHERE n_default.db_version=v_db_version
-                         RETURN n_default.default_code `;
+                         RETURN v_db_version, n_default.default_code `;
             var params = {};
             return graph_db.sqlParams(sql, params);
         }

@@ -11,7 +11,69 @@ module.exports = class BuildRepository {
 
     }
     
-    
+    insertAPdf(new_info, new_link, book_title, under_title, last_first_underscores, pdf_country) {
+        var sql = `WITH {db_version} AS v_db_version
+                    MERGE ( n_pdf:L_PDF   
+                                    {pdf_title:{new_info},
+                                     pdf_url:{new_link}, 
+                                     book_title:{book_title},
+                                     under_title:{under_title}, 
+                                     last_first_underscores:{last_first_underscores},
+                                     pdf_country:{pdf_country} ,
+                                      db_version:v_db_version    })`;
+        var params = {new_info, new_link, book_title, under_title, last_first_underscores, pdf_country};
+        return this.addVersionSql(sql, params);
+    }
+        books_to_posts() {
+        var sql = ` WITH {db_version} AS v_db_version
+         MATCH (n_book:L_BOOK), (n_post_book:L_BOOK_POST)
+            WHERE  n_post_book.last_first_underscores = n_book.last_first_underscores
+            AND n_book.under_title = n_post_book.under_title
+            	 AND n_book.db_version = v_db_version
+			  AND n_post_book.db_version = v_db_version
+            MERGE (n_book)-[r_book_to_post:L_BOOK_TO_POST]->(n_post_book)`;
+        return this.addVersionSql(sql, {});
+    }
+
+    saveBookPost(last_first_underscores, under_title, post_slug, post_title, sorted_label) {
+        var sql = ` // PostNode.saveBookPost
+                                        WITH {last_first_underscores} AS v_last_first_underscores,
+                                              {under_title} AS v_under_title, 
+                                              {post_slug} AS v_post_slug, 
+                                              {post_title} AS v_post_title,
+                                               {sorted_label} AS v_sorted_label,
+                                                {db_version} AS v_db_version
+                                MERGE (n_post_book:L_BOOK_POST { last_first_underscores: v_last_first_underscores,
+                                                        under_title: v_under_title,
+                                                        post_slug: v_post_slug, 
+                                                        post_title: v_post_title,
+                                                        sorted_label: v_sorted_label, db_version:v_db_version})        `;
+        var params = {last_first_underscores, under_title, post_slug, post_title, sorted_label};
+        return this.addVersionSql(sql, params);
+    }    
+
+    savePosts(strip_author, post_slug, post_title, sorted_label) {
+        var sql = ` // PostNode.savePosts
+                                        WITH {strip_author} AS v_strip_author,
+                                              {post_slug} AS v_post_slug, 
+                                              {post_title} AS v_post_title,
+                                               {sorted_label} AS v_sorted_label,
+                                                {db_version} AS v_db_version
+                                MERGE (n_post:L_AUTHOR_POST { strip_author: v_strip_author,
+                                                        post_slug: v_post_slug, 
+                                                        post_title: v_post_title,
+                                                        sorted_label: v_sorted_label, db_version:v_db_version}) `;
+        var params = {strip_author, post_slug, post_title, sorted_label};
+        return this.addVersionSql(sql, params);
+    }
+
+
+
+
+
+
+
+
         // rsd_url??
     insertAnRsd(rsd_title, under_title, rsd_description, rsd_link, rsd_pdf_link, video_link, last_first_underscores) {
         var sql = ` WITH {db_version} AS v_db_version
@@ -39,22 +101,7 @@ module.exports = class BuildRepository {
     }
 
 
-    insertAPdf(new_info, new_link, book_title, under_title, last_first_underscores, pdf_country) {
-    // MERGE ==15321  CREATE == 13878
-        var sql = `WITH {db_version} AS v_db_version
-        MERGE ( n_pdf:L_PDF   
-                                    {pdf_title:{new_info},
-                                     pdf_url:{new_link}, 
-                                     book_title:{book_title},
-                                     under_title:{under_title}, 
-                                     last_first_underscores:{last_first_underscores},
-                                     pdf_country:{pdf_country} ,
-                                     
-                                      db_version:v_db_version    })`;
-        var params = {new_info, new_link, book_title, under_title, last_first_underscores, pdf_country};
-        return this.addVersionSql(sql, params);
-    }
-    
+
     
     
     
@@ -103,16 +150,6 @@ module.exports = class BuildRepository {
     }
 
 
-    books_to_posts() {
-        var sql = ` WITH {db_version} AS v_db_version
-         MATCH (n_book:L_BOOK), (n_post_book:L_BOOK_POST)
-            WHERE  n_post_book.strip_author IN n_book.last_first_underscores
-            AND n_book.under_title = n_post_book.under_title
-            	 AND n_book.db_version = v_db_version
-			  AND n_post_book.db_version = v_db_version
-            MERGE (n_book)-[r_book_to_post:L_BOOK_TO_POST]->(n_post_book)`;
-        return this.addVersionSql(sql, {});
-    }
 
 
     insertABook(sorted_label, esc_book_title, under_title, last_first_underscores) {
@@ -130,41 +167,6 @@ module.exports = class BuildRepository {
 
 
 
-
-
-// // deleteEverything
-//     deleteAll() {
-//
-//         // delete rsds  MATCH (n_rsd:L_RSD) DETACH DELETE n_rsd
-//
-//         var delete_all_sql = 'MATCH (n) DETACH DELETE n'
-//         return this.addVersionSql(delete_all_sql, {});
-//     }
-
-
-
-
-    // insertRsdPage() {
-    //     var sql = ` WITH  {db_version} AS v_db_version
-    //                         MERGE (n_page_rsds:L_PAGE_RSDS { page_title:"All Rsds", pages_url:"http://www.sffaudio.com/reading-short-and-deep/", db_version:v_db_version})`;
-    //     var params = {};
-    //     return this.addVersionSql(sql, params);
-    // }
-    //
-    // insertPodcastPage() {
-    //     var sql = ` WITH  {db_version} AS v_db_version
-    //                         MERGE (n_page_podcasts:L_PAGE_PODCASTS { page_title:"All Podcasts", pages_url:"http://www.sffaudio.com/the-sffaudio-podcast/", db_version:v_db_version})`;
-    //     var params = {};
-    //     return this.addVersionSql(sql, params);
-    // }
-    //
-    //
-    // insertPdfPage() {
-    //     var sql = ` WITH  {db_version} AS v_db_version
-    //                         MERGE (n_page_pdfs:L_PAGE_PDFS { page_title:"All Pdfs", pages_url:"http://www.sffaudio.com/public-domain-pdf-page/", db_version:v_db_version})`;
-    //     var params = {};
-    //     return this.addVersionSql(sql, params);
-    // }
 
 
     insertAuthor(full_author, strip_author, sorted_label) {
@@ -200,45 +202,9 @@ module.exports = class BuildRepository {
     }
 
 
-    saveBookPost(strip_author, under_title, post_slug, post_title, sorted_label) {
-        var sql = ` // PostNode.saveBookPost
-                                        WITH {strip_author} AS v_strip_author,
-                                              {under_title} AS v_under_title, 
-                                              {post_slug} AS v_post_slug, 
-                                              {post_title} AS v_post_title,
-                                               {sorted_label} AS v_sorted_label,
-                                                {db_version} AS v_db_version
-                                MERGE (n_post_book:L_BOOK_POST { strip_author: v_strip_author,
-                                                        under_title: v_under_title,
-                                                        post_slug: v_post_slug, 
-                                                        post_title: v_post_title,
-                                                        sorted_label: v_sorted_label, db_version:v_db_version})
-                     `;
-        var params = {strip_author, under_title, post_slug, post_title, sorted_label};
-        return this.addVersionSql(sql, params);
-    }
 
 
-// below we need to be able to link up to a book also
-    // saveAuthorPost()     L_AUTHOR_POST
-    // saveBookPost();      L_BOOK_POST
 
-// we need a new method books_to_posts!!
-
-    savePosts(strip_author, post_slug, post_title, sorted_label) {
-        var sql = ` // PostNode.savePosts
-                                        WITH {strip_author} AS v_strip_author,
-                                              {post_slug} AS v_post_slug, 
-                                              {post_title} AS v_post_title,
-                                               {sorted_label} AS v_sorted_label,
-                                                {db_version} AS v_db_version
-                                MERGE (n_post:L_AUTHOR_POST { strip_author: v_strip_author,
-                                                        post_slug: v_post_slug, 
-                                                        post_title: v_post_title,
-                                                        sorted_label: v_sorted_label, db_version:v_db_version}) `;
-        var params = {strip_author, post_slug, post_title, sorted_label};
-        return this.addVersionSql(sql, params);
-    }
 
 
     insertAWikiAuthor(author_wiki, strip_author) {
@@ -350,15 +316,6 @@ module.exports = class BuildRepository {
         return Promise.all(all_indexes);
     }
 
-    // insertWrittenBy_author_1() {
-    //     var sql = ` WITH  {db_version} AS v_db_version
-    //       MATCH (n_author:L_AUTHOR),(n_book:L_BOOK)
-    //         WHERE n_author.strip_author IN n_book.last_first_underscores
-    //          AND n_author.db_version = v_db_version
-		// 	  AND n_book.db_version = v_db_version
-    //         CREATE (n_author)-[r_author_to_book:L_AUTHOR_TO_BOOK]->(n_book)`;
-    //     return this.addVersionSql(sql, {});
-    // }
 
     makeIndexes() {   /// 80751
         var db_version = this.db_version;

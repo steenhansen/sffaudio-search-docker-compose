@@ -2,14 +2,19 @@ var express = require('express');
 
 var graph_constants = rootAppRequire('sff-network/graph-constants');
 const program_variables = rootAppRequire('sff-network/program-variables.js');
-
 const serverResponse = rootAppRequire('sff-network/check-start/server-responses');
 
 var app = express();
 app.use(express.static('public', {maxAge: '1y'}))
-
 app.use(serverResponse.corsAll);
 
+app.get(graph_constants.ROUTE_ERASE_CACHES, function (req, res) {
+     serverResponse.clearFromReload(-1)
+            .then((erase_response_arr)=> {
+            var cache_clear_resp= erase_response_arr[0]
+             res.send(cache_clear_resp);
+         })
+})
 
 app.get(program_variables.ROUTE_RESOLVE_PDF, function (req, res) {
     const start_pdf_url = req.query[program_variables.SFF_START_PDF_URL];
@@ -27,7 +32,7 @@ app.get(graph_constants.ROUTE_POST_PROXY, function (req, res) {
         })
         .catch(function (post_error) {
             var error_message = post_error.statusCode;
-           res.send(`A ${error_message} error message is being returned from <br>${sff_url_post}`)
+            res.send(`A ${error_message} error message is being returned from <br>${sff_url_post}`)
         });
 })
 

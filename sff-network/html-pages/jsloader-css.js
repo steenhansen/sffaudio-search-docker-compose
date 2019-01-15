@@ -49,40 +49,16 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 
     const js_constants = readFilePromise(program_variables, 'utf8')
     var widget_vars = widget_vars_html.widgetVars(graph_container_id, nodes_object, edges_object, graph_object);
+    
     const author_links = cached_authors.getCache();
-    const book_links = cached_books.getCache(); /// books_string_or_promise
+    const book_links = cached_books.getCache(); 
     return Promise.all([js_constants, author_links, book_links])
         .then(([js_constants,  author_links, book_links])=> {
-
-                /*
-                 style=" -ms-box-orient: horizontal;
-                 display: -webkit-box;
-                 display: -moz-box;
-                 display: -ms-flexbox;
-                 display: -moz-flex;
-                 display: -webkit-flex;
-                 display: flex;
-                 -webkit-flex-wrap: wrap;
-                 flex-wrap: wrap;
-                 "
-                 */
-
-                // var nodes_and_edges = JSON.parse(nodes_and_edges_str);
-// var nodes_and_edges_0 = JSON.parse(nodes_and_edges_str[0]);
-// var nodes_and_edges_1 = JSON.parse(nodes_and_edges_str[1]);
-
-
                 var widget_html = widget_vars_html.widgetHtml(graph_container_id, author_links, book_links);
                 var build_page = `
 
-
-
-
 <script>
     ${vars_events}
-
-
-
     sff_js_vars.vars_events.initVars();
     ${js_constants}
     ${sff_helpers_js}
@@ -96,9 +72,7 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     
 <script>
     sff_js_vars.strip_author = "${strip_author}";
-    sff_js_vars.default_authors = ${nodes_and_edges_str};
-    
-    
+    sff_js_vars.default_authors = ${nodes_and_edges_str};  
     if (sff_js_vars.helpers.objectIsEmpty(sff_js_vars.graph_vars.nodes_string)) {
         if (sff_js_vars.strip_author === '') {
             var rand_index = Math.floor((Math.random() * sff_js_vars.default_authors.length));
@@ -110,16 +84,13 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
         } else {
             var graph_type = sff_js_vars.graph_vars.graph_info.graph_type;
             if (graph_type === '${AUTHOR_PAGE_TYPE}') {
-                //sff_js_vars.filter_names.colorAuthors();
                 if (sff_js_vars.strip_author.indexOf('HELP_') >= 0) {
                     sff_js_vars.graph_vars.edges_string = sff_js_vars.HELP_ALL_EDGES;
                     sff_js_vars.graph_vars.nodes_string = sff_js_vars.help_nodes[sff_js_vars.strip_author];
                 } else {
                     sff_js_vars.graph_vars.nodes_string = sff_js_vars.NO_SUCH_AUTHOR;
-                    
                 }
             } else {
-           //     sff_js_vars.filter_names.colorBooks();
                 sff_js_vars.graph_vars.nodes_string = sff_js_vars.NO_SUCH_BOOK
             }
         }
@@ -139,9 +110,6 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 
     ${widget_html}
 
-
-
-
 <style>
    ${popup_blur.popup_blur_css}
 </style>
@@ -157,8 +125,6 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
      } else {
              sff_js_vars.filter_names.colorBooks();
      }
-     
-//sff_php_vars.php_search='zelazny'
     sff_js_vars.graph_procs.doGraph(sff_php_vars.php_search);
     
     function mainStart(polyfill_error){
@@ -166,7 +132,8 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
        sff_js_vars.history_generate.startHistoryView('${req_query_view}', sff_js_vars.strip_author, '${under_title}', '${req_query_choice}');
     }
 
-</script>`;
+</script>
+`;
                 return build_page;
 
             }

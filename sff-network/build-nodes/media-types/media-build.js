@@ -5,7 +5,6 @@ AuthorMoniker = rootAppRequire('sff-network/author-moniker');
 const {URL_SEPARATOR}=graph_constants;
 
 class MediaBuild {
-
     
     static authorNames(full_bracket_name) {
         var author_moniker = new AuthorMoniker(full_bracket_name);
@@ -14,15 +13,11 @@ class MediaBuild {
         return [full_author, strip_author];
     }
 
-
-
-
     static quoteUnderscoreTitle(book_title) {  // move to author_build
         var esc_book_title = MediaBuild.escapeQuote(book_title);
         var under_title = misc_helper.alphaUnderscore(esc_book_title);
         return {esc_book_title, under_title};
     }
-
 
     static escapeQuote(csv_string) {   // move to author_build
         var escaped_quote = csv_string.replace(/’|\'/gi, "\'");  // somewhere else
@@ -33,11 +28,7 @@ class MediaBuild {
         this.id = id;
         this.label = node_label;
         this.sorted_label = sorted_label;
-
-
     }
-
-    
 
     static sortedLabel(the_name, space_char) {
         if (space_char === URL_SEPARATOR) {
@@ -53,7 +44,6 @@ class MediaBuild {
         }
         return sorted_label;
     }
-
 
 }
 

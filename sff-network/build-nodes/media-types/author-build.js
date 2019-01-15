@@ -8,25 +8,15 @@ module.exports = function (build_repository) {
 
     class AuthorBuild extends MediaBuild {
 
-
         constructor(added_authors = []) {
             super();
             this.processed_authors = added_authors;
-
         }
-
-
-
-
-
-
-
 
         addedAuthors() {
             return this.processed_authors;
-
         }
-
+        
         //   CLASS AuthorDb --- ????
         addAuthors(book_authors) {
             var my_promises = [];
@@ -44,13 +34,11 @@ module.exports = function (build_repository) {
             return my_promises;
         }
 
-
         findAuthorWiki(pdf_csv) {
             let author_wikis = {};
             for (let pdf_object of pdf_csv) {
-           
-                let {title_with_authors, under_title, full_title, last_first_underscores, author_wiki}=pdf_object;
-               var strip_author = last_first_underscores[0];
+                let {last_first_underscores, author_wiki}=pdf_object;
+                var strip_author = last_first_underscores[0];
                 author_wikis[strip_author] = author_wiki;
             }
             return author_wikis;
@@ -68,14 +56,10 @@ module.exports = function (build_repository) {
             return my_promises;
         }
 
-
-  
         addWikiAuthors() {
-
             var neo4j_promise = build_repository.insertWikiAuthors()
             return neo4j_promise;
         }
-
 
     }
     return AuthorBuild;

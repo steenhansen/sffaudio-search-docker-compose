@@ -10,19 +10,18 @@ var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 var fs = require('fs');
 const {END_BOOK_LIST}=graph_constants;
-///const {URL_SEPARATOR}=graph_constants;
 
 class CachedBooks extends CachedBase {
+
+    static checkCache(current_db_version) {
+        if (current_db_version !== CachedBooks.db_version) {
+            CachedBooks.book_cache = false;
+        }
+    }
 
     constructor() {
         super('book-cache');
     }
-
-//http://localhost:5000/?author=philip_k_dick&book=adjustment_team
-
-
-   
-
 
     repositoryCall(new_db_version, all_links) {
         return VersionRepository.saveBooks(new_db_version, all_links);
@@ -35,19 +34,10 @@ class CachedBooks extends CachedBase {
         if (book_articles.length > 1) {
             var article_a_an_the = book_articles[1];
             var rest_title = book_articles[2];
-            //var sorted_label = `<div class="book__article">${article_a_an_the}</div>${sortable_title}`;
         } else {
-            /// also need to have a class with color/size/width
-            //  #all--filter--books div span      for bob/an
-            //  #all--filter--books div div       for dick/ubick
             var article_a_an_the = '&nbsp;';
             var rest_title = book_articles[0];
         }
-        // var sorted_label = `
-        //   <span class="book__article">${article_a_an_the}</span>
-        //         
-        //             <div id="${sorted_label}_rest">${rest_title}</div>
-        //         `;
         var article_rest = `
             <div id='${sorted_label}_article' class='book__article'>${article_a_an_the}</div>
             <div id='${sorted_label}_rest' class='book__rest'>${rest_title}</div>    `;
@@ -57,7 +47,7 @@ class CachedBooks extends CachedBase {
     mediaLink(book_name) {
         var [under_title, book_title, sorted_label, strip_author]= book_name;
         var shrunkArticles = this.shrinkAAnThe(book_title, sorted_label);
-        var title_separator =  under_title + END_BOOK_LIST;         ////// will be ...
+        var title_separator = under_title + END_BOOK_LIST;
         var book_html = `
              <div   class="book__choice"  
                     id="${title_separator}" 
@@ -70,15 +60,25 @@ class CachedBooks extends CachedBase {
     }
 
     getCache() {
-                return VersionRepository.getBooks()
-                    .then((books_html_db)=> {
-                        var books_cache = books_html_db.records[0]._fields[0];
-                        return books_cache;
-                    })
+        if (CachedBooks.book_cache) {
+            return CachedBooks.book_cache;
+        } else {
+            return VersionRepository.getBooks()
+                .then((books_html_db)=> {
+                    var db_version = books_html_db.records[0]._fields[0];
+                    CachedBooks.db_version = db_version;
+                    var books_cache = books_html_db.records[0]._fields[1];
+                    CachedBooks.book_cache = books_cache;
+                    return books_cache;
+                })
+        }
     }
 
-
-
-
 }
+
+if (typeof CachedBooks.book_cache === 'undefined') {
+    CachedBooks.db_version = 0;
+    CachedBooks.book_cache = false;
+}
+
 module.exports = CachedBooks;

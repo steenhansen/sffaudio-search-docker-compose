@@ -1,11 +1,11 @@
 var LabelPositions = rootAppRequire('sff-network/show-nodes/label-positions')
 var HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
-const {BOTTOM_COLUMNS_Y_OFFSET, HORIZONTAL_COLUMNS, X_NODE_SEPARATION, Y_NODE_SEPARATION, VERTICAL_STAGGER}=LabelPositions
+const {BOTTOM_COLUMNS_Y_OFFSET, X_NODE_SEPARATION, Y_NODE_SEPARATION, VERTICAL_STAGGER}=LabelPositions
 var misc_helper = rootAppRequire('sff-network/misc-helper')
 const {BOOK_PAGE_TYPE} = rootAppRequire('sff-network/graph-constants');
 const program_variables = rootAppRequire('sff-network/program-variables.js');
 
-
+ 
 module.exports = function (data_repository) {
 
     class BookData extends HoverIcon {
@@ -15,7 +15,7 @@ module.exports = function (data_repository) {
             this.under_title = under_title;
             this.last_first_underscores = last_first_underscores;
             this.node_type = 'L_BOOK';
-                 this.title = 'Click for online story media';
+            this.title = 'Click for online story media';
         }
 
 
@@ -46,16 +46,13 @@ module.exports = function (data_repository) {
         }
 
 
-
-
         static arrayObjectCount(object_array) {
             return super.arrayObjectCount(object_array, 'BookData')
 
         }
 
         bookUrl(strip_author) {
-///            this.goto_url = `/author/book/${strip_author}/` + this.under_title;
-            this.goto_url =  program_variables.ROUTE_START_BOOK + strip_author + '/' + this.under_title;
+            this.goto_url = program_variables.ROUTE_START_BOOK + strip_author + '/' + this.under_title;
         }
 
         setSizesColor(page_type) {     //L_AUTHOR
@@ -63,22 +60,24 @@ module.exports = function (data_repository) {
         }
 
 
-
-      
         static sendBooksOfAuthor(strip_author, under_title, ParseNeo) {
             return data_repository.getBookNodes(under_title)
                 .then(function (graph_collection) {
-var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
-var db_version= graph_collection[0].records[0]._fields[db_version_index];
+                    var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
+                    var db_version = graph_collection[0].records[0]._fields[db_version_index];
                     var parse_neo = new ParseNeo(graph_collection, 'book');
                     var nodes_object = parse_neo.getBookGraph(strip_author)
                     var edges_object = parse_neo.getEdges()
-                    var graph_info = {graph_type: BOOK_PAGE_TYPE, strip_author: strip_author, under_title: under_title, db_version:db_version};
+                    var graph_info = {
+                        graph_type: BOOK_PAGE_TYPE,
+                        strip_author: strip_author,
+                        under_title: under_title,
+                        db_version: db_version
+                    };
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
                     return nodes_and_edges;
                 })
         }
-
 
 
         static showBook_read_redirects(strip_author, nodes_string) {
@@ -90,13 +89,11 @@ var db_version= graph_collection[0].records[0]._fields[db_version_index];
                 a_node.setGroupColor();
                 a_node.bookUrl(strip_author);
                 a_node.setSizesColor('L_BOOK');
-                var positioned_node = Object.assign({}, a_node);
                 positioned_nodes[a_node.id] = a_node;
                 if (a_node.node_type === 'L_PDF') {
                     var pdf_promise = misc_helper.getRedirects(a_node, 'goto_url');
                     my_promises.push(pdf_promise)
                 } else if (a_node.node_type === 'L_RSD') {
-                    //if (a_node.rsd_pdf_link!==''){
                     var rsd_promise = misc_helper.getRedirects(a_node, 'rsd_pdf_link');
                     my_promises.push(rsd_promise)
                 }
@@ -113,23 +110,20 @@ var db_version= graph_collection[0].records[0]._fields[db_version_index];
         }
 
 
-
-      static   showBook(strip_author, nodes_string) {
-        var positioned_nodes = []
-        var sorted_labels = Object.keys(nodes_string);
+        static   showBook(strip_author, nodes_string) {
+            var positioned_nodes = []
+            var sorted_labels = Object.keys(nodes_string);
             for (let sorted_label of sorted_labels) {
                 var a_node = nodes_string[sorted_label];
                 a_node.setGroupColor();
-                a_node.bookUrl(strip_author);  
-                 a_node.setSizesColor('L_BOOK');
+                a_node.bookUrl(strip_author);
+                a_node.setSizesColor('L_BOOK');
                 var positioned_node = Object.assign({}, a_node);
-                positioned_nodes.push(positioned_node);      
+                positioned_nodes.push(positioned_node);
             }
-         
-        return positioned_nodes;
-    }
 
-
+            return positioned_nodes;
+        }
 
 
     }
