@@ -243,7 +243,7 @@ var popup_blur_css = `
 #pdf--loading {
     left: 175px;
     position: absolute;
-    z-index: 4;
+    z-index: 24;
     top: 300px;
     display: none;
 }

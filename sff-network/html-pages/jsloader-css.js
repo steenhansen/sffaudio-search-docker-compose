@@ -12,7 +12,7 @@ const graph_container_id = graph_constants.GRAPH_CONTAINER_ID;
 const AUTHOR_PAGE_TYPE = graph_constants.AUTHOR_PAGE_TYPE;
 
 var popup_blur = rootAppRequire('sff-network/html-pages/popup-blur.css.js');
-var load_css_external = rootAppRequire('sff-network/html-pages/load-css-external')(graph_constants.GRAPH_BACKGROUND, graph_container_id);
+var load_css_external = rootAppRequire('sff-network/html-pages/load-css-external')(graph_constants.DARK_BACKGROUND, graph_container_id);
 var load_scripts = rootAppRequire('sff-network/html-pages/load-scripts')('mainStart');  // mainJsStart // ie_load_second_chance
 
 

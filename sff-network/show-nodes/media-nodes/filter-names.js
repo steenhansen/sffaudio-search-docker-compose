@@ -1,5 +1,11 @@
 let {AUTHOR_BOOK_SEPARATOR, END_BOOK_LIST, END_AUTHOR_LIST} = rootAppRequire('sff-network/graph-constants');
 
+
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+var dark_background = graph_constants.DARK_BACKGROUND
+var light_background = graph_constants.LIGHT_BACKGROUND
+
+
 module.exports =  function (URL_SEPARATOR) {    
 
 var filter_names = `
@@ -74,11 +80,11 @@ sff_js_vars.filter_names = (function (graph_id) {
     }
 
     my.colorAuthors = function () {
-        sff_js_vars.filter_names.authorsBooksColor('gray', '#cccccc')
+        sff_js_vars.filter_names.authorsBooksColor('${dark_background}', '${light_background}')
     }
 
     my.colorBooks = function () {
-        sff_js_vars.filter_names.authorsBooksColor('#cccccc', 'gray')
+        sff_js_vars.filter_names.authorsBooksColor('${light_background}', '${dark_background}')
     }
 
     my.authorsBooksColor = function (author_color, book_color) {
@@ -107,8 +113,10 @@ sff_js_vars.filter_names = (function (graph_id) {
         if (elem != null) {
             elem.classList.add('current__media');
             elem.scrollIntoView();
-            var container = document.getElementById(graph_id);
-            container.scrollIntoView();
+           // var container = document.getElementById(graph_id);
+            //container.scrollIntoView();
+            var my_network = document.getElementById('my--network');
+            my_network.scrollIntoView();
         }
     }
 

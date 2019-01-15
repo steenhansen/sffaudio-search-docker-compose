@@ -1,5 +1,19 @@
  const my_media_array = [
  {
+  "episode number": "508",
+  "post id": "59406",
+  "publish date": "2019-01-14 00:01",
+  "kind": "TOPIC",
+  "participants": "Jesse, Paul Weimer, Evan Lampe",
+  "narrator": "",
+  "file name": "SFFaudioPodcast508.mp3",
+  "byte size": "88,367,933",
+  "hh:mm:ss": "2:23:43",
+  "book title": "",
+  "book author": "",
+  "about": "PIRACY"
+ },
+ {
   "episode number": "507",
   "post id": "59387",
   "publish date": "2019-01-07 00:01",

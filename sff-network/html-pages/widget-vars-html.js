@@ -1,6 +1,8 @@
 HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon');
 var graph_constants = rootAppRequire('sff-network/graph-constants');
 var svg_icons = rootAppRequire('./sff-network/html-pages/svg-icons');
+var light_background = graph_constants.LIGHT_BACKGROUND;
+var gifer_com_loader = graph_constants.GIFER_COM_LOADER;
 
 function widgetVars(graph_id, nodes_object, edges_object, graph_object) {
     var icons_string = HoverIcon.authorIconColors();
@@ -189,7 +191,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
 
 #search--row {
     display: flex;
-    background-color: #cccccc
+    background-color: ${light_background};
 }
 
 #search--column {
@@ -200,7 +202,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
 }
 
 #authors--stories--container {
-    background-color: #cccccc;
+    background-color: ${light_background};
     border-bottom: 1px solid black;
 }
 
@@ -295,7 +297,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     <div>
         <div id='stable-redraw-height'></div>
         <div id="${graph_div_id}"></div>
-        <img id='pdf--loading' src='/gifer_com_loader.gif'>
+        <img id='pdf--loading' src='${gifer_com_loader}'>
     </div>
     <div id="bottom--icons-row">
         <div id="bottom--move--up">

@@ -4,11 +4,30 @@
  * public_html/wp-content/themes/revolution-code-blue2/functions.php
  *   include 'functions-graph-search.php';
  * 
- *  Modify public_html/wp-content/themes/revolution-code-blue2/search.php
+ * 
+ *  Modify public_html/wp-content/themes/revolution-code-blue2/header.php
+ <div id="navbarright">
+         <form role="search" method="post" id="searchform" class="searchform" action="https://www.sffaudio.com/search/"
+    onsubmit="
+	    if ( (location.pathname==='/search/') && sff_js_vars){
+		    var wp_search_text = document.getElementById('search_term').value;
+		    var graph_text_box = document.getElementById('filter--author--text');
+		    graph_text_box.value=wp_search_text;                
+		    sff_js_vars.vars_events.executeSearch(wp_search_text);
+		    return false;
+	    }else{
+		    return true;
+	    }
+    "  >
+<div>
+ * 
+ * 
+ *  Modify WordPress Page - Search
  *    add [graph-search-component] to the HTML
+ *    and page attributes
+ *          - NO PARENT
+ *          - Default Template
  */
-
-// in https://www.sffaudio.com/search/ with 'Default Template'
 
 // public_html/wp-content/themes/revolution-code-blue2/functions-graph-search.php
 

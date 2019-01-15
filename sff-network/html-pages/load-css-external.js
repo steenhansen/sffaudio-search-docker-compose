@@ -1,4 +1,4 @@
-module.exports =  function (graph_background, graph_container_id) {
+module.exports =  function (dark_background, graph_container_id) {
 var canvas_height = '400px;';
 var load_css_external = `
 <script>
@@ -28,9 +28,6 @@ ga('send', 'pageview');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.550/pdf.min.js"></script>
 
 <style>
-body {
-    background-color: #eeffee;
-}
 
 body.busy--cursor * {
     cursor: progress;
@@ -66,7 +63,7 @@ and (max-device-width: 1024px) {
 
 #${graph_container_id} {
     float: left;
-    background-color: ${graph_background};
+    background-color: ${dark_background};
 }
 
 #filter--story--text {

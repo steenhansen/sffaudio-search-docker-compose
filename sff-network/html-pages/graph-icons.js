@@ -7,7 +7,7 @@
  https://www.shareicon.net/
  */
 var graph_constants = rootAppRequire('sff-network/graph-constants');
-var background_color = graph_constants.GRAPH_BACKGROUND;
+var background_color = graph_constants.DARK_BACKGROUND;
 
 function fit_graph_shape(w_color) {
     var svg_wikipedia = `

@@ -11,6 +11,11 @@ if (process.env.PORT == 5000) {
 const rotate_colors = the_colors.concat(the_colors);
 
 var graph_constants = {
+  DARK_BACKGROUND: '#AED6F1',              //'grey',        
+                                LIGHT_BACKGROUND: '#D6EAF8',         //  '#cccccc',
+
+    GIFER_COM_LOADER: "https://sffaudio-search.herokuapp.com/gifer_com_loader.gif",
+    
     MAX_ZOOM: 2,
     MIN_ZOOM: 0.25,
     ZOOM_STEP: 0.1,
@@ -47,7 +52,9 @@ var graph_constants = {
     NEO4J_VERSION: 'v1',
     DELETE_UNUSED_RECORDS: 20000,
     NO_RECORD_LIMIT: 'NO_RECORD_LIMIT',
-    GRAPH_BACKGROUND: 'grey',
+   
+                              
+   
     THE_COLORS: rotate_colors,
     ROOT_CAPTION: 'All',
     BOOK_AUTHOR_DELIMITER: '^',
