@@ -8,7 +8,7 @@ module.exports = function build_page(nodes_object, edges_object, graph_object, r
 <meta name="viewport" content="width=device-width, user-scalable=no" />
 <style>
 button {
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
 }
 </style>
 <!-- end widget intro. NB, this text is used by PHP -->

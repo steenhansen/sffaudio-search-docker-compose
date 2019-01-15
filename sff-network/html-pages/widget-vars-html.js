@@ -49,28 +49,44 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     var media_html = `
 <style>
 
+/*
  ::-webkit-scrollbar {
     width: 12px !important;
 }
+*/
+
+
 
 /* Track */
+/*
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
     -webkit-border-radius: 10px !important;
     border-radius: 10px !important;
 }
+*/
+
+
 
 /* Handle */
+/*
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px !important;
     border-radius: 10px !important;
     background: #41617D !important;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5) !important;
 }
+*/
 
+
+
+/*
 ::-webkit-scrollbar-thumb:window-inactive {
     background: #41617D !important;
 }
+*/
+
+
 
 #all--filter--authors {
     height: 100px;
