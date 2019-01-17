@@ -2,8 +2,33 @@
 
 sff_js_vars.history_generate = (function () {
 
-    function bookPostView(graph_node) {
-        return graph_node.group === 'N_BOOK_POST';
+
+ function bookPostView(graph_node) {
+        var req_query_choice = this; 
+        if (graph_node.sorted_choice != req_query_choice){
+            return false;
+        }
+         if (graph_node.group !== 'N_BOOK_POST'){
+            return false;
+        }
+        return true;
+    }
+
+
+    function bookPostViewLONG(graph_node) {
+        var req_query_choice = this; //req_query_choice
+        if (graph_node.sorted_choice == req_query_choice){
+            var choice_found=true;
+        }else{
+            var choice_found=false;
+        }
+         if (graph_node.group === 'N_BOOK_POST'){
+            var group_found=true;
+        }else{
+            var group_found=false;
+        }
+        var found_indexed_post = choice_found && group_found;
+        return found_indexed_post;
     }
 
     function authorPostView(graph_node) {
@@ -11,7 +36,7 @@ sff_js_vars.history_generate = (function () {
     }
 
     function pdfView(graph_node) {
-        return graph_node.group === 'N_PDF';
+        return graph_node.group === 'N_PDF'; /// this will always just give the first answer !!! q*bert
     }
 
     function rsdView(graph_node) {
@@ -27,9 +52,9 @@ sff_js_vars.history_generate = (function () {
     my.bookHistoryView = function (req_query_view, strip_author, under_title, req_query_choice) {
         sff_js_vars.history_state.pushBook(strip_author, under_title);
         if (req_query_view === 'post_book') {
-            var book_view = sff_js_vars.graph_vars.nodes_string.find(bookPostView);
+            var book_view = sff_js_vars.graph_vars.nodes_string.find(bookPostView, req_query_choice);   /// sh9ould be like book_view[req_query_choice]
             if (book_view) {
-                sff_js_vars.book_post_procs.historyBookPost(book_view.goto_url, book_view.strip_author, book_view.under_title, req_query_view, req_query_choice);
+                sff_js_vars.book_post_procs.historyBookPost(book_view.goto_url, strip_author, under_title, req_query_view, req_query_choice);
             }
         } else if (req_query_view === 'pdf') {
             var pdf_view = sff_js_vars.graph_vars.nodes_string.find(pdfView);

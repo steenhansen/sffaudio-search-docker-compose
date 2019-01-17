@@ -90,6 +90,7 @@ if (!class_exists('SffGraphQuery')) {
 
         static function buildSff($an_sff, $search_regex, $search_replace)
         {
+            $sff_narrator_by = '';
             $sff_author = $an_sff->possiblebook->author;
             $sff_title = $an_sff->possiblebook->title;
             if ($sff_author == '' && $sff_title == '') {
@@ -98,8 +99,6 @@ if (!class_exists('SffGraphQuery')) {
                 if (isset($an_sff->narrator)) {
                     $narrator = preg_replace($search_regex, $search_replace, $an_sff->narrator);
                     $sff_narrator_by = " narrated by $narrator";
-                } else {
-                    $sff_narrator_by = '';
                 }
                 $sff_author_title = preg_replace($search_regex, $search_replace, "$sff_title by $sff_author");
             }
@@ -301,7 +300,14 @@ EOT;
             curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array('Accept: application/json'));
             $graphql_str = curl_exec($curl_handle);
             $graphql_json = json_decode($graphql_str);
-            $matches_list = $graphql_json->data->search_site_content;
+            switch (json_last_error()) {
+                case JSON_ERROR_NONE:
+                    $matches_list = $graphql_json->data->search_site_content;
+                    break;
+                default:
+                    $matches_list = [];
+                    break;
+            }
             return $matches_list;
         }
 
@@ -318,7 +324,6 @@ if (!function_exists('graph_query_component')) {
         ini_set('display_errors', 1);
 
 
-     //   $search_for = SffGraphQuery::sanitizeSearch(@$_GET['s']);
         $search_for = SffGraphQuery::sanitizeSearch(@$_POST['search_term']);
         if (strlen($search_for) > 2) {
             $graph_ql_url = SffGraphQuery::graphQlUrl(GRAPH_URL, GRAPH_I_QL, $search_for);
