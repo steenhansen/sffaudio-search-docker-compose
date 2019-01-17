@@ -1,39 +1,52 @@
-Loading Heroku data from Google spreadsheets
-000 secs startMakeIndexes_a_0
-002 secs googlePostTsvToLocal_a_1
-000 secs googleQualityTsvToLocal_a_2
-002 secs googlePdfRsdPodcastToLocal_a_3google_rsd
-002 secs googlePdfRsdPodcastToLocal_a_3google_podcast
-005 secs googlePdfRsdPodcastToLocal_a_3google_pdf
-002 secs buildAllAuthors_b_2
-    waiting for 30 seconds.
-005 secs buildAllBooks_b_1
-    waiting for 30 seconds.
-354 secs buildAllPosts_b_3
-reload-url-db TypeError: firstMiddleLast is not iterable
-    at Function.addBookPosts (/app/sff-network/build-nodes/media-types/post-build.js:46:43)
-    at Object.buildBookPosts_b_7 (/app/sff-network/build-nodes/graphs-edges.js:153:42)
-    at dbIsCreated.then.then.then.then.then.then.then.then.then.then.then (/app/sff-network/build-nodes/graph-dbs/reload-base
-.js:76:48)
-    at <anonymous>
-    at process._tickCallback (internal/process/next_tick.js:188:7)
-000 secs makeNewCaches_d_3
+2019-01-16T17:17:03.785771+00:00 app[web.1]: { Neo4jError: Internal Server Error.
+2019-01-16T17:17:03.785774+00:00 app[web.1]:
+2019-01-16T17:17:03.785777+00:00 app[web.1]: at captureStacktrace (/app/node_modules/neo4j-driver/lib/v1/result.js:200:15)
+2019-01-16T17:17:03.785780+00:00 app[web.1]: at new Result (/app/node_modules/neo4j-driver/lib/v1/result.js:73:19)
+2019-01-16T17:17:03.785781+00:00 app[web.1]: at Session._run (/app/node_modules/neo4j-driver/lib/v1/session.js:116:14)
+2019-01-16T17:17:03.785783+00:00 app[web.1]: at Session.run (/app/node_modules/neo4j-driver/lib/v1/session.js:95:19)
+2019-01-16T17:17:03.785784+00:00 app[web.1]: at Object.sqlParams (/app/sff-network/neo4j-graph-db.js:27:43)
+2019-01-16T17:17:03.785786+00:00 app[web.1]: at Function.getDefaultAuthors (/app/sff-network/build-nodes/graph-dbs/version-repo
+sitory.js:79:29)
+2019-01-16T17:17:03.785788+00:00 app[web.1]: at CachedDefault.getCache (/app/sff-network/build-nodes/cached-lists/cached-defaul
+t.js:57:38)
+2019-01-16T17:17:03.785790+00:00 app[web.1]: at defaultAuthors (/app/sff-network/check-start/server-responses.js:118:50)
+2019-01-16T17:17:03.785791+00:00 app[web.1]: at Object.initialDefaultPage (/app/sff-network/check-start/server-responses.js:140
+:12)
+2019-01-16T17:17:03.785793+00:00 app[web.1]: at /app/sff-network/check-start/web-server.js:59:24
+2019-01-16T17:17:03.785795+00:00 app[web.1]: at Layer.handle [as handle_request] (/app/node_modules/express/lib/router/layer.js
+:95:5)
+2019-01-16T17:17:03.785797+00:00 app[web.1]: at next (/app/node_modules/express/lib/router/route.js:137:13)
+2019-01-16T17:17:03.785799+00:00 app[web.1]: at Route.dispatch (/app/node_modules/express/lib/router/route.js:112:3)
+2019-01-16T17:17:03.785800+00:00 app[web.1]: at Layer.handle [as handle_request] (/app/node_modules/express/lib/router/layer.js
+:95:5)
+2019-01-16T17:17:03.785802+00:00 app[web.1]: at /app/node_modules/express/lib/router/index.js:281:22
+2019-01-16T17:17:03.785804+00:00 app[web.1]: at Function.process_params (/app/node_modules/express/lib/router/index.js:335:12)
+2019-01-16T17:17:03.785805+00:00 app[web.1]: at next (/app/node_modules/express/lib/router/index.js:275:10)
+2019-01-16T17:17:03.785807+00:00 app[web.1]: at corsAll (/app/sff-network/check-start/server-responses.js:21:5)
+2019-01-16T17:17:03.785809+00:00 app[web.1]: at Layer.handle [as handle_request] (/app/node_modules/express/lib/router/layer.js
+:95:5)
+2019-01-16T17:17:03.785810+00:00 app[web.1]: at trim_prefix (/app/node_modules/express/lib/router/index.js:317:13)
+2019-01-16T17:17:03.785812+00:00 app[web.1]: at /app/node_modules/express/lib/router/index.js:284:7
+2019-01-16T17:17:03.785814+00:00 app[web.1]: at Function.process_params (/app/node_modules/express/lib/router/index.js:335:12)
+2019-01-16T17:17:03.785815+00:00 app[web.1]: code: 'GrapheneDB.ServerError.InternalError',
+2019-01-16T17:17:03.785818+00:00 app[web.1]: name: 'Neo4jError' }
+2019-01-16T17:17:03.785825+00:00 app[web.1]: ####################
+2019-01-16T17:17:03.785921+00:00 app[web.1]: {}
+2019-01-16T17:17:03.786204+00:00 app[web.1]: ####################
 
+ MATCH (n_version:L_VERSION)
+ WITH n_version.current_version as v_db_version
+ MATCH (n_default:L_DEFAULT )
+WHERE n_default.db_version=v_db_version
+RETURN v_db_version, n_default.default_code
 
-
-
-06 fwd="69.172.166.89" dyno=web.1 connect=2ms service=2237ms status=200 bytes=505 protocol=https                                                                                                           
-2019-01-12T02:00:52.293899+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: TypeError: Cannot read property '_fields' of undefined                                                             
-2019-01-12T02:00:52.293919+00:00 app[web.1]: at VersionRepository.getBooks.then (/app/sff-network/build-nodes/cached-lists/cached-books.js:75:68)                                                          
-2019-01-12T02:00:52.293922+00:00 app[web.1]: at <anonymous>                                                                                                                                                
-2019-01-12T02:00:52.293924+00:00 app[web.1]: at process._tickCallback (internal/process/next_tick.js:188:7)                                                                                                
-2019-01-12T02:00:52.294009+00:00 app[web.1]: (node:4) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch  
-block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)                                                                                                                    
-2019-01-12T02:00:52.294240+00:00 app[web.1]: (node:4) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the 
- Node.js process with a non-zero exit code.                                                                                                                                                                
-2019-01-12T02:01:22.199932+00:00 heroku[router]: at=error code=H12 desc="Request timeout" method=GET path="/?book,beyond-lies-the-wub&author,philip-k-dick" host=sffaudio-search.herokuapp.com request_id= 
-46c1ef4a-30ed-4287-bf08-1f2a5d97f84b fwd="69.172.166.89" dyno=web.1 connect=1ms service=30000ms status=503 bytes=0 protocol=https                                                                          
-2019-01-12T02:01:22.904699+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=sffaudio-search.herokuapp.com request_id=8d4708f6-526a-458e-a54e-b1dfd159d16e fwd="69.172.166.89" dyno=web.1  
-connect=1ms service=28ms status=200 bytes=1434 protocol=https                                                                                                                                              
-2019-01-12T02:01:56.364417+00:00 heroku[run.5554]: Process exited with status 127                                                                                                                          
-PS D:\github\neo>                                                                                                                                                                                          
+2019-01-16T17:17:03.786456+00:00 app[web.1]: ####################
+2019-01-16T17:17:03.786536+00:00 app[web.1]: MATCH (n_version:L_VERSION)
+2019-01-16T17:17:03.786538+00:00 app[web.1]: WITH n_version.current_version as v_db_version
+2019-01-16T17:17:03.786539+00:00 app[web.1]: MATCH (n_default:L_DEFAULT )
+2019-01-16T17:17:03.786540+00:00 app[web.1]: WHERE n_default.db_version=v_db_version
+2019-01-16T17:17:03.786541+00:00 app[web.1]: RETURN v_db_version, n_default.default_code
+2019-01-16T17:17:03.786597+00:00 app[web.1]: ####################
+2019-01-16T17:17:03.877271+00:00 heroku[web.1]: State changed from crashed to starting
+2019-01-16T17:17:13.784587+00:00 heroku[web.1]: State changed from starting to up
+2019-01-16T18:25:23.053895+00:00 heroku[router]: at=info method=GET path="/?author,philip-k-dick" host=sffaudio-search.herokuap

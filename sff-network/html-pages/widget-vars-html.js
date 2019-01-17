@@ -238,7 +238,8 @@ function widgetHtml(graph_div_id, author_links, book_links) {
 
 #bottom--icons-row {
     display: flex;
-    height: 27px
+    height: 27px;
+    margin-bottom:-27px;
 }
 
 #bottom--move--up {

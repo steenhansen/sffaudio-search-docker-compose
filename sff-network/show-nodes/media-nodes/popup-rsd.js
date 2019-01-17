@@ -1,7 +1,4 @@
 
-
-
-var load_css_external = `
 //popup-rsd
 sff_js_vars.rsd_procs = (function (rsd_close_svg) {
 
@@ -73,6 +70,5 @@ sff_js_vars.rsd_procs = (function (rsd_close_svg) {
 }(sff_js_vars.graph_vars.node_icons.I_CLOSE_RSD.image))
 //popup-rsd end
 
-`;
-module.exports = load_css_external; 
+
 

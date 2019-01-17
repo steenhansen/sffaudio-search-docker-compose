@@ -69,6 +69,9 @@ module.exports = function (graph_db) {
             return graph_db.sqlParams(sql, params);
         }
 
+
+
+// 
         static getDefaultAuthors() {
             var sql = ` MATCH (n_version:L_VERSION) 
                          WITH n_version.current_version as v_db_version

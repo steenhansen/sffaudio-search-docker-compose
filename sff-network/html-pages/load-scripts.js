@@ -1,8 +1,4 @@
-module.exports = function (main_start_proc_name) {
 
-    var load_scripts = `
-// load-scripts
-var sff_browser_js_start = ${main_start_proc_name};
 
 // https://tc39.github.io/ecma262/#sec-array.prototype.find   for IE
 if (!Array.prototype.find) {
@@ -55,7 +51,7 @@ function loadCss(url_href) {
 
 function loadScripts() {
     if (('vis' in window) && ('pdfjs-dist/build/pdf' in window) && ('Promise' in window) && ('fetch' in window)) {
-        sff_browser_js_start('polyfill_none');
+        sff_constants.START_FUNC('polyfill_none');
     } else {
         var vis_code_2 = 'https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js';
         var vis_css_2 = 'https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css';
@@ -77,7 +73,7 @@ function loadScripts() {
 
             function getPromiseAndFetch() {
                 if (('Promise' in window) && ('fetch' in window)) {
-                    sff_browser_js_start('polyfill_loaded');
+                    sff_constants.START_FUNC('polyfill_loaded');
                 } else {
                     var promise_poly_1 = 'https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.2/bluebird.min.js';
                     var promise_poly_2 = 'https://unpkg.com/bluebird@3.5.2/js/browser/bluebird.min.js';
@@ -98,13 +94,13 @@ function loadScripts() {
 
                             function checkUnFetchPoly(unfetch_status) {
                                 if (unfetch_status === 'polyfill_loaded') {
-                                    sff_browser_js_start('polyfill_loaded');
+                                    sff_constants.START_FUNC('polyfill_loaded');
                                 } else {
-                                    loadScript(fetch_poly_2, sff_browser_js_start);
+                                    loadScript(fetch_poly_2, sff_constants.START_FUNC);
                                 }
                             };
                         } else {
-                            sff_browser_js_start(bluebird_status);
+                            sff_constants.START_FUNC(bluebird_status);
                         }
                     };
                 }
@@ -115,8 +111,5 @@ function loadScripts() {
 
 loadScripts();
 //load-scripts end
-`;
-    return load_scripts;
 
-}
 

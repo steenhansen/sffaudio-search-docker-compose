@@ -1,5 +1,4 @@
-var sff_helpers_js = `
-// helper-functions
+// helper-functions start
 sff_js_vars.helpers = (function () {
 
     var my = {};
@@ -63,6 +62,5 @@ sff_js_vars.helpers = (function () {
     return my;
 
 }());
-// helper-functions-end
-`;
-module.exports = sff_helpers_js;
+// helper-functions end
+

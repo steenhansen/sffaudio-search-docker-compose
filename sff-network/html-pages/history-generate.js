@@ -1,5 +1,3 @@
- 
-var history_generate = `
 //history-generate
 
 sff_js_vars.history_generate = (function () {
@@ -93,5 +91,3 @@ sff_js_vars.history_generate = (function () {
 
 }());
 // history-generate end
-`;
-module.exports = history_generate;

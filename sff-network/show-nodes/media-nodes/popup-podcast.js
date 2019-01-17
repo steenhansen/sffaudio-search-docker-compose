@@ -1,6 +1,4 @@
 
-
-var load_css_external = `
 //popup-podcast
 sff_js_vars.podcast_procs = (function (podcast_close_svg) {
 
@@ -46,8 +44,7 @@ sff_js_vars.podcast_procs = (function (podcast_close_svg) {
 }(sff_js_vars.graph_vars.node_icons.I_CLOSE_PODCAST.image))
 
 //popup-podcast end
-`;
-module.exports = load_css_external; 
+
 
 
 

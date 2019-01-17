@@ -1,4 +1,4 @@
-var load_css_external = `
+
 // popup-book-post
 
 sff_js_vars.book_post_procs = (function (post_close_svg, post_proxy) {
@@ -52,8 +52,6 @@ sff_js_vars.book_post_procs = (function (post_close_svg, post_proxy) {
 }(sff_js_vars.graph_vars.node_icons.I_CLOSE_POST.image, sff_js_vars.post_vars.post_proxy))
 
 // popup-book-post end
-`;
-module.exports = load_css_external; 
 
 
 

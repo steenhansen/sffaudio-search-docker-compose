@@ -1,6 +1,4 @@
-let {BOOK_PAGE_TYPE, AUTHOR_PAGE_TYPE, AUTHOR_BOOK_SEPARATOR, MAX_ZOOM,MIN_ZOOM,ZOOM_STEP} = rootAppRequire('sff-network/graph-constants');
-
-var load_css_external = `
+// browser-graph start
 sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph_info, edge_options) {
     var my = {
         network_graph: {},
@@ -13,13 +11,13 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
         var self = this;
         my.network_graph.on("zoom", function (params) {
             if (params.direction === '+') {
-                if (params.scale >${MAX_ZOOM}) {
-                    my.network_graph.moveTo({scale:${MAX_ZOOM}});
+                if (params.scale > sff_constants.MAX_ZOOM) {
+                    my.network_graph.moveTo({scale: sff_constants.MAX_ZOOM});
                 }
 
             } else {
-                if (params.scale <${MIN_ZOOM}) {
-                    my.network_graph.moveTo({scale:${MIN_ZOOM}});
+                if (params.scale < sff_constants.MIN_ZOOM) {
+                    my.network_graph.moveTo({scale: sff_constants.MIN_ZOOM});
                 }
             }
         });
@@ -28,12 +26,12 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
     my.graphSize = function (movement_dir) {
         var current_scale = my.network_graph.getScale();
         if (movement_dir === '+') {
-            if (current_scale <=${MAX_ZOOM}) {
-                current_scale += ${ZOOM_STEP};
+            if (current_scale <= sff_constants.MAX_ZOOM) {
+                current_scale += sff_constants.ZOOM_STEP;
             }
         } else {
-            if (current_scale >=${MIN_ZOOM}) {
-                current_scale -= ${ZOOM_STEP};
+            if (current_scale >= sff_constants.MIN_ZOOM) {
+                current_scale -= sff_constants.ZOOM_STEP;
             }
         }
         my.network_graph.moveTo({scale: current_scale});
@@ -80,8 +78,8 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
     my.startGraph = function (graph_id, nodes_string, edges_string, graph_physics, php_search_term) {
         my.loadGraph(graph_id, nodes_string, edges_string, graph_info.graph_physics, php_search_term);
         if (php_search_term === '') {
-            if (graph_info.graph_type == '${BOOK_PAGE_TYPE}') {
-                var author_colons_title = graph_info.strip_author + '${AUTHOR_BOOK_SEPARATOR}' + graph_info.under_title;
+            if (graph_info.graph_type == sff_constants.BOOK_PAGE_TYPE) {
+                var author_colons_title = graph_info.strip_author + sff_constants.AUTHOR_BOOK_SEPARATOR + graph_info.under_title;
                 sff_js_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')
             } else {
                 sff_js_vars.filter_names.selectMedia(graph_info.strip_author, 'AUTHOR-CHOICE')
@@ -104,11 +102,11 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                 } else {
                     var hover_name = node_type.substring(2);
                     if (node_type == 'L_BOOK') {
-                        if (sff_js_vars.graph_vars.graph_info.graph_type === '${BOOK_PAGE_TYPE}') {
+                        if (sff_js_vars.graph_vars.graph_info.graph_type === sff_constants.BOOK_PAGE_TYPE) {
                             return
                         }
                     } else if (node_type == 'L_AUTHOR') {
-                        if (sff_js_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
+                        if (sff_js_vars.graph_vars.graph_info.graph_type === sff_constants.AUTHOR_PAGE_TYPE) {
                             return
                         }
                     }
@@ -157,11 +155,11 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                 if (node_type.indexOf('HELP_') === 0) {
                     sff_js_vars.graph_procs.loadAuthorNew(the_node.node_type)
                 } else if (node_type == 'L_BOOK') {
-                    if (sff_js_vars.graph_vars.graph_info.graph_type !== '${BOOK_PAGE_TYPE}') {
+                    if (sff_js_vars.graph_vars.graph_info.graph_type !== sff_constants.BOOK_PAGE_TYPE) {
                         my.loadBookNew(last_first_underscores, under_title)
                     }
                 } else if (node_type == 'L_AUTHOR') {
-                    if (sff_js_vars.graph_vars.graph_info.graph_type !== '${AUTHOR_PAGE_TYPE}') {
+                    if (sff_js_vars.graph_vars.graph_info.graph_type !== sff_constants.AUTHOR_PAGE_TYPE) {
                         my.loadAuthorNew(strip_author)
                     }
                 } else if (node_type == 'L_PDF') {
@@ -176,7 +174,6 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                     sff_js_vars.author_post_procs.historyAuthorPost(goto_url, strip_author, 'post_author', sorted_choice);
                 } else if (node_type == 'L_BOOK_POST') {
                     sff_js_vars.book_post_procs.historyBookPost(goto_url, last_first_underscores, under_title, 'post_book', sorted_choice);
-                  //  sff_js_vars.book_post_procs.historyBookPost(goto_url, strip_author, under_title, 'post_book', sorted_choice);
                 } else if (typeof goto_url !== 'undefined') {
                     window.location = goto_url;
                 }
@@ -219,7 +216,7 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
     }
 
     my.loadBookNew = function (strip_author, under_title) {
-        var author_colons_title = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
+        var author_colons_title = strip_author + sff_constants.AUTHOR_BOOK_SEPARATOR + under_title;
         if (sff_js_vars.filter_names.selectMedia(author_colons_title, 'BOOK-CHOICE')) {
             var book_json = sff_js_vars.history_state.pushBook(strip_author, under_title);
             sff_js_vars.filter_names.colorBooks();
@@ -261,11 +258,3 @@ function sff_leave(id) {
 }
 
 // browser-graph end
-`;
-
-
-module.exports = load_css_external; 
-
-
-
-

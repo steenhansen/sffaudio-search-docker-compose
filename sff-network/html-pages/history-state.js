@@ -1,6 +1,3 @@
-let {AUTHOR_BOOK_SEPARATOR} = rootAppRequire('sff-network/graph-constants');
-
-var sff_history_state = `
 //history-state
 sff_js_vars.history_state = (function (path_name) {
 
@@ -21,7 +18,7 @@ sff_js_vars.history_state = (function (path_name) {
     my.pushBook = function (strip_author, under_title) {
         var page_type = 't::book';
         var page_query = path_name + '?book=' + under_title + '&author=' + strip_author;
-        var author_colons_book = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
+        var author_colons_book = strip_author + sff_constants.AUTHOR_BOOK_SEPARATOR + under_title;
         var url_type = sff_js_vars.ajax_url + sff_js_vars.ROUTE_START_BOOK + strip_author + '/' + under_title;
         statePush(page_type, url_type, author_colons_book, page_query, '', '');
         return url_type;
@@ -30,7 +27,7 @@ sff_js_vars.history_state = (function (path_name) {
     my.replaceBook = function (strip_author, under_title) {
         var page_type = 't::book';
         var page_query = path_name + '?book=' + under_title + '&author=' + strip_author;
-        var author_colons_book = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
+        var author_colons_book = strip_author + sff_constants.AUTHOR_BOOK_SEPARATOR + under_title;
         var url_type = sff_js_vars.ajax_url + sff_js_vars.ROUTE_START_BOOK + strip_author + '/' + under_title;
         stateReplace(page_type, url_type, author_colons_book, page_query);
         return url_type;
@@ -83,7 +80,7 @@ sff_js_vars.history_state = (function (path_name) {
     my.pushViewBook = function (strip_author, under_title, view_type, sorted_choice) {
         var page_type = 't::book::view';
         var page_query = path_name + '?book=' + under_title + '&author=' + strip_author + '&view=' + view_type + '&choice=' + sorted_choice;
-        var author_colons_book = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
+        var author_colons_book = strip_author + sff_constants.AUTHOR_BOOK_SEPARATOR + under_title;
         var url_type = sff_js_vars.ajax_url + sff_js_vars.ROUTE_START_BOOK + strip_author + '/' + under_title + '/' + view_type + '/' + sorted_choice;
         statePush(page_type, url_type, author_colons_book, page_query, view_type, sorted_choice);
         return url_type;
@@ -169,6 +166,4 @@ sff_js_vars.history_state = (function (path_name) {
 
 }(sff_js_vars.path_name));
 //history-state-end
-`;
 
-module.exports = sff_history_state; 

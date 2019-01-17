@@ -23,7 +23,7 @@
  * 
  * 
  *  Modify WordPress Page - Search
- *    add [graph-search-component] to the HTML
+ *    add [graph_search_component] to the HTML
  *    and page attributes
  *          - NO PARENT
  *          - Default Template
@@ -121,11 +121,11 @@ if (!class_exists('SffGraphSearch')) {
 // s=philip+k+dick => search_term=philip-k-dick
         static function whatSearch($search_term)
         {
-
-            if ($search_term) {
-                $search_dashes = str_replace('+', '-', $search_term);
-            } else {
-                $search_dashes = '';
+            $search_dashes = '';
+            if (is_string($search_term)) {
+                if (strlen($search_term)>0) {
+                    $search_dashes = str_replace('+', '-', $search_term);
+                }
             }
             return $search_dashes;
         }

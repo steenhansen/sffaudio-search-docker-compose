@@ -13,10 +13,7 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
     console.log(message);
   return false;
 };
-</script>
 
-
-<script>
 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 ga('create', 'UA-XXXXX-Y', 'auto');
 ga('send', 'pageview');
@@ -37,7 +34,7 @@ body.busy--cursor * {
     display: flex;
     flex-direction: column;
     width: 570px;
-    height: 800px;
+   /* height: 800px;       */
 }
 
 @media only screen

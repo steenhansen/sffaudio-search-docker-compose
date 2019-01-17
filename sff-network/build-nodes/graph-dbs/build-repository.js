@@ -318,6 +318,22 @@ module.exports = class BuildRepository {
 
 
     makeIndexes() {   /// 80751
+    
+    /*
+    
+    
+    PROFILE MATCH (n_version:L_VERSION) 
+                         WITH n_version.current_version as v_db_version
+                            RETURN v_db_version
+    
+     */
+    
+    
+    // CREATE INDEX ON :L_VERSION(current_version)
+    // DROP INDEX ON :L_VERSION(current_version)
+    
+    // CREATE CONSTRAINT ON (n_version:L_VERSION) ASSERT n_version.current_version IS UNIQUE
+    //  DROP CONSTRAINT ON  (n_version:L_VERSION) ASSERT n_version.current_version IS UNIQUE
         var db_version = this.db_version;
         var params = {db_version};
         var author_index = `CREATE INDEX ON :L_AUTHOR(strip_author)`;

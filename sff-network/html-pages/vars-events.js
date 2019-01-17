@@ -1,9 +1,4 @@
-
-let {AUTHOR_BOOK_SEPARATOR} = rootAppRequire('sff-network/graph-constants');
-
-var sff_js_vars_events;
-sff_js_vars_events = `
-// vars-events
+// vars-events start
 
 window.sff_js_vars = {};
 
@@ -46,8 +41,8 @@ sff_js_vars.vars_events = (function () {
         } else {
             search_for = '"' + search_for + '"';
         }
-        var author_button = 'Search authors for\\n' + search_for;
-        var story_button = 'Search stories for\\n' + search_for;
+        var author_button = 'Search authors for\n' + search_for;
+        var story_button = 'Search stories for\n' + search_for;
         document.getElementById('do--author--filter').innerText = author_button;
         document.getElementById('do--story--filter').innerText = story_button;
     }
@@ -98,7 +93,7 @@ sff_js_vars.vars_events = (function () {
     }
 
     my.chooseIfSingleAuthor = function (search_term) {
-        var not_found_text = search_term + '" not found.\\nSearch for text on Google?';
+        var not_found_text = search_term + '" not found.\nSearch for text on Google?';
         sff_js_vars.NO_SUCH_AUTHOR[0].label = 'Author "' + not_found_text;
         sff_js_vars.NO_SUCH_BOOK[0].label = 'Story "' + not_found_text;
         var search_pluses = search_term.replace(' ', '+');
@@ -122,7 +117,7 @@ sff_js_vars.vars_events = (function () {
             var strip_author = author_book.strip_author;
             var under_title = author_book.under_title;
             sff_js_vars.graph_procs.loadBookNew(strip_author, under_title);
-            var author_book = strip_author + '${AUTHOR_BOOK_SEPARATOR}' + under_title;
+            var author_book = strip_author + sff_constants.AUTHOR_BOOK_SEPARATOR + under_title;
             sff_js_vars.filter_names.selectMedia(author_book, 'BOOK-CHOICE')
             sff_js_vars.filter_names.colorBooks();
             var book_object = {strip_author: strip_author, under_title: under_title};
@@ -136,5 +131,4 @@ sff_js_vars.vars_events = (function () {
 
 }());
 // vars-events end
-`;
-module.exports = sff_js_vars_events;
+

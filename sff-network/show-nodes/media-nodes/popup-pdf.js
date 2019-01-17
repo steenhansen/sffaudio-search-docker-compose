@@ -1,5 +1,4 @@
 
-    var load_css_external = `
 //popup-pdf    
 sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
 
@@ -162,8 +161,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     sff_js_vars.graph_vars.node_icons.I_CLOSE_PDF.image
 ))
 //popup-pdf 
-`;
-module.exports = load_css_external; 
+
 
 
 

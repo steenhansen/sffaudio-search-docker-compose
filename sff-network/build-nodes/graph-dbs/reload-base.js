@@ -104,6 +104,15 @@ class reloadBase {
                         .then(()=> makeLinks(graphs_edges, build_repository, show_or_hide_seconds))
                         .then(()=> makeCaches(graphs_edges, next_db_version, absolute_data_dir, show_or_hide_seconds))
                         .then(()=> doCacheClear())
+                        .catch(function (e) {
+                            console.log('after doCacheClear, maybe site down', e);
+                        })
+                        .finally(()=> {
+                            console.log('reload-db done');
+                            return;
+                        })
+
+
                 }
             )
     }

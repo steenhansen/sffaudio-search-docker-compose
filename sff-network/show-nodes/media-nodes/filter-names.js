@@ -1,14 +1,3 @@
-let {AUTHOR_BOOK_SEPARATOR, END_BOOK_LIST, END_AUTHOR_LIST} = rootAppRequire('sff-network/graph-constants');
-
-
-var graph_constants = rootAppRequire('sff-network/graph-constants');
-var dark_background = graph_constants.DARK_BACKGROUND
-var light_background = graph_constants.LIGHT_BACKGROUND
-
-
-module.exports =  function (URL_SEPARATOR) {    
-
-var filter_names = `
 // filter-names
 sff_js_vars.filter_names = (function (graph_id) {
 
@@ -28,7 +17,7 @@ sff_js_vars.filter_names = (function (graph_id) {
             if (div_id !== '') {
                 if (div_id.indexOf(search_underscore) > -1) {
                     var copy_choice = choice_node.cloneNode(true);
-                    copy_choice.id = 'filter' + '${URL_SEPARATOR}' + copy_choice.id;
+                    copy_choice.id = 'filter' + sff_constants.URL_SEPARATOR + copy_choice.id;
                     filter_div.appendChild(copy_choice);
                     var on_click_func = choice_node.onclick;
                     var func_str = on_click_func.toString();
@@ -80,11 +69,11 @@ sff_js_vars.filter_names = (function (graph_id) {
     }
 
     my.colorAuthors = function () {
-        sff_js_vars.filter_names.authorsBooksColor('${dark_background}', '${light_background}')
+        sff_js_vars.filter_names.authorsBooksColor(sff_constants.DARK_BACKGROUND, sff_constants.LIGHT_BACKGROUND)
     }
 
     my.colorBooks = function () {
-        sff_js_vars.filter_names.authorsBooksColor('${light_background}', '${dark_background}')
+        sff_js_vars.filter_names.authorsBooksColor(sff_constants.LIGHT_BACKGROUND, sff_constants.DARK_BACKGROUND)
     }
 
     my.authorsBooksColor = function (author_color, book_color) {
@@ -100,7 +89,7 @@ sff_js_vars.filter_names = (function (graph_id) {
             if (elem) {
                 elem.classList.remove('current__media');
             }
-            var elem_filter = document.getElementById('filter' + '${URL_SEPARATOR}' + my.last_selected_media);
+            var elem_filter = document.getElementById('filter' + sff_constants.URL_SEPARATOR + my.last_selected_media);
             if (elem_filter != null) {
                 elem_filter.classList.remove('current__media');
             }
@@ -113,7 +102,7 @@ sff_js_vars.filter_names = (function (graph_id) {
         if (elem != null) {
             elem.classList.add('current__media');
             elem.scrollIntoView();
-           // var container = document.getElementById(graph_id);
+            // var container = document.getElementById(graph_id);
             //container.scrollIntoView();
             var my_network = document.getElementById('my--network');
             my_network.scrollIntoView();
@@ -123,14 +112,14 @@ sff_js_vars.filter_names = (function (graph_id) {
     my.selectMedia = function (media_id_short, author_book_choice) {
         my.clearLast()
         if (author_book_choice === 'BOOK-CHOICE') {
-            var author_book_array = media_id_short.split('${AUTHOR_BOOK_SEPARATOR}');
+            var author_book_array = media_id_short.split(sff_constants.AUTHOR_BOOK_SEPARATOR);
             var under_title = author_book_array[1];
-            var media_id = under_title + '${END_BOOK_LIST}';
+            var media_id = under_title + sff_constants.END_BOOK_LIST;
         } else {
-            var media_id = media_id_short + '${END_AUTHOR_LIST}';
+            var media_id = media_id_short + sff_constants.END_AUTHOR_LIST;
         }
         my.highlightSelection(media_id)
-        my.highlightSelection('filter' + '${URL_SEPARATOR}' + media_id)
+        my.highlightSelection('filter' + sff_constants.URL_SEPARATOR + media_id)
         my.last_selected_media = media_id;
         return true;
     }
@@ -141,7 +130,7 @@ sff_js_vars.filter_names = (function (graph_id) {
             the_container.removeChild(the_container.firstChild);
         }
     }
-    
+
     my.nothingFound = function (no_such_type) {
         sff_js_vars.filter_names.clearLast();
         var nodes_string = no_such_type;
@@ -150,13 +139,13 @@ sff_js_vars.filter_names = (function (graph_id) {
         var no_php_search = '';
         sff_js_vars.graph_procs.loadGraph('my--graph', nodes_string, edges_string, graph_physics, no_php_search);
     }
-    
+
     my.stopFilteringAuthors = function () {
         my.showHideFilteredAuthors('all_media');
         clearFiltered('filter--authors');
     }
 
-    my.showHideFilteredAuthors = function (showing_type) {  
+    my.showHideFilteredAuthors = function (showing_type) {
         if (showing_type === 'all_media') {
             sff_js_vars.helpers.setDisplay("all--authors", 'block');
             sff_js_vars.helpers.setDisplay('filter--authors', 'none');
@@ -176,7 +165,7 @@ sff_js_vars.filter_names = (function (graph_id) {
         clearFiltered('filter--books');
     }
 
-    my.showHideFilteredStories = function (showing_type) {   
+    my.showHideFilteredStories = function (showing_type) {
         if (showing_type === 'all_media') {
             sff_js_vars.helpers.setDisplay("all--books", 'block');
             sff_js_vars.helpers.setDisplay('filter--books', 'none');
@@ -187,7 +176,7 @@ sff_js_vars.filter_names = (function (graph_id) {
     }
 
     function spacesToUrlSeparator(author_title) {
-        var underscore_author_title = author_title.replace(/ /g, '${URL_SEPARATOR}');
+        var underscore_author_title = author_title.replace(/ /g, sff_constants.URL_SEPARATOR);
         return underscore_author_title;
     }
 
@@ -207,11 +196,6 @@ sff_js_vars.filter_names = (function (graph_id) {
 
 }(sff_js_vars.graph_vars.graph_id))
 // filter-names end
-`;
-return filter_names;
-}
-//module.exports = load_css_external; filter_names
-
 
 
 
