@@ -72,7 +72,8 @@ const program_variables = fromAppRoot('sff-network/program-variables.js');
 var random_quality = fromAppRoot('sff-network/html-pages/random-quality.js');
 
 
-let {URL_SEPARATOR, DARK_BACKGROUND, LIGHT_BACKGROUND, BOOK_PAGE_TYPE, AUTHOR_PAGE_TYPE, AUTHOR_BOOK_SEPARATOR, MAX_ZOOM,MIN_ZOOM,ZOOM_STEP, END_BOOK_LIST, END_AUTHOR_LIST} = rootAppRequire('sff-network/graph-constants');
+let {URL_SEPARATOR, DARK_BACKGROUND, LIGHT_BACKGROUND, BOOK_PAGE_TYPE, AUTHOR_PAGE_TYPE, AUTHOR_BOOK_SEPARATOR, MAX_ZOOM,MIN_ZOOM,ZOOM_STEP, 
+HELP_FONT, ERROR_FONT, END_BOOK_LIST, END_AUTHOR_LIST} = rootAppRequire('sff-network/graph-constants');
 
 module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view, req_query_choice, nodes_and_edges_str) {
     if (graph_object.under_title) {
@@ -149,8 +150,8 @@ const js_random_quality= readFilePromise(random_quality, 'utf8');
 			    "MIN_ZOOM"   : "${MIN_ZOOM}",
 			    "ZOOM_STEP"   : "${ZOOM_STEP}",
 			    
-			    "HELP_FONT" :    {"size": 16, "color": "yellow" } ,
-			    "ERROR_FONT" :  {"size": 16, "color": "red" },
+			    "HELP_FONT" :      ${HELP_FONT},
+			    "ERROR_FONT" :  ${ERROR_FONT},
 			    "START_FUNC" : mainStart,
 			    "END_BOOK_LIST" : "${END_BOOK_LIST}",
 			    "END_AUTHOR_LIST" : "${END_AUTHOR_LIST}",

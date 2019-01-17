@@ -364,205 +364,205 @@
   "": ""
  },
  {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
   "id": "http://www.sffaudio.com/?p=83",
-  "title": "Review of <B>Salem's Lot</B> by Stephen King",
-  "author": "salems-lot-by-stephen-king-read-by-ron-mclarty",
-  "book": "",
+  "title": "Review",
+  "author": "Stephen King",
+  "book": "Salem's Lot",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2130",
-  "title": "Review of <B>Seeker: Book One of the Noble Warriors</B> by William Nicholson",
-  "author": "review-of-seeker-book-one-of-the-noble-warriors-by-william-nicholson",
-  "book": "",
+  "title": "Review",
+  "author": "William Nicholson",
+  "book": "Seeker: Book One of the Noble Warriors",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3637",
-  "title": "Review of <b>Simon Bloom, the Gravity Keeper</b> by Michael Reisman",
-  "author": "review-of-simon-bloom-the-gravity-keeper-by-michael-reisman",
-  "book": "",
+  "title": "Review",
+  "author": "Michael Reisman",
+  "book": "Simon Bloom, the Gravity Keeper",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3387",
-  "title": "Review of <b>Slasher</b> by F. Paul Wilson",
-  "author": "review-of-slasher-by-f-paul-wilson",
-  "book": "",
+  "title": "Review",
+  "author": "F. Paul Wilson",
+  "book": "Slasher",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=340",
-  "title": "Review of <b>Soldier of the Legion</b> by Marshall S. Thomas",
-  "author": "soldier-of-the-legion-by-marshall-s-thomas-per",
-  "book": "",
+  "title": "Review",
+  "author": "Marshall S. Thomas",
+  "book": "Soldier of the Legion",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3275",
-  "title": "Review of <b>Something Wicked This Way Comes</b> by Ray Bradbury",
-  "author": "review-of-something-wicked-this-way-comes-by-ray-bradbury",
-  "book": "",
+  "title": "Review",
+  "author": "Ray Bradbury",
+  "book": "Something Wicked This Way Comes",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2403",
-  "title": "Review of <b>Star Trek: Vulcan's Soul Book 3: Epiphany</b> by Josepha Sherman and Susan Shwartz",
-  "author": "review-of-star-trek-vulcans-soul-book-3-epiphany-by-josepha-sherman-and-susan-shwartz",
-  "book": "",
+  "title": "Review",
+  "author": "Josepha Sherman and Susan Shwartz",
+  "book": "Star Trek: Vulcan's Soul Book 3: Epiphany",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1054",
-  "title": "Review of <B>Storm Front</B> by Jim Butcher",
-  "author": "review-of-storm-front-by-jim-butcher",
-  "book": "",
+  "title": "Review",
+  "author": "Jim Butcher",
+  "book": "Storm Front",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3244",
-  "title": "Review of <B>The Accidental Time Machine</b> by Joe Haldeman",
-  "author": "review-of-the-accidental-time-machine-by-joe-haldeman",
-  "book": "",
+  "title": "Review",
+  "author": "Joe Haldeman",
+  "book": "The Accidental Time Machine",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2981",
-  "title": "Review of <b>The Dark Worlds of H.P. Lovecraft, Volume 5</b> by H.P. Lovecraft",
-  "author": "review-of-the-dark-worlds-of-hp-lovecraft-volume-5-by-hp-lovecraft",
-  "book": "",
+  "title": "Review",
+  "author": "H.P. Lovecraft",
+  "book": "The Dark Worlds of H.P. Lovecraft, Volume 5",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3045",
-  "title": "Review of <B>The Dreaming Void</B> by Peter F. Hamilton",
-  "author": "review-of-the-dreaming-void-by-peter-f-hamilton",
-  "book": "",
+  "title": "Review",
+  "author": "Peter F. Hamilton",
+  "book": "The Dreaming Void",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=379",
-  "title": "Review of <b>The First Men in the Moon</b> by H.G. Wells",
-  "author": "the-first-men-in-the-moon-by-hg-wells-performed",
-  "book": "",
+  "title": "Review",
+  "author": "H.G. Wells",
+  "book": "The First Men in the Moon",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2405",
-  "title": "Review of <B>The Ghost Brigades</B> by John Scalzi",
-  "author": "review-of-the-ghost-brigades-by-john-scalzi",
-  "book": "",
+  "title": "Review",
+  "author": "John Scalzi",
+  "book": "The Ghost Brigades",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=456",
-  "title": "Review of <b>The Goose Girl</b> by Shannon Hale",
-  "author": "review-the-goose-girl-by-shannon-hale",
-  "book": "",
+  "title": "Review",
+  "author": "Shannon Hale",
+  "book": "The Goose Girl",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3396",
-  "title": "Review of <B>The Great Secret</B> by L. Ron Hubbard",
-  "author": "review-of-the-great-secret-by-l-ron-hubbard",
-  "book": "",
+  "title": "Review",
+  "author": "L. Ron Hubbard",
+  "book": "The Great Secret",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3457",
-  "title": "Review of <b>The Grist Mill: God of the Razor and If You Take My Hand, My Son</b>",
-  "author": "review-of-the-grist-mill-god-of-the-razor-and-if-you-take-my-hand-my-son",
-  "book": "",
+  "title": "Review",
+  "author": "Joe R. Lansdale and Mort Castle",
+  "book": "The Grist Mill: God of the Razor and If You Take My Hand, My Son",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=222",
-  "title": "Review of <B>The Shining</B> by Stephen King",
-  "author": "the-shining-by-stephen-king-read-by-campbell-scot",
-  "book": "",
+  "title": "Review",
+  "author": "Stephen King",
+  "book": "The Shining",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=61",
-  "title": "Review of <B>The Twilight Zone No. 2 - Walking Distance</B> by Rod Serling",
-  "author": "the-twilight-zone-no-2-walking-distance-by-rod",
-  "book": "",
+  "title": "Review",
+  "author": "Rod Serling",
+  "book": "The Twilight Zone No. 2 - Walking Distance",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=347",
-  "title": "Review of <b>The Wonderful Wizard of Oz</b> By L. Frank Baum",
-  "author": "the-wonderful-wizard-of-oz-by-l-frank-baum-read",
-  "book": "",
+  "title": "Review",
+  "author": "L. Frank Baum",
+  "book": "The Wonderful Wizard of Oz",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3089",
-  "title": "Review of <b>Toy Trouble</b> by Engle and Barnes",
-  "author": "review-of-toy-trouble-by-engle-and-barnes",
-  "book": "",
+  "title": "Review",
+  "author": "Engle and Barnes",
+  "book": "Toy Trouble",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=138",
-  "title": "Review of <B>Very Bad Deaths</B> by Spider Robinson",
-  "author": "very-bad-deaths-by-spider-robinson-read-by-spider",
-  "book": "",
+  "title": "Review",
+  "author": "Spider Robinson",
+  "book": "Very Bad Deaths",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=4090",
-  "title": "Review of <b>Voodoo Planet</b> by Andre Norton",
-  "author": "review-of-voodoo-planet-by-andre-norton",
-  "book": "",
+  "title": "Review",
+  "author": "Andre Norton",
+  "book": "Voodoo Planet",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=43393",
-  "title": "Review of 14 by Peter Clines",
-  "author": "review-of-14-by-peter-clines",
-  "book": "",
+  "title": "Review",
+  "author": "Peter Clines",
+  "book": "14",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=52117",
-  "title": "Review of 1634: The Baltic War by Eric Flint and David Weber",
-  "author": "review-of-1634-the-baltic-war-by-eric-flint-and-david-weber",
-  "book": "",
+  "title": "Review",
+  "author": "Eric Flint and David Weber",
+  "book": "1634: The Baltic War",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=646",
-  "title": "Review of 20,000 Leagues Under The Sea by Jules Verne",
-  "author": "20000-leagues-under-the-sea",
+  "title": "Review",
+  "author": "Jules Verne",
+  "book": "20,000 Leagues Under The Sea",
+  "": ""
+ },
+ {
+  "id": "http://www.sffaudio.com/?p=1088",
+  "title": "Review",
+  "author": "Robert A. Heinlein and Harlan Ellison",
+  "book": "2000X: Tales of the Next Millenia",
+  "": ""
+ },
+ {
+  "id": "http://www.sffaudio.com/?p=1107",
+  "title": "Review",
+  "author": "William Gibson",
+  "book": "Neuromancer",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
   "book": "",
   "": ""
  },
@@ -3241,9 +3241,9 @@
   "": ""
  },
  {
-  "id": "http://www.sffaudio.com/?p=1107",
-  "title": "Review of Neuromancer by William Gibson",
-  "author": "review-of-neuromancer-by-william-gibson",
+  "id": "",
+  "title": "",
+  "author": "",
   "book": "",
   "": ""
  },
