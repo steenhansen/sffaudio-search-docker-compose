@@ -113,7 +113,6 @@ sff_js_vars.vars_events = (function () {
 
     my.chooseIfSingleBook = function (search_term) {
         var author_book = sff_js_vars.filter_names.filterStories(search_term);
-        console.log('chooseIfSingleBook', author_book)
         if (author_book !== '') {
             var strip_author = author_book.strip_author;
             var under_title = author_book.under_title;

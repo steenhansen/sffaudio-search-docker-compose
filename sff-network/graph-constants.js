@@ -32,7 +32,7 @@ var graph_constants = {
     POST_COLOR: "#019CCD",
     WIKI_COLOR: '#FF7F01',
     
-        HELP_FONT :   " {size: 16, color: '#868A08' }" ,
+        HELP_FONT :   " {size: 16, color: '#5F4C0B' }" ,
 			    ERROR_FONT :  "{size: 16, color: '#DF0101' }",
     
     EDGE_OPTIONS: {

@@ -48,10 +48,8 @@ sff_js_vars.filter_names = (function (graph_id) {
         return strip_author;
     }
     my.filterStories = function (search_for) {
-       console.log('filterStories', search_for)
         var author_book = ''
         var search_underscore = alphaUnderscore(search_for);
-             console.log('filterStories', search_underscore)
         if (search_underscore === '') {
             my.stopFilteringStories()
         } else {
@@ -185,14 +183,12 @@ sff_js_vars.filter_names = (function (graph_id) {
     function stripToLower(csv_string) {
         var lower_csv = csv_string.toLowerCase();
         var lower_stripped = lower_csv.replace(/[^0-9a-z -]/gi, '');
-        console.log('stripToLower', lower_stripped)
         return lower_stripped.trim();
     }
 
     function alphaUnderscore(book_or_author) {
         var lower_striped = stripToLower(book_or_author);
         var lower_underscored = spacesToUrlSeparator(lower_striped);
-        console.log('alphaUnderscore', lower_underscored)
         return lower_underscored;
     }
 
