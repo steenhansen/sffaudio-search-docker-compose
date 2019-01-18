@@ -109,10 +109,8 @@ class reloadBase {
                         })
                         .finally(()=> {
                             console.log('reload-db done');
-                            return;
                         })
-
-
+                        return;
                 }
             )
     }

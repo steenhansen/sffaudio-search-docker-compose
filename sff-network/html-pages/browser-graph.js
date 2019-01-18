@@ -171,6 +171,7 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                 } else if (node_type == 'L_RSD_VIDEO') {
                     sff_js_vars.rsd_procs.historyRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd', sorted_choice);
                 } else if (node_type == 'L_AUTHOR_POST') {
+                
                     sff_js_vars.author_post_procs.historyAuthorPost(goto_url, strip_author, 'post_author', sorted_choice);
                 } else if (node_type == 'L_BOOK_POST') {
                     sff_js_vars.book_post_procs.historyBookPost(goto_url, last_first_underscores, under_title, 'post_book', sorted_choice);

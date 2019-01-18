@@ -553,520 +553,520 @@
   "": ""
  },
  {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "http://www.sffaudio.com/?p=1088",
-  "title": "Review of 2000X: Tales of the Next Millenia",
-  "author": "review-of-2000x-tales-of-the-next-millenia",
-  "book": "",
-  "": ""
- },
- {
-  "id": "http://www.sffaudio.com/?p=43100",
-  "title": "Review of 21st Century Dead: A Zombie Anthology",
-  "author": "review-of-21st-century-dead-a-zombie-anthology",
-  "book": "",
-  "": ""
- },
- {
   "id": "http://www.sffaudio.com/?p=535",
-  "title": "Review of 7th Son Book One by J.C. Hutchins",
-  "author": "review-of-7th-son-book-one-by-jc-hutchins",
-  "book": "",
+  "title": "Review",
+  "author": "J.C. Hutchins",
+  "book": "7th Son Book One",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=647",
-  "title": "Review of 84.2 Minutes with Algis Budrys",
-  "author": "842-minutes-with-algis-budrys",
-  "book": "",
+  "title": "Review",
+  "author": "Algis Budrys",
+  "book": "84.2 Minutes",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=4025",
-  "title": "Review of A Case Of Conscience by James Blish",
-  "author": "review-of-a-case-of-conscience-by-james-blish",
-  "book": "",
+  "title": "Review",
+  "author": "James Blish",
+  "book": "A Case Of Conscience",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=17446",
-  "title": "Review of A Cask of Amontillado by Edgar Allan Poe",
-  "author": "review-of-a-cask-of-amontillado-by-edgar-allan-poe",
-  "book": "",
+  "title": "Review",
+  "author": "Edgar Allan Poe",
+  "book": "A Cask of Amontillado",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=678",
-  "title": "Review of A Clash of Kings by George R.R. Martin",
-  "author": "review-of-a-clash-of-kings-by-george-rr-martin",
-  "book": "",
+  "title": "Review",
+  "author": "George R.R. Martin",
+  "book": "A Clash of Kings",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1446",
-  "title": "Review of A Clockwork Orange by Anthony Burgess",
-  "author": "review-of-a-clockwork-orange-by-anthony-burgess",
-  "book": "",
+  "title": "Review",
+  "author": "Anthony Burgess",
+  "book": "A Clockwork Orange",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=679",
-  "title": "Review of A Colder War by Charles Stross",
-  "author": "review-of-a-colder-war-by-charles-stross",
-  "book": "",
+  "title": "Review",
+  "author": "Charles Stross",
+  "book": "A Colder War",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=681",
-  "title": "Review of A Coyote in the House By Elmore Leonard",
-  "author": "a-coyote-in-the-house-by-elmore-leonard-read-by-n",
-  "book": "",
+  "title": "Review",
+  "author": "Elmore Leonard",
+  "book": "A Coyote in the House",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=564",
-  "title": "Review of A Different Point Of View by TD-0013",
-  "author": "review-of-a-different-point-of-view-by-td-0013",
-  "book": "",
+  "title": "Review",
+  "author": "TD-0013",
+  "book": "A Different Point Of View",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=51233",
-  "title": "Review of A Discourse in Steel by Paul S. Kemp",
-  "author": "review-of-a-discourse-in-steel-by-paul-s-kemp-2",
-  "book": "",
+  "title": "Review",
+  "author": "Paul S. Kemp",
+  "book": "A Discourse in Steel",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=49338",
-  "title": "Review of A Discourse in Steel by Paul S. Kemp",
-  "author": "review-of-a-discourse-in-steel-by-paul-s-kemp",
-  "book": "",
+  "title": "Review",
+  "author": "Paul S. Kemp",
+  "book": "A Discourse in Steel",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=327",
-  "title": "Review of A Feast for Crows by George R.R. Martin",
-  "author": "a-feast-for-crows-by-george-rr-martin-read-by-j",
-  "book": "",
+  "title": "Review",
+  "author": "George R.R. Martin",
+  "book": "A Feast for Crows",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=7000",
-  "title": "Review of A Galaxy Trilogy Volume 2 - A Collection of Tales from the Early Days of Science Fiction",
-  "author": "review-of-a-galaxy-trilogy-volume-2",
-  "book": "",
+  "title": "Review",
+  "author": "David Osborne, E.L. Arch, and Manly Banister",
+  "book": "A Galaxy Trilogy: Volume 2",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1739",
-  "title": "Review of A Galaxy Trilogy: Volume 1 by Poul Anderson, George H. Smith and Stanton A. Coblentz",
-  "author": "revew-of-a-galaxy-trilogy-volume-1-by-poul-anderson-george-h-smith-and-stanton-a-coblentz",
-  "book": "",
+  "title": "Review",
+  "author": "Poul Anderson, George H. Smith and Stanton A. Coblentz",
+  "book": "A Galaxy Trilogy: Volume 1",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1109",
-  "title": "Review of A Game of Thrones by George R.R. Martin",
-  "author": "review-of-a-game-of-thrones-by-george-rr-martin",
-  "book": "",
+  "title": "Review",
+  "author": "George R.R. Martin",
+  "book": "A Game of Thrones",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=53707",
-  "title": "Review of A Good Marriage by Stephen King",
-  "author": "review-of-a-good-marriage-by-stephen-king",
-  "book": "",
+  "title": "Review",
+  "author": "Stephen King",
+  "book": "A Good Marriage",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=704",
-  "title": "Review of A Green Thumb By Tobias S. Buckell",
-  "author": "a-green-thumb-by-tobias-s-buckell-read-by-alexan",
-  "book": "",
+  "title": "Review",
+  "author": "Tobias S. Buckell",
+  "book": "A Green Thumb",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=708",
-  "title": "Review of A Hero Of The Empire By Robert Silverberg",
-  "author": "a-hero-of-the-empire-by-robert-silverberg-read-by",
-  "book": "",
+  "title": "Review",
+  "author": "Robert Silverberg",
+  "book": "A Hero Of The Empire",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=14827",
-  "title": "Review of A Hymn Before Battle by John Ringo",
-  "author": "review-of-a-hymn-before-battle-by-john-ringo",
-  "book": "",
+  "title": "Review",
+  "author": "John Ringo",
+  "book": "A Hymn Before Battle",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48835",
-  "title": "Review of A Maze of Death by Philip K. Dick",
-  "author": "review-of-a-maze-of-death-by-philip-k-dick",
-  "book": "",
+  "title": "Review",
+  "author": "Philip K. Dick",
+  "book": "A Maze of Death",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=51209",
-  "title": "Review of A New Beginning by Craig Brummer",
-  "author": "review-of-a-new-beginning-by-craig-brummer",
-  "book": "",
+  "title": "Review",
+  "author": "Craig Brummer",
+  "book": "A New Beginning",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=53702",
-  "title": "Review of A New Dawn",
-  "author": "review-of-a-new-dawn",
-  "book": "",
+  "title": "Review",
+  "author": "John Jackson Miller",
+  "book": "A New Dawn",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=328",
-  "title": "Review of A Princess of Mars by Edgar Rice Burroughs",
-  "author": "a-princess-of-mars-by-edgar-rice-burroughs-read-b",
-  "book": "",
+  "title": "Review",
+  "author": "Edgar Rice Burroughs",
+  "book": "A Princess of Mars",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=481",
-  "title": "Review of A Scanner Darkly by Philip K. Dick",
-  "author": "review-of-a-scanner-darkly-by-philip-k-dick",
-  "book": "",
+  "title": "Review",
+  "author": "Philip K. Dick",
+  "book": "A Scanner Darkly",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=65",
-  "title": "Review of A Song Before Sunset By David Rowland Grigg",
-  "author": "a-song-before-sunset-by-david-rowland-grigg-read",
-  "book": "",
+  "title": "Review",
+  "author": "David Rowland Grigg",
+  "book": "A Song Before Sunset",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1068",
-  "title": "Review of A Sound Of Thunder by Ray Bradbury",
-  "author": "review-of-a-sound-of-thunder-by-ray-bradbury",
-  "book": "",
+  "title": "Review",
+  "author": "Ray Bradbury",
+  "book": "A Sound Of Thunder",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=6048",
-  "title": "Review of A Stir of Echoes by Richard Matheson",
-  "author": "review-of-a-stir-of-echoes-by-richard-matheson",
-  "book": "",
+  "title": "Review",
+  "author": "Richard Matheson",
+  "book": "A Stir of Echoes",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=71",
-  "title": "Review of A Taste Of Damsel By Tom Gerencer",
-  "author": "a-taste-of-damsel-by-tom-gerencer-read-by-tom-ge",
-  "book": "",
+  "title": "Review",
+  "author": "Tom Gerencer",
+  "book": "A Taste Of Damsel",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=125",
-  "title": "Review of A Walk in the Sun By Geoffrey A. Landis",
-  "author": "a-walk-in-the-sun-by-geoffrey-a-landis-read-by",
-  "book": "",
+  "title": "Review",
+  "author": "Geoffrey A. Landis",
+  "book": "A Walk in the Sun",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48988",
-  "title": "Review of A Wild Sheep Chase by Haruki Murakami",
-  "author": "review-of-a-wild-sheep-chase-by-haruki-murakami",
-  "book": "",
+  "title": "Review",
+  "author": "Haruki Murakami",
+  "book": "A Wild Sheep Chase",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=443",
-  "title": "Review of A Wizard of Earthsea by Ursula K. Le Guin",
-  "author": "review-of-a-wizard-of-earthsea-by-ursula-k-leguin",
-  "book": "",
+  "title": "Review",
+  "author": "Ursula K. Le Guin",
+  "book": "A Wizard of Earthsea",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=571",
-  "title": "Review of A Wizard of Earthsea by Ursula K. LeGuin",
-  "author": "a-wizard-of-earthsea-by-ursula-k-leguin-read-by",
-  "book": "",
+  "title": "Review",
+  "author": "Ursula K. Le Guin",
+  "book": "A Wizard of Earthsea",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=367",
-  "title": "Review of A Wrinkle in Time by Madeleine L'Engle",
-  "author": "a-wrinkle-in-time-by-madeleine-lengle-read-by-ma",
-  "book": "",
+  "title": "Review",
+  "author": "Madeleine L'Engle",
+  "book": "A Wrinkle in Time",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=5868",
-  "title": "Review of Academ's Fury by Jim Butcher",
-  "author": "review-of-academs-fury-by-jim-butcher",
-  "book": "",
+  "title": "Review",
+  "author": "Jim Butcher",
+  "book": "Academ's Fury",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=649",
-  "title": "Review of Adventures in Time and Space with Max Merriwell by Pat Murphy",
-  "author": "adventures-in-time-and-space-with-max-merriwell",
-  "book": "",
+  "title": "Review",
+  "author": "Pat Murphy",
+  "book": "Adventures in Time and Space with Max Merriwell",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=49622",
-  "title": "Review of Aftermath by Charles Sheffield",
-  "author": "review-of-aftermath-by-charles-sheffield",
-  "book": "",
+  "title": "Review",
+  "author": "Charles Sheffield",
+  "book": "Aftermath",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55497",
-  "title": "Review of Aftermath: Star Wars by Chuck Wendig, Read by Marc Thompson",
-  "author": "review-of-aftermath-star-wars-by-chuck-wendig-read-by-marc-thompson",
-  "book": "",
+  "title": "Review",
+  "author": "Chuck Wendig",
+  "book": "Aftermath: Star Wars",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48492",
-  "title": "Review of Agent to the Stars by John Scalzi",
-  "author": "review-of-agent-to-the-stars-by-john-scalzi",
-  "book": "",
+  "title": "Review",
+  "author": "John Scalzi",
+  "book": "Agent to the Stars",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=935",
-  "title": "Review of Airborn by Kenneth Oppel",
-  "author": "review-of-airborn-by-kenneth-oppel",
-  "book": "",
+  "title": "Review",
+  "author": "Kenneth Oppel",
+  "book": "Airborn",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=14208",
-  "title": "Review of Alcatraz Versus the Evil Librarians",
-  "author": "review-of-alcatraz-versus-the-evil-librarians",
-  "book": "",
+  "title": "Review",
+  "author": "Brandon Sanderson",
+  "book": "Alcatraz Versus the Evil Librarians",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=51022",
-  "title": "Review of Alien Honor by Vaughn Heppner",
-  "author": "review-of-alien-honor-by-vaughn-heppner",
-  "book": "",
+  "title": "Review",
+  "author": "Vaughn Heppner",
+  "book": "Alien Honor",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1097",
-  "title": "Review of Alien Voices: The Invisible Man",
-  "author": "review-of-alien-voices-the-invisible-man",
-  "book": "",
+  "title": "Review",
+  "author": "H.G. Wells",
+  "book": "Alien Voices: The Invisible Man",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=581",
-  "title": "Review of Alien Voices: The Time Machine",
-  "author": "review-of-alien-voices-the-time-machine",
-  "book": "",
+  "title": "Review",
+  "author": "H.G. Wells",
+  "book": "Alien Voices: The Time Machine",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=12825",
-  "title": "Review of Aliens Rule, ed by Allan Kaster",
-  "author": "review-of-aliens-rule-ed-by-allan-kaster",
-  "book": "",
+  "title": "Review",
+  "author": "James van Pelt, Carolyn Ives Gilman, and Nancy Kress",
+  "book": "Aliens Rule",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55040",
-  "title": "Review of Alive by Scott Sigler",
-  "author": "review-of-alive-by-scott-sigler",
-  "book": "",
+  "title": "Review",
+  "author": "Scott Sigler",
+  "book": "Alive",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3635",
-  "title": "Review of Already Dead by Charlie Huston",
-  "author": "review-of-already-dead-by-charlie-huston",
-  "book": "",
+  "title": "Review",
+  "author": "Charlie Huston",
+  "book": "Already Dead",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=651",
-  "title": "Review of Altered Carbon by Richard K. Morgan",
-  "author": "review-of-altered-carbon-by-richard-k-morgan",
-  "book": "",
+  "title": "Review",
+  "author": "Richard K. Morgan",
+  "book": "Altered Carbon",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=751",
-  "title": "Review of American Gods by Neil Gaiman",
-  "author": "review-of-american-gods-by-neil-gaiman",
-  "book": "",
+  "title": "Review",
+  "author": "Neil Gaiman",
+  "book": "American Gods",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=652",
-  "title": "Review of An American Werewolf in London",
-  "author": "review-of-an-american-werewolf-in-london",
-  "book": "",
+  "title": "Review",
+  "author": "Dirk Maggs",
+  "book": "An American Werewolf in London",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=54612",
-  "title": "Review of An Unwelcome Quest by Scott Meyer",
-  "author": "54612",
-  "book": "",
+  "title": "Review",
+  "author": "Scott Meyer",
+  "book": "An Unwelcome Quest",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=653",
-  "title": "Review of Anansi Boys by Neil Gaiman",
-  "author": "review-of-anansi-boys-by-neil-gaiman",
-  "book": "",
+  "title": "Review",
+  "author": "Neil Gaiman",
+  "book": "Anansi Boys",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=5147",
-  "title": "Review of Anathem by Neal Stephenson",
-  "author": "review-of-anathem-by-neal-stephenson",
-  "book": "",
+  "title": "Review",
+  "author": "Neal Stephenson",
+  "book": "Anathem",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55294",
-  "title": "Review of Angles of Attack by Marko Kloos",
-  "author": "review-of-angles-of-attack-by-marko-kloos",
-  "book": "",
+  "title": "Review",
+  "author": "Marko Kloos",
+  "book": "Angles of Attack",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=7729",
-  "title": "Review of Anne Manx and the Empress Blair Project",
-  "author": "review-of-anne-manx-and-the-empress-blair-project",
-  "book": "",
+  "title": "Review",
+  "author": "Larry Weiner",
+  "book": "Anne Manx and the Empress Blair Project",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1103",
-  "title": "Review of Anne Manx and the Trouble on Chromius",
-  "author": "review-of-anne-manx-and-the-trouble-on-chromius",
-  "book": "",
+  "title": "Review",
+  "author": "Larry Weiner",
+  "book": "Anne Manx and the Trouble on Chromius",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=702",
-  "title": "Review of Antibodies by Charles Stross",
-  "author": "review-of-antibodies-by-charles-stross",
-  "book": "",
+  "title": "Review",
+  "author": "Charles Stross",
+  "book": "Antibodies",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55300",
-  "title": "Review of Archangel by Marguerite Reed",
-  "author": "review-of-archangel-by-marguerite-reed",
-  "book": "",
+  "title": "Review",
+  "author": "Marguerite Reed",
+  "book": "Archangel",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=51165",
-  "title": "Review of Archetype by M.D. Waters",
-  "author": "review-of-archetype-by-m-d-waters",
-  "book": "",
+  "title": "Review",
+  "author": "M.D. Waters",
+  "book": "Archetype",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=42938",
-  "title": "Review of Arguably: Essays by Christopher Hitchens",
-  "author": "review-of-arguably-essays-by-christopher-hitchens",
-  "book": "",
+  "title": "Review",
+  "author": "Christopher Hitchens",
+  "book": "Arguably",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=12816",
-  "title": "Review of Armor by John Steakley",
-  "author": "review-of-armor-by-john-steakley",
-  "book": "",
+  "title": "Review",
+  "author": "John Steakley",
+  "book": "Armor",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=22094",
-  "title": "Review of Around The World In Eighty Days by Jules Verne",
-  "author": "review-of-around-the-world-in-eighty-days-by-jules-verne",
-  "book": "",
+  "title": "Review",
+  "author": "Jules Verne",
+  "book": "Around The World In Eighty Days",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1408",
-  "title": "Review of Ascent by Jed Mercurio",
-  "author": "review-of-ascent-by-jed-mercurio",
-  "book": "",
+  "title": "Review",
+  "author": "Jed Mercurio",
+  "book": "Ascent",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=657",
-  "title": "Review of Ash City Stomp by Richard Butner",
-  "author": "review-of-ash-city-stomp",
-  "book": "",
+  "title": "Review",
+  "author": "Richard Butner",
+  "book": "Ash City Stomp",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=658",
-  "title": "Review of Asimov Science Fiction Tales",
-  "author": "review-of-asimov-science-fiction-tales",
-  "book": "",
+  "title": "Review",
+  "author": "Isaac Asimov",
+  "book": "Asimov Science Fiction Tales",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3203",
-  "title": "Review of Assam and Darjeeling by T.M. Camp",
-  "author": "review-of-assam-and-darjeeling-by-tm-camp",
-  "book": "",
+  "title": "Review",
+  "author": "T.M. Camp",
+  "book": "Assam and Darjeeling",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=46220",
-  "title": "Review of Assassin's Code by Jonathan Maberry",
-  "author": "review-of-assassins-code-by-jonathan-maberry",
-  "book": "",
+  "title": "Review",
+  "author": "Jonathan Maberry",
+  "book": "Assassin's Code",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2817",
-  "title": "Review of At the Mountains Of Madness by H.P. Lovecraft",
-  "author": "review-of-at-the-mountains-of-madness-by-hp-lovecraft",
-  "book": "",
+  "title": "Review",
+  "author": "H.P. Lovecraft",
+  "book": "At the Mountains Of Madness",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=47796",
-  "title": "Review of Attempting Normal by Marc Maron",
-  "author": "review-of-attempting-normal-by-marc-maron",
-  "book": "",
+  "title": "Review",
+  "author": "Marc Maron",
+  "book": "Attempting Normal",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=659",
-  "title": "Review of Battlestar Galactica by Jeffrey A. Carver",
-  "author": "review-of-battlestar-galactica",
-  "book": "",
+  "title": "Review",
+  "author": "Jeffrey A. Carver",
+  "book": "Battlestar Galactica",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=53394",
-  "title": "Review of Bellwether by Connie Willis",
-  "author": "review-of-bellwether-by-connie-willis",
+  "title": "Review",
+  "author": "Connie Willis",
+  "book": "Bellwether",
+  "": ""
+ },
+ {
+  "id": "http://www.sffaudio.com/?p=4421",
+  "title": "BBC Radio 3: Bring Me The Head of Philip K. Dick",
+  "author": "Philip K. Dick",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "http://www.sffaudio.com/?p=34258",
+  "title": "1979 Philip K. Dick interview with Charles Platt",
+  "author": "Philip K. Dick",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
   "book": "",
   "": ""
  },
@@ -6734,16 +6734,16 @@
   "": ""
  },
  {
-  "id": "",
-  "title": "",
-  "author": "",
+  "id": "http://www.sffaudio.com/?p=1088",
+  "title": "Review of 2000X: Tales of the Next Millenia",
+  "author": "review-of-2000x-tales-of-the-next-millenia",
   "book": "",
   "": ""
  },
  {
-  "id": "",
-  "title": "",
-  "author": "",
+  "id": "http://www.sffaudio.com/?p=43100",
+  "title": "Review of 21st Century Dead: A Zombie Anthology",
+  "author": "review-of-21st-century-dead-a-zombie-anthology",
   "book": "",
   "": ""
  },
@@ -7375,7 +7375,7 @@
   "title": "",
   "author": "",
   "book": "",
-  "": "1979-philip-k-dick-interview-with-charles-platt-santa-ana-california"
+  "": ""
  },
  {
   "id": "",
@@ -10035,7 +10035,7 @@
   "title": "",
   "author": "",
   "book": "",
-  "": "bbc-radio-3-bring-me-the-head-of-philip-k-dick"
+  "": ""
  },
  {
   "id": "",

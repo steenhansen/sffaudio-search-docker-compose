@@ -78,6 +78,7 @@ sff_js_vars.history_state = (function (path_name) {
     };
 
     my.pushViewBook = function (strip_author, under_title, view_type, sorted_choice) {
+    
         var page_type = 't::book::view';
         var page_query = path_name + '?book=' + under_title + '&author=' + strip_author + '&view=' + view_type + '&choice=' + sorted_choice;
         var author_colons_book = strip_author + sff_constants.AUTHOR_BOOK_SEPARATOR + under_title;

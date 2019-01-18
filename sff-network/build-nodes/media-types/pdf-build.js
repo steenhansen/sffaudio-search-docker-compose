@@ -37,10 +37,10 @@ module.exports = function (build_repository) {
                 var pdf_data_2 = PdfBuild.pdfLinkInfo(pdf_object['pdf link 2'], pdf_object['pdf page count 2'], pdf_object['pdf country 2'], pdf_object['pdf info 2']);
                 var pdf_data_3 = PdfBuild.pdfLinkInfo(pdf_object['pdf link 3'], pdf_object['pdf page count 3'], pdf_object['pdf country 3'], pdf_object['pdf info 3']);
                 var pdf_data_4 = PdfBuild.pdfLinkInfo(pdf_object['pdf link 4'], pdf_object['pdf page count 4'], pdf_object['pdf country 4'], pdf_object['pdf info 4']);
-                multiple_monikers.parseNames(pdf_object['book author'])
+                multiple_monikers.parseNames(pdf_object['book author']);                 /////////
                 var last_first_underscores = multiple_monikers.lastUnderscore();
                 var {esc_book_title, under_title} =MediaBuild.quoteUnderscoreTitle(pdf_object['book title'])
-                var title_with_authors = multiple_monikers.titleWithAuthors(under_title);
+                var title_with_authors = multiple_monikers.titleWithAuthors(under_title);         //////
                 var underScoreToNormal = multiple_monikers.underScoreToNormal();
                 var small_pdf = {
                     title_with_authors,
