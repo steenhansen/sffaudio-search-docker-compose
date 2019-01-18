@@ -109,22 +109,10 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     }
 
     my.fixHeights = function (pdf_canvas_height) {
-     //   var media_height = sff_js_vars.helpers.computedHeight('media--title');
         var pager_height = sff_js_vars.helpers.computedHeight('pdf--controller');
         var pager_top = sff_js_vars.helpers.computedValue('pdf--controller', 'top');
         document.getElementById("pdf--canvas").style.top = pager_height + pager_top + 'px'
-        
-        var screen_height_px = sff_js_vars.blur_procs.overlayHeightPx();
-        var header_height = sff_js_vars.helpers.computedValue("sff--header", "height");
-        var my_network = document.getElementById("my--network")
-        var popup_container = document.getElementById("popup--container")
-        popup_container.style.height = screen_height_px;
-        popup_container.style.top = my_network.style.top + header_height * 1.7;
-        popup_container.style.left = my_network.style.left + 20;
-        
-        
-        
-        
+        sff_js_vars.helpers.overlayCoverScreen();
         var network_width = sff_js_vars.helpers.computedValue("my--network", "width");
         popup_container.style.width = network_width - 30;
         sff_js_vars.helpers.setDisplay('pdf--loading', 'none');

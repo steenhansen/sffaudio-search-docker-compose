@@ -80,7 +80,7 @@ sff_js_vars.blur_procs = (function (pop_up_id) {
     }
 
     my.blockPage = function (container_id) {
-        var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        //var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         sff_js_vars.helpers.setDisplay(container_id, 'block');
         sff_js_vars.helpers.setDisplay('close--icon', 'block');
     }

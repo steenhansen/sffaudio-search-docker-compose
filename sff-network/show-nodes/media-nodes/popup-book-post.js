@@ -39,19 +39,7 @@ sff_js_vars.book_post_procs = (function (post_close_svg, post_proxy) {
             })
             .then(function (post_html) {
                 document.getElementById("post--container").innerHTML = post_html;
-                
-                //var post_height = document.getElementById("post--container").offsetHeight + 200;
-                //document.getElementById('popup--container').style.height = post_height + 'px';
-                
-        var screen_height_px = sff_js_vars.blur_procs.overlayHeightPx();
-        var header_height = sff_js_vars.helpers.computedValue("sff--header", "height");
-        var my_network = document.getElementById("my--network")
-        var popup_container = document.getElementById("popup--container")
-        popup_container.style.height = screen_height_px;
-        popup_container.style.top = my_network.style.top + header_height * 1.7;
-        popup_container.style.left = my_network.style.left + 20;
-                
-                
+                 sff_js_vars.helpers.overlayCoverScreen();
                 sff_js_vars.blur_procs.postPdfWidth('post--container');
             })
             .finally(function () {

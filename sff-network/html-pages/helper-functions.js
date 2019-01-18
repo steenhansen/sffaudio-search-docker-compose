@@ -3,6 +3,18 @@ sff_js_vars.helpers = (function () {
 
     var my = {};
 
+    my.overlayCoverScreen = function(){
+      var screen_height_px = sff_js_vars.blur_procs.overlayHeightPx();
+        var header_height = sff_js_vars.helpers.computedValue("sff--header", "height");
+        var my_network = document.getElementById("my--network")
+        var popup_container = document.getElementById("popup--container")
+        popup_container.style.height = screen_height_px;
+        popup_container.style.top = my_network.style.top + header_height * 1.7;
+        popup_container.style.left = my_network.style.left + 20;
+         sff_js_vars.helpers.setDisplay('close--icon', 'block');
+    
+    }
+
     my.computedValue = function (element_id, value_name) {
         var html_element = document.getElementById(element_id);
         var computed_style = window.getComputedStyle(html_element);

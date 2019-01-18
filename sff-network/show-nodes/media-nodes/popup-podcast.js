@@ -31,10 +31,7 @@ sff_js_vars.podcast_procs = (function (podcast_close_svg) {
         sff_js_vars.author_post_procs.startAuthorPost(podcast_post_url)
             .then(function () {
                 document.getElementById("post--container").style.display = 'block';
-                var media_height = sff_js_vars.helpers.computedHeight('mp3--player');
-                var pager_height = sff_js_vars.helpers.computedHeight('post--container');
-                var pop_cont_height = media_height + pager_height;
-                document.getElementById("popup--container").style.height = pop_cont_height + 'px';
+                sff_js_vars.helpers.overlayCoverScreen();
             })
         document.getElementById('close--icon').src = podcast_close_svg;
     }
