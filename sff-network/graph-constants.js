@@ -14,7 +14,7 @@ var graph_constants = {
   DARK_BACKGROUND: '#AED6F1',              //'grey',        
                                 LIGHT_BACKGROUND: '#D6EAF8',         //  '#cccccc',
 
-    GIFER_COM_LOADER: "https://sffaudio-search.herokuapp.com/gifer_com_loader.gif",
+    GIF_LOADING: "https://sffaudio-search.herokuapp.com/gif-loading.gif",
     
     MAX_ZOOM: 2,
     MIN_ZOOM: 0.25,

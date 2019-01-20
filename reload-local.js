@@ -9,10 +9,14 @@
  
 */
 
+
+
 require('./sff-network/global-require');
 const local_environment = rootAppRequire('sff-network/check-start/local-environment');
 const env_filename = process.argv[2];
 local_environment.processEnvVars(env_filename);
+
+require('newrelic');
 
 const data_dir = process.argv[3];
 if (data_dir) {

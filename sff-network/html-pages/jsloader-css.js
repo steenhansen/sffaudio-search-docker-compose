@@ -1,4 +1,3 @@
-
 const readFilePromise = require('fs-readfile-promise');
 
 var widget_vars_html = rootAppRequire('sff-network/html-pages/widget-vars-html');
@@ -34,6 +33,35 @@ let {
     HELP_FONT, ERROR_FONT, END_BOOK_LIST, END_AUTHOR_LIST
 } = rootAppRequire('sff-network/graph-constants');
 
+
+var js_browser_code_PS = readFilePromise(browser_code, 'utf8');
+
+var js_vars_events_PS = readFilePromise(vars_events, 'utf8');
+var js_sff_helpers_PS = readFilePromise(sff_helpers_js, 'utf8');
+var js_history_state_PS = readFilePromise(history_state, 'utf8');
+
+var js_history_generate_PS = readFilePromise(history_generate, 'utf8');
+var js_help_vars_PS = readFilePromise(help_vars, 'utf8');
+var js_load_scripts_PS = readFilePromise(load_scripts, 'utf8');
+
+
+var js_popup_blur_PS = readFilePromise(popup_blur, 'utf8');
+var js_filter_names_PS = readFilePromise(filter_names, 'utf8');
+var js_popup_post_PS = readFilePromise(popup_post, 'utf8');
+
+var js_popup_book_post_PS = readFilePromise(popup_book_post, 'utf8');
+
+var js_popup_pdf_PS = readFilePromise(popup_pdf, 'utf8');
+var js_popup_podcast_PS = readFilePromise(popup_podcast, 'utf8');
+
+
+var js_popup_rsd_PS = readFilePromise(popup_rsd, 'utf8');
+var js_random_quality_PS = readFilePromise(random_quality, 'utf8');
+
+
+var js_prog_vars_PS = readFilePromise(program_variables, 'utf8')
+
+
 module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view, req_query_choice, nodes_and_edges_str) {
     if (graph_object.under_title) {
         var under_title = graph_object.under_title;
@@ -49,43 +77,46 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     }
 
 
-    const js_browser_code = readFilePromise(browser_code, 'utf8');
-    const js_vars_events = readFilePromise(vars_events, 'utf8');
-    const js_sff_helpers = readFilePromise(sff_helpers_js, 'utf8');
-    const js_history_state = readFilePromise(history_state, 'utf8');
-
-    const js_history_generate = readFilePromise(history_generate, 'utf8');
-    const js_help_vars = readFilePromise(help_vars, 'utf8');
-    const js_load_scripts = readFilePromise(load_scripts, 'utf8');
-
-
-    const js_popup_blur = readFilePromise(popup_blur, 'utf8');
-    const js_filter_names = readFilePromise(filter_names, 'utf8');
-    const js_popup_post = readFilePromise(popup_post, 'utf8');
-
-    const js_popup_book_post = readFilePromise(popup_book_post, 'utf8');
-
-    const js_popup_pdf = readFilePromise(popup_pdf, 'utf8');
-    const js_popup_podcast = readFilePromise(popup_podcast, 'utf8');
-
-
-    const js_popup_rsd = readFilePromise(popup_rsd, 'utf8');
-    const js_random_quality = readFilePromise(random_quality, 'utf8');
-
-
-    const js_prog_vars = readFilePromise(program_variables, 'utf8')
     var widget_vars = widget_vars_html.widgetVars(graph_container_id, nodes_object, edges_object, graph_object);
 
     const author_links = cached_authors.getCache();
     const book_links = cached_books.getCache();
-    return Promise.all([js_sff_helpers, js_browser_code, js_vars_events, js_prog_vars, js_history_state,
-        js_history_generate, js_help_vars, js_load_scripts, js_popup_blur, js_filter_names,
-        js_popup_post, js_popup_book_post, js_popup_pdf, js_popup_podcast, js_popup_rsd, js_random_quality,
+    return Promise.all([js_sff_helpers_PS, js_browser_code_PS, js_vars_events_PS, js_prog_vars_PS, js_history_state_PS,
+        js_history_generate_PS, js_help_vars_PS, js_load_scripts_PS, js_popup_blur_PS, js_filter_names_PS,
+        js_popup_post_PS, js_popup_book_post_PS, js_popup_pdf_PS, js_popup_podcast_PS, js_popup_rsd_PS, js_random_quality_PS,
         author_links, book_links])
-        .then(([js_sff_helpers, js_browser_code, js_vars_events, js_prog_vars, js_history_state,
-                js_history_generate,js_help_vars,js_load_scripts, js_popup_blur,js_filter_names,
-                js_popup_post,js_popup_book_post,js_popup_pdf,js_popup_podcast,js_popup_rsd, js_random_quality,
+        .then(([js_sff_helpers_S, js_browser_code_S, js_vars_events_S, js_prog_vars_S, js_history_state_S,
+                js_history_generate_S, js_help_vars_S, js_load_scripts_S, js_popup_blur_S, js_filter_names_S,
+                js_popup_post_S, js_popup_book_post_S, js_popup_pdf_S, js_popup_podcast_S, js_popup_rsd_S, js_random_quality_S,
                 author_links, book_links])=> {
+
+                js_browser_code_PS = js_browser_code_S;
+
+                js_vars_events_PS = js_vars_events_S;
+                js_sff_helpers_PS = js_sff_helpers_S;
+                js_history_state_PS = js_history_state_S;
+
+                js_history_generate_PS = js_history_generate_S;   //  _PS indicates a Promise first time, then a String forever
+                js_help_vars_PS = js_help_vars_S;                 // so these are varible cached values, files read only once
+                js_load_scripts_PS = js_load_scripts_S;
+
+
+                js_popup_blur_PS = js_popup_blur_S;
+                js_filter_names_PS = js_filter_names_S;
+                js_popup_post_PS = js_popup_post_S;
+
+                js_popup_book_post_PS = js_popup_book_post_S;
+
+                js_popup_pdf_PS = js_popup_pdf_S;
+                js_popup_podcast_PS = js_popup_podcast_S;
+
+
+                js_popup_rsd_PS = js_popup_rsd_S;
+                js_random_quality_PS = js_random_quality_S;
+
+
+                js_prog_vars_PS = js_prog_vars_S;
+
                 var widget_html = widget_vars_html.widgetHtml(graph_container_id, author_links, book_links);
                 var build_page = `
 
@@ -120,12 +151,12 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 
 
 
-    ${js_vars_events}
+    ${js_vars_events_S}
     sff_js_vars.vars_events.initVars();
-    ${js_prog_vars}
-    ${js_sff_helpers}
-    ${js_history_state}
-    ${js_history_generate}
+    ${js_prog_vars_S}
+    ${js_sff_helpers_S}
+    ${js_history_state_S}
+    ${js_history_generate_S}
 </script>   
     
     ${load_css_external}
@@ -133,15 +164,15 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
      
     
 <script>
-    ${js_help_vars} 
-    ${js_random_quality}
-    ${js_popup_pdf}
-    ${js_popup_podcast}
-    ${js_popup_rsd}
-    ${js_popup_post}
-    ${js_popup_book_post}
-    ${js_filter_names}
-    ${js_browser_code}
+    ${js_help_vars_S} 
+    ${js_random_quality_S}
+    ${js_popup_pdf_S}
+    ${js_popup_podcast_S}
+    ${js_popup_rsd_S}
+    ${js_popup_post_S}
+    ${js_popup_book_post_S}
+    ${js_filter_names_S}
+    ${js_browser_code_S}
 </script>
 
     ${widget_html}
@@ -153,8 +184,8 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
    ${popup_css_html.popup_html}
 
 <script>
-    ${js_popup_blur}
-    ${js_load_scripts}
+    ${js_popup_blur_S}
+    ${js_load_scripts_S}
     
       if (sff_js_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
             sff_js_vars.filter_names.colorAuthors();

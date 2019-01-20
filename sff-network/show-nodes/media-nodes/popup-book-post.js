@@ -41,10 +41,8 @@ sff_js_vars.book_post_procs = (function (post_close_svg, post_proxy) {
                 document.getElementById("post--container").innerHTML = post_html;
                  sff_js_vars.helpers.overlayCoverScreen();
                 sff_js_vars.blur_procs.postPdfWidth('post--container');
-            })
-            .finally(function () {
                 sff_js_vars.helpers.normalCursor();
-            });
+            })
     }
     return my;
 

@@ -4,9 +4,13 @@
  node reload-heroku /sff-network/build-nodes/test-obj-data/full-data/
  */
 
+
+
 require('./sff-network/global-require');
 const heroku_environment = rootAppRequire('sff-network/check-start/heroku-environment');
 heroku_environment.processEnvVars();
+
+require('newrelic');
 
 const data_dir = process.argv[2];
 

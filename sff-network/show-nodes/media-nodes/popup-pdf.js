@@ -1,4 +1,3 @@
-
 //popup-pdf    
 sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
 
@@ -56,8 +55,6 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
             })
             .then(function (resolved_pdf_url) {
                 my.readPdf(resolved_pdf_url);
-            })
-            .finally(function () {
                 sff_js_vars.helpers.normalCursor();
             })
     }
@@ -71,6 +68,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                         my.last_page = loaded_pdf.numPages;
                         my.loadOnePage(1);
                         sff_js_vars.helpers.setDisplay('pdf--controller', 'block');
+                        sff_js_vars.helpers.normalCursor();
                     }).catch(function (e) {
                     var error_name = e.name;
                     if (error_name === "MissingPDFException") {
@@ -82,11 +80,8 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                     }
                 })
             }).catch(function (e) {
-            my.downloadPdf(e);             // bypass CORS error SEC7118 on IE 11, Windows 7&8 bug
-        })
-            .finally(function () {
-                sff_js_vars.helpers.normalCursor();
-            })
+                my.downloadPdf(e);             // bypass CORS error SEC7118 on IE 11, Windows 7&8 bug
+             })
     }
 
     my.downloadPdf = function (error) {    // e=== Error: Invalid parameter object: need either .data, .range or .url
@@ -108,13 +103,12 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         return new_page;
     }
 
-    my.fixHeights = function (pdf_canvas_height) {
+    my.fixHeights = function () {
         var pager_height = sff_js_vars.helpers.computedHeight('pdf--controller');
         var pager_top = sff_js_vars.helpers.computedValue('pdf--controller', 'top');
         document.getElementById("pdf--canvas").style.top = pager_height + pager_top + 'px'
         sff_js_vars.helpers.overlayCoverScreen();
         var network_width = sff_js_vars.helpers.computedValue("my--network", "width");
-        popup_container.style.width = network_width - 30;
         sff_js_vars.helpers.setDisplay('pdf--loading', 'none');
     }
 
@@ -141,7 +135,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
             .then(function (pdf_page) {
                 var render_context = my.renderOnePage(pdf_page);
                 pdf_page.render(render_context).then(function () {
-                    my.fixHeights(my.pdf_canvas_height)
+                    my.fixHeights()
                 });
             }), function (reason) {
             console.error(reason);
