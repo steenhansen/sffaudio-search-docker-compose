@@ -28,7 +28,7 @@ sff_js_vars.author_post_procs = (function (post_close_svg, post_proxy) {
         } else {
             var author_proxy = sff_php_vars.php_url + post_proxy + author_post_url;
         }
-        return fetch(author_proxy)
+        return sff_js_vars.helpers.browserFetchRetry2(author_proxy)
             .then(function (response) {
                 var text_promise = response.text();
                 return text_promise;

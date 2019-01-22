@@ -184,7 +184,7 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
 
     function addLoadNewGraph(graph_id) {
         my.network_graph.loadAuthorOrBook = function (absolute_json_url) {
-            fetch(absolute_json_url)
+            sff_js_vars.helpers.browserFetchRetry2(absolute_json_url)
                 .then(function (response) {
                     return response.json();
                 })

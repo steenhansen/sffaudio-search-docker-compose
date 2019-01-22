@@ -1,4 +1,5 @@
 const readFilePromise = require('fs-readfile-promise');
+const minify = require('minify');
 
 var widget_vars_html = rootAppRequire('sff-network/html-pages/widget-vars-html');
 const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
@@ -49,7 +50,7 @@ var js_popup_blur_PS = readFilePromise(popup_blur, 'utf8');
 var js_filter_names_PS = readFilePromise(filter_names, 'utf8');
 var js_popup_post_PS = readFilePromise(popup_post, 'utf8');
 
-var js_popup_book_post_PS = readFilePromise(popup_book_post, 'utf8');
+var js_popup_book_post_PS = readFilePromise(popup_book_post, 'utf8');  // After this promise has been fufilled, the variable will turn into a string
 
 var js_popup_pdf_PS = readFilePromise(popup_pdf, 'utf8');
 var js_popup_podcast_PS = readFilePromise(popup_podcast, 'utf8');
@@ -61,6 +62,8 @@ var js_random_quality_PS = readFilePromise(random_quality, 'utf8');
 
 var js_prog_vars_PS = readFilePromise(program_variables, 'utf8')
 
+
+var js_browser_code_MIN = '';
 
 module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view, req_query_choice, nodes_and_edges_str) {
     if (graph_object.under_title) {
@@ -81,6 +84,21 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 
     const author_links = cached_authors.getCache();
     const book_links = cached_books.getCache();
+
+    var minifying_js = true;
+
+
+    function getMini(js_browser_code_PS, minifying_js, js_browser_code_S) {
+        if (typeof js_browser_code_PS == 'object') {
+            if (minifying_js) {
+                js_browser_code_PS = minify.js(js_browser_code_S);
+            } else {
+                js_browser_code_PS = js_browser_code_S;
+            }
+        }
+        return js_browser_code_PS;
+    }
+
     return Promise.all([js_sff_helpers_PS, js_browser_code_PS, js_vars_events_PS, js_prog_vars_PS, js_history_state_PS,
         js_history_generate_PS, js_help_vars_PS, js_load_scripts_PS, js_popup_blur_PS, js_filter_names_PS,
         js_popup_post_PS, js_popup_book_post_PS, js_popup_pdf_PS, js_popup_podcast_PS, js_popup_rsd_PS, js_random_quality_PS,
@@ -90,32 +108,44 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
                 js_popup_post_S, js_popup_book_post_S, js_popup_pdf_S, js_popup_podcast_S, js_popup_rsd_S, js_random_quality_S,
                 author_links, book_links])=> {
 
-                js_browser_code_PS = js_browser_code_S;
+                js_browser_code_PS = getMini(js_browser_code_PS, minifying_js, js_browser_code_S);
+                js_vars_events_PS = getMini(js_vars_events_PS, minifying_js, js_vars_events_S);
+                js_sff_helpers_PS = getMini(js_sff_helpers_PS, minifying_js, js_sff_helpers_S);
+                js_history_state_PS = getMini(js_history_state_PS, minifying_js, js_history_state_S);
+                js_history_generate_PS = getMini(js_history_generate_PS, minifying_js, js_history_generate_S);
+                js_help_vars_PS = getMini(js_help_vars_PS, minifying_js, js_help_vars_S);
+                js_load_scripts_PS = getMini(js_load_scripts_PS, minifying_js, js_load_scripts_S);
+                js_popup_blur_PS = getMini(js_popup_blur_PS, minifying_js, js_popup_blur_S);
+                js_filter_names_PS = getMini(js_filter_names_PS, minifying_js, js_filter_names_S);
+                js_popup_post_PS = getMini(js_popup_post_PS, minifying_js, js_popup_post_S);
+                js_popup_book_post_PS = getMini(js_popup_book_post_PS, minifying_js, js_popup_book_post_S);
+                js_popup_pdf_PS = getMini(js_popup_pdf_PS, minifying_js, js_popup_pdf_S);
+                js_popup_podcast_PS = getMini(js_popup_podcast_PS, minifying_js, js_popup_podcast_S);
+                js_popup_rsd_PS = getMini(js_popup_rsd_PS, minifying_js, js_popup_rsd_S);
+                js_random_quality_PS = getMini(js_random_quality_PS, minifying_js, js_random_quality_S);
+                js_prog_vars_PS = getMini(js_prog_vars_PS, minifying_js, js_prog_vars_S);
 
-                js_vars_events_PS = js_vars_events_S;
-                js_sff_helpers_PS = js_sff_helpers_S;
-                js_history_state_PS = js_history_state_S;
-
-                js_history_generate_PS = js_history_generate_S;   //  _PS indicates a Promise first time, then a String forever
-                js_help_vars_PS = js_help_vars_S;                 // so these are varible cached values, files read only once
-                js_load_scripts_PS = js_load_scripts_S;
-
-
-                js_popup_blur_PS = js_popup_blur_S;
-                js_filter_names_PS = js_filter_names_S;
-                js_popup_post_PS = js_popup_post_S;
-
-                js_popup_book_post_PS = js_popup_book_post_S;
-
-                js_popup_pdf_PS = js_popup_pdf_S;
-                js_popup_podcast_PS = js_popup_podcast_S;
-
-
-                js_popup_rsd_PS = js_popup_rsd_S;
-                js_random_quality_PS = js_random_quality_S;
-
-
-                js_prog_vars_PS = js_prog_vars_S;
+                // js_vars_events_PS = js_vars_events_S;
+                // js_sff_helpers_PS = js_sff_helpers_S;
+                // js_history_state_PS = js_history_state_S;
+                //
+                // js_history_generate_PS = js_history_generate_S;   //  _PS indicates a Promise first time, then a String forever
+                // js_help_vars_PS = js_help_vars_S;                 // so these are varible cached values, files read only once
+                // js_load_scripts_PS = js_load_scripts_S;
+                //
+                // js_popup_blur_PS = js_popup_blur_S;
+                // js_filter_names_PS = js_filter_names_S;
+                // js_popup_post_PS = js_popup_post_S;
+                //
+                // js_popup_book_post_PS = js_popup_book_post_S;
+                //
+                // js_popup_pdf_PS = js_popup_pdf_S;
+                // js_popup_podcast_PS = js_popup_podcast_S;
+                //
+                // js_popup_rsd_PS = js_popup_rsd_S;
+                // js_random_quality_PS = js_random_quality_S;
+                //
+                // js_prog_vars_PS = js_prog_vars_S;
 
                 var widget_html = widget_vars_html.widgetHtml(graph_container_id, author_links, book_links);
                 var build_page = `
@@ -126,8 +156,6 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
        sff_js_vars.vars_events.initEvents();
        sff_js_vars.history_generate.startHistoryView('${req_query_view}', sff_js_vars.strip_author, '${under_title}', '${req_query_choice}');
     }
-    
-    
  window.sff_constants={ 
 			    "URL_SEPARATOR"   : "${URL_SEPARATOR}",
 			    "DARK_BACKGROUND"   : "${DARK_BACKGROUND}",
@@ -147,16 +175,12 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 			    "STRIP_AUTHOR" : "${strip_author}",
 			     "NODES_AND_EDGES_STR" : ${nodes_and_edges_str}
 			       };
-
-
-
-
-    ${js_vars_events_S}
+    ${js_vars_events_PS}
     sff_js_vars.vars_events.initVars();
-    ${js_prog_vars_S}
-    ${js_sff_helpers_S}
-    ${js_history_state_S}
-    ${js_history_generate_S}
+    ${js_prog_vars_PS}
+    ${js_sff_helpers_PS}
+    ${js_history_state_PS}
+    ${js_history_generate_PS}
 </script>   
     
     ${load_css_external}
@@ -164,15 +188,15 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
      
     
 <script>
-    ${js_help_vars_S} 
-    ${js_random_quality_S}
-    ${js_popup_pdf_S}
-    ${js_popup_podcast_S}
-    ${js_popup_rsd_S}
-    ${js_popup_post_S}
-    ${js_popup_book_post_S}
-    ${js_filter_names_S}
-    ${js_browser_code_S}
+    ${js_help_vars_PS} 
+    ${js_random_quality_PS}
+    ${js_popup_pdf_PS}
+    ${js_popup_podcast_PS}
+    ${js_popup_rsd_PS}
+    ${js_popup_post_PS}
+    ${js_popup_book_post_PS}
+    ${js_filter_names_PS}
+    ${js_browser_code_PS}
 </script>
 
     ${widget_html}
@@ -184,8 +208,8 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
    ${popup_css_html.popup_html}
 
 <script>
-    ${js_popup_blur_S}
-    ${js_load_scripts_S}
+    ${js_popup_blur_PS}
+    ${js_load_scripts_PS}
     
       if (sff_js_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
             sff_js_vars.filter_names.colorAuthors();

@@ -3,16 +3,16 @@ sff_js_vars.helpers = (function () {
 
     var my = {};
 
-    my.overlayCoverScreen = function(){
-      var screen_height_px = sff_js_vars.blur_procs.overlayHeightPx();
+    my.overlayCoverScreen = function () {
+        var screen_height_px = sff_js_vars.blur_procs.overlayHeightPx();
         var header_height = sff_js_vars.helpers.computedValue("sff--header", "height");
         var my_network = document.getElementById("my--network")
         var popup_container = document.getElementById("popup--container")
         popup_container.style.height = screen_height_px;
         popup_container.style.top = my_network.style.top + header_height * 1.7;
         popup_container.style.left = my_network.style.left + 20;
-         sff_js_vars.helpers.setDisplay('close--icon', 'block');
-    
+        sff_js_vars.helpers.setDisplay('close--icon', 'block');
+
     }
 
     my.computedValue = function (element_id, value_name) {
@@ -70,6 +70,22 @@ sff_js_vars.helpers = (function () {
         var body_elem = document.getElementsByTagName("BODY")[0];
         body_elem.classList.remove('busy--cursor');
     };
+
+    my.browserFetchRetry2 = function (fetch_url) {
+        return sff_js_vars.helpers.browserFetchRetry(fetch_url, 2);
+    }
+    
+
+    my.browserFetchRetry = function (fetch_url, num_tries, init_options) {
+        return fetch(fetch_url, init_options)
+            .catch(function (error) {
+                if (num_tries <2) {
+                    throw error;
+                }
+                return browserFetchRetry(fetch_url, num_tries - 1, init_options);
+            });
+    }
+
 
     return my;
 

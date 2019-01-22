@@ -3,8 +3,8 @@ var express = require('express');
 var graph_constants = rootAppRequire('sff-network/graph-constants');
 const program_variables = rootAppRequire('sff-network/program-variables.js');
 const serverResponse = rootAppRequire('sff-network/check-start/server-responses');
-
 var app = express();
+
 app.use(express.static('public', {maxAge: '1y'}))
 app.use(serverResponse.corsAll);
 

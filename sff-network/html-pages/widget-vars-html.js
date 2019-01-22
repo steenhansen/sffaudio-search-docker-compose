@@ -3,9 +3,16 @@ var graph_constants = rootAppRequire('sff-network/graph-constants');
 var svg_icons = rootAppRequire('./sff-network/html-pages/svg-icons');
 var light_background = graph_constants.LIGHT_BACKGROUND;
 var gif_loading = graph_constants.GIF_LOADING;
+var icons_string = HoverIcon.authorIconColors();
+var edge_options_json = graph_constants.EDGE_OPTIONS;
+var edge_options = JSON.stringify(edge_options_json);
+var post_proxy_absolute = graph_constants.ROUTE_POST_PROXY + "?absolute_url=";
+let zoom_in = svg_icons.zoom_in_icon('blue');
+let zoom_out = svg_icons.zoom_out_icon('blue');
+let get_help = svg_icons.get_help_icon('blue');
+let fit_canvas = svg_icons.get_fit_icon('blue');
 
 function widgetVars(graph_id, nodes_object, edges_object, graph_object) {
-    var icons_string = HoverIcon.authorIconColors();
     if (nodes_object.length > 10) {
         graph_object.graph_physics = false;
     } else {
@@ -14,9 +21,6 @@ function widgetVars(graph_id, nodes_object, edges_object, graph_object) {
     var nodes_string = JSON.stringify(nodes_object, null, ' ');
     var edges_string = JSON.stringify(edges_object, null, ' ');
     var graph_string = JSON.stringify(graph_object, null, ' ');
-    var edge_options_json = graph_constants.EDGE_OPTIONS;
-    var edge_options = JSON.stringify(edge_options_json);
-    var post_proxy_absolute = graph_constants.ROUTE_POST_PROXY + "?absolute_url=";
     var media_html = `
 <script>
 // server-to-browser
@@ -42,10 +46,6 @@ sff_js_vars.post_vars={
 }
 
 function widgetHtml(graph_div_id, author_links, book_links) {
-    let zoom_in = svg_icons.zoom_in_icon('blue');
-    let zoom_out = svg_icons.zoom_out_icon('blue');
-    let get_help = svg_icons.get_help_icon('blue');
-    let fit_canvas = svg_icons.get_fit_icon('blue');
     var media_html = `
 <style>
 

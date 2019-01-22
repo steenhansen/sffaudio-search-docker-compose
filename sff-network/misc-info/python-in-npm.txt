@@ -1,0 +1,22 @@
+
+
+https://stackoverflow.com/questions/15126050/running-python-on-windows-for-node-js-dependencies
+
+
+
+npm install --global --production windows-build-tools
+
+
+npm install --global node-gyp
+
+
+
+
+
+
+
+
+npm i express-minify
+
+npm i node-minify
+

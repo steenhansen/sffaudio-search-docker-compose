@@ -48,7 +48,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         } else {
             var url_type3 = sff_js_vars.ajax_url + '/' + sff_js_vars.SFF_RESOLVE_PDF + pdf_url;
         }
-        fetch(url_type3)
+        sff_js_vars.helpers.browserFetchRetry2(url_type3)
             .then(function (response) {
                 var text_promise = response.text();
                 return text_promise;
@@ -60,7 +60,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     }
 
     my.readPdf = function (pdf_url) {
-        fetch(pdf_url)
+        sff_js_vars.helpers.browserFetchRetry2(pdf_url)
             .then(function (end_pdf_url) {
                 my.pdf_js_lib.getDocument(end_pdf_url)
                     .then(function (loaded_pdf) {

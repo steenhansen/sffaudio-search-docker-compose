@@ -33,7 +33,6 @@
 
 if (!class_exists('SffGraphSearch')) {
 
-
     class SffGraphSearch
     {
         static function redirectAfterHeader($new_location)
@@ -78,12 +77,25 @@ if (!class_exists('SffGraphSearch')) {
         }
 
 
-       static  function curlGetContents($get_url)
+        static function readCache($get_url)
+        {
+        }
+
+        static function replaceCache($day_old, $day_new)
+        {
+        }
+
+
+        static function curlGetContents($get_url)
         {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_URL, $get_url);
+
+
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+
             $page_data = curl_exec($ch);
             curl_close($ch);
             return $page_data;
@@ -93,9 +105,9 @@ if (!class_exists('SffGraphSearch')) {
         {
             if ($get_book) {
                 if ($get_view) {
-                    if ($get_choice){
+                    if ($get_choice) {
                         $author_book_view = "$widget_url?book=$get_book&author=$get_author&view=$get_view&choice=$get_choice";
-                    }else{
+                    } else {
                         $author_book_view = "$widget_url?book=$get_book&author=$get_author&view=$get_view";
                     }
                 } else {
@@ -103,11 +115,11 @@ if (!class_exists('SffGraphSearch')) {
                 }
             } else if ($get_author) {
                 if ($get_view) {
-                   if ($get_choice){
-                       $author_book_view = "$widget_url?author=$get_author&view=$get_view&choice=$get_choice";
-                   }else {
-                       $author_book_view = "$widget_url?author=$get_author&view=$get_view";
-                   }
+                    if ($get_choice) {
+                        $author_book_view = "$widget_url?author=$get_author&view=$get_view&choice=$get_choice";
+                    } else {
+                        $author_book_view = "$widget_url?author=$get_author&view=$get_view";
+                    }
                 } else {
                     $author_book_view = "$widget_url?author=$get_author";
                 }
@@ -123,7 +135,7 @@ if (!class_exists('SffGraphSearch')) {
         {
             $search_dashes = '';
             if (is_string($search_term)) {
-                if (strlen($search_term)>0) {
+                if (strlen($search_term) > 0) {
                     $search_dashes = str_replace('+', '-', $search_term);
                 }
             }
@@ -152,10 +164,10 @@ if (!class_exists('SffGraphSearch')) {
 if (!function_exists('graph_search_component')) {
     function graph_search_component()
     {  //  [graph_search_component]
-    
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-    
+
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
         $mobile_leaving_pages = array('about.php', '');
         $widget_url = 'https://sffaudio-search.herokuapp.com';
         $get_author = @$_GET['author'];
@@ -165,7 +177,7 @@ ini_set('display_errors', 1);
 
         $url_with_parameters = SffGraphSearch::getQueryParameters($widget_url, $get_author, $get_book, $get_view, $get_choice);
         SffGraphSearch::mobileRedirect($mobile_leaving_pages, $url_with_parameters);
-          $search_dashes = SffGraphSearch::whatSearch(@$_POST['search_term']);
+        $search_dashes = SffGraphSearch::whatSearch(@$_POST['search_term']);
         $web_html_javascript = SffGraphSearch::phpCodeOnly($url_with_parameters);
 
         $from_php_js_html = <<<JAVASCRIPT_HTML
@@ -180,19 +192,22 @@ ini_set('display_errors', 1);
         $web_html_javascript
 JAVASCRIPT_HTML;
 
-error_reporting(0);
-ini_set('display_errors', 0);
+        error_reporting(0);
+        ini_set('display_errors', 0);
 
         return $from_php_js_html;
     }
 }
 
 
-
-
-if ( !shortcode_exists( 'graph_search_component' ) ) {
+if (!shortcode_exists('graph_search_component')) {
     if (function_exists('add_shortcode')) {
-          add_shortcode('graph_search_component', graph_search_component);
+    
+    
+    
+    //          below should be 'graph_search_component'
+    
+        add_shortcode('graph_search_component', graph_search_component);
     }
 }
 
