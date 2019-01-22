@@ -35,7 +35,6 @@
     "neo4j-driver": "1.6.2",
     "newrelic": "^5.1.0",
     "node-fetch": "^2.2.0",
-    "npm-check-updates": "^2.15.0",
     "object-assign": "4.1.1",
     "pretty-error": "2.1.1",
     "request": "^2.88.0",
