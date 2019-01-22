@@ -35,7 +35,7 @@ function authorJson(strip_author) {
     return author_data.sendAuthor(strip_author, ParseNeo, 0)
         .then((nodes_and_edges) => {
             let {nodes_object, edges_object, graph_info}  = author_data.authorJson(strip_author, nodes_and_edges);
-            clearCaches(nodes_and_edges);
+            checkCachesAgainstDbVersion(nodes_and_edges);
             var nodes_string = JSON.stringify(nodes_object);
             var edges_string = JSON.stringify(edges_object);
             var graph_string = JSON.stringify(graph_info);
@@ -61,28 +61,26 @@ function sffAudioPostPiece(sff_audio_url) {
         });
 }
 
-function setCaches(current_db_version){
+function checkAllCaches(current_db_version){
     CachedAuthors.checkCache(current_db_version);
     CachedBooks.checkCache(current_db_version);
     CachedDefaults.checkCache(current_db_version);
 }
 
-
-
 function clearFromReload(current_db_version){
-    setCaches(current_db_version);
+    checkAllCaches(current_db_version);
     return Promise.all([graph_constants.CACHES_ARE_CLEAR]);
 }
 
-function clearCaches(nodes_and_edges) {
+function checkCachesAgainstDbVersion(nodes_and_edges) {
     var current_db_version = nodes_and_edges.graph_collection[0].records[0]._fields[0]
-    setCaches(current_db_version);
+    checkAllCaches(current_db_version);
 }
 
 function bookJson(strip_author, under_title) {
     return book_data.sendBooksOfAuthor(strip_author, under_title, ParseNeo)
         .then(function (nodes_and_edges) {
-            clearCaches(nodes_and_edges);
+            checkCachesAgainstDbVersion(nodes_and_edges);
             let {nodes_object, edges_object} =nodes_and_edges
             var nodes_string = JSON.stringify(nodes_object);
             var edges_string = JSON.stringify(edges_object);
@@ -127,6 +125,7 @@ function queryView(req_query) {
     }
     return query_view;
 }
+
 function queryChoice(req_query) {
     if (typeof req_query.choice === 'undefined') {
         var query_choice = '';

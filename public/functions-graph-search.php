@@ -1,5 +1,7 @@
 <?php
 
+// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/functions-graph-search.php
+
 /*
  * public_html/wp-content/themes/revolution-code-blue2/functions.php
  *   include 'functions-graph-search.php';
@@ -35,6 +37,11 @@ if (!class_exists('SffGraphSearch')) {
 
     class SffGraphSearch
     {
+        const HEROKU_UTC_CRON_RUN = 9;
+        const MOBILE_HEADER_ABOVE = '<!-- end widget intro. NB, this text is used by PHP -->';
+        const HEROKU_WIDGET_MESS = '<!-- Heroku widget code -->';
+        const PHP_CACHED_WIDGET_MESS = '<!-- PHP Cached widget code -->';
+
         static function redirectAfterHeader($new_location)
         {
             echo "<meta http-equiv='Refresh' content='0;url=$new_location' />";
@@ -75,16 +82,6 @@ if (!class_exists('SffGraphSearch')) {
                 return;
             }
         }
-
-
-        static function readCache($get_url)
-        {
-        }
-
-        static function replaceCache($day_old, $day_new)
-        {
-        }
-
 
         static function curlGetContents($get_url)
         {
@@ -150,13 +147,19 @@ if (!class_exists('SffGraphSearch')) {
             }
         }
 
-        static function phpCodeOnly($url_with_parameters)
+        static function phpCodeOnly($url_with_parameters, $widget_url, $get_author, $get_book)
         {
-            $graph_html = SffGraphSearch::curlGetContents($url_with_parameters);
-            $iosMetaViewPort__webHtmlJavascript = explode('<!-- end widget intro. NB, this text is used by PHP -->', $graph_html);
+            if ($get_author || $get_book) {
+                $graph_html = SffGraphSearch::curlGetContents($url_with_parameters) . self::HEROKU_WIDGET_MESS;
+            } else {
+                $day_cache = new DayCache($widget_url, self::HEROKU_UTC_CRON_RUN);   // 9:00 UTC, as cron job is set for on Heroku
+                $graph_html = $day_cache->getString() . self::PHP_CACHED_WIDGET_MESS;
+            }
+            $iosMetaViewPort__webHtmlJavascript = explode(self::MOBILE_HEADER_ABOVE, $graph_html);
             $web_html_javascript = $iosMetaViewPort__webHtmlJavascript[1];
             return $web_html_javascript;
         }
+
     }
 }
 
@@ -178,7 +181,7 @@ if (!function_exists('graph_search_component')) {
         $url_with_parameters = SffGraphSearch::getQueryParameters($widget_url, $get_author, $get_book, $get_view, $get_choice);
         SffGraphSearch::mobileRedirect($mobile_leaving_pages, $url_with_parameters);
         $search_dashes = SffGraphSearch::whatSearch(@$_POST['search_term']);
-        $web_html_javascript = SffGraphSearch::phpCodeOnly($url_with_parameters);
+        $web_html_javascript = SffGraphSearch::phpCodeOnly($url_with_parameters, $widget_url, $get_author, $get_book);
 
         $from_php_js_html = <<<JAVASCRIPT_HTML
         <script>
@@ -202,12 +205,7 @@ JAVASCRIPT_HTML;
 
 if (!shortcode_exists('graph_search_component')) {
     if (function_exists('add_shortcode')) {
-    
-    
-    
-    //          below should be 'graph_search_component'
-    
-        add_shortcode('graph_search_component', graph_search_component);
+        add_shortcode('graph_search_component', 'graph_search_component');
     }
 }
 

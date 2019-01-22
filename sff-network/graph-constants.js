@@ -16,6 +16,9 @@ var graph_constants = {
 
     GIF_LOADING: "https://sffaudio-search.herokuapp.com/gif-loading.gif",
     
+    MOBILE_HEADER_ABOVE : '<!-- end widget intro. NB, this text is used by PHP -->',
+    MINIFYING_JS : true,
+    
     MAX_ZOOM: 2,
     MIN_ZOOM: 0.25,
     ZOOM_STEP: 0.1,

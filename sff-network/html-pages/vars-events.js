@@ -90,6 +90,7 @@ sff_js_vars.vars_events = (function () {
     my.filterSearchForText = function () {
         document.getElementById('search--for').style.display = 'block';
         document.getElementById('do--reset').style.display = 'none';
+        sff_js_vars.vars_events.inputSearch();
     }
 
     my.chooseIfSingleAuthor = function (search_term) {

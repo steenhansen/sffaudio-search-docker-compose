@@ -31,7 +31,7 @@ var random_quality = fromAppRoot('sff-network/html-pages/random-quality.js');
 
 let {
     URL_SEPARATOR, DARK_BACKGROUND, LIGHT_BACKGROUND, BOOK_PAGE_TYPE, AUTHOR_PAGE_TYPE, AUTHOR_BOOK_SEPARATOR, MAX_ZOOM, MIN_ZOOM, ZOOM_STEP,
-    HELP_FONT, ERROR_FONT, END_BOOK_LIST, END_AUTHOR_LIST
+    HELP_FONT, ERROR_FONT, END_BOOK_LIST, END_AUTHOR_LIST, MINIFYING_JS
 } = rootAppRequire('sff-network/graph-constants');
 
 
@@ -63,8 +63,18 @@ var js_random_quality_PS = readFilePromise(random_quality, 'utf8');
 var js_prog_vars_PS = readFilePromise(program_variables, 'utf8')
 
 
-var js_browser_code_MIN = '';
-
+    function getMini(js_browser_code_PS, minifying_js, js_browser_code_S) {
+        if (typeof js_browser_code_PS == 'object') {
+            if (minifying_js) {
+                js_browser_code_PS = minify.js(js_browser_code_S);
+            } else {
+                js_browser_code_PS = js_browser_code_S;
+            }
+        }
+        return js_browser_code_PS;
+    }
+    
+    
 module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view, req_query_choice, nodes_and_edges_str) {
     if (graph_object.under_title) {
         var under_title = graph_object.under_title;
@@ -85,20 +95,6 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     const author_links = cached_authors.getCache();
     const book_links = cached_books.getCache();
 
-    var minifying_js = true;
-
-
-    function getMini(js_browser_code_PS, minifying_js, js_browser_code_S) {
-        if (typeof js_browser_code_PS == 'object') {
-            if (minifying_js) {
-                js_browser_code_PS = minify.js(js_browser_code_S);
-            } else {
-                js_browser_code_PS = js_browser_code_S;
-            }
-        }
-        return js_browser_code_PS;
-    }
-
     return Promise.all([js_sff_helpers_PS, js_browser_code_PS, js_vars_events_PS, js_prog_vars_PS, js_history_state_PS,
         js_history_generate_PS, js_help_vars_PS, js_load_scripts_PS, js_popup_blur_PS, js_filter_names_PS,
         js_popup_post_PS, js_popup_book_post_PS, js_popup_pdf_PS, js_popup_podcast_PS, js_popup_rsd_PS, js_random_quality_PS,
@@ -108,44 +104,22 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
                 js_popup_post_S, js_popup_book_post_S, js_popup_pdf_S, js_popup_podcast_S, js_popup_rsd_S, js_random_quality_S,
                 author_links, book_links])=> {
 
-                js_browser_code_PS = getMini(js_browser_code_PS, minifying_js, js_browser_code_S);
-                js_vars_events_PS = getMini(js_vars_events_PS, minifying_js, js_vars_events_S);
-                js_sff_helpers_PS = getMini(js_sff_helpers_PS, minifying_js, js_sff_helpers_S);
-                js_history_state_PS = getMini(js_history_state_PS, minifying_js, js_history_state_S);
-                js_history_generate_PS = getMini(js_history_generate_PS, minifying_js, js_history_generate_S);
-                js_help_vars_PS = getMini(js_help_vars_PS, minifying_js, js_help_vars_S);
-                js_load_scripts_PS = getMini(js_load_scripts_PS, minifying_js, js_load_scripts_S);
-                js_popup_blur_PS = getMini(js_popup_blur_PS, minifying_js, js_popup_blur_S);
-                js_filter_names_PS = getMini(js_filter_names_PS, minifying_js, js_filter_names_S);
-                js_popup_post_PS = getMini(js_popup_post_PS, minifying_js, js_popup_post_S);
-                js_popup_book_post_PS = getMini(js_popup_book_post_PS, minifying_js, js_popup_book_post_S);
-                js_popup_pdf_PS = getMini(js_popup_pdf_PS, minifying_js, js_popup_pdf_S);
-                js_popup_podcast_PS = getMini(js_popup_podcast_PS, minifying_js, js_popup_podcast_S);
-                js_popup_rsd_PS = getMini(js_popup_rsd_PS, minifying_js, js_popup_rsd_S);
-                js_random_quality_PS = getMini(js_random_quality_PS, minifying_js, js_random_quality_S);
-                js_prog_vars_PS = getMini(js_prog_vars_PS, minifying_js, js_prog_vars_S);
-
-                // js_vars_events_PS = js_vars_events_S;
-                // js_sff_helpers_PS = js_sff_helpers_S;
-                // js_history_state_PS = js_history_state_S;
-                //
-                // js_history_generate_PS = js_history_generate_S;   //  _PS indicates a Promise first time, then a String forever
-                // js_help_vars_PS = js_help_vars_S;                 // so these are varible cached values, files read only once
-                // js_load_scripts_PS = js_load_scripts_S;
-                //
-                // js_popup_blur_PS = js_popup_blur_S;
-                // js_filter_names_PS = js_filter_names_S;
-                // js_popup_post_PS = js_popup_post_S;
-                //
-                // js_popup_book_post_PS = js_popup_book_post_S;
-                //
-                // js_popup_pdf_PS = js_popup_pdf_S;
-                // js_popup_podcast_PS = js_popup_podcast_S;
-                //
-                // js_popup_rsd_PS = js_popup_rsd_S;
-                // js_random_quality_PS = js_random_quality_S;
-                //
-                // js_prog_vars_PS = js_prog_vars_S;
+                js_browser_code_PS = getMini(js_browser_code_PS, MINIFYING_JS, js_browser_code_S);
+                js_vars_events_PS = getMini(js_vars_events_PS, MINIFYING_JS, js_vars_events_S);
+                js_sff_helpers_PS = getMini(js_sff_helpers_PS, MINIFYING_JS, js_sff_helpers_S);
+                js_history_state_PS = getMini(js_history_state_PS, MINIFYING_JS, js_history_state_S);
+                js_history_generate_PS = getMini(js_history_generate_PS, MINIFYING_JS, js_history_generate_S);
+                js_help_vars_PS = getMini(js_help_vars_PS, MINIFYING_JS, js_help_vars_S);
+                js_load_scripts_PS = getMini(js_load_scripts_PS, MINIFYING_JS, js_load_scripts_S);
+                js_popup_blur_PS = getMini(js_popup_blur_PS, MINIFYING_JS, js_popup_blur_S);
+                js_filter_names_PS = getMini(js_filter_names_PS, MINIFYING_JS, js_filter_names_S);
+                js_popup_post_PS = getMini(js_popup_post_PS, MINIFYING_JS, js_popup_post_S);
+                js_popup_book_post_PS = getMini(js_popup_book_post_PS, MINIFYING_JS, js_popup_book_post_S);
+                js_popup_pdf_PS = getMini(js_popup_pdf_PS, MINIFYING_JS, js_popup_pdf_S);
+                js_popup_podcast_PS = getMini(js_popup_podcast_PS, MINIFYING_JS, js_popup_podcast_S);
+                js_popup_rsd_PS = getMini(js_popup_rsd_PS, MINIFYING_JS, js_popup_rsd_S);
+                js_random_quality_PS = getMini(js_random_quality_PS, MINIFYING_JS, js_random_quality_S);
+                js_prog_vars_PS = getMini(js_prog_vars_PS, MINIFYING_JS, js_prog_vars_S);
 
                 var widget_html = widget_vars_html.widgetHtml(graph_container_id, author_links, book_links);
                 var build_page = `

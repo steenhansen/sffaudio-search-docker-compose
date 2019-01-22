@@ -1,30 +1,12 @@
 <?php
 
+// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/functions-day-cache.php
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 /*
     Used by functions-graph-search.php because base SFFaudio search widget since only changes once a day
-
-    include 'functions-day-cache.php';
-
-    static function phpCodeOnly($url_with_parameters, $widget_url, $get_author, $get_book)
-    {
-        if ($get_author || $get_book) {
-            $graph_html = SffGraphSearch::curlGetContents($url_with_parameters);
-        } else {
-            $day_cache = new DayCache($widget_url, 9);   // 9:00 UTC, as cron job is set for on Heroku
-            $graph_html = $day_cache->getString();
-        }
-        $iosMetaViewPort__webHtmlJavascript = explode('<!-- end widget intro. NB, this text is used by PHP -->', $graph_html);
-        $web_html_javascript = $iosMetaViewPort__webHtmlJavascript[1];
-        return $web_html_javascript;
-    }
-
-    function graph_search_component(){
-        $web_html_javascript = SffGraphSearch::phpCodeOnly($url_with_parameters, $widget_url, $get_author, $get_book);
-    }
-
 */
 
 // public_html/wp-content/themes/revolution-code-blue2/functions-day-cache.php
@@ -369,7 +351,7 @@ if (!function_exists('day_cache')) {
         $day_cache_html = <<<JAVASCRIPT_HTML
      
      <br><br> test_output start<br><br>
-      c  $test_output  v
+        $test_output  
       <br><br>test_output end<br><br>
        -->
 JAVASCRIPT_HTML;

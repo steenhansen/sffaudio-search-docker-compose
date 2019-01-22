@@ -6,7 +6,7 @@ sff_js_vars.filter_names = (function (graph_id) {
     };
 
     function makeFilters(search_underscore, all_name, filter_name, div_class_name) {
-        clearFiltered(filter_name);
+        my.clearFiltered(filter_name);
         var all_div = document.getElementById(all_name);
         var filter_div = document.getElementById(filter_name);
         var all_children = all_div.getElementsByClassName(div_class_name);
@@ -124,7 +124,8 @@ sff_js_vars.filter_names = (function (graph_id) {
         return true;
     }
 
-    function clearFiltered(container_name) {
+
+     my.clearFiltered =function(container_name) {
         var the_container = document.getElementById(container_name);
         while (the_container.firstChild) {
             the_container.removeChild(the_container.firstChild);
@@ -142,7 +143,7 @@ sff_js_vars.filter_names = (function (graph_id) {
 
     my.stopFilteringAuthors = function () {
         my.showHideFilteredAuthors('all_media');
-        clearFiltered('filter--authors');
+        my.clearFiltered('filter--authors');
     }
 
     my.showHideFilteredAuthors = function (showing_type) {
@@ -162,7 +163,7 @@ sff_js_vars.filter_names = (function (graph_id) {
 
     my.stopFilteringStories = function () {
         my.showHideFilteredStories('all_media');
-        clearFiltered('filter--books');
+        my.clearFiltered('filter--books');
     }
 
     my.showHideFilteredStories = function (showing_type) {
