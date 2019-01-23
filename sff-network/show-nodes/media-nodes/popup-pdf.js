@@ -56,7 +56,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         var file_name = url_array.pop();
         if (this.pdf_country==='Canada') {
             // The Phantom Flight
-            var after_htaccess_url = 'http://sffaudiomediacan.s3.amazonaws.com/pdfs/' + file_name;
+            var after_htaccess_url = 'https://sffaudiomediacan.s3.amazonaws.com/pdfs/' + file_name;
         } else {
             // beyond lies the wub
             var after_htaccess_url = 'https://nyc3.digitaloceanspaces.com/sffaudio-usa/usa-pdfs/' + file_name;
