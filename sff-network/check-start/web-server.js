@@ -16,14 +16,6 @@ app.get(graph_constants.ROUTE_ERASE_CACHES, function (req, res) {
          })
 })
 
-app.get(program_variables.ROUTE_RESOLVE_PDF, function (req, res) {
-    const start_pdf_url = req.query[program_variables.SFF_START_PDF_URL];
-    serverResponse.resolvePdf(start_pdf_url)
-        .then((end_pdf_url)=> {
-            res.send(end_pdf_url);
-        })
-})
-
 app.get(graph_constants.ROUTE_POST_PROXY, function (req, res) {
     const sff_url_post = req.query.absolute_url;
     serverResponse.sffAudioPostPiece(sff_url_post)

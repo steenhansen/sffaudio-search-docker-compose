@@ -37,7 +37,8 @@ sff_js_vars.history_generate = (function () {
           var pdf_type_index = {group_type:'N_PDF', req_query_choice:req_query_choice};
             var pdf_view = sff_js_vars.graph_vars.nodes_string.find(findNodeIndex, pdf_type_index);   // carmilla
             if (pdf_view) {
-                sff_js_vars.pdf_procs.historyPdf(pdf_view.goto_url, pdf_view.book_title, pdf_view.label, pdf_view.last_first_underscores, pdf_view.under_title, req_query_view, req_query_choice);
+                sff_js_vars.pdf_procs.historyPdf(pdf_view.goto_url, pdf_view.book_title, pdf_view.label, pdf_view.last_first_underscores,
+                 pdf_view.under_title, req_query_view, req_query_choice, pdf_view.pdf_country);
             }
         } else if (req_query_view === 'rsd') {
               var rsd_type_index = {group_type:'N_RSD', req_query_choice:req_query_choice}; 

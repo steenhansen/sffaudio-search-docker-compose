@@ -163,7 +163,7 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                         my.loadAuthorNew(strip_author)
                     }
                 } else if (node_type == 'L_PDF') {
-                    sff_js_vars.pdf_procs.historyPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf', sorted_choice);
+                    sff_js_vars.pdf_procs.historyPdf(goto_url, book_title, label, last_first_underscores, under_title, 'pdf', sorted_choice, pdf_country);
                 } else if (node_type == 'L_PODCAST') {
                     sff_js_vars.podcast_procs.historyPodcast(goto_url, podcast_url, under_title, last_first_underscores, 'podcast', sorted_choice);
                 } else if (node_type == 'L_RSD') {

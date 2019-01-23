@@ -1,4 +1,3 @@
-
 //popup-rsd
 sff_js_vars.rsd_procs = (function (rsd_close_svg) {
 
@@ -48,13 +47,24 @@ sff_js_vars.rsd_procs = (function (rsd_close_svg) {
             sff_js_vars.helpers.setDisplay("video--container", 'none');
             sff_js_vars.pdf_procs.startPdf(rsd_pdf_link, label, rsd_description, last_first_underscores, under_title);
         }
-        this.rsd_mp3 = goto_url;
         document.getElementById('close--icon').src = rsd_close_svg;
         sff_js_vars.helpers.setDisplay('post--container', 'none');
-        sff_js_vars.blur_procs.mp3load(goto_url);
+
+        var resolved_rsd_url = my.decodeUrl(goto_url);
+        sff_js_vars.blur_procs.mp3load(resolved_rsd_url);
         sff_js_vars.helpers.setDisplay('download--rsd--mp3', 'block');
     }
 
+    my.decodeUrl = function (before_htaccess_url) {
+        var url_array = before_htaccess_url.split('/');
+        var file_name = url_array.pop();
+        var after_htaccess_url = 'https://nyc3.digitaloceanspaces.com/sffaudio-usa/rsd-podcasts/' + file_name;
+        this.rsd_mp3 = after_htaccess_url;
+        return after_htaccess_url;
+    }
+
+
+// under_title, last_first_underscores are unused below
     my.loadVideo = function (video_embed, book_title, label, under_title, last_first_underscores) {
         sff_js_vars.helpers.setDisplay("media--title", 'block');
         document.getElementById('close--icon').src = rsd_close_svg;

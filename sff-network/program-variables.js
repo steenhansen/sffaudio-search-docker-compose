@@ -5,15 +5,7 @@ if (typeof sff_js_vars === 'undefined') {
     sff_js_vars = {};
 }
 
-sff_js_vars.SFF_RESOLVE_URL = 'resolve-url';
-sff_js_vars.SFF_START_PDF_URL = 'start_pdf_url';
-sff_js_vars.SFF_RESOLVE_PDF = sff_js_vars.SFF_RESOLVE_URL + '?' + sff_js_vars.SFF_START_PDF_URL + '=';
-sff_js_vars.ROUTE_RESOLVE_PDF = '/' + sff_js_vars.SFF_RESOLVE_URL;
 sff_js_vars.ROUTE_AUTHOR_JSON = '/author/:strip_author';
-
-
-
-
 
 
 sff_js_vars.PROTOCAL_RELATIVE_URL = '//';

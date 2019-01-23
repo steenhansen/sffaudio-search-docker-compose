@@ -1,5 +1,19 @@
  const my_media_array = [
  {
+  "episode number": "509",
+  "post id": "59463",
+  "publish date": "2019-01-21 00:01",
+  "kind": "READALONG",
+  "participants": "Jesse, Paul Weimer, Evan Lampe",
+  "narrator": "",
+  "file name": "SFFaudioPodcast509.mp3",
+  "byte size": "57,298,668",
+  "hh:mm:ss": "1:32:13",
+  "book title": "Autofac",
+  "book author": "Philip K. Dick",
+  "about": ""
+ },
+ {
   "episode number": "508",
   "post id": "59406",
   "publish date": "2019-01-14 00:01",

@@ -62,6 +62,7 @@ sff_js_vars.blur_procs = (function (pop_up_id) {
         var mp3_player = document.getElementById("mp3--player");
         sff_js_vars.helpers.setDisplay("mp3--player", 'block');
         mp3_player.src = goto_url;
+        console.log('my.mp3load goto_url=', goto_url)
         mp3_player.load();
         var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         var canvas_left_px = screen_width * 0.05;

@@ -120,10 +120,27 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     color: blue;
 }
 
+
+
+
+
+
+
+.b__a {
+    visibility: hidden;
+    text-align: center;
+    background-color: yellow;
+}
+
 .book__article {
     visibility: hidden;
     text-align: center;
     background-color: yellow;
+}
+.b__r {
+    height: 1em;
+    overflow: hidden;
+    text-decoration: underline;
 }
 
 .book__rest {
@@ -131,6 +148,15 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     overflow: hidden;
     text-decoration: underline;
 }
+
+
+
+
+
+
+
+
+
 
 .author__choice {
     color: black;

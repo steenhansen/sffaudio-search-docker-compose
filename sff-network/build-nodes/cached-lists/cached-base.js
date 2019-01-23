@@ -17,6 +17,10 @@ class CachedBase {
     //     }
     // }
     
+    
+    
+    //   book__article  -->   b__a
+    
     makeDbCache(sorted_media, new_db_version) {
         var media_data_2 = {}
         for (let i = 0; i < sorted_media.records.length; i++) {

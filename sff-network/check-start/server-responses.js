@@ -22,14 +22,6 @@ function corsAll(req, res, next) {
 
 }
 
-function resolvePdf(start_pdf_url) {
-    return misc_helper.resolveRedirects(start_pdf_url)
-        .then((end_pdf_url)=> {
-            var end_pdf_url = end_pdf_url.replace('http://', 'https://');
-            return end_pdf_url;
-        })
-}
-
 
 function authorJson(strip_author) {
     return author_data.sendAuthor(strip_author, ParseNeo, 0)
@@ -160,6 +152,6 @@ function bookOrAuthorPage(req_query) {
 }
 
 module.exports = {
-    corsAll, resolvePdf, sffAudioPostPiece, authorJson, bookJson,
+    corsAll, sffAudioPostPiece, authorJson, bookJson,
     initialDefaultPage, bookOrAuthorPage, clearFromReload
 };

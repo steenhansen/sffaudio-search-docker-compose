@@ -17,7 +17,7 @@ var graph_constants = {
     GIF_LOADING: "https://sffaudio-search.herokuapp.com/gif-loading.gif",
     
     MOBILE_HEADER_ABOVE : '<!-- end widget intro. NB, this text is used by PHP -->',
-    MINIFYING_JS : true,
+    MINIFYING_JS : 1,
     
     MAX_ZOOM: 2,
     MIN_ZOOM: 0.25,
@@ -60,6 +60,13 @@ var graph_constants = {
     DELETE_UNUSED_RECORDS: 20000,
     NO_RECORD_LIMIT: 'NO_RECORD_LIMIT',
    
+    MINIFY_CSS_TABLE: {
+        css_book__article: ['book__article','b__a'],
+        css_book__rest: ['book__rest', 'b__r']
+
+    },
+
+    
                               
    
     THE_COLORS: rotate_colors,

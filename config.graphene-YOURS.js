@@ -6,7 +6,7 @@ var HEROKU_CONFIG_VARS = {
     GRAPHENEDB_BOLT_URL: 'bolt://type--abcdefghijklmnopqrstuvwx.dbs.graphenedb.com:12345',
     GRAPHENEDB_BOLT_USER: 'app1234567890234567',
     GRAPHENE_WAIT_SECONDS: 30,
-    NEW_RELIC_KEY: 'abcdfeghijklmnopqrstuvwxyz1234567890abcd',
+    NEW_RELIC_LICENSE_KEY: 'abcdfeghijklmnopqrstuvwxyz1234567890abcd',
     APP_NAME: 'sffaudio-search'
 }
 module.exports = HEROKU_CONFIG_VARS

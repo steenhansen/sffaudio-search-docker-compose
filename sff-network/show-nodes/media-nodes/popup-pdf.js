@@ -11,8 +11,10 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         pdf_url: ''
     };
 
-    my.historyPdf = function (pdf_url, book_title, label, last_first_underscores, under_title, req_query_view, sorted_choice) {
+    my.historyPdf = function (pdf_url, book_title, label, last_first_underscores, under_title, req_query_view, sorted_choice, pdf_country) {
         this.pdf_url = pdf_url;
+        this.pdf_country = pdf_country;
+        
         if (req_query_view) {
             sff_js_vars.history_state.pushViewBook(last_first_underscores, under_title, req_query_view, sorted_choice);
         } else {
@@ -37,27 +39,32 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         sff_js_vars.helpers.setDisplay('pdf--loading', 'block');
     }
 
+
     my.startPdf = function (pdf_url, book_title, label) {
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         sff_js_vars.blur_procs.blockPage('popup--container');
         sff_js_vars.helpers.busyCursor();
-        this.pdf_url = pdf_url;
         my.setupPdf(book_title, label);
-        if (sff_php_vars.php_url === 'not a php host') {
-            var url_type3 = '//' + window.location.host + '/' + sff_js_vars.SFF_RESOLVE_PDF + pdf_url;
-        } else {
-            var url_type3 = sff_js_vars.ajax_url + '/' + sff_js_vars.SFF_RESOLVE_PDF + pdf_url;
-        }
-        sff_js_vars.helpers.browserFetchRetry2(url_type3)
-            .then(function (response) {
-                var text_promise = response.text();
-                return text_promise;
-            })
-            .then(function (resolved_pdf_url) {
-                my.readPdf(resolved_pdf_url);
-                sff_js_vars.helpers.normalCursor();
-            })
+        var resolved_pdf_url = my.decodeUrl(pdf_url);
+        my.readPdf(resolved_pdf_url);
+        sff_js_vars.helpers.normalCursor();
     }
+
+
+    my.decodeUrl = function (before_htaccess_url) {
+        var url_array = before_htaccess_url.split('/');
+        var file_name = url_array.pop();
+        if (this.pdf_country==='Canada') {
+            // The Phantom Flight
+            var after_htaccess_url = 'http://sffaudiomediacan.s3.amazonaws.com/pdfs/' + file_name;
+        } else {
+            // beyond lies the wub
+            var after_htaccess_url = 'https://nyc3.digitaloceanspaces.com/sffaudio-usa/usa-pdfs/' + file_name;
+        }
+        this.pdf_url = after_htaccess_url;
+        return after_htaccess_url;
+    }
+
 
     my.readPdf = function (pdf_url) {
         sff_js_vars.helpers.browserFetchRetry2(pdf_url)
@@ -80,8 +87,8 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
                     }
                 })
             }).catch(function (e) {
-                my.downloadPdf(e);             // bypass CORS error SEC7118 on IE 11, Windows 7&8 bug
-             })
+            my.downloadPdf(e);             // bypass CORS error SEC7118 on IE 11, Windows 7&8 bug
+        })
     }
 
     my.downloadPdf = function (error) {    // e=== Error: Invalid parameter object: need either .data, .range or .url

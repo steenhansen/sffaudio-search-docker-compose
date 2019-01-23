@@ -9,7 +9,7 @@ var graph_constants = rootAppRequire('sff-network/graph-constants');
 var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 var fs = require('fs');
-const {END_BOOK_LIST}=graph_constants;
+const {END_BOOK_LIST, MINIFY_CSS_TABLE, MINIFYING_JS}=graph_constants;
 
 class CachedBooks extends CachedBase {
 
@@ -38,9 +38,22 @@ class CachedBooks extends CachedBase {
             var article_a_an_the = '&nbsp;';
             var rest_title = book_articles[0];
         }
+        
+        
+        
+             var book_article = MINIFY_CSS_TABLE.css_book__article[MINIFYING_JS];
+             var book_rest = MINIFY_CSS_TABLE.css_book__rest[MINIFYING_JS];
+            
+    //    var book_article = MINIFY_CSS_TABLE.css_book__article[1];       // 3059885
+      //      var book_rest = MINIFY_CSS_TABLE.css_book__rest[1];
+        
+          //  var book_article = MINIFY_CSS_TABLE.css_book__article[0];    // 3148940
+          //  var book_rest = MINIFY_CSS_TABLE.css_book__rest[0];
+        
+        
         var article_rest = `
-            <div id='${sorted_label}_article' class='book__article'>${article_a_an_the}</div>
-            <div id='${sorted_label}_rest' class='book__rest'>${rest_title}</div>    `;
+            <div id='${sorted_label}_article' class='${book_article}'>${article_a_an_the}</div>
+            <div id='${sorted_label}_rest' class='${book_rest}'>${rest_title}</div>    `;
         return article_rest
     }
 
