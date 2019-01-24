@@ -239,23 +239,12 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
 ))
 
 
-window.sff__a = sff_js_vars.graph_procs.loadAuthorNew;
-window.sff__v = sff_js_vars.helpers.setVisible;
-window.sff__h = sff_js_vars.helpers.setHidden;
+window.l__a = sff_js_vars.graph_procs.loadAuthorNew;     // load-author
+window.v__a = sff_js_vars.helpers.setVisible;            // visible-author
+window.h__a = sff_js_vars.helpers.setHidden;             // hide-author
 
-window.sff__b = sff_js_vars.graph_procs.loadBookNew;
-function sff_enter(id) {
-    document.getElementById(id + '_article').style.visibility = 'visible';
-    document.getElementById(id + '_rest').style.height = '5.5em';
-    document.getElementById(id + '_rest').style.position = 'relative';
-    document.getElementById(id + '_rest').style.backgroundColor = 'yellow';
-}
-
-function sff_leave(id) {
-    document.getElementById(id + '_article').style.visibility = 'hidden';
-    document.getElementById(id + '_rest').style.height = '1em';
-    document.getElementById(id + '_rest').style.position = 'static';
-    document.getElementById(id + '_rest').style.backgroundColor = 'transparent';
-}
+window.l__b = sff_js_vars.graph_procs.loadBookNew;        // load-book
+window.f__b = sff_js_vars.helpers.focusBook;        // focus-book
+window.b__b = sff_js_vars.helpers.blurBook;        // blur-book
 
 // browser-graph end

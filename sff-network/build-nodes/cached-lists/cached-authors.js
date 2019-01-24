@@ -10,6 +10,7 @@ var graph_constants = rootAppRequire('sff-network/graph-constants');
 var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 
+const { MINIFY_CSS_TABLE, MINIFYING_JS}=graph_constants;
 
 class CachedAuthors extends CachedBase {
 
@@ -36,15 +37,20 @@ class CachedAuthors extends CachedBase {
             middle_names = '&nbsp;';
         }
         var title_separator = strip_author + END_AUTHOR_LIST;
+              var author__choice___a__c = MINIFY_CSS_TABLE.author__choice___a__c[MINIFYING_JS];
+              var auth__first___a__f = MINIFY_CSS_TABLE.auth__first___a__f[MINIFYING_JS];
+              var auth__last___a__l = MINIFY_CSS_TABLE.auth__last___a__l[MINIFYING_JS];
+              var auth__mid___a__m = MINIFY_CSS_TABLE.auth__mid___a__m[MINIFYING_JS];
+              
         var author_html = `
-             <div   class='author__choice' 
-                    id="${title_separator}"       
-                    onclick="sff__a('${strip_author}') "
-                    onmouseenter="sff__v('${strip_author}_mid');"
-                    onmouseleave="sff__h('${strip_author}_mid');" >
-                            <div class="auth__first">${first_name}</div> 
-                            <div class="auth__last">${last_name}</div>
-                            <div class="auth__mid" id="${strip_author}_mid"  >${middle_names}</div>
+             <div   class=${author__choice___a__c}
+                    id=${title_separator}       
+                    onclick="l__a('${strip_author}') "
+                    onmouseenter="v__a('${strip_author}_mid');"
+                    onmouseleave="h__a('${strip_author}_mid');" >
+                            <div class=${auth__first___a__f}>${first_name}</div> 
+                            <div class=${auth__last___a__l}>${last_name}</div>
+                            <div class=${auth__mid___a__m} id=${strip_author}_mid  >${middle_names}</div>
              </div> `;
         return author_html;
     }

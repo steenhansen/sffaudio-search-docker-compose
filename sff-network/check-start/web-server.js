@@ -57,7 +57,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('*', function (req, res) {
-    res.status(204);
+    res.redirect('/');
 })
 
 app.set('port', process.env.PORT)

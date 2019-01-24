@@ -19,7 +19,9 @@ const history_state = fromAppRoot('sff-network/html-pages/history-state.js');
 const history_generate = fromAppRoot('sff-network/html-pages/history-generate.js');
 var help_vars = fromAppRoot('sff-network/html-pages/help-graph.js');
 var load_scripts = fromAppRoot('sff-network/html-pages/load-scripts.js');  // mainJsStart // ie_load_second_chance
+
 const filter_names = fromAppRoot('sff-network/show-nodes/media-nodes/filter-names.js');
+
 const popup_post = fromAppRoot('sff-network/show-nodes/media-nodes/popup-author-post.js');
 const popup_book_post = fromAppRoot('sff-network/show-nodes/media-nodes/popup-book-post.js');
 const popup_pdf = fromAppRoot('sff-network/show-nodes/media-nodes/popup-pdf.js');
@@ -31,7 +33,7 @@ var random_quality = fromAppRoot('sff-network/html-pages/random-quality.js');
 
 let {
     URL_SEPARATOR, DARK_BACKGROUND, LIGHT_BACKGROUND, BOOK_PAGE_TYPE, AUTHOR_PAGE_TYPE, AUTHOR_BOOK_SEPARATOR, MAX_ZOOM, MIN_ZOOM, ZOOM_STEP,
-    HELP_FONT, ERROR_FONT, END_BOOK_LIST, END_AUTHOR_LIST, MINIFYING_JS
+    HELP_FONT, ERROR_FONT, END_BOOK_LIST, END_AUTHOR_LIST, MINIFYING_JS, MINIFY_CSS_TABLE
 } = rootAppRequire('sff-network/graph-constants');
 
 
@@ -62,7 +64,10 @@ var js_random_quality_PS = readFilePromise(random_quality, 'utf8');
 
 var js_prog_vars_PS = readFilePromise(program_variables, 'utf8')
 
-
+         var author__choice___a__c = MINIFY_CSS_TABLE.author__choice___a__c[MINIFYING_JS];
+           var book__choice___b__c = MINIFY_CSS_TABLE.book__choice___b__c[MINIFYING_JS];
+           
+           
     function getMini(js_browser_code_PS, minifying_js, js_browser_code_S) {
         if (typeof js_browser_code_PS == 'object') {
             if (minifying_js) {
@@ -147,7 +152,9 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 			    "END_BOOK_LIST" : "${END_BOOK_LIST}",
 			    "END_AUTHOR_LIST" : "${END_AUTHOR_LIST}",
 			    "STRIP_AUTHOR" : "${strip_author}",
-			     "NODES_AND_EDGES_STR" : ${nodes_and_edges_str}
+			     "NODES_AND_EDGES_STR" : ${nodes_and_edges_str},
+			     "AUTHOR__CHOICE___A__C" : "${author__choice___a__c}",
+			     "BOOK__CHOICE___B__C" : "${book__choice___b__c}"
 			       };
     ${js_vars_events_PS}
     sff_js_vars.vars_events.initVars();

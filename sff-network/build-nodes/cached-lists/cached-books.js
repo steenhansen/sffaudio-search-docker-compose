@@ -38,22 +38,12 @@ class CachedBooks extends CachedBase {
             var article_a_an_the = '&nbsp;';
             var rest_title = book_articles[0];
         }
-        
-        
-        
-             var book_article = MINIFY_CSS_TABLE.css_book__article[MINIFYING_JS];
-             var book_rest = MINIFY_CSS_TABLE.css_book__rest[MINIFYING_JS];
-            
-    //    var book_article = MINIFY_CSS_TABLE.css_book__article[1];       // 3059885
-      //      var book_rest = MINIFY_CSS_TABLE.css_book__rest[1];
-        
-          //  var book_article = MINIFY_CSS_TABLE.css_book__article[0];    // 3148940
-          //  var book_rest = MINIFY_CSS_TABLE.css_book__rest[0];
-        
-        
+        var book__article___b__a = MINIFY_CSS_TABLE.book__article___b__a[MINIFYING_JS];
+        var book__rest___b__r = MINIFY_CSS_TABLE.book__rest___b__r[MINIFYING_JS];
         var article_rest = `
-            <div id='${sorted_label}_article' class='${book_article}'>${article_a_an_the}</div>
-            <div id='${sorted_label}_rest' class='${book_rest}'>${rest_title}</div>    `;
+            <div id=${sorted_label}_article class=${book__article___b__a}>${article_a_an_the}</div>
+            <div id=${sorted_label}_rest class=${book__rest___b__r}>${rest_title}</div>    `;
+
         return article_rest
     }
 
@@ -61,12 +51,13 @@ class CachedBooks extends CachedBase {
         var [under_title, book_title, sorted_label, strip_author]= book_name;
         var shrunkArticles = this.shrinkAAnThe(book_title, sorted_label);
         var title_separator = under_title + END_BOOK_LIST;
+        var book__choice___b__c = MINIFY_CSS_TABLE.book__choice___b__c[MINIFYING_JS];
         var book_html = `
-             <div   class="book__choice"  
-                    id="${title_separator}" 
-                    onclick="sff__b('${strip_author}','${under_title}') "
-                    onmouseenter="sff_enter('${sorted_label}');"
-                    onmouseleave="sff_leave('${sorted_label}');">
+             <div   class=${book__choice___b__c}  
+                    id=${title_separator} 
+                    onclick="l__b('${strip_author}','${under_title}') "
+                    onmouseenter="f__b('${sorted_label}');"
+                    onmouseleave="b__b('${sorted_label}');">
                             ${shrunkArticles}
              </div> `;
         return book_html;

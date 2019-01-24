@@ -108,42 +108,29 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     width: 50%;
 }
 
-.book__choice {
+
+
+
+
+.book__choice, .b__c {
     height: 44px;
     width: 132px;
     float: left;
     color: black;
 }
 
-.book__choice:hover {
+.book__choice:hover, .b__c:hover {
     cursor: pointer;
     color: blue;
 }
 
-
-
-
-
-
-
-.b__a {
+.book__article, .b__a {
     visibility: hidden;
     text-align: center;
     background-color: yellow;
 }
-
-.book__article {
-    visibility: hidden;
-    text-align: center;
-    background-color: yellow;
-}
-.b__r {
-    height: 1em;
-    overflow: hidden;
-    text-decoration: underline;
-}
-
-.book__rest {
+ 
+.book__rest, .b__r {
     height: 1em;
     overflow: hidden;
     text-decoration: underline;
@@ -158,19 +145,19 @@ function widgetHtml(graph_div_id, author_links, book_links) {
 
 
 
-.author__choice {
+.author__choice, .a__c {
     color: black;
     height: 32px;
     display: inline-block;
     width: 132px;
 }
 
-.author__choice:hover {
+.author__choice:hover, .a__c:hover {
     cursor: pointer;
     color: blue;
 }
 
-.auth__first {
+.auth__first, .a__f {
     font-size: 75%;
     width: 45%;
     text-align: right;
@@ -179,7 +166,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     overflow-x: hidden;
 }
 
-.auth__last {
+.auth__last, .a__l {
     text-decoration: underline;
     font-size: 100%;
     width: 45%;
@@ -189,13 +176,16 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     hyphens: none;
 }
 
-.auth__mid {
+
+.auth__mid, .a__m {
     font-size: 70%;
     width: 45%;
     text-align: right;
     display: inline-block;
     visibility: hidden;
 }
+
+
 
 #reset--center {
     display: flex;

@@ -59,10 +59,19 @@ var graph_constants = {
     NEO4J_VERSION: 'v1',
     DELETE_UNUSED_RECORDS: 20000,
     NO_RECORD_LIMIT: 'NO_RECORD_LIMIT',
+
    
     MINIFY_CSS_TABLE: {
-        css_book__article: ['book__article','b__a'],
-        css_book__rest: ['book__rest', 'b__r']
+        book__article___b__a: ['book__article','b__a'],
+        book__rest___b__r: ['book__rest', 'b__r'],
+        book__choice___b__c: ['book__choice', 'b__c'],
+
+
+        author__choice___a__c: ['author__choice', 'a__c'],
+        auth__first___a__f: ['auth__first', 'a__f'],
+        auth__last___a__l: ['auth__last', 'a__l'],
+        auth__mid___a__m: ['auth__mid', 'a__m']
+
 
     },
 

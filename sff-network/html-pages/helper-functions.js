@@ -61,6 +61,21 @@ sff_js_vars.helpers = (function () {
         document.getElementById(elem_id).style.visibility = 'hidden';
     };
 
+    my.focusBook = function (id) {
+        document.getElementById(id + '_article').style.visibility = 'visible';
+        document.getElementById(id + '_rest').style.height = '5.5em';
+        document.getElementById(id + '_rest').style.position = 'relative';
+        document.getElementById(id + '_rest').style.backgroundColor = 'yellow';
+    };
+
+    my.blurBook = function (id) {
+        document.getElementById(id + '_article').style.visibility = 'hidden';
+        document.getElementById(id + '_rest').style.height = '1em';
+        document.getElementById(id + '_rest').style.position = 'static';
+        document.getElementById(id + '_rest').style.backgroundColor = 'transparent';
+    };
+
+
     my.busyCursor = function () {
         var body_elem = document.getElementsByTagName("BODY")[0];
         body_elem.classList.add('busy--cursor');
@@ -74,12 +89,12 @@ sff_js_vars.helpers = (function () {
     my.browserFetchRetry2 = function (fetch_url) {
         return sff_js_vars.helpers.browserFetchRetry(fetch_url, 2);
     }
-    
+
 
     my.browserFetchRetry = function (fetch_url, num_tries, init_options) {
         return fetch(fetch_url, init_options)
             .catch(function (error) {
-                if (num_tries <2) {
+                if (num_tries < 2) {
                     throw error;
                 }
                 return browserFetchRetry(fetch_url, num_tries - 1, init_options);

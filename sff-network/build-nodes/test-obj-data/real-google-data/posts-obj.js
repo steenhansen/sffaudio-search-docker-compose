@@ -3249,14 +3249,14 @@
  },
  {
   "id": "http://www.sffaudio.com/?p=42186",
-  "title": "Review",
+  "title": "Review of Audible Frontiers",
   "author": "Roger Zelazny",
   "book": "Nine Princes in Amber",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1116",
-  "title": "Review",
+  "title": "Review of Sunset Productions read by author",
   "author": "Roger Zelazny",
   "book": "Nine Princes in Amber",
   "": ""
