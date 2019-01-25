@@ -1,32 +1,32 @@
  const my_media_array = [
  {
-  "graph title": "Lethem & Robinson video",
+  "id": "http://www.sffaudio.com/?p=56947",
+  "title": "Lethem & Robinson video",
   "author": "Philip K. Dick",
-  "book": "",
-  "sff post url": "https://www.sffaudio.com/jonathan-lethem-and-kim-stanley-robinson-discuss-philip-k-dick/"
+  "book": ""
  },
  {
-  "graph title": "Online Audio",
+  "id": "http://www.sffaudio.com/?p=38383",
+  "title": "Online Audio",
   "author": "Philip K. Dick",
-  "book": "Beyond Lies The Wub",
-  "sff post url": "https://www.sffaudio.com/beyond-lies-the-wub-by-philip-k-dick/"
+  "book": "Beyond Lies The Wub"
  },
  {
-  "graph title": "The Time Traveler Show",
+  "id": "https://www.sffaudio.com/the-time-traveler-show-11-beyond-lies-the-wub-by-philip-k-dick/",
+  "title": "The Time Traveler Show",
   "author": "Philip K. Dick",
-  "book": "Beyond Lies The Wub",
-  "sff post url": "https://www.sffaudio.com/the-time-traveler-show-11-beyond-lies-the-wub-by-philip-k-dick/"
+  "book": "Beyond Lies The Wub"
  },
  {
-  "graph title": "Radio Project X: Beyond Lies The Wub [AUDIO DRAMA]",
+  "id": "http://www.sffaudio.com/?p=854",
+  "title": "Radio Project X: Beyond Lies The Wub [AUDIO DRAMA]",
   "author": "Philip K. Dick",
-  "book": "Beyond Lies The Wub",
-  "sff post url": "https://www.sffaudio.com/radio-project-x-beyond-lies-the-wub-audio-drama/"
+  "book": "Beyond Lies The Wub"
  },
  {
-  "graph title": "PRI’s Selected Shorts",
+  "id": "http://www.sffaudio.com/?p=2557",
+  "title": "PRI’s Selected Shorts",
   "author": "Philip K. Dick",
-  "book": "Beyond Lies The Wub",
-  "sff post url": "https://www.sffaudio.com/pris-selected-shorts-beyond-lies-the-wub-by-philip-k-dick/"
+  "book": "Beyond Lies The Wub"
  }
 ]; module.exports = my_media_array;

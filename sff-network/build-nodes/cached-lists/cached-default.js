@@ -17,12 +17,24 @@ var misc_helper = rootAppRequire('sff-network/misc-helper')
 class CachedDefault extends CachedBase {
 
 
-    static checkCache(current_db_version) {
-        if (current_db_version !== CachedDefault.db_version) {
-            CachedDefault.good_authors_cache = false;
-        }
+    static checkCache() {
+        return VersionRepository.getDefaultAuthors()
+            .then((default_html_db)=> {
+                var db_version = default_html_db.records[0]._fields[0];
+                CachedDefault.db_version = db_version;
+                var default_cache = default_html_db.records[0]._fields[1];
+                CachedDefault.good_authors_cache = default_cache;
+                return CachedDefault.good_authors_cache;
+            })
     }
 
+    getCache() {
+        if (CachedDefault.good_authors_cache) {
+            return CachedDefault.good_authors_cache;
+        } else {
+            return CachedDefault.checkCache();
+        }
+    }
 
     constructor() {
         super('default-cache');
@@ -48,21 +60,6 @@ class CachedDefault extends CachedBase {
                 var js_code = JSON.stringify(cached_authors, null, ' ');
                 return VersionRepository.saveDefaultAuthors(db_version, js_code);
             })
-    }
-
-    getCache() {
-        if (CachedDefault.good_authors_cache) {
-            return CachedDefault.good_authors_cache;
-        } else {
-            return VersionRepository.getDefaultAuthors()
-                .then((authors_html_db)=> {
-                    var db_version = authors_html_db.records[0]._fields[0];
-                    CachedDefault.db_version = db_version;
-                    var default_string = authors_html_db.records[0]._fields[1];
-                    CachedDefault.good_authors_cache = default_string;
-                    return default_string;
-                })
-        }
     }
 
 

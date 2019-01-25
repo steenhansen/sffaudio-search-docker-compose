@@ -21,6 +21,7 @@ module.exports = function (build_repository) {
             if ('Canada' === pdf_country) {
                 new_info = `${new_info} Can`;
             }
+         //   console.log('new_link, new_info', new_link, new_info)
             return {new_link, new_info};
         }
 

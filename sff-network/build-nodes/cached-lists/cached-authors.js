@@ -10,13 +10,26 @@ var graph_constants = rootAppRequire('sff-network/graph-constants');
 var graph_db = rootAppRequire('sff-network/neo4j-graph-db')(graph_constants.NEO4J_VERSION);
 var VersionRepository = rootAppRequire('sff-network/build-nodes/graph-dbs/version-repository')(graph_db);
 
-const { MINIFY_CSS_TABLE, MINIFYING_JS}=graph_constants;
+const {MINIFY_CSS_TABLE, MINIFYING_JS}=graph_constants;
 
 class CachedAuthors extends CachedBase {
 
-    static checkCache(current_db_version) {
-        if (current_db_version !== CachedAuthors.db_version) {
-            CachedAuthors.author_cache = false;
+    static checkCache() {
+        return VersionRepository.getAuthors()
+            .then((authors_html_db)=> {
+                var db_version = authors_html_db.records[0]._fields[0];
+                CachedAuthors.db_version = db_version;
+                var authors_cache = authors_html_db.records[0]._fields[1];
+                CachedAuthors.author_cache = authors_cache;
+                return CachedAuthors.author_cache;
+            })
+    }
+
+    getCache() {
+        if (CachedAuthors.author_cache) {
+            return CachedAuthors.author_cache;
+        } else {
+            return CachedAuthors.checkCache();
         }
     }
 
@@ -37,11 +50,11 @@ class CachedAuthors extends CachedBase {
             middle_names = '&nbsp;';
         }
         var title_separator = strip_author + END_AUTHOR_LIST;
-              var author__choice___a__c = MINIFY_CSS_TABLE.author__choice___a__c[MINIFYING_JS];
-              var auth__first___a__f = MINIFY_CSS_TABLE.auth__first___a__f[MINIFYING_JS];
-              var auth__last___a__l = MINIFY_CSS_TABLE.auth__last___a__l[MINIFYING_JS];
-              var auth__mid___a__m = MINIFY_CSS_TABLE.auth__mid___a__m[MINIFYING_JS];
-              
+        var author__choice___a__c = MINIFY_CSS_TABLE.author__choice___a__c[MINIFYING_JS];
+        var auth__first___a__f = MINIFY_CSS_TABLE.auth__first___a__f[MINIFYING_JS];
+        var auth__last___a__l = MINIFY_CSS_TABLE.auth__last___a__l[MINIFYING_JS];
+        var auth__mid___a__m = MINIFY_CSS_TABLE.auth__mid___a__m[MINIFYING_JS];
+
         var author_html = `
              <div   class=${author__choice___a__c}
                     id=${title_separator}       
@@ -53,21 +66,6 @@ class CachedAuthors extends CachedBase {
                             <div class=${auth__mid___a__m} id=${strip_author}_mid  >${middle_names}</div>
              </div> `;
         return author_html;
-    }
-
-    getCache() {
-        if (CachedAuthors.author_cache) {
-            return CachedAuthors.author_cache;
-        } else {
-            return VersionRepository.getAuthors()
-                .then((authors_html_db)=> {
-                    var db_version = authors_html_db.records[0]._fields[0];
-                    CachedAuthors.db_version = db_version;
-                    var authors_cache = authors_html_db.records[0]._fields[1];
-                    CachedAuthors.author_cache = authors_cache;
-                    return authors_cache;
-                })
-        }
     }
 
 

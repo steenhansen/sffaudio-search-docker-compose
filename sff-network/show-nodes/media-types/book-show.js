@@ -79,7 +79,7 @@ module.exports = function (data_repository) {
                 })
         }
 
-
+// delete this function
         static showBook_read_redirects(strip_author, nodes_string) {
             var my_promises = [];
             var positioned_nodes = {};

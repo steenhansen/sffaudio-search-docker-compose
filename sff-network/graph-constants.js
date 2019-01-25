@@ -8,6 +8,9 @@ if (process.env.PORT == 5000) {
     var node_url = "https://sffaudio-search.herokuapp.com/"
 }
 
+
+var erase_cache = 'erase-cache';
+
 const rotate_colors = the_colors.concat(the_colors);
 
 var graph_constants = {
@@ -81,11 +84,20 @@ var graph_constants = {
     THE_COLORS: rotate_colors,
     ROOT_CAPTION: 'All',
     BOOK_AUTHOR_DELIMITER: '^',
-    HEROKU_URL: node_url,                      //"https://sffaudio-search.herokuapp.com/",
     MEDIA_LINK_DIR: "https://www.sffaudio.com/podcasts/",
     WP_SHORT_POST: "https://www.sffaudio.com/?p=",
     ROUTE_POST_PROXY: '/post-proxy',
-    ROUTE_ERASE_CACHES: '/erase-cache',
+    
+    
+
+
+    HEROKU_URL: node_url,                      //"https://sffaudio-search.herokuapp.com/",
+    ERASE_CACHES_URL: node_url + erase_cache,
+    
+    ROUTE_ERASE_CACHES: '/' + erase_cache,         //'/erase-cache',
+
+
+
 CACHES_ARE_CLEAR: '-Caches-are-clear-',
 
     RSD_GOOGLE_DATA: "https://docs.google.com/spreadsheets/d/1VFMgWy6wmTkFIpeNW-NkZdWmpz5iZcuULgMpjn8_QgU/export?format=tsv",

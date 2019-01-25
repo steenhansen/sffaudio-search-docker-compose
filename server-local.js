@@ -13,7 +13,6 @@ const local_environment = rootAppRequire('sff-network/check-start/local-environm
 const env_filename = process.argv[2];
 local_environment.processEnvVars(env_filename);
 
-require('newrelic');
 
 require('./sff-network/check-start/web-server');
 

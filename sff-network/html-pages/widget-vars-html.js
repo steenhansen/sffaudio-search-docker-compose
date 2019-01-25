@@ -282,6 +282,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     <div id='search--row'>
         <button id='do--author--filter'
                 onClick=" var search_term = document.getElementById('filter--author--text').value;
+    
                           var found_author = sff_js_vars.vars_events.chooseIfSingleAuthor(search_term);
                           sff_js_vars.filter_names.showHideFilteredAuthors('filtered_media');
                           if (found_author){

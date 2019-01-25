@@ -8,8 +8,12 @@ var app = express();
 app.use(express.static('public', {maxAge: '1y'}))
 app.use(serverResponse.corsAll);
 
+
+
+// N.B. this route is called by nightly cron job to reset the author/book/default caches
 app.get(graph_constants.ROUTE_ERASE_CACHES, function (req, res) {
-     serverResponse.clearFromReload(-1)
+console.log('hi there ROUTE_ERASE_CACHES');
+     serverResponse.clearFromReload()
             .then((erase_response_arr)=> {
             var cache_clear_resp= erase_response_arr[0]
              res.send(cache_clear_resp);

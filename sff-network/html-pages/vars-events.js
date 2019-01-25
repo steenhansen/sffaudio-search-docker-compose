@@ -94,13 +94,7 @@ sff_js_vars.vars_events = (function () {
     }
 
     my.chooseIfSingleAuthor = function (search_term) {
-        var not_found_text = search_term + '" not found.\nSearch for text on Google?';
-        sff_js_vars.NO_SUCH_AUTHOR[0].label = 'Author "' + not_found_text;
-        sff_js_vars.NO_SUCH_BOOK[0].label = 'Story "' + not_found_text;
-        var search_pluses = search_term.replace(' ', '+');
-        var google_search = "http://www.google.com/?q=" + search_pluses + "+site%3Awww.sffaudio.com"
-        sff_js_vars.NO_SUCH_AUTHOR[0].goto_url = google_search;
-        sff_js_vars.NO_SUCH_BOOK[0].goto_url = google_search;
+        this.setNotFoundNames(search_term);
         var strip_author = sff_js_vars.filter_names.filterAuthors(search_term);
         if (strip_author !== '') {
             sff_js_vars.graph_procs.loadAuthorNew(strip_author);
@@ -112,7 +106,18 @@ sff_js_vars.vars_events = (function () {
         }
     }
 
+    my.setNotFoundNames = function (search_term) {
+        var not_found_text = search_term + '" not found.\nSearch for text on Google?';
+        sff_js_vars.NO_SUCH_AUTHOR[0].label = 'Author "' + not_found_text;
+        sff_js_vars.NO_SUCH_BOOK[0].label = 'Story "' + not_found_text;
+        var search_pluses = search_term.replace(' ', '+');
+        var google_search = "http://www.google.com/?q=" + search_pluses + "+site%3Awww.sffaudio.com"
+        sff_js_vars.NO_SUCH_AUTHOR[0].goto_url = google_search;
+        sff_js_vars.NO_SUCH_BOOK[0].goto_url = google_search;
+    }
+
     my.chooseIfSingleBook = function (search_term) {
+        this.setNotFoundNames(search_term);
         var author_book = sff_js_vars.filter_names.filterStories(search_term);
         if (author_book !== '') {
             var strip_author = author_book.strip_author;

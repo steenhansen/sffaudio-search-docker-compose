@@ -13,9 +13,24 @@ const {END_BOOK_LIST, MINIFY_CSS_TABLE, MINIFYING_JS}=graph_constants;
 
 class CachedBooks extends CachedBase {
 
-    static checkCache(current_db_version) {
-        if (current_db_version !== CachedBooks.db_version) {
-            CachedBooks.book_cache = false;
+    static checkCache() {
+        return VersionRepository.getBooks()
+            .then((books_html_db)=> {
+                var db_version = books_html_db.records[0]._fields[0];
+                CachedBooks.db_version = db_version;
+                var books_cache = books_html_db.records[0]._fields[1];
+                CachedBooks.book_cache = books_cache;
+                return CachedBooks.book_cache;
+            })
+
+
+    }
+
+    getCache() {
+        if (CachedBooks.book_cache) {
+            return CachedBooks.book_cache;
+        } else {
+            return CachedBooks.checkCache();
         }
     }
 
@@ -63,20 +78,6 @@ class CachedBooks extends CachedBase {
         return book_html;
     }
 
-    getCache() {
-        if (CachedBooks.book_cache) {
-            return CachedBooks.book_cache;
-        } else {
-            return VersionRepository.getBooks()
-                .then((books_html_db)=> {
-                    var db_version = books_html_db.records[0]._fields[0];
-                    CachedBooks.db_version = db_version;
-                    var books_cache = books_html_db.records[0]._fields[1];
-                    CachedBooks.book_cache = books_cache;
-                    return books_cache;
-                })
-        }
-    }
 
 }
 
