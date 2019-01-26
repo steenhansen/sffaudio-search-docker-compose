@@ -9,8 +9,7 @@ var request_promise = require('request-promise');
 var miscMethods = rootAppRequire('sff-network/build-nodes/mediaServer/modules/base/miscMethods')
 
 function doCacheClear() {
-console.log('doCacheClear hello');
-    var cache_clear_signal =  graph_constants.ERASE_CACHES_URL;  //  graph_constants.HEROKU_URL + "erase-cache";
+    var cache_clear_signal =  graph_constants.ERASE_CACHES_URL;  
     const optionsStart = {
         uri: cache_clear_signal,
         method: "GET",

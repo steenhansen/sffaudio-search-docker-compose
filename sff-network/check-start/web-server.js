@@ -3,11 +3,13 @@ var express = require('express');
 var graph_constants = rootAppRequire('sff-network/graph-constants');
 const program_variables = rootAppRequire('sff-network/program-variables.js');
 const serverResponse = rootAppRequire('sff-network/check-start/server-responses');
+var compression = require('compression');
+
 var app = express();
 
 app.use(express.static('public', {maxAge: '1y'}))
 app.use(serverResponse.corsAll);
-
+app.use(compression());
 
 
 // N.B. this route is called by nightly cron job to reset the author/book/default caches
@@ -50,6 +52,7 @@ app.get(program_variables.ROUTE_AUTHOR_JSON, function (req, res) {
 })
 
 app.get('/', function (req, res) {
+console.log('ddddddddddd', process.env.NODE_ENV);
     var req_query = req.query;
     if (typeof req_query['author'] === 'undefined') {
         serverResponse.initialDefaultPage(req_query)

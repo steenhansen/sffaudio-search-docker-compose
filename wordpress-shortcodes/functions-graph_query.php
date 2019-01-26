@@ -1,6 +1,6 @@
 <?php
 
-// public_html/wp-content/themes/revolution-code-blue2/functions-graph-query.php
+// public_html/wp-content/themes/revolution-code-blue2/functions-graph_query.php
 
 
 //const GRAPH_URL = "http://localhost:3000/graphql";

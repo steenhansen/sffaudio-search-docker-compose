@@ -1,6 +1,6 @@
 <?php
 
-// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/functions-day-cache.php
+// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/functions-day_cache.php
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -13,12 +13,6 @@ ini_set('display_errors', 1);
 // used by functions-graph-search.php
 if (!class_exists('DayCache')) {
 
-/*
- * slow curl times
- *   3.0023241043091
- *  26.01250910759
- * 
- */
 
     class DayCache
     {
@@ -41,6 +35,7 @@ if (!class_exists('DayCache')) {
             $this->curl_time = 'empty';
             $this->_test_built_cache_ = 'empty';
         }
+
 
         function deleteOldCache($new_date_ymdh)
         {
@@ -118,25 +113,10 @@ if (!class_exists('DayCache')) {
             return $this->curl_time;
         }
 
-        function curlGetContents($connect_timeout)
-        {
-            $start_time = microtime(true);
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_URL, $this->widget_url);
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $connect_timeout);
-            $page_data = curl_exec($ch);
-            curl_close($ch);
-            $end_time = microtime(true);
-            $this->curl_time = $end_time - $start_time;
-            return $page_data;
-        }
-
 
         function buildCacheFile($cached_widget, $new_date_ymdh)
         {
-            $temp_name = __DIR__ . '/' . uniqid();
+            $temp_name = __DIR__ . self::DAY_CACHES_FOLDER . uniqid();
             $cache_timestamp = "<!--" . self::MAKE_CACHE_TIMESTAMP . gmdate('M d Y H:i:s') . "-->";
             file_put_contents($temp_name, $cached_widget . $cache_timestamp);
             list($new_year, $new_month, $new_day) = $this->ymdTimeArray($new_date_ymdh);
@@ -183,7 +163,9 @@ if (!class_exists('DayCache')) {
                 $cached_widget = file_get_contents($cache_file_name);
                 $this->_test_built_cache_ = false;
             } else {
-                $cached_widget = $this->curlGetContents(self::CONNECT_URL_WAIT_SECONDS);
+                $curl_time_error = new SffCurlTimeError();
+                $cached_widget = $curl_time_error->curlGetContents($this->widget_url);
+                $this->curl_time = $curl_time_error->lastCurlSpan();
                 if (strlen($cached_widget) > self::MIN_WIDGET_SIZE) {
                     $this->buildCacheFile($cached_widget, $cache_date_ymdh);  // first search today
                     $this->_test_built_cache_ = true;

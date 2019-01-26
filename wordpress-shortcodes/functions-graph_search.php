@@ -1,6 +1,6 @@
 <?php
 
-// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/functions-graph-search.php
+// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/functions-graph_search.php
 
 /*
  * public_html/wp-content/themes/revolution-code-blue2/functions.php
@@ -41,6 +41,7 @@ if (!class_exists('SffGraphSearch')) {
         const MOBILE_HEADER_ABOVE = '<!-- end widget intro. NB, this text is used by PHP -->';
         const HEROKU_WIDGET_MESS = '<!-- Heroku widget code -->';
         const PHP_CACHED_WIDGET_MESS = '<!-- PHP Cached widget code -->';
+
 
         static function redirectAfterHeader($new_location)
         {
@@ -83,20 +84,6 @@ if (!class_exists('SffGraphSearch')) {
             }
         }
 
-        static function curlGetContents($get_url)
-        {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_URL, $get_url);
-
-
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
-
-            $page_data = curl_exec($ch);
-            curl_close($ch);
-            return $page_data;
-        }
 
         static function getQueryParameters($widget_url, $get_author, $get_book, $get_view, $get_choice)
         {
@@ -150,13 +137,18 @@ if (!class_exists('SffGraphSearch')) {
         static function phpCodeOnly($url_with_parameters, $widget_url, $get_author, $get_book)
         {
             if ($get_author || $get_book) {
-                $graph_html = SffGraphSearch::curlGetContents($url_with_parameters) . self::HEROKU_WIDGET_MESS;
+                $curl_time_error = new SffCurlTimeError();
+                $graph_html = $curl_time_error->curlGetContents($url_with_parameters) . self::HEROKU_WIDGET_MESS;
             } else {
                 $day_cache = new DayCache($widget_url, self::HEROKU_UTC_CRON_RUN);   // 9:00 UTC, as cron job is set for on Heroku
                 $graph_html = $day_cache->getString() . self::PHP_CACHED_WIDGET_MESS;
             }
             $iosMetaViewPort__webHtmlJavascript = explode(self::MOBILE_HEADER_ABOVE, $graph_html);
-            $web_html_javascript = $iosMetaViewPort__webHtmlJavascript[1];
+            if (count($iosMetaViewPort__webHtmlJavascript)>1) {
+                $web_html_javascript = $iosMetaViewPort__webHtmlJavascript[1];
+            } else {
+                $web_html_javascript ='Error';
+            }
             return $web_html_javascript;
         }
 
