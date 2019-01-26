@@ -1,5 +1,9 @@
-module.exports =  function (dark_background, graph_container_id) {
+var graph_constants = rootAppRequire('sff-network/graph-constants');
+var light_background = graph_constants.LIGHT_BACKGROUND;
+var dark_background = graph_constants.DARK_BACKGROUND;
 var canvas_height = '400px;';
+
+module.exports =  function (graph_container_id) {
 var load_css_external = `
 <script>
 window.onerror = function (msg, url, lineNo, columnNo, error) {
@@ -24,30 +28,13 @@ ga('send', 'pageview');
 <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css" rel="stylesheet" type="text/css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.550/pdf.min.js"></script>
 
+<link rel="stylesheet" type="text/css" href="/graph-styles.css">
+
 <style>
-
-body.busy--cursor * {
-    cursor: progress;
-}
-
-#my--network {
-    display: flex;
-    flex-direction: column;
-    width: 570px;
-   /* height: 800px;       */
-}
-
-@media only screen
-and (min-device-width: 768px)
-and (max-device-width: 1024px) {
-    #my--network {
-        width: 100%;
-    }
-}
 
 #stable-redraw-height {
     width: 0%;
-    height: ${canvas_height};
+    height: ${canvas_height}; /* a var */
     float: left;
 }
 
@@ -55,25 +42,23 @@ and (max-device-width: 1024px) {
     display: flex;
     float: left;
     width: 100%;
-    height: ${canvas_height};
+    height: ${canvas_height}; /* a var */
 }
 
 #${graph_container_id} {
     float: left;
-    background-color: ${dark_background};
+    background-color: ${dark_background}; /* a var */
 }
 
-#filter--story--text {
-    width: 20%;
+#search--row {
+    display: flex;
+    background-color: ${light_background}; /* a var */
+}
+#authors--stories--container {
+    background-color: ${light_background}; /* a var */
+    border-bottom: 1px solid black;
 }
 
-#filter--author--text {
-    width: 140px;
-}
-
-.current__media {
-    background-color: yellow;
-}  
 </style>
 
 `;

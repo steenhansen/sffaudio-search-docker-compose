@@ -9,8 +9,8 @@ const cached_books = new CachedBooks();
 var graph_constants = rootAppRequire('sff-network/graph-constants');
 const graph_container_id = graph_constants.GRAPH_CONTAINER_ID;
 
-var popup_css_html = rootAppRequire('sff-network/html-pages/popup-blur.css-html.js');
-var load_css_external = rootAppRequire('sff-network/html-pages/load-css-external')(graph_constants.DARK_BACKGROUND, graph_container_id);
+var popup_css_html = rootAppRequire('sff-network/html-pages/popup-blur.html.js');
+var load_css_external = rootAppRequire('sff-network/html-pages/load-css-external')(graph_container_id);
 
 const vars_events = fromAppRoot('sff-network/html-pages/vars-events.js');
 const browser_code = fromAppRoot('sff-network/html-pages/browser-graph.js');
@@ -181,11 +181,7 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 </script>
 
     ${widget_html}
-
-<style>
-   ${popup_css_html.popup_css}
-</style>
-   
+ 
    ${popup_css_html.popup_html}
 
 <script>

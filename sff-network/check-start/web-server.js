@@ -52,7 +52,6 @@ app.get(program_variables.ROUTE_AUTHOR_JSON, function (req, res) {
 })
 
 app.get('/', function (req, res) {
-console.log('ddddddddddd', process.env.NODE_ENV);
     var req_query = req.query;
     if (typeof req_query['author'] === 'undefined') {
         serverResponse.initialDefaultPage(req_query)
