@@ -28,10 +28,12 @@ sff_js_vars.rsd_procs = (function (rsd_close_svg) {
 
     my.historyRsd = function (goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, req_query_view, sorted_choice) {
         document.getElementById("my--graph").style.display = "none";
-        if (req_query_view) {
-            sff_js_vars.history_state.pushViewBook(last_first_underscores, under_title, req_query_view, sorted_choice);
-        } else {
-            sff_js_vars.history_state.pushBook(last_first_underscores, under_title);
+        if (!sff_js_vars.helpers.detectIE()) {
+            if (req_query_view) {
+                sff_js_vars.history_state.pushViewBook(last_first_underscores, under_title, req_query_view, sorted_choice);
+            } else {
+                sff_js_vars.history_state.pushBook(last_first_underscores, under_title);
+            }
         }
         my.startRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores)
     }

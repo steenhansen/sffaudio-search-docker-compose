@@ -46,6 +46,20 @@ sff_js_vars.helpers = (function () {
         document.getElementById(elem_id).style.height = height_integer + 'px';
     };
 
+    my.detectIE = function () {            // Edge is ok
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf('MSIE ');
+        if (msie > 0) {
+            return true;
+        }
+        var trident = ua.indexOf('Trident/');
+        if (trident > 0) {
+            return true;
+        }
+        return false;
+    };
+
+
     my.setHeight38 = function (elem_id) {
         document.getElementById(elem_id).style.height = '38px';
     };

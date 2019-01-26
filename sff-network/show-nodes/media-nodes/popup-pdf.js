@@ -14,11 +14,12 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     my.historyPdf = function (pdf_url, book_title, label, last_first_underscores, under_title, req_query_view, sorted_choice, pdf_country) {
         this.pdf_url = pdf_url;
         this.pdf_country = pdf_country;
-        
-        if (req_query_view) {
-            sff_js_vars.history_state.pushViewBook(last_first_underscores, under_title, req_query_view, sorted_choice);
-        } else {
-            sff_js_vars.history_state.pushBook(last_first_underscores, under_title);
+        if (!sff_js_vars.helpers.detectIE()) {
+            if (req_query_view) {
+                sff_js_vars.history_state.pushViewBook(last_first_underscores, under_title, req_query_view, sorted_choice);
+            } else {
+                sff_js_vars.history_state.pushBook(last_first_underscores, under_title);
+            }
         }
         my.startPdf(pdf_url, book_title, label, last_first_underscores, under_title);
     }
@@ -54,7 +55,7 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
     my.decodeUrl = function (before_htaccess_url) {
         var url_array = before_htaccess_url.split('/');
         var file_name = url_array.pop();
-        if (this.pdf_country==='Canada') {
+        if (this.pdf_country === 'Canada') {
             // The Phantom Flight
             var after_htaccess_url = 'https://sffaudiomediacan.s3.amazonaws.com/pdfs/' + file_name;
         } else {
