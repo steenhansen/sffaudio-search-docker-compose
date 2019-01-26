@@ -142,9 +142,9 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 			    "BOOK_PAGE_TYPE"   : "${BOOK_PAGE_TYPE}",
 			    "AUTHOR_PAGE_TYPE"   : "${AUTHOR_PAGE_TYPE}",
 			    "AUTHOR_BOOK_SEPARATOR"   : "${AUTHOR_BOOK_SEPARATOR}",
-			    "MAX_ZOOM"   : "${MAX_ZOOM}",
-			    "MIN_ZOOM"   : "${MIN_ZOOM}",
-			    "ZOOM_STEP"   : "${ZOOM_STEP}",
+			    "MAX_ZOOM"   : ${MAX_ZOOM},
+			    "MIN_ZOOM"   : ${MIN_ZOOM},
+			    "ZOOM_STEP"   : ${ZOOM_STEP},
 			    
 			    "HELP_FONT" :      ${HELP_FONT},
 			    "ERROR_FONT" :  ${ERROR_FONT},
