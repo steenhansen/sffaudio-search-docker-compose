@@ -33,7 +33,7 @@ sff_js_vars.book_post_procs = (function (post_close_svg, post_proxy) {
         } else {
             var book_proxy = sff_php_vars.php_url + post_proxy + book_post_url;
         }
-        sff_js_vars.helpers.browserFetchRetry2(book_proxy)
+        sff_js_vars.helpers.fetchTimeout(book_proxy, sff_constants.WAIT_3_SEC, sff_constants.TRY_3_FETCHES)
             .then(function (response) {
                 return response.text();
             })

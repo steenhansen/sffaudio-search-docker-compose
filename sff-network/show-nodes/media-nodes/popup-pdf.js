@@ -1,4 +1,6 @@
 //popup-pdf    
+
+
 sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
 
     var my = {
@@ -66,9 +68,8 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         return after_htaccess_url;
     }
 
-
     my.readPdf = function (pdf_url) {
-        sff_js_vars.helpers.browserFetchRetry2(pdf_url)
+        sff_js_vars.helpers.fetchTimeout(pdf_url, sff_constants.WAIT_3_SEC, sff_constants.TRY_3_FETCHES)
             .then(function (end_pdf_url) {
                 my.pdf_js_lib.getDocument(end_pdf_url)
                     .then(function (loaded_pdf) {

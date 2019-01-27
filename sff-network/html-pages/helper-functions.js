@@ -100,21 +100,36 @@ sff_js_vars.helpers = (function () {
         body_elem.classList.remove('busy--cursor');
     };
 
-    my.browserFetchRetry2 = function (fetch_url) {
-        return sff_js_vars.helpers.browserFetchRetry(fetch_url, 2);
-    }
-
-
-    my.browserFetchRetry = function (fetch_url, num_tries, init_options) {
-        return fetch(fetch_url, init_options)
-            .catch(function (error) {
-                if (num_tries < 2) {
-                    throw error;
+    // fetchTimeout('www.xe.com', 3000, 2)
+    my.fetchTimeout = function (fetch_url, time_out, num_tries) {
+        let has_timed_out = false;
+        return new Promise(function (resolve, reject) {
+            const timeout_error = setTimeout(function () {
+                has_timed_out = true;
+                var timeout_error = 'Request timed out';
+                reject(new Error(timeout_error));
+            }, time_out);
+            fetch(fetch_url)
+                .then(function (response) {
+                    clearTimeout(timeout_error);
+                    if (!has_timed_out) {
+                        resolve(response);
+                    }
+                })
+                .catch(function (fetch_error) {
+                    if (has_timed_out) {
+                        return my.fetchTimeout(fetch_url, time_out, num_tries - 1);
+                    }
+                    reject(fetch_error);
+                });
+        })
+            .catch(function (catch_error) {
+                if (num_tries == 1) {
+                    throw catch_error;
                 }
-                return browserFetchRetry(fetch_url, num_tries - 1, init_options);
+                return my.fetchTimeout(fetch_url, time_out, num_tries - 1);
             });
     }
-
 
     return my;
 
