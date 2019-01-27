@@ -13,52 +13,54 @@ app.use(compression());
 
 
 // N.B. this route is called by nightly cron job to reset the author/book/default caches
-app.get(graph_constants.ROUTE_ERASE_CACHES, function (req, res) {
-console.log('hi there ROUTE_ERASE_CACHES');
-     serverResponse.clearFromReload()
-            .then((erase_response_arr)=> {
-            var cache_clear_resp= erase_response_arr[0]
-             res.send(cache_clear_resp);
-         })
+app.get(graph_constants.ROUTE_ERASE_CACHES, function (req, res, next) {
+    console.log('hi there ROUTE_ERASE_CACHES');
+    serverResponse.clearFromReload()
+        .then((erase_response_arr)=> {
+            var cache_clear_resp = erase_response_arr[0]
+            res.send(cache_clear_resp);
+        })
+        .catch(next);
 })
 
-app.get(graph_constants.ROUTE_POST_PROXY, function (req, res) {
+app.get(graph_constants.ROUTE_POST_PROXY, function (req, res, next) {
     const sff_url_post = req.query.absolute_url;
     serverResponse.sffAudioPostPiece(sff_url_post)
         .then((sff_post_html)=> {
             res.send(sff_post_html)
         })
-        .catch(function (post_error) {
-            var error_message = post_error.statusCode;
-            res.send(`A ${error_message} error message is being returned from <br>${sff_url_post}`)
-        });
+        .catch(next);
 })
 
 
-app.get(program_variables.ROUTE_BOOK_JSON, function (req, res) {
+app.get(program_variables.ROUTE_BOOK_JSON, function (req, res, next) {
     let {strip_author, under_title}=req.params
     serverResponse.bookJson(strip_author, under_title)
         .then((book_json)=> {
             res.json(book_json)
         })
+        .catch(next);
 })
 
-app.get(program_variables.ROUTE_AUTHOR_JSON, function (req, res) {
+app.get(program_variables.ROUTE_AUTHOR_JSON, function (req, res, next) {
     let {strip_author}=req.params;
     serverResponse.authorJson(strip_author)
         .then((author_json)=> {
             res.json(author_json)
         })
+        .catch(next);
 })
 
-app.get('/', function (req, res) {
+app.get('/', function (req, res, next) {
     var req_query = req.query;
     if (typeof req_query['author'] === 'undefined') {
         serverResponse.initialDefaultPage(req_query)
-            .then((default_html)=> res.send(default_html));
+            .then((default_html)=> res.send(default_html))
+            .catch(next);
     } else {
         serverResponse.bookOrAuthorPage(req_query)
-            .then((author_book_html)=> res.send(author_book_html));
+            .then((author_book_html)=> res.send(author_book_html))
+            .catch(next);
     }
 })
 
