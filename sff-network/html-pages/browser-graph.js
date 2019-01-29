@@ -65,6 +65,7 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
             sff_js_vars.vars_events.executeSearch(php_search_term);
             sff_js_vars.vars_events.filterResetButton();
             sff_js_vars.vars_events.inputSearch();
+            sff_js_vars.vars_events.wordPressSearch(php_search_term);
         }
     };
 
