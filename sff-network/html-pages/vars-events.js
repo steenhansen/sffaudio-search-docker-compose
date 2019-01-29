@@ -36,15 +36,22 @@ sff_js_vars.vars_events = (function () {
     my.inputSearch = function (e) {
         var search_for = document.getElementById('filter--author--text').value;
         if (search_for === '') {
-            search_for = '...';
+            search_for_text = '...';
             sff_js_vars.filter_names.stopFiltering();
         } else {
-            search_for = '"' + search_for + '"';
+            search_for_text = '"' + search_for + '"';
         }
-        var author_button = 'Search authors for\n' + search_for;
-        var story_button = 'Search stories for\n' + search_for;
+        var author_button = 'Search authors for\n' + search_for_text;
+        var story_button = 'Search stories for\n' + search_for_text;
         document.getElementById('do--author--filter').innerText = author_button;
         document.getElementById('do--story--filter').innerText = story_button;
+        my.wordPressSearch(search_for);
+    }
+
+    my.wordPressSearch = function(search_for){
+        if ( sff_wp_search.isActive() ){
+            sff_wp_search.call_php(search_for);
+        }
     }
 
     my.inputEnterPress = function (e) {

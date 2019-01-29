@@ -311,6 +311,16 @@ EOT;
             return $matches_list;
         }
 
+        static function searchHtml($search_for){
+            $graph_ql_url = SffGraphQuery::graphQlUrl(GRAPH_URL, GRAPH_I_QL, $search_for);
+            $matches_list = SffGraphQuery::jsonGraphQl($graph_ql_url);
+            $search_regex = "/($search_for)/i";
+            $search_replace = '<span class="search-match">$1</span>';
+            $my_matches = SffGraphQuery::buildMatches($matches_list, $search_regex, $search_replace);
+            $matching_html = SffGraphQuery::buildHtml($my_matches);
+            $query_answer = SEARCH_STYLES . $matching_html;
+            return $query_answer;
+        }
 
     }
 }
@@ -324,15 +334,26 @@ if (!function_exists('graph_query_component')) {
         ini_set('display_errors', 1);
 
 
+/*
+ 
+ https://medium.com/letsboot/basics-using-ajax-with-fetch-api-b2218b0b9691 
+  
+ */
+
         $search_for = SffGraphQuery::sanitizeSearch(@$_POST['search_term']);
         if (strlen($search_for) > 2) {
-            $graph_ql_url = SffGraphQuery::graphQlUrl(GRAPH_URL, GRAPH_I_QL, $search_for);
-            $matches_list = SffGraphQuery::jsonGraphQl($graph_ql_url);
-            $search_regex = "/($search_for)/i";
-            $search_replace = '<span class="search-match">$1</span>';
-            $my_matches = SffGraphQuery::buildMatches($matches_list, $search_regex, $search_replace);
-            $matching_html = SffGraphQuery::buildHtml($my_matches);
-            $query_answer = SEARCH_STYLES . $matching_html;
+            $query_answer =SffGraphQuery::searchHtml($search_for);
+        
+//            $graph_ql_url = SffGraphQuery::graphQlUrl(GRAPH_URL, GRAPH_I_QL, $search_for);
+//            $matches_list = SffGraphQuery::jsonGraphQl($graph_ql_url);
+//            $search_regex = "/($search_for)/i";
+//            $search_replace = '<span class="search-match">$1</span>';
+//            $my_matches = SffGraphQuery::buildMatches($matches_list, $search_regex, $search_replace);
+//            $matching_html = SffGraphQuery::buildHtml($my_matches);
+//            $query_answer = SEARCH_STYLES . $matching_html;
+//            
+            
+            
         } else {
             $query_answer = "<br>Type at least 3 characters for search to work.";
         }

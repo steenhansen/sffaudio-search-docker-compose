@@ -66,7 +66,7 @@ module.exports = function (data_repository) {
                     var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
                     var db_version = graph_collection[0].records[0]._fields[db_version_index];
                     var parse_neo = new ParseNeo(graph_collection, 'book');
-                    var nodes_object = parse_neo.getBookGraph(strip_author)
+                    var nodes_object = parse_neo.getBookGraph(strip_author);
                     var edges_object = parse_neo.getEdges()
                     var graph_info = {
                         graph_type: BOOK_PAGE_TYPE,
@@ -78,37 +78,6 @@ module.exports = function (data_repository) {
                     return nodes_and_edges;
                 })
         }
-
-// delete this function
-        static showBook_read_redirects(strip_author, nodes_string) {
-            var my_promises = [];
-            var positioned_nodes = {};
-            var sorted_labels = Object.keys(nodes_string);
-            for (let sorted_label of sorted_labels) {
-                var a_node = nodes_string[sorted_label];
-                a_node.setGroupColor();
-                a_node.bookUrl(strip_author);
-                a_node.setSizesColor('L_BOOK');
-                positioned_nodes[a_node.id] = a_node;
-                if (a_node.node_type === 'L_PDF') {
-                    var pdf_promise = misc_helper.getRedirects(a_node, 'goto_url');
-                    my_promises.push(pdf_promise)
-                } else if (a_node.node_type === 'L_RSD') {
-                    var rsd_promise = misc_helper.getRedirects(a_node, 'rsd_pdf_link');
-                    my_promises.push(rsd_promise)
-                }
-            }
-            return Promise.all(my_promises)
-                .then((redirected_nodes)=> {
-                    for (let end_url of redirected_nodes) {
-                        let {end_redirect_url, node_id, field_name}=end_url;
-                        positioned_nodes[node_id][field_name] = end_redirect_url;
-                    }
-                    var positioned_fixed = Object.values(positioned_nodes);
-                    return positioned_fixed;
-                })
-        }
-
 
         static   showBook(strip_author, nodes_string) {
             var positioned_nodes = []
