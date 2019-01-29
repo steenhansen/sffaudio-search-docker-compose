@@ -49,8 +49,8 @@ sff_js_vars.vars_events = (function () {
     }
 
     my.wordPressSearch = function(search_for){
-        if ( sff_wp_search.isActive() ){
-            sff_wp_search.call_php(search_for);
+        if ( typeof sff_ajax_search==='function' ){
+            sff_ajax_search('search_div', search_for);
         }
     }
 

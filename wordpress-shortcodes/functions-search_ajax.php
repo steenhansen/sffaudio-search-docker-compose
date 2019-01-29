@@ -4,6 +4,8 @@
 // /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/functions-search_ajax.php 
 
 
+//  [search_ajax_component]
+
 define("WP_ACTION_NAME",     "ACTION_get_php_work");
 define("WP_ACTION_LOGGED_OUT",     "wp_ajax_nopriv_" . WP_ACTION_NAME);
 define("WP_ACTION_LOGGED_IN",     "wp_ajax_" . WP_ACTION_NAME);
@@ -12,13 +14,13 @@ define("WP_AJAX_URL",     admin_url( 'admin-ajax.php' )   );
 define("WP_NONCE_NAME",     'aj-demo-nonce');
 
 
-function search_ajax() {
+function search_ajax_component() {
     $html_js = 
-     "<button onclick='sff_ajax_seach(\"dick\")' type='button'>Get 17</button>
+     "<button onclick='sff_ajax_search(\"search_div\", \"dick\")' type='button'>Get dick</button>
      <div id='search_div'>nada</div>
 
 <script>
-function sff_ajax_seach(search_for){
+function sff_ajax_search(search_container_id, search_for){
     var wp_ajax_url = SFF_AJAX_SEARCH_OBJECT.WP_AJAX_URL;
     var body_vars = 'action=ACTION_get_php_work&_wpnonce=' + SFF_AJAX_SEARCH_OBJECT.WP_NONCE +'&search_text=' + search_for;
     var ajax_options = {
@@ -33,7 +35,7 @@ function sff_ajax_seach(search_for){
     })
     .then(function(search_response) {
 
-        document.getElementById('search_div').innerHTML=search_response;
+        document.getElementById(search_container_id).innerHTML=search_response;
     })
     .catch(function(error) {
         console.log(error)
@@ -45,9 +47,9 @@ function sff_ajax_seach(search_for){
 }
 
 
-if (!shortcode_exists('search_ajax')) {
+if (!shortcode_exists('search_ajax_component')) {
     if (function_exists('add_shortcode')) {
-        add_shortcode('search_ajax', 'search_ajax');
+        add_shortcode('search_ajax_component', 'search_ajax_component');
     }
 }
 
