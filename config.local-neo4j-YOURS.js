@@ -8,7 +8,6 @@ var LOCAL_NEO4J_CONFIG_VARS = {
     GRAPHENEDB_BOLT_USER: 'neo4j',
     GRAPHENE_WAIT_SECONDS: 1,
     NODE_ENV: 'production',
-    NEW_RELIC_LICENSE_KEY: 'abcdfeghijklmnopqrstuvwxyz1234567890abcd',
     APP_NAME: 'sffaudio-search'
     
 }

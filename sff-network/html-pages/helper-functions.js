@@ -102,7 +102,8 @@ sff_js_vars.helpers = (function () {
 
     // fetchTimeout('www.xe.com', 3000, 2)
     my.fetchTimeout = function (fetch_url, time_out, num_tries) {
-        let has_timed_out = false;
+       // time_out = 2;
+        var has_timed_out = false;
         return new Promise(function (resolve, reject) {
             const timeout_error = setTimeout(function () {
                 has_timed_out = true;

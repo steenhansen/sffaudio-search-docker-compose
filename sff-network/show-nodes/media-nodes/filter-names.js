@@ -47,6 +47,8 @@ sff_js_vars.filter_names = (function (graph_id) {
             var author__choice___a__c= sff_constants.AUTHOR__CHOICE___A__C;
          
             var matching_authors = makeFilters(search_underscore, 'all--authors', 'filter--authors', author__choice___a__c);
+            
+
             if (matching_authors.length == 0) {
                 my.showHideFilteredAuthors('all_media');
             } else {
@@ -65,6 +67,8 @@ sff_js_vars.filter_names = (function (graph_id) {
             my.stopFilteringStories()
         } else {
             var book__choice___b__c =sff_constants.BOOK__CHOICE___B__C;
+            
+            
             var matching_stories = makeFilters(search_underscore, 'all--books', 'filter--books', book__choice___b__c);
             if (matching_stories.length == 0) {
                 my.showHideFilteredStories('all_media');

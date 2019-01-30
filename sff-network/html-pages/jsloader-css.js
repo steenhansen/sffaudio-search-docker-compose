@@ -66,6 +66,9 @@ var js_prog_vars_PS = readFilePromise(program_variables, 'utf8')
 
          var author__choice___a__c = MINIFY_CSS_TABLE.author__choice___a__c[MINIFYING_JS];
            var book__choice___b__c = MINIFY_CSS_TABLE.book__choice___b__c[MINIFYING_JS];
+
+
+
            
            
     function getMini(js_browser_code_PS, minifying_js, js_browser_code_S) {

@@ -197,6 +197,9 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                     var fetch_nodes = JSON.parse(myJson.nodes_string)
                     sff_js_vars.graph_vars.nodes_string = fetch_nodes;
                     var fetch_edges = JSON.parse(myJson.edges_string);
+                    
+                    
+                    //  TERRIBLE VAR NAME
                     var fetch_options = JSON.parse(myJson.graph_string);
                     if (fetch_options.strip_author.indexOf('HELP_') >= 0) {
                         fetch_nodes = sff_js_vars.help_nodes[fetch_options.strip_author];
