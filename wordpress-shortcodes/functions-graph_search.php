@@ -144,13 +144,38 @@ if (!class_exists('SffGraphSearch')) {
                 $graph_html = $day_cache->getString() . self::PHP_CACHED_WIDGET_MESS;
             }
             $iosMetaViewPort__webHtmlJavascript = explode(self::MOBILE_HEADER_ABOVE, $graph_html);
-            if (count($iosMetaViewPort__webHtmlJavascript)>1) {
+            if (count($iosMetaViewPort__webHtmlJavascript) > 1) {
                 $web_html_javascript = $iosMetaViewPort__webHtmlJavascript[1];
             } else {
-                $web_html_javascript ='Error';
+                $web_html_javascript = 'Error';
             }
             return $web_html_javascript;
         }
+
+
+        static function wakeUpSleepingGrapheneDb($db_wake_up_url)
+        {
+            $ERROR_FOLDER = '/shortcode-errors/';
+            $ERROR_FILE = 'my-errors.txt';
+            $MAX_CONNECT_TO_TIME = 1;
+            $MAX_WAIT_FOR_FINISH = 1;
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_URL, $db_wake_up_url);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $MAX_CONNECT_TO_TIME);
+            curl_setopt($ch, CURLOPT_TIMEOUT, $MAX_WAIT_FOR_FINISH);
+            $db_version = curl_exec($ch);
+            if (curl_errno($ch)) {
+                $db_version = ' Wake up error';
+                $err_mess = curl_error($ch) . $db_version;
+                $error_filename = __DIR__ . $ERROR_FOLDER . $ERROR_FILE;
+                file_put_contents($error_filename, $err_mess, FILE_APPEND);
+            }
+            curl_close($ch);
+            return $db_version;
+        }
+
 
     }
 }
@@ -163,8 +188,12 @@ if (!function_exists('graph_search_component')) {
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
 
-        $mobile_leaving_pages = array('about.php', '');
         $widget_url = 'https://sffaudio-search.herokuapp.com';
+
+
+        $db_version = SffGraphSearch::wakeUpSleepingGrapheneDb($widget_url . '/wake-up');
+
+        $mobile_leaving_pages = array('about.php', '');
         $get_author = @$_GET['author'];
         $get_book = @$_GET['book'];
         $get_view = @$_GET['view'];
@@ -178,10 +207,11 @@ if (!function_exists('graph_search_component')) {
         $from_php_js_html = <<<JAVASCRIPT_HTML
         <script>
             window.sff_php_vars={ 
-			    "php_url"   : "$widget_url",
-			    "php_author": "$get_author",
-			    "php_book"  : "$get_book",
-			    "php_search": "$search_dashes"             // if not '' then inject into text box, fix 'reset' and then run ....
+			           "php_url" : "$widget_url",
+			        "php_author" : "$get_author",
+			          "php_book" : "$get_book",
+			    "php_db_version" : "$db_version",
+			        "php_search" : "$search_dashes"             // if not '' then inject into text box, fix 'reset' and then run ....
 			       };
         </script>
         $web_html_javascript

@@ -33,7 +33,7 @@ var random_quality = fromAppRoot('sff-network/html-pages/random-quality.js');
 
 let {
     URL_SEPARATOR, DARK_BACKGROUND, LIGHT_BACKGROUND, BOOK_PAGE_TYPE, AUTHOR_PAGE_TYPE, AUTHOR_BOOK_SEPARATOR, MAX_ZOOM, MIN_ZOOM, ZOOM_STEP,
-    HELP_FONT, ERROR_FONT, END_BOOK_LIST, END_AUTHOR_LIST, MINIFYING_JS, MINIFY_CSS_TABLE, WAIT_3_SEC, TRY_3_FETCHES
+    HELP_FONT, ERROR_FONT, END_BOOK_LIST, END_AUTHOR_LIST, MINIFYING_JS, MINIFY_CSS_TABLE, FETCH_WAIT_M_SEC, FETCH_RETRYS
 } = rootAppRequire('sff-network/graph-constants');
 
 
@@ -146,8 +146,8 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 			    "MIN_ZOOM"   : ${MIN_ZOOM},
 			    "ZOOM_STEP"   : ${ZOOM_STEP},
 			    
-			    "WAIT_3_SEC"   : ${WAIT_3_SEC},
-			    "TRY_3_FETCHES"   : ${TRY_3_FETCHES},
+			    "FETCH_WAIT_M_SEC"   : ${FETCH_WAIT_M_SEC},
+			    "FETCH_RETRYS"   : ${FETCH_RETRYS},
 			    
 			    "HELP_FONT" :      ${HELP_FONT},
 			    "ERROR_FONT" :  ${ERROR_FONT},

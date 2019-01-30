@@ -23,6 +23,13 @@ function corsAll(req, res, next) {
 }
 
 
+function wakeUpSleepingDb() {
+    return data_repository.getDbVersion()
+        .then((current_version_record)=> {
+            var db_version = current_version_record.records[0]._fields[0].properties.current_version;
+            return db_version;
+        });
+}
 
 
 function sffAudioPostPiece(sff_audio_url) {
@@ -42,8 +49,8 @@ function sffAudioPostPiece(sff_audio_url) {
 }
 
 
-function clearFromReload(){
-      CachedAuthors.checkCache();
+function clearFromReload() {
+    CachedAuthors.checkCache();
     CachedBooks.checkCache();
     CachedDefaults.checkCache();
     return Promise.all([graph_constants.CACHES_ARE_CLEAR]);
@@ -143,6 +150,6 @@ function bookOrAuthorPage(req_query) {
 }
 
 module.exports = {
-    corsAll, sffAudioPostPiece, authorJson, bookJson,
+    corsAll, sffAudioPostPiece, authorJson, bookJson, wakeUpSleepingDb,
     initialDefaultPage, bookOrAuthorPage, clearFromReload
 };

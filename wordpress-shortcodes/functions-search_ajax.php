@@ -59,7 +59,7 @@ if (!shortcode_exists('search_ajax_component')) {
 add_action( 'wp_enqueue_scripts', 'enqueue_search_ajax' );
 
 function enqueue_search_ajax() {
-   wp_enqueue_script( 'search-data-values-to-js', '_not_a_real_file_.js');
+   wp_enqueue_script( 'search-data-values-to-js', '/wp-content/themes/revolution-code-blue2/js/_empty_.js');
    $data_obj_values =  array(  'WP_AJAX_URL' => WP_AJAX_HANDLER_FILE,
                                'WP_NONCE' => wp_create_nonce(WP_NONCE_NAME)             ) ;
     wp_localize_script( 'search-data-values-to-js', 'SFF_AJAX_SEARCH_OBJECT', $data_obj_values);

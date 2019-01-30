@@ -23,6 +23,17 @@ app.get(graph_constants.ROUTE_ERASE_CACHES, function (req, res, next) {
         .catch(next);
 })
 
+
+app.get(graph_constants.ROUTE_WAKE_UP, function (req, res, next) {
+    serverResponse.wakeUpSleepingDb()
+        .then((db_version)=> {
+            var wake_up_message="current db version = "+ db_version
+            res.send(wake_up_message)
+        })
+        .catch(next);
+})
+
+
 app.get(graph_constants.ROUTE_POST_PROXY, function (req, res, next) {
     const sff_url_post = req.query.absolute_url;
     serverResponse.sffAudioPostPiece(sff_url_post)
