@@ -1,12 +1,10 @@
 HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
-//MediaBuild = rootAppRequire('sff-network/build-nodes/media-types/media-build')
 
 const {AUTHOR_PAGE_TYPE} = rootAppRequire('sff-network/graph-constants');
 var misc_helper = rootAppRequire('sff-network/misc-helper');
 
- // const CachedClear = rootAppRequire('sff-network/build-nodes/cached-lists/cached-clear');
+var CircleCache = rootAppRequire('sff-network/circle-cache');
 
-  
 module.exports = function (data_repository) {
 
     var BookData = rootAppRequire('sff-network/show-nodes/media-types/book-show')(data_repository)  // show_repository
@@ -23,6 +21,11 @@ module.exports = function (data_repository) {
         }
 
         static sendAuthor(strip_author, ParseNeo, update_index) {
+            var cached_author = CircleCache.checkName(strip_author);
+            if (cached_author) {
+                CircleCache.showVars('no_db author');
+                return(Promise.resolve(cached_author));
+            }
             return data_repository.getAuthorNodes(strip_author, update_index)
                 .then(function (graph_collection) {
                     var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
@@ -36,6 +39,7 @@ module.exports = function (data_repository) {
                     var edges_object = book_edges.concat(post_edges, wiki_author_edges)
                     var graph_info = {graph_type: AUTHOR_PAGE_TYPE, strip_author: strip_author, db_version: db_version};
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
+                    CircleCache.addNamedObject(strip_author, nodes_and_edges);
                     return nodes_and_edges;
                 })
         }
@@ -67,7 +71,7 @@ module.exports = function (data_repository) {
         setAuthorPos(x_y_pos) {
             super.setPosition2(x_y_pos)
         }
-        
+
 // showAuthor
         static  setUpAuthor2(strip_author, sorted_nodes, div_height, div_width) {      // author_data
             var middle_height = div_height / 2;

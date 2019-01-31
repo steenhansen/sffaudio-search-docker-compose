@@ -8,6 +8,7 @@ var misc_helper = rootAppRequire('sff-network/misc-helper');
 var request_promise = require('request-promise');
 var miscMethods = rootAppRequire('sff-network/build-nodes/mediaServer/modules/base/miscMethods')
 
+
 function doCacheClear() {
     var cache_clear_signal =  graph_constants.ERASE_CACHES_URL;  
     const optionsStart = {
@@ -15,6 +16,7 @@ function doCacheClear() {
         method: "GET",
         headers: {"Content-type": "application/text"}
     };
+
     return request_promise(optionsStart)
         .then((body)=> {
             if (body === graph_constants.CACHES_ARE_CLEAR) {

@@ -1,11 +1,11 @@
 var LabelPositions = rootAppRequire('sff-network/show-nodes/label-positions')
 var HoverIcon = rootAppRequire('sff-network/show-nodes/media-nodes/hover-icon')
 const {BOTTOM_COLUMNS_Y_OFFSET, X_NODE_SEPARATION, Y_NODE_SEPARATION, VERTICAL_STAGGER}=LabelPositions
-var misc_helper = rootAppRequire('sff-network/misc-helper')
 const {BOOK_PAGE_TYPE} = rootAppRequire('sff-network/graph-constants');
 const program_variables = rootAppRequire('sff-network/program-variables.js');
 
- 
+var CircleCache = rootAppRequire('sff-network/circle-cache');
+var graph_constants = rootAppRequire('sff-network/graph-constants')
 module.exports = function (data_repository) {
 
     class BookData extends HoverIcon {
@@ -61,6 +61,11 @@ module.exports = function (data_repository) {
 
 
         static sendBooksOfAuthor(strip_author, under_title, ParseNeo) {
+            var book_id = under_title + graph_constants.JOIN_BOOK_AUTHOR + strip_author;
+            var cached_book = CircleCache.checkName(book_id);
+            if (cached_book) {
+                return (Promise.resolve(cached_book));
+            }
             return data_repository.getBookNodes(under_title)
                 .then(function (graph_collection) {
                     var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
@@ -75,6 +80,8 @@ module.exports = function (data_repository) {
                         db_version: db_version
                     };
                     var nodes_and_edges = {graph_collection, nodes_object, edges_object, graph_info};   /// graph_collection for tests
+
+                    CircleCache.addNamedObject(book_id, nodes_and_edges);
                     return nodes_and_edges;
                 })
         }

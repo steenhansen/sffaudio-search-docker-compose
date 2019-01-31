@@ -6,7 +6,6 @@ var data_repository = rootAppRequire('sff-network/show-nodes/graph-dbs/show-repo
 var author_data = rootAppRequire('sff-network/show-nodes/media-types/author-show')(data_repository)
 var ParseNeo = rootAppRequire('sff-network/show-nodes/parse-neo')(data_repository);
 var book_data = rootAppRequire('sff-network/show-nodes/media-types/book-show')(data_repository)
-var misc_helper = rootAppRequire('sff-network/misc-helper')
 var request_promise = require('request-promise');
 
 var media_page = rootAppRequire('./sff-network/html-pages/media-page')
@@ -14,6 +13,10 @@ var media_page = rootAppRequire('./sff-network/html-pages/media-page')
 const CachedBooks = rootAppRequire('sff-network/build-nodes/cached-lists/cached-books');
 var CachedDefaults = rootAppRequire('sff-network/build-nodes/cached-lists/cached-default');
 const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cached-authors');
+
+
+var CircleCache = rootAppRequire('sff-network/circle-cache');
+
 
 function corsAll(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -53,6 +56,7 @@ function clearFromReload() {
     CachedAuthors.checkCache();
     CachedBooks.checkCache();
     CachedDefaults.checkCache();
+    CircleCache.emptyCache();
     return Promise.all([graph_constants.CACHES_ARE_CLEAR]);
 }
 

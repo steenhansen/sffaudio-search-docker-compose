@@ -22,6 +22,11 @@ var graph_constants = {
     
     MOBILE_HEADER_ABOVE : '<!-- end widget intro. NB, this text is used by PHP -->',
     MINIFYING_JS : 1, 
+
+    JOIN_BOOK_AUTHOR: '**',
+        CIRCLE_BUFFER_SIZE: 100,
+
+
     
     MAX_ZOOM: 2,
     MIN_ZOOM: 0.25,
