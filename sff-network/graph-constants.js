@@ -24,7 +24,7 @@ var graph_constants = {
     MINIFYING_JS : 1, 
 
     JOIN_BOOK_AUTHOR: '**',
-        CIRCLE_BUFFER_SIZE: 100,
+        CIRCLE_BUFFER_SIZE: 100,     // 0==10%memory
 
 
     

@@ -45,7 +45,6 @@ sff_js_vars.vars_events = (function () {
         var story_button = 'Search stories for\n' + search_for_text;
         document.getElementById('do--author--filter').innerText = author_button;
         document.getElementById('do--story--filter').innerText = story_button;
-        my.wordPressSearch(search_for);
     }
 
     my.wordPressSearch = function(search_for){
@@ -61,6 +60,7 @@ sff_js_vars.vars_events = (function () {
         if (charCode == '13') {
             if (search_term) {
                 my.executeSearch(search_term);
+                my.wordPressSearch(search_for);
             } else {
                 sff_js_vars.filter_names.showHideFilteredStories('all_media');
                 sff_js_vars.filter_names.showHideFilteredAuthors('all_media');

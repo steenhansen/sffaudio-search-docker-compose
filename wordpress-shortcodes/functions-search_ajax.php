@@ -16,8 +16,7 @@ define("WP_NONCE_NAME",     'aj-demo-nonce');
 
 function search_ajax_component() {
     $html_js = 
-     "<button onclick='sff_ajax_search(\"search_div\", \"dick\")' type='button'>Get dick</button>
-     <div id='search_div'>nada</div>
+     "
 
 <script>
 function sff_ajax_search(search_container_id, search_for){
