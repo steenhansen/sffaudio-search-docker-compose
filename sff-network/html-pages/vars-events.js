@@ -60,7 +60,7 @@ sff_js_vars.vars_events = (function () {
         if (charCode == '13') {
             if (search_term) {
                 my.executeSearch(search_term);
-                my.wordPressSearch(search_for);
+                my.wordPressSearch(search_term);
             } else {
                 sff_js_vars.filter_names.showHideFilteredStories('all_media');
                 sff_js_vars.filter_names.showHideFilteredAuthors('all_media');
