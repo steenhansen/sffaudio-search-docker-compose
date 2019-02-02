@@ -9,6 +9,24 @@
 var graph_constants = rootAppRequire('sff-network/graph-constants');
 var background_color = graph_constants.DARK_BACKGROUND;
 
+function db_down_icon(hover_color) {
+    var svg_all = `<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" height="1000" width="1000" xml:space="preserve" viewBox="0 0 1000 1000" y="0" x="0" version="1.1">
+<circle stroke-miterlimit="4" r="474.2" cy="497.7" cx="498.3" style="fill:${hover_color};stroke-width:20.1"/><g transform="matrix(1.7819606,0,0,1.7819606,144.69423,69.402958)"><path d="m231.1 239.9c-2.3-4-7.3-6.8-11.8-6.8H97c-4.6 0-9.5 2.9-11.8 6.8L24 345.9c-2.3 4-2.3 9.7 0 13.7L85.1 465.5c2.3 4 7.3 6.8 11.8 6.8h122.3c4.6 0 9.5-2.9 11.8-6.8l61.2-105.9c2.3-4 2.3-9.7 0-13.7zm-73 171c-32.1 0-58.2-26.1-58.2-58.2 0-32.1 26.1-58.2 58.2-58.2 32.1 0 58.2 26.1 58.2 58.2 0 32.1-26.1 58.2-58.2 58.2zM448.3 225.1l-36.2-62.7c-2.3-4-7.3-6.8-11.8-6.8h-72.4c-4.6 0-9.5 2.9-11.8 6.8l-36.2 62.7c-2.3 4-2.3 9.7 0 13.7l36.2 62.7c2.3 4 7.3 6.8 11.8 6.8h72.4c4.6 0 9.5-2.9 11.8-6.8l36.2-62.7c2.3-4 2.3-9.7 0-13.7zm-84.2 34.2c-15.1 0-27.3-12.3-27.3-27.3 0-15.1 12.3-27.3 27.3-27.3 15.1 0 27.3 12.3 27.3 27.3 0 15.1-12.3 27.3-27.3 27.3zM65.2 140.9l49.7 49.3c2.1 2.1 5.7 3.5 8.6 3.5l70-0.3c3 0 6.5-1.5 8.6-3.6l49.3-49.7c2.1-2.1 3.6-5.7 3.6-8.7l-0.3-70c0-3-1.5-6.5-3.6-8.6L201.4 3.5C199.3 1.5 195.7 0 192.7 0l-70 0.3c-3 0-6.5 1.5-8.6 3.6L64.8 53.6c-2.1 2.1-3.6 5.7-3.5 8.7l0.3 70c0 3 1.5 6.5 3.6 8.6zm92.8-85.3h0.2c22.6 0 41.1 18.4 41.2 41.1 0.1 22.7-18.3 41.3-41.1 41.4h-0.2c-22.6 0-41.1-18.4-41.2-41.1-0.1-22.7 18.3-41.3 41.1-41.4z"/></g>
+<g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/><g transform="translate(0,527.69699)"/></svg>
+`;
+    return visJsGraphShape(svg_all);
+}
+
+
+function book_icon(hover_color) {
+    var svg_all = `<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" version="1.1">
+<style>.s0{fill:#fff;stroke-width:1.5;}</style><g transform="matrix(10.562294,0,0,10.562294,26.794337,23.152316)">
+<circle stroke-miterlimit="4" r="44.9" cy="44.9" cx="44.9" style="fill:${hover_color};stroke-width:1.9"/><path stroke="null" d="M71 22.6V15.6l-26.7 7z" stroke-opacity="null" class="s0"/><rect stroke="null" height="44.9" width="62.5" y="21.2" x="12.4" fill-opacity="null" stroke-opacity="null" class="s0"/><path d="m76.5 24.3v-4.2h-4.4v-5.3l-28.3 5.3h-32.5v4.2h-2.4v44.9h70.1v-44.9zm-63 0v-1.8h29.1v1.8 40.8h-29.1zm43-4.2 13.2-2.4v2.5 1.2 1.2 1.8 36l-24.7 4.6v-40.5-1.8-0.2l5.2-1zm17.6 4.2v40.8h-17.6l15.5-2.9v-37.9-1.8h2.1zm-25.8 30-0.6-2.3 18.5-5 0.6 2.3zm-0.2 6.3-0.6-2.3 18.5-5 0.6 2.3zm0.5-30.3-0.6-2.2 13.4-3.7 4.6-1.3 0.4 1.3 0.3 1zm0 6-0.6-2.2 18-5 0.6 2.2zm0 6-0.6-2.2 18.1-5 0.6 2.3zm0 6-0.6-2.2 18.1-5 0.6 2.3zm-31.8 4.4h22.9v2.3h-22.9zm-0.2 6.3h22.9v2.3h-22.9zm22.9-16h-22.5v-2.3h22.5zm0 6h-22.5v-2.3h22.5z"/></g></svg>
+`;
+    return visJsGraphShape(svg_all);
+}
+
+
 function fit_graph_shape(w_color) {
     var svg_wikipedia = `
 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" height="1000" width="1000" version="1.1" x="0" y="0" viewBox="0 0 1000 1000" xml:space="preserve">
@@ -68,13 +86,7 @@ function pdf_icon(hover_color) {
     return visJsGraphShape(svg_all);
 }
 
-function book_icon(hover_color) {
-    var svg_all = `<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" version="1.1">
-<style>.s0{fill:#fff;stroke-width:1.5;}</style><g transform="matrix(10.562294,0,0,10.562294,26.794337,23.152316)">
-<circle stroke-miterlimit="4" r="44.9" cy="44.9" cx="44.9" style="fill:${hover_color};stroke-width:1.9"/><path stroke="null" d="M71 22.6V15.6l-26.7 7z" stroke-opacity="null" class="s0"/><rect stroke="null" height="44.9" width="62.5" y="21.2" x="12.4" fill-opacity="null" stroke-opacity="null" class="s0"/><path d="m76.5 24.3v-4.2h-4.4v-5.3l-28.3 5.3h-32.5v4.2h-2.4v44.9h70.1v-44.9zm-63 0v-1.8h29.1v1.8 40.8h-29.1zm43-4.2 13.2-2.4v2.5 1.2 1.2 1.8 36l-24.7 4.6v-40.5-1.8-0.2l5.2-1zm17.6 4.2v40.8h-17.6l15.5-2.9v-37.9-1.8h2.1zm-25.8 30-0.6-2.3 18.5-5 0.6 2.3zm-0.2 6.3-0.6-2.3 18.5-5 0.6 2.3zm0.5-30.3-0.6-2.2 13.4-3.7 4.6-1.3 0.4 1.3 0.3 1zm0 6-0.6-2.2 18-5 0.6 2.2zm0 6-0.6-2.2 18.1-5 0.6 2.3zm0 6-0.6-2.2 18.1-5 0.6 2.3zm-31.8 4.4h22.9v2.3h-22.9zm-0.2 6.3h22.9v2.3h-22.9zm22.9-16h-22.5v-2.3h22.5zm0 6h-22.5v-2.3h22.5z"/></g></svg>
-`;
-    return visJsGraphShape(svg_all);
-}
+
 
 function rsd_icon(w_color) {
     var svg_rsd = `
@@ -186,7 +198,7 @@ function help_icon(w_color) {
     return visJsGraphShape(svg_all);
 }
 
-module.exports = {
+module.exports = { db_down_icon,
 fit_graph_shape, arrow_icon, zoom_out_shape, zoom_in_shape, close_icon, wikipedia_icon, author_icon, pdf_icon,
     post_icon, book_icon, podcast_icon, rsd_icon, rsd_video, help_icon, google_icon, filter_grow, filter_shrink, filter_icon, arrow_icon
 }

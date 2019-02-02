@@ -1,13 +1,12 @@
-//require('../../../sff-network/global-require')
-
 var graph_constants = rootAppRequire('sff-network/graph-constants');
 class CircleCache {
 
-    static showVars(message) {
+    static showVars(message = false) {
         console.log('*********************');
-        console.log(message);
-        console.log(CircleCache.buffer_index);
-        console.log(CircleCache.name_circ_buffer);
+        if (message) {
+            console.log(message);
+        }
+        console.log(CircleCache.buffer_index, CircleCache.name_circ_buffer);
         console.log('*********************');
     }
 
@@ -28,21 +27,22 @@ class CircleCache {
     }
 
     static addNamedObject(author_book_name, author_book_data) {
-        var buffer_index = CircleCache.buffer_index;
-        var name_circ_buffer = CircleCache.name_circ_buffer;
-        var object_list = CircleCache.object_list;
-
-        var oldest_buffer_name = name_circ_buffer[buffer_index];
-        if (oldest_buffer_name) {
-            delete object_list[oldest_buffer_name];
+        if (!CircleCache.checkName(author_book_name)) {
+            var buffer_index = CircleCache.buffer_index;
+            var name_circ_buffer = CircleCache.name_circ_buffer;
+            var object_list = CircleCache.object_list;
+            var oldest_buffer_name = name_circ_buffer[buffer_index];
+            if (oldest_buffer_name) {
+                delete object_list[oldest_buffer_name];
+            }
+            name_circ_buffer[buffer_index] = author_book_name;
+            object_list[author_book_name] = author_book_data;
+            buffer_index++;
+            if (buffer_index >= graph_constants.CIRCLE_BUFFER_SIZE) {
+                buffer_index = 0;
+            }
+            CircleCache.buffer_index = buffer_index;
         }
-        name_circ_buffer[buffer_index] = author_book_name;
-        object_list[author_book_name] = author_book_data;
-        buffer_index++;
-        if (buffer_index >= graph_constants.CIRCLE_BUFFER_SIZE) {
-            buffer_index = 0;
-        }
-        CircleCache.buffer_index = buffer_index;
     }
 
 }

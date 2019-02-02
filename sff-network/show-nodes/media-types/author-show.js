@@ -23,7 +23,7 @@ module.exports = function (data_repository) {
         static sendAuthor(strip_author, ParseNeo, update_index) {
             var cached_author = CircleCache.checkName(strip_author);
             if (cached_author) {
-                CircleCache.showVars('no_db author');
+                CircleCache.showVars();
                 return(Promise.resolve(cached_author));
             }
             return data_repository.getAuthorNodes(strip_author, update_index)

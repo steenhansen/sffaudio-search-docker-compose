@@ -4,7 +4,7 @@
 [search_ajax_component]
 [graph_search_component]
 
- <div id='search_div'>still loading</div>
+ <div id='search_div'>...</div>
  
  
  

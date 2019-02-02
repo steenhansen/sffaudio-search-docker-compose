@@ -40,7 +40,8 @@ sff_js_vars.help_nodes = {
         {"id": 910, "group": "N_ZOOM_OUT", "node_type": "HELP_ZOOM_OUT", "title": "Click for zoom out help"},
         {"id": 911, "group": "N_ARROW", "node_type": "HELP_ARROW", "title": "Click for drag help"},
         {"id": 912, "group": "N_FIT", "node_type": "HELP_FIT", "title": "Click for resize help"},
-        {"id": 913, "group": "N_GOOGLE", "node_type": "HELP_GOOGLE", "title": "Click for Google help"}],
+        {"id": 913, "group": "N_GOOGLE", "node_type": "HELP_GOOGLE", "title": "Click for Google help"},
+        {"id": 914, "group": "N_DB_DOWN", "node_type": "HELP_DB_DOWN", "title": "Click for DB Down help"}],
 
     "HELP_AUTHOR": [{
         "group": "N_AUTHOR", "node_type": "HELP_AUTHOR",
@@ -130,6 +131,12 @@ sff_js_vars.help_nodes = {
         "group": "N_GOOGLE", "node_type": "HELP_GOOGLE",
         "font": sff_constants.HELP_FONT,
         "label": "Use Google's text search"
+    }],
+    
+      "HELP_DB_DOWN": [{
+        "group": "N_DB_DOWN", "node_type": "HELP_DB_DOWN",
+        "font": sff_constants.HELP_FONT,
+        "label": "Database is updating, try again in a couple of minutes"
     }]
 };
 
@@ -147,6 +154,7 @@ sff_js_vars.HELP_ALL_EDGES = [
     {"from": 900, "to": 911},
     {"from": 900, "to": 912},
     {"from": 900, "to": 913},
+    {"from": 900, "to": 914},
 ];
 
 // help-graph end

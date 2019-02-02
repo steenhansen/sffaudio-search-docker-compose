@@ -172,7 +172,7 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                 } else if (node_type == 'L_RSD_VIDEO') {
                     sff_js_vars.rsd_procs.historyRsd(goto_url, rsd_description, label, rsd_pdf_link, video_link, under_title, last_first_underscores, 'rsd', sorted_choice);
                 } else if (node_type == 'L_AUTHOR_POST') {
-                
+
                     sff_js_vars.author_post_procs.historyAuthorPost(goto_url, strip_author, 'post_author', sorted_choice);
                 } else if (node_type == 'L_BOOK_POST') {
                     sff_js_vars.book_post_procs.historyBookPost(goto_url, last_first_underscores, under_title, 'post_book', sorted_choice);
@@ -194,20 +194,29 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                         my.network_graph.destroy();
                         my.network_graph = null;
                     }
-                    var fetch_nodes = JSON.parse(myJson.nodes_string)
-                    sff_js_vars.graph_vars.nodes_string = fetch_nodes;
-                    var fetch_edges = JSON.parse(myJson.edges_string);
-                    
-                    
-                    //  TERRIBLE VAR NAME
-                    var fetch_options = JSON.parse(myJson.graph_string);
-                    if (fetch_options.strip_author.indexOf('HELP_') >= 0) {
-                        fetch_nodes = sff_js_vars.help_nodes[fetch_options.strip_author];
-                        fetch_edges = sff_js_vars.HELP_ALL_EDGES;
+                    var ajax_nodes = JSON.parse(myJson.nodes_string)
+                    sff_js_vars.graph_vars.nodes_string = ajax_nodes;
+
+
+                    if (ajax_nodes[0].label == sff_constants.UNRESPONSIVE_DB_NAME) {
+                    ajax_nodes[0].group='N_DB_DOWN';
+                    ajax_nodes[0].node_type='L_DB_DOWN';
+                    ajax_nodes[0].label='Wait a minute, updating database.';
+                    ajax_nodes[0].title='Refresh in a minute.';
+                    }
+
+                    var ajax_edges = JSON.parse(myJson.edges_string);
+
+
+
+                    var ajax_options = JSON.parse(myJson.graph_string);
+                    if (ajax_options.strip_author.indexOf('HELP_') >= 0) {
+                        ajax_nodes = sff_js_vars.help_nodes[ajax_options.strip_author];
+                        ajax_edges = sff_js_vars.HELP_ALL_EDGES;
                     }
                     var no_php_search = '';
-                    sff_js_vars.graph_procs.loadGraph(graph_id, fetch_nodes, fetch_edges, fetch_options.graph_physics, no_php_search);
-                    sff_js_vars.graph_vars.graph_info.graph_type = fetch_options.graph_type;
+                    sff_js_vars.graph_procs.loadGraph(graph_id, ajax_nodes, ajax_edges, ajax_options.graph_physics, no_php_search);
+                    sff_js_vars.graph_vars.graph_info.graph_type = ajax_options.graph_type;
                 });
         };
     }

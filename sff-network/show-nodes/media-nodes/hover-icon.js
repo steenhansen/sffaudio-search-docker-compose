@@ -86,6 +86,11 @@ class HoverIcon {
         let icon_help = graph_icons.help_icon('#ffff00');
         let icon_book = graph_icons.book_icon('none');
         let hover_book = graph_icons.book_icon('#ffffff');
+        
+        let icon_db_down = graph_icons.db_down_icon('none');
+        let hover_db_down = graph_icons.db_down_icon('#ffffff');
+        
+        
         let icon_author = graph_icons.author_icon('none');
         let hover_author = graph_icons.author_icon('#ffffff');
         let shape_zoom_out = graph_icons.zoom_out_shape('none');
@@ -98,6 +103,9 @@ class HoverIcon {
         let shape_hover_filter = graph_icons.filter_icon('#ffffff');
         const icons_string = `{ 
             I_HELP: ${icon_help},
+    
+    
+       N_DB_DOWN: ${icon_db_down}, H_DB_DOWN: ${hover_db_down},
     
            I_CLOSE_PDF: ${ close_pdf},
            I_CLOSE_RSD: ${ close_rsd},

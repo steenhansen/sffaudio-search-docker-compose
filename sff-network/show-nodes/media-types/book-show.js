@@ -72,7 +72,7 @@ module.exports = function (data_repository) {
                     var db_version = graph_collection[0].records[0]._fields[db_version_index];
                     var parse_neo = new ParseNeo(graph_collection, 'book');
                     var nodes_object = parse_neo.getBookGraph(strip_author);
-                    var edges_object = parse_neo.getEdges()
+                    var edges_object = parse_neo.getEdges();
                     var graph_info = {
                         graph_type: BOOK_PAGE_TYPE,
                         strip_author: strip_author,

@@ -26,7 +26,7 @@ var graph_constants = {
     JOIN_BOOK_AUTHOR: '**',
         CIRCLE_BUFFER_SIZE: 100,     // 0==10%memory
 
-
+    UNRESPONSIVE_DB_NAME : "_unresponsive_db_",
     
     MAX_ZOOM: 2,
     MIN_ZOOM: 0.25,
