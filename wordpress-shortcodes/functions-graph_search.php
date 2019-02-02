@@ -43,8 +43,9 @@ if (!class_exists('SffGraphSearch')) {
         const PHP_CACHED_WIDGET_MESS = '<!-- PHP Cached widget code -->';
 
 
-        static function redirectAfterHeader($new_location)
+        static function redirectAfterHeader($widget_url, $search_dashes)
         {
+            $new_location = $widget_url . '/?wordpress-start=' . $search_dashes;
             echo "<meta http-equiv='Refresh' content='0;url=$new_location' />";
             exit();
         }
@@ -73,12 +74,12 @@ if (!class_exists('SffGraphSearch')) {
             }
         }
 
-        static function leaveIfMobile($url_with_parameters)
+        static function leaveIfMobile($widget_url, $search_dashes)
         {
             if (SffGraphSearch::isMobileOne($_SERVER['HTTP_USER_AGENT'])) {
-                SffGraphSearch::redirectAfterHeader($url_with_parameters);
+                SffGraphSearch::redirectAfterHeader($widget_url, $search_dashes);
             } else if (SffGraphSearch::isMobileTwo($_SERVER['HTTP_USER_AGENT'])) {
-                SffGraphSearch::redirectAfterHeader($url_with_parameters);
+                SffGraphSearch::redirectAfterHeader($widget_url, $search_dashes);
             } else {
                 return;
             }
@@ -126,11 +127,13 @@ if (!class_exists('SffGraphSearch')) {
             return $search_dashes;
         }
 
-        static function mobileRedirect($mobile_leaving_pages, $url_with_parameters)
+        static function mobileRedirect($mobile_leaving_pages, $widget_url, $search_dashes)
         {
-            $php_filename = basename(__FILE__);
-            if (in_array($php_filename, $mobile_leaving_pages)) {
-                SffGraphSearch::leaveIfMobile($url_with_parameters);
+            if (is_page()) {
+                $php_slug = get_queried_object()->post_name;
+                if (in_array($php_slug, $mobile_leaving_pages)) {
+                    SffGraphSearch::leaveIfMobile($widget_url, $search_dashes);
+                }
             }
         }
 
@@ -193,18 +196,20 @@ if (!function_exists('graph_search_component')) {
 
         $db_version = SffGraphSearch::wakeUpSleepingGrapheneDb($widget_url . '/wake-up');
 
-        $mobile_leaving_pages = array('about.php', '');
+        $mobile_leaving_pages = array('search');
         $get_author = @$_GET['author'];
         $get_book = @$_GET['book'];
         $get_view = @$_GET['view'];
         $get_choice = @$_GET['choice'];
 
         $url_with_parameters = SffGraphSearch::getQueryParameters($widget_url, $get_author, $get_book, $get_view, $get_choice);
-        SffGraphSearch::mobileRedirect($mobile_leaving_pages, $url_with_parameters);
         $search_dashes = SffGraphSearch::whatSearch(@$_POST['search_term']);
+        SffGraphSearch::mobileRedirect($mobile_leaving_pages, $widget_url, $search_dashes);
         $web_html_javascript = SffGraphSearch::phpCodeOnly($url_with_parameters, $widget_url, $get_author, $get_book);
 
+
         $from_php_js_html = <<<JAVASCRIPT_HTML
+        
         <script>
             window.sff_php_vars={ 
 			           "php_url" : "$widget_url",

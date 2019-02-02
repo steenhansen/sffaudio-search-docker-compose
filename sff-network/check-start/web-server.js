@@ -27,7 +27,7 @@ app.get(graph_constants.ROUTE_ERASE_CACHES, function (req, res, next) {
 app.get(graph_constants.ROUTE_WAKE_UP, function (req, res, next) {
     serverResponse.wakeUpSleepingDb()
         .then((db_version)=> {
-            var wake_up_message="current db version = "+ db_version
+            var wake_up_message = "current db version = " + db_version
             res.send(wake_up_message)
         })
         .catch(next);
@@ -62,9 +62,17 @@ app.get(program_variables.ROUTE_AUTHOR_JSON, function (req, res, next) {
         .catch(next);
 })
 
+
 app.get('/', function (req, res, next) {
     var req_query = req.query;
-    if (typeof req_query['author'] === 'undefined') {
+
+///    localhost:5000/?wordpress-start=philip-k-dick
+    if (typeof req_query['wordpress-start'] !== 'undefined') {
+        let php_search = req_query['wordpress-start'];
+        serverResponse.fromWordpress(php_search)
+            .then((author_book_html)=> res.send(author_book_html))
+            .catch(next);
+    } else if (typeof req_query['author'] === 'undefined') {
         serverResponse.initialDefaultPage(req_query)
             .then((default_html)=> res.send(default_html))
             .catch(next);

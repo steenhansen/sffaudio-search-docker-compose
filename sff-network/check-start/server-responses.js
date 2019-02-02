@@ -18,6 +18,17 @@ const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cache
 var CircleCache = rootAppRequire('sff-network/circle-cache');
 
 
+//     localhost:5000/?wordpress-start=philip-k-dick
+function fromWordpress(php_search) {
+    var nodes_object = '{}';
+    var edges_object = '{}';
+    var graph_info = '{}';
+    var query_view = '{}';
+    var query_choice = '{}';
+    var empty_default_authors = '{}';
+    return media_page(nodes_object, edges_object, graph_info, query_view, query_choice, empty_default_authors, php_search);
+}
+
 function corsAll(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -136,8 +147,9 @@ function initialDefaultPage(req_query) {
             var query_choice = queryChoice(req_query);
             var empty_node = {};
             var empty_edges = {};
-            var empty_info = {}
-            return media_page(empty_node, empty_edges, empty_info, query_view, query_choice, random_default_authors);
+            var empty_info = {};
+            var php_search = '';
+            return media_page(empty_node, empty_edges, empty_info, query_view, query_choice, random_default_authors, php_search);
         })
 }
 
@@ -148,12 +160,13 @@ function bookOrAuthorPage(req_query) {
             var query_view = queryView(req_query);
             var query_choice = queryChoice(req_query);
             var empty_default_authors = '{}';
-            return media_page(nodes_object, edges_object, graph_info, query_view, query_choice, empty_default_authors);
+            var php_search = '';
+            return media_page(nodes_object, edges_object, graph_info, query_view, query_choice, empty_default_authors, php_search);
 
         })
 }
 
 module.exports = {
     corsAll, sffAudioPostPiece, authorJson, bookJson, wakeUpSleepingDb,
-    initialDefaultPage, bookOrAuthorPage, clearFromReload
+    initialDefaultPage, bookOrAuthorPage, clearFromReload, fromWordpress
 };

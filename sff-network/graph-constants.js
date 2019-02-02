@@ -94,7 +94,6 @@ var graph_constants = {
     WP_SHORT_POST: "https://www.sffaudio.com/?p=",
     ROUTE_POST_PROXY: '/post-proxy',
     
-    
     ROUTE_WAKE_UP: '/wake-up',
 
     HEROKU_URL: node_url,                      //"https://sffaudio-search.herokuapp.com/",

@@ -83,7 +83,14 @@ var js_prog_vars_PS = readFilePromise(program_variables, 'utf8')
     }
     
     
-module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view, req_query_choice, nodes_and_edges_str) {
+module.exports = function the_widget(nodes_object, edges_object, graph_object, req_query_view, req_query_choice, nodes_and_edges_str, php_search) {
+
+    if (php_search){
+     var search_from_wordpress = ' window.sff_php_vars={ "php_search" : " ' + php_search + '"}';
+    }else{
+        var search_from_wordpress = '';
+    }
+
     if (graph_object.under_title) {
         var under_title = graph_object.under_title;
     } else {
@@ -194,6 +201,8 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 <script>
     ${js_popup_blur_PS}
     ${js_load_scripts_PS}
+    
+    ${search_from_wordpress}
     
       if (sff_js_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
             sff_js_vars.filter_names.colorAuthors();

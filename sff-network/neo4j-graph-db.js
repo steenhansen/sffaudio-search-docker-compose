@@ -21,13 +21,13 @@ var UNRESPONSIVE_DB_MESS = {
             {
                 "identity": {},
                 "labels": [
-                    "L_AUTHOR"
+                    "L_AUTHOR"         // expected for all json calls
                 ],
                 "properties": {
                     "author_name": graph_constants.UNRESPONSIVE_DB_NAME,
                 }
             },
-            209
+            42
         ],
         "_fieldLookup": {
             "n_author": 0,
