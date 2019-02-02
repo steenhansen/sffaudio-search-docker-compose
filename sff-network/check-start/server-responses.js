@@ -22,7 +22,7 @@ var CircleCache = rootAppRequire('sff-network/circle-cache');
 function fromWordpress(php_search) {
     var nodes_object = '{}';
     var edges_object = '{}';
-    var graph_info = '{}';
+    var graph_info = '{"graph_physics": false}';
     var query_view = '{}';
     var query_choice = '{}';
     var empty_default_authors = '{}';

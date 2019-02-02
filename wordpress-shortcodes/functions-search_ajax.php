@@ -1,16 +1,25 @@
 <?php
 
+/*
+ 
+[search_ajax_component]
+
+[graph_search_component]
+
+<div id='search_div' style='margin-top:16px'>...</div>
+
+ 
+ */
 
 // /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/functions-search_ajax.php 
 
 
-//  [search_ajax_component]
+//  [search_ajax_component]       instead of [graph_query_component]
 
 define("WP_ACTION_NAME", "ACTION_get_php_work");
 define("WP_ACTION_LOGGED_OUT", "wp_ajax_nopriv_" . WP_ACTION_NAME);
 define("WP_ACTION_LOGGED_IN", "wp_ajax_" . WP_ACTION_NAME);
 define("WP_AJAX_HANDLER_FILE", admin_url('admin-ajax.php'));
-define("WP_AJAX_URL", admin_url('admin-ajax.php'));
 define("WP_NONCE_NAME", 'aj-demo-nonce');
 
 
@@ -21,7 +30,7 @@ function search_ajax_component()
 
 <script>
 
-function encodeData(data) {
+function encodeQueryData(data) {
     return Object.keys(data).map(function(key) {
         return [key, data[key]].map(encodeURIComponent).join('=');
     }).join('&');
@@ -32,22 +41,14 @@ function encodeData(data) {
 function sff_ajax_search(search_container_id, search_for){
     var wp_ajax_url = SFF_AJAX_SEARCH_OBJECT.WP_AJAX_URL;
     
-    const data = { 'action': 'ACTION_get_php_work', 
+    var data = { 'action': 'ACTION_get_php_work', 
                    '_wpnonce': SFF_AJAX_SEARCH_OBJECT.WP_NONCE, 
                    'search_text': search_for };
-const querystring = encodeQueryData(data);
-
-
-    var body_vars = 'action=ACTION_get_php_work&_wpnonce=' + SFF_AJAX_SEARCH_OBJECT.WP_NONCE +'&search_text=' + search_for;
-    
-    console.log('11111111111111111111111')
-    console.log(querystring)
-    console.log(body_vars)
-    
+    var querystring = encodeQueryData(data);
     var ajax_options = {
        method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'},
-            body: body_vars,
+            body: querystring,
         credentials: 'same-origin'
     };
     fetch(wp_ajax_url, ajax_options)
