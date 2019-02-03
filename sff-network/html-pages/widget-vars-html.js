@@ -74,9 +74,12 @@ function widgetHtml(graph_div_id, author_links, book_links) {
                 </button>
             </div>
             <input id='filter--author--text' placeholder="search for..." type='text'
-                   onkeypress=" sff_js_vars.vars_events.inputEnterPress(); "
                    oninput=" sff_js_vars.vars_events.inputSearch();
                              sff_js_vars.vars_events.filterSearchForText(); "/>
+<script>
+  var filter_author_text = document.getElementById('filter--author--text');
+  filter_author_text.addEventListener('keydown', sff_js_vars.vars_events.inputEnterPress);
+</script>                             
         </div>
         <button id='do--story--filter'
                 onClick=" var search_term = document.getElementById('filter--author--text').value;
