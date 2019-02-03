@@ -20,10 +20,10 @@ define("WP_ACTION_NAME", "ACTION_get_php_work");
 define("WP_ACTION_LOGGED_OUT", "wp_ajax_nopriv_" . WP_ACTION_NAME);
 define("WP_ACTION_LOGGED_IN", "wp_ajax_" . WP_ACTION_NAME);
 define("WP_AJAX_HANDLER_FILE", admin_url('admin-ajax.php'));
-define("WP_NONCE_NAME", 'aj-demo-nonce');
+define("WP_NONCE_NAME", 'nonce-moniker');
 
 
-function search_ajax_component()
+function search_ajax_component2()
 {
     $html_js =
         "
@@ -78,15 +78,21 @@ function enqueue_search_ajax()
 
 function php_ajax_function()
 {
-    check_ajax_referer(WP_NONCE_NAME, 'nonce');
-    $search_text = $_POST['search_text'];
-    $query_answer = SffGraphQuery::searchHtml($search_text);
-    wp_send_json($query_answer);
+ //if (check_ajax_referer(WP_NONCE_NAME, 'nonce')) {
+//    if (check_ajax_referer()) {
+        $search_text = $_POST['search_text'];
+        $query_answer = SffGraphQuery::searchHtml($search_text);
+        wp_send_json($query_answer);
+   // }
     wp_die();
 }
 
-add_shortcode('search_ajax_component', 'search_ajax_component');
 add_action('wp_enqueue_scripts', 'enqueue_search_ajax');
-add_action(WP_ACTION_LOGGED_OUT, 'php_ajax_function');
-add_action(WP_ACTION_LOGGED_IN, 'php_ajax_function');
+if (is_user_logged_in()) {
+    add_action(WP_ACTION_LOGGED_IN, 'php_ajax_function');
+} else {
+    add_action(WP_ACTION_LOGGED_OUT, 'php_ajax_function');
+}
 
+
+add_shortcode('search_ajax_component2', 'search_ajax_component2');
