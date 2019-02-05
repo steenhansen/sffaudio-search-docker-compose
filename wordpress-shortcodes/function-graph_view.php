@@ -1,10 +1,10 @@
 <?php
 
-// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/functions-graph_search.php
+// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/function-graph_view.php
 
 /*
  * public_html/wp-content/themes/revolution-code-blue2/functions.php
- *   include 'functions-graph-search.php';
+ *   include 'function-graph_view.php';
  * 
  * 
  *  Modify public_html/wp-content/themes/revolution-code-blue2/header.php
@@ -25,7 +25,7 @@
  * 
  * 
  *  Modify WordPress Page - Search
- *    add [graph_search_component] to the HTML
+ *    add [graph_view_component] to the HTML
  *    and page attributes
  *          - NO PARENT
  *          - Default Template
@@ -184,9 +184,9 @@ if (!class_exists('SffGraphSearch')) {
 }
 
 // https://www.sffaudio.com/search/
-if (!function_exists('graph_search_component')) {
-    function graph_search_component()
-    {  //  [graph_search_component]
+if (!function_exists('graph_view_component')) {
+    function graph_view_component()
+    {  //  [graph_view_component]
 
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
@@ -230,9 +230,7 @@ JAVASCRIPT_HTML;
 }
 
 
-if (!shortcode_exists('graph_search_component')) {
-    if (function_exists('add_shortcode')) {
-        add_shortcode('graph_search_component', 'graph_search_component');
-    }
+if (!shortcode_exists('graph_view_component')) {
+        add_shortcode('graph_view_component', 'graph_view_component');
 }
 

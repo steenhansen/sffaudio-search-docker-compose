@@ -1,15 +1,15 @@
 <?php
 
-// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/functions-day_cache.php
+// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/function-day_cache.php
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 /*
-    Used by functions-graph-search.php because base SFFaudio search widget since only changes once a day
+    Used by functions-graph_view.php because base SFFaudio search widget since only changes once a day
 */
 
-// public_html/wp-content/themes/revolution-code-blue2/functions-day-cache.php
+// public_html/wp-content/themes/revolution-code-blue2/function-day-cache.php
 // used by functions-graph-search.php
 if (!class_exists('DayCache')) {
 
@@ -350,9 +350,7 @@ JAVASCRIPT_HTML;
 
 
 if (!shortcode_exists('day_cache')) {
-    if (function_exists('add_shortcode')) {
         add_shortcode('day_cache', 'day_cache');
-    }
 }
 
 error_reporting(0);

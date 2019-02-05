@@ -1,5 +1,3 @@
-
-
 // https://tc39.github.io/ecma262/#sec-array.prototype.find   for IE
 if (!Array.prototype.find) {
     Object.defineProperty(Array.prototype, 'find', {
@@ -50,62 +48,57 @@ function loadCss(url_href) {
 }
 
 function loadScripts() {
-    if (('vis' in window) && ('pdfjs-dist/build/pdf' in window) && ('Promise' in window) && ('fetch' in window)) {
+    if (('vis' in window) && ('Promise' in window) && ('fetch' in window) && ('pdfjs-dist/build/pdf' in window)) {
         sff_constants.START_FUNC('polyfill_none');
     } else {
-        var vis_code_2 = 'https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js';
-        var vis_css_2 = 'https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css';
         if ('vis' in window) {
-            getPdf();
+            getPromise();
         } else {
+            var vis_code_2 = 'https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js';
+            var vis_css_2 = 'https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css';
             loadCss(vis_css_2);
-            loadScript(vis_code_2, getPdf);
+            loadScript(vis_code_2, getPromise);
         }
-        
-        function getPdf() {
-            if ('pdfjs-dist/build/pdf' in window) {
-                getPromiseAndFetch();
+        function getPromise() {
+            if ('Promise' in window) {
+                getFetch();
             } else {
-                var pdf_js_2 = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.489/build/pdf.min.js'
-                loadScript(pdf_js_2, getPromiseAndFetch);
-                getPromiseAndFetch();
+                var promise_poly_1 = 'https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.2/bluebird.min.js';
+                loadScript(promise_poly_1, checkPromisePoly);
+                function checkPromisePoly(bluebird_status) {
+                    if (bluebird_status === 'polyfill_loaded') {
+                        getFetch();
+                    } else {
+                        var promise_poly_2 = 'https://unpkg.com/bluebird@3.5.2/js/browser/bluebird.min.js';
+                        loadScript(promise_poly_2, getFetch);
+                    }
+                }
             }
-
-            function getPromiseAndFetch() {
-                if (('Promise' in window) && ('fetch' in window)) {
-                    sff_constants.START_FUNC('polyfill_loaded');
+            function getFetch() {
+                if ('fetch' in window) {
+                    getPdf();
                 } else {
-                    var promise_poly_1 = 'https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.2/bluebird.min.js';
-                    var promise_poly_2 = 'https://unpkg.com/bluebird@3.5.2/js/browser/bluebird.min.js';
                     var fetch_poly_1 = 'https://cdn.jsdelivr.net/npm/unfetch@4.0.1/polyfill/index.js';
-                    var fetch_poly_2 = 'https://unpkg.com/unfetch@4.0.1/polyfill/index.js';
-                    loadScript(promise_poly_1, checkPromisePoly);
-                    function checkPromisePoly(bluebird_status) {
-                        if (bluebird_status === 'polyfill_loaded') {
-                            loadUnFetch('polyfill_loaded');
+                    loadScript(fetch_poly_1, checkFetchPoly);
+                    function checkFetchPoly(fetch_status) {
+                        if (fetch_status === 'polyfill_loaded') {
+                            getPdf();
                         } else {
-                            loadScript(promise_poly_2, loadUnFetch);
+                            var fetch_poly_2 = 'https://unpkg.com/unfetch@4.0.1/polyfill/index.js';
+                            loadScript(fetch_poly_2, getPdf);
                         }
-                    };
-
-                    function loadUnFetch(bluebird_status) {
-                        if (bluebird_status === 'polyfill_loaded') {
-                            loadScript(fetch_poly_1, checkUnFetchPoly);
-
-                            function checkUnFetchPoly(unfetch_status) {
-                                if (unfetch_status === 'polyfill_loaded') {
-                                    sff_constants.START_FUNC('polyfill_loaded');
-                                } else {
-                                    loadScript(fetch_poly_2, sff_constants.START_FUNC);
-                                }
-                            };
-                        } else {
-                            sff_constants.START_FUNC(bluebird_status);
-                        }
-                    };
+                    }
+                }
+                function getPdf() {
+                    if ('pdfjs-dist/build/pdf' in window) {
+                        sff_constants.START_FUNC('polyfill_loaded');
+                    } else {
+                        var pdf_js_2 = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.489/build/pdf.min.js'
+                        loadScript(pdf_js_2, sff_constants.START_FUNC);
+                    }
                 }
             };
-        }
+        };
     }
 }
 

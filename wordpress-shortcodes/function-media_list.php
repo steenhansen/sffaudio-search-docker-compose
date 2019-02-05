@@ -1,23 +1,25 @@
 <?php
 
-// public_html/wp-content/themes/revolution-code-blue2/functions-graph_query.php
+// public_html/wp-content/themes/revolution-code-blue2/function-media_list.php
 
+
+
+/*
+ * public_html/wp-content/themes/revolution-code-blue2/functions.php
+ *   include 'function-media_list.php';
+ * 
+ *  
+ *  Modify WordPress Page - Search
+ *    add [media_list_component] to the HTML
+ *    and page attributes
+ *          - NO PARENT
+ *          - Default Template
+ */
 
 //const GRAPH_URL = "http://localhost:3000/graphql";
 //const GRAPH_URL = "https://sffaudio-graphql.herokuapp.com/graphql";
 const GRAPH_URL = "https://graphql-search.herokuapp.com/graphql";
 
-/*
- * public_html/wp-content/themes/revolution-code-blue2/functions.php
- *   include 'functions-graph-query.php';
- * 
- *  
- *  Modify WordPress Page - Search
- *    add [graph_query_component] to the HTML
- *    and page attributes
- *          - NO PARENT
- *          - Default Template
- */
 
 const GRAPH_I_QL = '
 query serch_ql($search_parameter: String!) {
@@ -326,19 +328,12 @@ EOT;
 }
 
 // https://www.sffaudio.com/search/
-if (!function_exists('graph_query_component')) {
-    function graph_query_component()
-    {  //  [graph_query_component]
+if (!function_exists('media_list_component')) {
+    function media_list_component()
+    {  //  [media_list_component]
 
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
-
-
-/*
- 
- https://medium.com/letsboot/basics-using-ajax-with-fetch-api-b2218b0b9691 
-  
- */
 
         $search_for = SffGraphQuery::sanitizeSearch(@$_POST['search_term']);
         if (strlen($search_for) > 2) {
@@ -347,19 +342,18 @@ if (!function_exists('graph_query_component')) {
             $query_answer = "<br>Type at least 3 characters for search to work.";
         }
 
+        $query_html = "<div id='search_div' style='margin-top:16px; clear:both;'>$query_answer</div>";
 
         error_reporting(0);
         ini_set('display_errors', 0);
 
-        return $query_answer;
+        return $query_html;
     }
 }
 
 
-if (!shortcode_exists('graph_query_component')) {
-    if (function_exists('add_shortcode')) {
-        add_shortcode('graph_query_component', graph_query_component);
-    }
+if (!shortcode_exists('media_list_component')) {
+        add_shortcode('media_list_component', media_list_component);
 }
 
 

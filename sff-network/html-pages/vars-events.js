@@ -4,7 +4,7 @@ window.sff_js_vars = {};
 
 sff_js_vars.vars_events = (function () {
 
-    var my = {};
+    var my = {has_first_php_run: false};
 
     my.initVars = function () {
         try {
@@ -47,9 +47,14 @@ sff_js_vars.vars_events = (function () {
         document.getElementById('do--story--filter').innerText = story_button;
     }
 
-    my.wordPressSearch = function(search_for){
-        if ( typeof sff_ajax_search==='function' ){
-            sff_ajax_search('search_div', search_for);
+// NB the first rendering is done by PHP with functions-graph_query.php
+    my.wordPressSearch = function (search_for) {
+        if (my.has_first_php_run) {
+            if (typeof sff_ajax_search === 'function') {
+                sff_ajax_search('search_div', search_for);
+            }
+        } else {
+            my.has_first_php_run = true;
         }
     }
 
