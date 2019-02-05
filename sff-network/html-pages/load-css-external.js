@@ -23,11 +23,15 @@ ga('create', 'UA-XXXXX-Y', 'auto');
 ga('send', 'pageview');
 </script>
 
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script  src='https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.2/bluebird.min.js'></script>
+<script  src='https://cdn.jsdelivr.net/npm/unfetch@4.0.1/polyfill/index.js'></script>
+
+<script  src='https://www.google-analytics.com/analytics.js'></script>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script> 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css" rel="stylesheet" type="text/css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.550/pdf.min.js"></script>
-
+<script   src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.550/pdf.min.js"></script>
 
 <style>
 
@@ -35,6 +39,7 @@ ga('send', 'pageview');
     width: 0%;
     height: ${canvas_height}; /* a var */
     float: left;
+    position: absolute;
 }
 
 #my--graph {

@@ -1,11 +1,4 @@
-// filter-names
 
-// require('../../../sff-network/global-require')
-// var graph_constants = rootAppRequire('sff-network/graph-constants');
-// const {MINIFY_CSS_TABLE, MINIFYING_JS}=graph_constants;
-
-
-// this is in the browser, not on server!!!
 
 
 sff_js_vars.filter_names = (function (graph_id) {

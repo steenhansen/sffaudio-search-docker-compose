@@ -14,7 +14,7 @@ var popup_html = `
     <div class='opaque--cover'></div>
     <div id="media--title">&nbsp;</div>
     <div id="close--enclosure" onclick="sff_js_vars.blur_procs.closePopUp();">
-        <img id="close--icon" src="" alt="Smiley face">
+        <img id="close--icon" alt="Smiley face">
     </div>
     <div onclick="sff_js_vars.rsd_procs.downloadMp3();" id="download--rsd--mp3">
         <img src="${download_rsd_mp3}" class="control--symbols">
@@ -22,13 +22,13 @@ var popup_html = `
     <div onclick="sff_js_vars.podcast_procs.downloadMp3();" id="download--podcast--mp3">
         <img src="${download_podcast_mp3}" class="control--symbols">
     </div>
-    <audio id="mp3--player" controls="controls" src="" title="Right Click, and choose 'Save audio as ...' in context menu">
+    <audio id="mp3--player" controls="controls" title="Right Click, and choose 'Save audio as ...' in context menu">
         Your browser does not support the <code>audio</code> element.
     </audio>
     <div id="post--container">
     </div>
     <div id="video--container">
-        <iframe id="video--player" type="text/html" width="640" height="360" src="" frameborder="0"></iframe>
+        <iframe id="video--player" type="text/html" width="640" height="360" frameborder="0"></iframe>
     </div>
     <div id="pdf--controller">
         <div onclick="sff_js_vars.pdf_procs.loadOnePage(1);" class="control--boxes">

@@ -22,7 +22,7 @@ var CircleCache = rootAppRequire('sff-network/circle-cache');
 function fromWordpress(php_search) {
     var nodes_object = '{}';
     var edges_object = '{}';
-    var graph_info = '{graph_physics: false}';
+    var graph_info = {graph_physics: {"barnesHut": {"avoidOverlap": 1}}};
     var query_view = '{}';
     var query_choice = '{}';
     var empty_default_authors = '{}';
@@ -161,7 +161,6 @@ function bookOrAuthorPage(req_query) {
             var query_choice = queryChoice(req_query);
             var empty_default_authors = '{}';
             var php_search = '';
-            console.log('the graph info', graph_info)
             return media_page(nodes_object, edges_object, graph_info, query_view, query_choice, empty_default_authors, php_search);
 
         })

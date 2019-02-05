@@ -26,8 +26,13 @@ sff_js_vars.helpers = (function () {
         return my.computedValue(element_id, 'height');
     }
 
+
     my.objectIsEmpty = function (obj) {
-        return Object.keys(obj).length === 0;
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
     }
 
     my.setDisplay = function (elem_id, display_value) {
@@ -102,7 +107,7 @@ sff_js_vars.helpers = (function () {
 
     // fetchTimeout('www.xe.com', 3000, 2)
     my.fetchTimeout = function (fetch_url, time_out, num_tries) {
-       // time_out = 2;
+        // time_out = 2;
         var has_timed_out = false;
         return new Promise(function (resolve, reject) {
             const timeout_error = setTimeout(function () {

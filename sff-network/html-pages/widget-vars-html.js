@@ -20,6 +20,8 @@ function widgetVars(graph_id, nodes_object, edges_object, graph_object) {
     var nodes_string = JSON.stringify(nodes_object, null, ' ');
     var edges_string = JSON.stringify(edges_object, null, ' ');
     var graph_string = JSON.stringify(graph_object, null, ' ');
+    
+    
     var media_html = `
 <script>
 // server-to-browser
