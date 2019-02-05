@@ -29,7 +29,7 @@ if (!function_exists('ajax_search_component')) {
     function ajax_search_component()
     {
         $html_js = " <script>
-function sff_ajax_search(search_container_id, search_for) {
+function sff_ajax_search(search_for) {
 
     function encodeQueryData(query_data) {
         return Object.keys(query_data).map(function (key) {
@@ -55,7 +55,7 @@ function sff_ajax_search(search_container_id, search_for) {
             return ajax_repsonse.json();
         })
         .then(function (html_response) {
-            document.getElementById(search_container_id).innerHTML = html_response;
+            document.getElementById('search_div').innerHTML = html_response;
         })
         .catch(function (fetch_error) {
             console.log(fetch_error)

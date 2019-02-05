@@ -24,12 +24,16 @@ module.exports = function (data_repository) {
             var cached_author = CircleCache.checkName(strip_author);
             if (cached_author) {
                 CircleCache.showVars();
-                return(Promise.resolve(cached_author));
+                return (Promise.resolve(cached_author));
             }
             return data_repository.getAuthorNodes(strip_author, update_index)
                 .then(function (graph_collection) {
-                    var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
-                    var db_version = graph_collection[0].records[0]._fields[db_version_index];
+                    if (graph_collection[0].records.length == 0) {
+                        var db_version = 0;
+                    } else {
+                        var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
+                        var db_version = graph_collection[0].records[0]._fields[db_version_index];
+                    }
                     var parse_neo = new ParseNeo(graph_collection, 'author');
                     var nodes_object = parse_neo.getAuthorGraph(strip_author);
                     var number_columns = HoverIcon.numberColumns(nodes_object);

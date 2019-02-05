@@ -51,7 +51,7 @@ sff_js_vars.vars_events = (function () {
     my.wordPressSearch = function (search_for) {
         if (my.has_first_php_run) {
             if (typeof sff_ajax_search === 'function') {
-                sff_ajax_search('search_div', search_for);
+                sff_ajax_search(search_for);
             }
         } else {
             my.has_first_php_run = true;

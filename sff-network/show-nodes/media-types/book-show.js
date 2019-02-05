@@ -68,8 +68,12 @@ module.exports = function (data_repository) {
             }
             return data_repository.getBookNodes(under_title)
                 .then(function (graph_collection) {
-                    var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
-                    var db_version = graph_collection[0].records[0]._fields[db_version_index];
+                    if (graph_collection[0].records.length == 0) {
+                        var db_version = 0;
+                    } else {
+                        var db_version_index = graph_collection[0].records[0]._fieldLookup['v_db_version']
+                        var db_version = graph_collection[0].records[0]._fields[db_version_index];
+                    }
                     var parse_neo = new ParseNeo(graph_collection, 'book');
                     var nodes_object = parse_neo.getBookGraph(strip_author);
                     var edges_object = parse_neo.getEdges();
