@@ -35,6 +35,46 @@ ga('send', 'pageview');
 
 <style>
 
+#sff--header {
+    text-align: center;
+    font-size: x-large;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#search--row {
+    display: flex;
+    background-color: ${light_background}; /* a var */
+}
+
+#authors--stories--container {
+    background-color: ${light_background}; /* a var */
+}
+
+#loading--graph{
+      border-top: 3px solid ${dark_background};
+}
+
+#my--network {
+    display: flex;
+    flex-direction: column;
+      height:100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #stable-redraw-height {
     width: 0%;
     height: ${canvas_height}; /* a var */
@@ -46,68 +86,61 @@ ga('send', 'pageview');
     display: flex;
     float: left;
     width: 100%;
-    height: ${canvas_height}; /* a var */
+  /*  height: 100%; */
+    height: ${canvas_height};  /* a var */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #${graph_container_id} {
     float: left;
     background-color: ${dark_background}; /* a var */
 }
 
-#search--row {
-    display: flex;
-    background-color: ${light_background}; /* a var */
-}
-#authors--stories--container {
-    background-color: ${light_background}; /* a var */
-    border-bottom: 1px solid black;
-}
 
 
 
 
-/*
- ::-webkit-scrollbar {
-    width: 12px !important;
-}
-*/
 
-/* Track */
-/*
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
-    -webkit-border-radius: 10px !important;
-    border-radius: 10px !important;
-}
-*/
 
-/* Handle */
-/*
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px !important;
-    border-radius: 10px !important;
-    background: #41617D !important;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5) !important;
-}
-*/
 
-/*
-::-webkit-scrollbar-thumb:window-inactive {
-    background: #41617D !important;
-}
-*/
+
+
 
 #all--filter--authors {
-    height: 100px;
+    height: 100px;  
     overflow-y: scroll;
     overflow-x: hidden;
     align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
+    padding-bottom: 5px;
 }
 
 #all--filter--books {
-    height: 100px;
+    height: 100px;  
+ 
     overflow-y: scroll;
     overflow-x: hidden;
     align-items: flex-start;
@@ -115,6 +148,7 @@ ga('send', 'pageview');
     flex-wrap: wrap;
     float: right;
     width: 50%;
+      padding-bottom: 5px;
 }
 
 .book__choice, .b__c {
@@ -186,11 +220,7 @@ ga('send', 'pageview');
     justify-content: center;
 }
 
-#sff--header {
-    text-align: center;
-    font-size: x-large;
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 
 #authors--title {
     width: 50%;
@@ -237,14 +267,15 @@ ga('send', 'pageview');
 
 #bottom--icons-row {
     display: flex;
-    height: 27px;
-    margin-bottom: -27px;
+    height: 0px;
 }
 
 #bottom--move--up {
     position: relative;
     width: 100%
 }
+
+
 
 .bottom--icon {
     position: relative;
@@ -261,19 +292,9 @@ body.busy--cursor * {
     cursor: progress;
 }
 
-#my--network {
-    display: flex;
-    flex-direction: column;
-    width: 570px;
-}
 
-@media only screen
-and (min-device-width: 768px)
-and (max-device-width: 1024px) {
-    #my--network {
-        width: 100%;
-    }
-}
+
+
 
 #filter--story--text {
     width: 20%;
@@ -420,6 +441,15 @@ and (max-device-width: 1024px) {
     width: 100%;
     text-align: center;
 }
+
+.back-to-sff{  /* hide back link if php */
+    display: none;
+}
+
+
+  .at-sff{  /* show title if php */
+    display: block;
+    }
 
 
 </style>

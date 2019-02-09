@@ -50,7 +50,13 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     var media_html = `
 <div id="my--network">
     <div id="sff--header">
-        Search SFFaudio's Online Content
+    
+     <div class="back-to-sff" id="back-link"><a href="http://www.sffaudio.com/">Back to SFFaudio</a></div>
+    
+     <div class="at-sff" id="no-link">   Search SFFaudio's Online Content </div>
+        
+        
+        
     </div>
     <div id='search--row'>
         <button id='do--author--filter'
@@ -104,7 +110,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
             </div>
         </div>
     </div>
-    <div>
+    <div id="loading--graph">
         <div id='stable-redraw-height'></div>
         <div id="${graph_div_id}"></div>
         <img id='pdf--loading' src='${gif_loading}'>

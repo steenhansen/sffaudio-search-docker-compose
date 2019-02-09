@@ -38,7 +38,7 @@ if (!class_exists('SffGraphSearch')) {
     class SffGraphSearch
     {
         const HEROKU_UTC_CRON_RUN = 9;
-        const MOBILE_HEADER_ABOVE = '<!-- end widget intro. NB, this text is used by PHP -->';
+        const MOBILE_START_END ='<!-- start and end widget,  NB, this text is used by PHP -->';
         const HEROKU_WIDGET_MESS = '<!-- Heroku widget code -->';
         const PHP_CACHED_WIDGET_MESS = '<!-- PHP Cached widget code -->';
 
@@ -146,7 +146,7 @@ if (!class_exists('SffGraphSearch')) {
                 $day_cache = new DayCache($widget_url, self::HEROKU_UTC_CRON_RUN);   // 9:00 UTC, as cron job is set for on Heroku
                 $graph_html = $day_cache->getString() . self::PHP_CACHED_WIDGET_MESS;
             }
-            $iosMetaViewPort__webHtmlJavascript = explode(self::MOBILE_HEADER_ABOVE, $graph_html);
+            $iosMetaViewPort__webHtmlJavascript = explode(self::MOBILE_START_END, $graph_html);
             if (count($iosMetaViewPort__webHtmlJavascript) > 1) {
                 $web_html_javascript = $iosMetaViewPort__webHtmlJavascript[1];
             } else {
