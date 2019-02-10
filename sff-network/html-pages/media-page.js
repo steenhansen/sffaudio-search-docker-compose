@@ -322,7 +322,7 @@ and (max-device-height: 812px)
 and (orientation: portrait) { 
     div#all--filter--authors { height: 200px; }
     div#all--filter--books { height: 200px; }
-    div#loading--graph { height: 484px; }
+    div#loading--graph { height: 507px; }
     
     ::-webkit-scrollbar { width: 12px !important; }
     ::-webkit-scrollbar-track {
@@ -370,7 +370,7 @@ and (max-device-width: 768px)
 and (orientation: portrait) { 
     div#all--filter--authors { height: 200px; }
     div#all--filter--books { height: 200px; }
-    div#loading--graph { height: 696px; }
+    div#loading--graph { height: 719px; }
     
     ::-webkit-scrollbar { width: 12px !important; }
     ::-webkit-scrollbar-track {
