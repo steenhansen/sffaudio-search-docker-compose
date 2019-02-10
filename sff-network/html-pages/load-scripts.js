@@ -25,7 +25,7 @@ if (!Array.prototype.find) {
         writable: true
     });
 }
-
+sff_constants.START_FUNC();
 //load-scripts end
 
 

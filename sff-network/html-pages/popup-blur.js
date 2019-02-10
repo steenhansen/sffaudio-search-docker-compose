@@ -63,9 +63,9 @@ sff_js_vars.blur_procs = (function (pop_up_id) {
         sff_js_vars.helpers.setDisplay("mp3--player", 'block');
         mp3_player.src = goto_url;
         mp3_player.load();
-        var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        var canvas_left_px = screen_width * 0.05;
-        mp3_player.style.left = canvas_left_px + "px";
+       // var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+      //  var canvas_left_px = screen_width * 0.05;
+       // mp3_player.style.left = canvas_left_px + "px";
     }
 
     my.overlayHeightPx = function () {

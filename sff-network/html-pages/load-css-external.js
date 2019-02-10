@@ -314,6 +314,7 @@ body.busy--cursor * {
     display: none;
     padding-top: 32px;
     width: 85%;
+    left: 48px;
 }
 
 #post--container {
@@ -325,7 +326,7 @@ body.busy--cursor * {
     background-color: white;
     color: black;
     top: 100px;
-    padding-left: 32px;
+    padding-left: 2px;
     width: 100%;
 }
 
