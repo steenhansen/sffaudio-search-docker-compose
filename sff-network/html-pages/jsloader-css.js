@@ -147,7 +147,6 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     
      function mainStart(polyfill_error){
        sff_js_vars.vars_events.initEvents();
-       console.log('aaaaaaaaaaaaaaaaaaaaaa')
        sff_js_vars.history_generate.startHistoryView('${req_query_view}', sff_js_vars.strip_author, '${under_title}', '${req_query_choice}');
     }
  window.sff_constants={ 

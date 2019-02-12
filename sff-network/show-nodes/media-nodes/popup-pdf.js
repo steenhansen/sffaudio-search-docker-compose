@@ -119,6 +119,8 @@ sff_js_vars.pdf_procs = (function (canvas_id, pdf_close_svg) {
         sff_js_vars.helpers.overlayCoverScreen();
         var network_width = sff_js_vars.helpers.computedValue("my--network", "width");
         sff_js_vars.helpers.setDisplay('pdf--loading', 'none');
+        var canvas_height = sff_js_vars.helpers.computedHeight('pdf--canvas');
+        document.getElementById("opaque--cover").style.height = canvas_height + 'px';
     }
 
     my.renderOnePage = function (pdf_page) {

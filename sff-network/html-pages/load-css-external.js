@@ -426,7 +426,7 @@ body.busy--cursor * {
     min-height: 100%;
 }
 
-.opaque--cover {
+#opaque--cover {
     background-color: white;
     position: absolute;
     width: 100%;

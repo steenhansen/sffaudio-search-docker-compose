@@ -11,7 +11,7 @@ let prev_page = svg_icons.prev_icon(graph_constants.PDF_COLOR);
 
 var popup_html = `  
 <div id='popup--container'>
-    <div class='opaque--cover'></div>
+    <div id='opaque--cover'></div>
     <div id="media--title">&nbsp;</div>
     <div id="close--enclosure" onclick="sff_js_vars.blur_procs.closePopUp();">
         <img id="close--icon" alt="Smiley face">
