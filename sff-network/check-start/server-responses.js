@@ -54,7 +54,7 @@ function sffAudioPostPiece(sff_audio_url) {
     };
     return request_promise(optionsStart)
         .then((body)=> {
-            var all_html = body.split('<div id="contentleft">');
+            var all_html = body.split('<div class="post-inner-content">');
             var content_footer = all_html[1];
             var good_bad = content_footer.split('<h3>Similar Posts:</h3>');
             var the_post = good_bad[0];
