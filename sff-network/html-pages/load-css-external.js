@@ -431,8 +431,8 @@ body.busy--cursor * {
     position: absolute;
     width: 100%;
     height: 100%;
-    right: -70px;
-    left: -70px;
+ /*   right: -70px;  */
+ /*   left: -70px;   */
     padding: 70px 70px 210px 70px;
 }
 
