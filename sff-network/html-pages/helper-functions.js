@@ -89,7 +89,7 @@ sff_js_vars.helpers = (function () {
 
     my.blurBook = function (id) {
         document.getElementById(id + '_article').style.visibility = 'hidden';
-        document.getElementById(id + '_rest').style.height = '1em';
+        document.getElementById(id + '_rest').style.height = '2em';
         document.getElementById(id + '_rest').style.position = 'static';
         document.getElementById(id + '_rest').style.backgroundColor = 'transparent';
     };

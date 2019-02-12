@@ -170,7 +170,7 @@ ga('send', 'pageview');
 }
 
 .book__rest, .b__r {
-    height: 1em;
+    height: 2em;
     overflow: hidden;
     text-decoration: underline;
 }

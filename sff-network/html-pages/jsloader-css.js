@@ -142,13 +142,10 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
 <script>
 // jsloader-css start
 
-////////////// qbert
-     
-    
-     function mainStart(polyfill_error){
+  function mainStart(polyfill_error){
        sff_js_vars.vars_events.initEvents();
        sff_js_vars.history_generate.startHistoryView('${req_query_view}', sff_js_vars.strip_author, '${under_title}', '${req_query_choice}');
-    }
+  }
  window.sff_constants={ 
 			    "URL_SEPARATOR"   : "${URL_SEPARATOR}",
 			    "DARK_BACKGROUND"   : "${DARK_BACKGROUND}",
