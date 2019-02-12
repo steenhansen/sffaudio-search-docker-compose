@@ -196,19 +196,15 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                     }
                     var ajax_nodes = JSON.parse(myJson.nodes_string)
                     sff_js_vars.graph_vars.nodes_string = ajax_nodes;
-
-
-                    if (ajax_nodes[0].label == sff_constants.UNRESPONSIVE_DB_NAME) {
-                    ajax_nodes[0].group='N_DB_DOWN';
-                    ajax_nodes[0].node_type='L_DB_DOWN';
-                    ajax_nodes[0].label='Wait a minute, updating database.';
-                    ajax_nodes[0].title='Refresh in a minute.';
+                    if (ajax_nodes[0]) {
+                        if (ajax_nodes[0].label == sff_constants.UNRESPONSIVE_DB_NAME) {
+                            ajax_nodes[0].group = 'N_DB_DOWN';
+                            ajax_nodes[0].node_type = 'L_DB_DOWN';
+                            ajax_nodes[0].label = 'Wait a minute, updating database.';
+                            ajax_nodes[0].title = 'Refresh in a minute.';
+                        }
                     }
-
                     var ajax_edges = JSON.parse(myJson.edges_string);
-
-
-
                     var ajax_options = JSON.parse(myJson.graph_string);
                     if (ajax_options.strip_author.indexOf('HELP_') >= 0) {
                         ajax_nodes = sff_js_vars.help_nodes[ajax_options.strip_author];
