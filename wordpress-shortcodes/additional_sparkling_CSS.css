@@ -1,0 +1,171 @@
+.container.main-content-area{
+	margin-top:0px;
+}
+
+
+.entry-content p a img{
+	margin-right:8px;
+}
+
+#searchsubmit{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+}
+
+#searchsubmit:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+}
+
+
+#do--author--filter{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+}
+#do--author--filter:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+}
+
+
+#do--reset{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+}
+#do--reset:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+}
+
+
+#do--story--filter{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+}
+#do--story--filter:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+}
+
+
+button.CLEAR-TEXT{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+	color: #ffffff;
+}
+button.CLEAR-TEXT:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+	color: #ffffff;
+}
+
+button.EPISODE-SORT{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+	color: #ffffff;
+	text-transform: none;
+}
+button.EPISODE-SORT:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+	color: #ffffff;
+	text-transform: none;
+}
+
+button.TIME-SORT{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+	color: #ffffff;
+	text-transform: none;
+}
+button.TIME-SORT:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+	color: #ffffff;
+	text-transform: none;
+}
+
+button.TITLE-SORT{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+	color: #ffffff;
+	text-transform: none;
+}
+button.TITLE-SORT:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+	color: #ffffff;
+	text-transform: none;
+}
+
+button.AUTHOR-SORT{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+	color: #ffffff;
+	text-transform: none;
+}
+button.AUTHOR-SORT:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+	color: #ffffff;
+	text-transform: none;
+}
+
+button.PAGE-SORT{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+	color: #ffffff;
+	text-transform: none;
+}
+button.PAGE-SORT:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+	color: #ffffff;
+	text-transform: none;
+}
+
+h2.entry-title{
+	margin-bottom: 0px
+}
+
+div.entry-content{
+	margin: 0px;
+}
+
+.submit.btn.btn-default{
+	border-color: #2255AA;
+	background-color: #1A4E88;
+	color: #ffffff;
+}
+.submit.btn.btn-default:hover{
+	border-color: #2255AA;
+	background-color: #4A7EB8;
+	color: #ffffff;
+}
+
+span.post-title{
+	color: #1A4E88;
+}
+span.post-title:hover{
+		border-color: #ffffff;
+	background-color: #ffffff;
+	color: #2255AA;
+}
+i.fa.fa-chevron-left{
+	color: #2255AA;
+}
+
+div.nav-previous a:hover{
+	 background-color: #ffffff;
+}
+div.nav-next a:hover{
+	 background-color: #ffffff;
+}
+
+h3.comment-reply-title{
+	color: #1A4E88;
+}
+
+div.entry-content h3{
+		color: #1A4E88;
+}

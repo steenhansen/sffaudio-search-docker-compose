@@ -114,7 +114,7 @@ function podcast_icon(w_color) {
 
 function filter_icon(w_color) {
     var svg_filter = `<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" version="1.1">
-<circle cx="493.2" cy="507.4" r="465" stroke-miterlimit="4" style="fill:${w_color};stroke-width:16.1"/><g display="inline" transform="matrix(28.498753,0,0,28.498753,20.308239,218.44879)"><rect height="9.4" width="28.9" y="5.5" x="2.2" style="fill:#fff;stroke-width:0.7;stroke:#000001"/><text font-size="12" y="12" x="2.6" stroke-opacity="null" style="fill:#000;font-family:Helvetica, Arial, sans-serif;font-size:5.5;stroke-width:0.5;text-anchor:start">search for...</text></g></svg>
+<circle cx="493.2" cy="507.4" r="465" stroke-miterlimit="4" style="fill:${w_color};stroke-width:16.1"/><g display="inline" transform="matrix(28.498753,0,0,28.498753,20.308239,218.44879)"><rect height="9.4" width="28.9" y="5.5" x="2.2" style="fill:#fff;stroke-width:0.7;stroke:#000001"/><text font-size="8" y="13" x="5" stroke-opacity="null" style="fill:#000;font-family:Helvetica, Arial, sans-serif;font-size:5.5;stroke-width:0.5;text-anchor:start">search</text></g></svg>
 `;
     return visJsGraphShape(svg_filter);
 }

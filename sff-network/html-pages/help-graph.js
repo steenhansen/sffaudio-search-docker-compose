@@ -109,10 +109,11 @@ sff_js_vars.help_nodes = {
         "group": "N_FILTER", "node_type": "HELP_FILTER",
         "font": sff_constants.HELP_FONT,
         "label": "Filter authors & books." + "\n" +
-        "Entering 'Moore' will result" + "\n" +
-        "authors named 'moore' &" + "\n" +
-        "stories written by someone" + "\n" +
-        "named 'moore' being shown."
+                 "Entering 'dick' will result in" + "\n" +
+                 "authors named 'Dick' & story" + "\n" +
+                 "titles containing 'dick'. For" + "\n" +
+                 "instance the book 'Moby Dick'"+ "\n" +
+                 "and the author'Philip K Dick'."
     }],
 
     "HELP_ARROW": [{
