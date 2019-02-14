@@ -1,6 +1,6 @@
-<?php
+<?php  // function-day_cache.php
 
-// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/function-day_cache.php
+
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -9,7 +9,6 @@ ini_set('display_errors', 1);
     Used by functions-graph_view.php because base SFFaudio search widget since only changes once a day
 */
 
-// public_html/wp-content/themes/revolution-code-blue2/function-day-cache.php
 // used by functions-graph-search.php
 if (!class_exists('DayCache')) {
 

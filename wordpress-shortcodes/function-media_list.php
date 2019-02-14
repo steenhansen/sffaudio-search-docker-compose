@@ -1,6 +1,5 @@
-<?php
+<?php  // function-media_list.php
 
-// public_html/wp-content/themes/revolution-code-blue2/function-media_list.php
 
 
 

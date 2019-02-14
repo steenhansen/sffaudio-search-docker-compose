@@ -204,6 +204,7 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                             ajax_nodes[0].title = 'Refresh in a minute.';
                         }
                     }
+
                     var ajax_edges = JSON.parse(myJson.edges_string);
                     var ajax_options = JSON.parse(myJson.graph_string);
                     if (ajax_options.strip_author.indexOf('HELP_') >= 0) {

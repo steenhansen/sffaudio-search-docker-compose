@@ -1,4 +1,6 @@
 // helper-functions start
+
+
 sff_js_vars.helpers = (function () {
 
     var my = {};
@@ -105,6 +107,7 @@ sff_js_vars.helpers = (function () {
         body_elem.classList.remove('busy--cursor');
     };
 
+// N.B. To test just set time_out to 0001, or sff_constants.FETCH_WAIT_M_SEC=1
     // fetchTimeout('www.xe.com', 3000, 2)
     my.fetchTimeout = function (fetch_url, time_out, num_tries) {
         // time_out = 2;
@@ -115,6 +118,22 @@ sff_js_vars.helpers = (function () {
                 var timeout_error = 'Request timed out';
                 reject(new Error(timeout_error));
             }, time_out);
+            if (num_tries == 0) {
+                var db_down_json = {
+                    "nodes_string": '[{"node_type":"L_DB_DOWN", ' +
+                    '                  "group": "N_DB_DOWN",  ' +
+                    '                  "title": "Refresh in a minute.",' +
+                    '                  "label": "Wait a minute, updating database."}]',
+                    "edges_string": '[]',
+                    "graph_string": '{"strip_author":"db-timeout","graph_physics":{"barnesHut":{"avoidOverlap":1}}}'
+                };
+                var crash_response = {
+                    json: function () {
+                        return db_down_json;
+                    },
+                }
+                resolve(crash_response);
+            }
             fetch(fetch_url)
                 .then(function (response) {
                     clearTimeout(timeout_error);
@@ -130,9 +149,6 @@ sff_js_vars.helpers = (function () {
                 });
         })
             .catch(function (catch_error) {
-                if (num_tries == 1) {
-                    throw catch_error;
-                }
                 return my.fetchTimeout(fetch_url, time_out, num_tries - 1);
             });
     }

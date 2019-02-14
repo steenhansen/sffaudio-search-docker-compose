@@ -1,6 +1,4 @@
-<?php
-
-// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/curlTimeError.php
+<?php // curlTimeError.php
 
 if (!class_exists('SffCurlTimeError')) {
 

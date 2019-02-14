@@ -1,6 +1,5 @@
-<?php
+<?php  // function-graph_view.php
 
-// /home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/function-graph_view.php
 
 /*
  * public_html/wp-content/themes/revolution-code-blue2/functions.php
@@ -31,7 +30,6 @@
  *          - Default Template
  */
 
-// public_html/wp-content/themes/revolution-code-blue2/functions-graph-search.php
 
 if (!class_exists('SffGraphSearch')) {
 

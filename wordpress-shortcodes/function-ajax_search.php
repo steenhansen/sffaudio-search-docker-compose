@@ -1,8 +1,6 @@
-<?php
+<?php  // function-ajax_search.php
 
 /*
-
-/home/sffayiao/public_html/wp-content/themes/revolution-code-blue2/function-ajax_search.php
 
 in search.php page
 
