@@ -189,12 +189,12 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                 .then(function (response) {
                     return response.json();
                 })
-                .then(function (myJson) {
+                .then(function (my_json) {
                     if (my.network_graph !== null) {
                         my.network_graph.destroy();
                         my.network_graph = null;
                     }
-                    var ajax_nodes = JSON.parse(myJson.nodes_string)
+                    var ajax_nodes = JSON.parse(my_json.nodes_string)
                     sff_js_vars.graph_vars.nodes_string = ajax_nodes;
                     if (ajax_nodes[0]) {
                         if (ajax_nodes[0].label == sff_constants.UNRESPONSIVE_DB_NAME) {
@@ -205,8 +205,8 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                         }
                     }
 
-                    var ajax_edges = JSON.parse(myJson.edges_string);
-                    var ajax_options = JSON.parse(myJson.graph_string);
+                    var ajax_edges = JSON.parse(my_json.edges_string);
+                    var ajax_options = JSON.parse(my_json.graph_string);
                     if (ajax_options.strip_author.indexOf('HELP_') >= 0) {
                         ajax_nodes = sff_js_vars.help_nodes[ajax_options.strip_author];
                         ajax_edges = sff_js_vars.HELP_ALL_EDGES;

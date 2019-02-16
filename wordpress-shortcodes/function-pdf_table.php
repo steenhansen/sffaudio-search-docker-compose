@@ -51,9 +51,6 @@ function shortMobileTest_pdf($location){
 
 function pdf_table_component() {                                 //  [pdf-table-component]
     $pdf_mobile = 'https://sffaudio.herokuapp.com/pdf/mobile';
-    if (strpos ($_SERVER['HTTP_USER_AGENT'], '(iPad;')) {
-        header("Location: $pdf_mobile");
-    }
     longMobileTest_pdf($pdf_mobile);
     shortMobileTest_pdf($pdf_mobile);
     $pdf_desktop = 'https://sffaudio.herokuapp.com/pdf/table';
