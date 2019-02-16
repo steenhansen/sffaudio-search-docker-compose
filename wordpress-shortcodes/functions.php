@@ -1,7 +1,6 @@
 <?php // functions.php
 
-
-
+$wake_up_graphene = file_get_contents('https://sffaudio-search.herokuapp.com/wake-up');
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

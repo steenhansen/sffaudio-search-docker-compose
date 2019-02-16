@@ -20,6 +20,9 @@ sff_js_vars.helpers = (function () {
     my.crash_response = {
         json: function () {
             return my.dead_database;
+        },
+        text: function () {
+            return my.timeout_error;
         }
     };
 
@@ -234,18 +237,29 @@ sff_js_vars.helpers = (function () {
         }
         var has_timed_out = false;
         return new Promise(function (resolve, reject) {
+
             if (num_tries == 0) {
                 resolve(my.crash_response);
             }
-            const timeout_error = setTimeout(function () {
+            var timeout_error = setTimeout(function () {
                 has_timed_out = true;
                 reject(new Error(my.timeout_error));
             }, time_out);
             fetch(fetch_url)
                 .then(function (good_response) {
+                        console.log('numtries dd', num_tries, time_out, has_timed_out)
                     clearTimeout(timeout_error);
+//                                              console.log('eeeeeeeeeeeeeee dd')
+
                     if (!has_timed_out) {
-                        good_response.test_try_number = temp_time_out.try_count;
+  //                        console.log('dddddddddddddddddddddddddd dd', good_response)
+                          try {
+                              good_response.test_try_number = temp_time_out.try_count;
+                          } catch(e){
+                          
+    //                        console.log('hhhhhhhhhhhhhhhhhhhhhhh dd')
+                          }
+      //                  console.log('dfffffffffffffffffffffffffffffffffff dd', good_response)
                         resolve(good_response);
                     }
                 })
