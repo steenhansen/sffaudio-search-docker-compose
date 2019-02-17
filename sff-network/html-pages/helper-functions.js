@@ -5,6 +5,8 @@ sff_js_vars.helpers = (function () {
 
     var my = {};
 
+    my._fetch_test_ = {};
+
     my.timeout_error = 'Request timed out';
 
     my.dead_database = {
@@ -22,7 +24,7 @@ sff_js_vars.helpers = (function () {
             return my.dead_database;
         },
         text: function () {
-            return my.timeout_error;
+            return my.timeout_error;     // not used in tests
         }
     };
 
@@ -130,12 +132,12 @@ sff_js_vars.helpers = (function () {
 
 //  in console  sff_js_vars.helpers._testFetch_()
     my._testFetch_ = function () {
-        var url_not_exist = window.origin + '/author/not-exist';
-        var vector_not_exist = {test_time_vector: [1000], try_count: 0};
+        var url_not_exist = window.origin + '/author/not-exist?a';
+        var vector_not_exist = {test_time_vector: [1000]};
         my.fetchTimeout(url_not_exist, vector_not_exist)
             .then(function (response_not_exist) {
-                if (response_not_exist.test_try_number !== 1) {
-                    console.log('ERROR response_not_exist.test_try_number === ', response_not_exist.test_try_number, ' Not 1')
+                if (my._fetch_test_[url_not_exist] !== 1) {
+                    console.log('ERROR response_not_exist : ', my._fetch_test_[url_not_exist], ' Not 1')
                 }
                 return response_not_exist.json();
             })
@@ -148,12 +150,12 @@ sff_js_vars.helpers = (function () {
                 }
             })
 
-        var url_exist = window.origin + '/author/philip-k-dick';
-        var vector_exist = {test_time_vector: [1000], try_count: 0};
+        var url_exist = window.origin + '/author/philip-k-dick?b';
+        var vector_exist = {test_time_vector: [1000]};
         my.fetchTimeout(url_exist, vector_exist)
             .then(function (response_exist) {
-                if (response_exist.test_try_number !== 1) {
-                    console.log('ERROR response_exist.test_try_number === ', response_exist.test_try_number, ' Not 1')
+                if (my._fetch_test_[url_exist] !== 1) {
+                    console.log('ERROR response_exist : ', my._fetch_test_[url_exist], ' Not 1')
                 }
                 return response_exist.json();
             })
@@ -166,12 +168,12 @@ sff_js_vars.helpers = (function () {
                 }
             })
 
-        var url_fail_4 = window.origin + '/author/philip-k-dick';
-        var vector_fail_4 = {test_time_vector: [1, 1, 1, 1], try_count: 0};
+        var url_fail_4 = window.origin + '/author/philip-k-dick?c';
+        var vector_fail_4 = {test_time_vector: [1, 1, 1, 1]};
         my.fetchTimeout(url_fail_4, vector_fail_4)
             .then(function (response_fail_4) {
-                if (typeof response_fail_4.test_try_number !== 'undefined') {
-                    console.log('ERROR response_fail_4.test_try_number === ', response_fail_4.test_try_number, ' Not undefined')
+                if (my._fetch_test_[url_fail_4] !== 5) {
+                    console.log('ERROR response_fail_4 : ', my._fetch_test_[url_fail_4], ' Not undefined')
                 }
                 return response_fail_4.json();
             })
@@ -184,12 +186,12 @@ sff_js_vars.helpers = (function () {
                 }
             })
 
-        var url_pass_2 = window.origin + '/author/philip-k-dick';
-        var vector_pass_2 = {test_time_vector: [1, 1000], try_count: 0};
+        var url_pass_2 = window.origin + '/author/philip-k-dick?d';
+        var vector_pass_2 = {test_time_vector: [1, 1000]};
         my.fetchTimeout(url_pass_2, vector_pass_2)
             .then(function (response_pass_2) {
-                if (response_pass_2.test_try_number !== 2) {
-                    console.log('ERROR response_pass_2.test_try_number === ', response_pass_2.test_try_number, ' Not 2')
+                if (my._fetch_test_[url_pass_2] !== 2) {
+                    console.log('ERROR response_pass_2 : ', my._fetch_test_[url_pass_2], ' Not 2')
                 }
                 return response_pass_2.json();
             })
@@ -203,12 +205,12 @@ sff_js_vars.helpers = (function () {
                 }
             })
 
-        var url_pass_3 = window.origin + '/author/philip-k-dick';
-        var vector_pass_3 = {test_time_vector: [1, 1, 1000], try_count: 0};
+        var url_pass_3 = window.origin + '/author/philip-k-dick?e';
+        var vector_pass_3 = {test_time_vector: [1, 1, 1000]};
         my.fetchTimeout(url_pass_3, vector_pass_3)
             .then(function (response_pass_3) {
-                if (response_pass_3.test_try_number !== 3) {
-                    console.log('ERROR response_pass_3.test_try_number === ', response_pass_3.test_try_number, ' Not 3')
+                if (my._fetch_test_[url_pass_3] !== 3) {
+                    console.log('ERROR response_pass_3 : ', my._fetch_test_[url_pass_3], ' Not 3')
                 }
                 return response_pass_3.json();
             })
@@ -225,48 +227,42 @@ sff_js_vars.helpers = (function () {
         return 'Started _testFetch_()';
     }
 
+    my._init_fetch_test_ = function (fetch_url) {
+        if (typeof my._fetch_test_[fetch_url] === 'undefined') {
+            my._fetch_test_[fetch_url] = 1;
+        } else {
+            my._fetch_test_[fetch_url]++;
+        }
+    }
+
     my.fetchTimeout = function (fetch_url, time_out, num_tries) {       // fetchTimeout('www.xe.com', 3000, 2)
         if (typeof time_out === 'object') {
             var is_test = true;
             num_tries = time_out.test_time_vector.length;
             var temp_time_out = time_out;
-            temp_time_out.try_count++;
+            my._init_fetch_test_(fetch_url);
             time_out = time_out.test_time_vector.shift();
         } else {
             var is_test = false;
         }
         var has_timed_out = false;
         return new Promise(function (resolve, reject) {
-
             if (num_tries == 0) {
                 resolve(my.crash_response);
             }
-            var timeout_error = setTimeout(function () {
+            var rejectFetchSoon = function () {
                 has_timed_out = true;
                 reject(new Error(my.timeout_error));
-            }, time_out);
+            };
+            var timeout_error = setTimeout(rejectFetchSoon, time_out);
             fetch(fetch_url)
                 .then(function (good_response) {
-                        console.log('numtries dd', num_tries, time_out, has_timed_out)
                     clearTimeout(timeout_error);
-//                                              console.log('eeeeeeeeeeeeeee dd')
-
                     if (!has_timed_out) {
-  //                        console.log('dddddddddddddddddddddddddd dd', good_response)
-                          try {
-                              good_response.test_try_number = temp_time_out.try_count;
-                          } catch(e){
-                          
-    //                        console.log('hhhhhhhhhhhhhhhhhhhhhhh dd')
-                          }
-      //                  console.log('dfffffffffffffffffffffffffffffffffff dd', good_response)
                         resolve(good_response);
                     }
                 })
                 .catch(function (server_error) {
-                    if (has_timed_out) {
-                        return my.fetchTimeout(fetch_url, time_out, num_tries - 1);
-                    }
                     reject(server_error);
                 });
         })
