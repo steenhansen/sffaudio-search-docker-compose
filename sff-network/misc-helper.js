@@ -54,8 +54,6 @@ function getRedirects(a_node, field_name) {
             var end_redirect_url = '';
             fulfill({end_redirect_url, node_id, field_name})
         } else {
-        
-        
             request.get({
                 url: get_url,
                 method: "HEAD",
@@ -67,9 +65,6 @@ function getRedirects(a_node, field_name) {
                 var end_redirect_url = response.request.uri.href;
                 fulfill({end_redirect_url, node_id, field_name})
             })
-            
-            
-            
         }
     })
 
@@ -111,7 +106,7 @@ function padStartNode(pad_number, pad_template) {
     return padded_number;
 }
 
-function consoleTimeEnd(start_date, interval_name, show_or_hide_seconds='') {
+function consoleTimeEnd(start_date, interval_name, show_or_hide_seconds = '') {
     if (show_or_hide_seconds !== 'hide--seconds') {
         var end_date = Date.now();
         var seconds_interval = (end_date - start_date) / 1000;

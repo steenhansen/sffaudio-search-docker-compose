@@ -1,12 +1,8 @@
 'use strict'
 
-
-/// --- neo4j-graph-db
-///         test-graph-db
 var graphenedbURL = process.env.GRAPHENEDB_BOLT_URL;
 var graphenedbUser = process.env.GRAPHENEDB_BOLT_USER;
 var graphenedbPass = process.env.GRAPHENEDB_BOLT_PASSWORD;
-
 
 var graph_constants = rootAppRequire('sff-network/graph-constants')
 
@@ -50,7 +46,7 @@ module.exports = function (version_num) {
         var sql_1 = sql; // + ' make an error happen 1 ';
         var sql_2 = sql; // + ' make an error happen 2 ';
         var sql_3 = sql; // + ' make an error happen 3';
-    
+
         return neo4j_session.run(sql_1, params)
             .then((result)=> {
                 return result
@@ -64,7 +60,7 @@ module.exports = function (version_num) {
                     })
                     .catch(async function (error) {
                         console.log('NEO4J - 2 :', error.code, params, sql_2);
-                          await new Promise(done => setTimeout(done, DELAY_AFTER_SQL_2));
+                        await new Promise(done => setTimeout(done, DELAY_AFTER_SQL_2));
                         return neo4j_session.run(sql_3, params)
                             .then((result)=> {
                                 return result

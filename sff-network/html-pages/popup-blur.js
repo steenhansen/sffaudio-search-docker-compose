@@ -41,6 +41,8 @@ sff_js_vars.blur_procs = (function (pop_up_id) {
         sff_js_vars.helpers.setDisplay(pop_up_id, 'none');
         sff_js_vars.helpers.setDisplay('media--title', 'none');
         sff_js_vars.helpers.setDisplay('mp3--player', 'none');
+        var mp3_player = document.getElementById("mp3--player");
+        mp3_player.src = '';
         sff_js_vars.helpers.setDisplay('post--container', 'none');
         document.getElementById('post--container').innerHTML = '';
         sff_js_vars.helpers.setDisplay('pdf--controller', 'none');
@@ -63,9 +65,6 @@ sff_js_vars.blur_procs = (function (pop_up_id) {
         sff_js_vars.helpers.setDisplay("mp3--player", 'block');
         mp3_player.src = goto_url;
         mp3_player.load();
-       // var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      //  var canvas_left_px = screen_width * 0.05;
-       // mp3_player.style.left = canvas_left_px + "px";
     }
 
     my.overlayHeightPx = function () {
@@ -80,7 +79,6 @@ sff_js_vars.blur_procs = (function (pop_up_id) {
     }
 
     my.blockPage = function (container_id) {
-        //var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         sff_js_vars.helpers.setDisplay(container_id, 'block');
         sff_js_vars.helpers.setDisplay('close--icon', 'block');
     }
