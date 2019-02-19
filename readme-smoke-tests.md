@@ -32,7 +32,7 @@
 
 [sffaudio-search--post](https://sffaudio-search.herokuapp.com/post-proxy?absolute_url=http://www.sffaudio.com/?p=56947)
 
-[sffaudio-search--](https://sffaudio-search.herokuapp.com/post-proxy?absolute_url=http://www.sffaudio.com/?p=987654321_not_found)
+[sffaudio-search--not-found](https://sffaudio-search.herokuapp.com/post-proxy?absolute_url=http://www.sffaudio.com/?p=987654321_not_found)
 
 [sffaudio-search--wake-up](https://sffaudio-search.herokuapp.com/wake-up)
 
@@ -41,17 +41,17 @@
 
 ## SFF-AUDIO
 
-[www.sffaudio.com](https://www.sffaudio.com/)           -- search for 'dick'
+[www.sffaudio.com](https://www.sffaudio.com/)           -- search for 'dick' and expect WordPress lists below after 3 seconds
 
 [www.sffaudio.com--philip-k-dick](https://www.sffaudio.com/search/?author=philip-k-dick)
 
 [www.sffaudio.com--beyond-lies-the-wub](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick)
 
-[www.sffaudio.com--podcst](https://www.sffaudio.com/search/?book=a-maze-of-death&author=philip-k-dick&view=podcast&choice=1)
+[www.sffaudio.com--podcast-402](https://www.sffaudio.com/search/?book=a-maze-of-death&author=philip-k-dick&view=podcast&choice=1) -- play MP3, then close with 'X'
 
-[www.sffaudio.com--pdf](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=pdf&choice=1)
+[www.sffaudio.com--pdf-wub](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=pdf&choice=1)  -- flip through PDF pages
 
-[www.sffaudio.com--rsd](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=rsd&choice=1)
+[www.sffaudio.com--rsd-7](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=rsd&choice=1)
 
 [www.sffaudio.com--blog-1](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=4)
 
