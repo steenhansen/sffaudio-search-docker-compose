@@ -4,7 +4,7 @@ window.sff_js_vars = {};
 
 sff_js_vars.vars_events = (function () {
 
-    var my = {has_first_php_run: false};
+    var my = {};
 
     my.initVars = function () {
         try {
@@ -49,13 +49,9 @@ sff_js_vars.vars_events = (function () {
 
 // NB the first rendering is done by PHP with functions-graph_query.php
     my.wordPressSearch = function (search_for) {
-        //if (my.has_first_php_run) {
             if (typeof sff_ajax_search === 'function') {
                 sff_ajax_search(search_for);
             }
-        //} else {
-          //  my.has_first_php_run = true;
-       // }
     }
 
     my.inputEnterPress = function (e) {
