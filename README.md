@@ -39,7 +39,7 @@ To populate the database from Google Sheets:
     >node reload-local config.local-neo4j-YOURS.js 
 
 
-
+## [Smoke Tests](/readme-smoke-tests.md)
 
 
 ## Created by
