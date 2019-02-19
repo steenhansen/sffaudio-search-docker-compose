@@ -67,7 +67,7 @@ function sff_ajax_search(search_for) {
 if (!function_exists('ajax_search_enqueueJs')) {
     function ajax_search_enqueueJs()
     {
-        wp_enqueue_script('search-data-values-to-js', '/wp-content/themes/revolution-code-blue2/js/_empty_.js');
+        wp_enqueue_script('search-data-values-to-js', '/wp-content/themes/sparkling/js/_empty_.js');
         $sff_ajax_search_object = array('WP_AJAX_URL' => WP_AJAX_HANDLER_FILE,
             'WP_NONCE' => wp_create_nonce(WP_NONCE_NAME));
         wp_localize_script('search-data-values-to-js', 'SFF_AJAX_SEARCH_OBJECT', $sff_ajax_search_object);

@@ -326,6 +326,11 @@ EOT;
     }
 }
 
+
+
+
+
+
 // https://www.sffaudio.com/search/
 if (!function_exists('media_list_component')) {
     function media_list_component()
@@ -338,7 +343,9 @@ if (!function_exists('media_list_component')) {
         if (strlen($search_for) > 2) {
             $query_answer =SffGraphQuery::searchHtml($search_for);
         } else {
-            $query_answer = "<br>Type at least 3 characters for search to work.";
+            $empty_html =  SffGraphQuery::buildHtml([ '','','','' ]);
+            $query_answer =  SEARCH_STYLES . $empty_html;
+         //   $query_answer = "<br>Type at least 3 characters for search to work.";
         }
 
         $query_html = "<div id='search_div' style='margin-top:16px; clear:both;'>$query_answer</div>";
