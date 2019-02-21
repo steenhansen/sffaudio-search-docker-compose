@@ -102,7 +102,20 @@ const podcasts_pkd =  [
 // {"episode number":"109","post id":"29292","publish date":"2011-01-01 21:12","kind":"AUDIOBOOK/READALONG","participants":"Jesse, Scott, Tamahome","narrator":"Mac Kelly","file name":"SFFaudioPodcast109.mp3","byte size":"61,243,977","hh:mm:ss":"1:03:44","book title":"The Hanging Stranger","book author":"Philip K. Dick","about":""},
 //
 // {"episode number":"97","post id":"27335","publish date":"2011-01-01 21:12","kind":"READALONG","participants":"Scott , Jesse, Luke Burrage","narrator":"","file name":"SFFaudioPodcast097.mp3","byte size":"37,826,903","hh:mm:ss":"0:52:28","book title":"The Garden Of Forking Paths and Fair Game","book author":"Jorge Luis Borges and Philip K. Dick","about":""}
-
+ {
+  "episode number": "122",
+  "post id": "31543",
+  "publish date": "2011-01-01 21:12",
+  "kind": "AUDIOBOOK/READALONG",
+  "participants": "Scott, Jesse, Tamahome, Gregg Margarite",
+  "narrator": "Gregg Margarite",
+  "file name": "SFFaudioPodcast122.mp3",
+  "byte size": "46,627,556",
+  "hh:mm:ss": "1:04:41",
+  "book title": "Beyond The Door",
+  "book author": "Philip K. Dick",
+  "about": ""
+ },
 ]
 
 

@@ -8,7 +8,6 @@ const pdf_pkd = [
 //
 // 	{"episode number":"712","publish date":"2016-02-10 8","book title":"Adjustment Team","book author":"H. Nearing, Jr.","story link on wikipedia":"http://en.wikipedia.org/wiki/Adjustment_Team","author wikipedia entry":"https://en.wikipedia.org/wiki/Philip_K._Dick","pdf link 1":"AdjustmentTeamByPhilipK.Dick.pdf","pdf page count 1":"21","pdf country 1":"","pdf info 1":"Orbit, No. 4, September-October 1954","pdf link 2":"","pdf page count 2":"","pdf country 2":"","pdf info 2":"","pdf link 3":"","pdf page count 3":"","pdf country 3":"","pdf info 3":"","pdf link 4":"","pdf page count 4":"","pdf country 4":"","pdf info 4":""},
 //
-// 	{"episode number":"711","publish date":"2016-02-10 8","book title":"Beyond The Door","book author":"Philip K. Dick","story link on wikipedia":"","author wikipedia entry":"https://en.wikipedia.org/wiki/Philip_K._Dick","pdf link 1":"BeyondTheDoorByPhilipK.Dick.pdf","pdf page count 1":"7","pdf country 1":"","pdf info 1":"Fantastic Universe, January 1954","pdf link 2":"","pdf page count 2":"","pdf country 2":"","pdf info 2":"","pdf link 3":"","pdf page count 3":"","pdf country 3":"","pdf info 3":"","pdf link 4":"","pdf page count 4":"","pdf country 4":"","pdf info 4":""},
 //
 	{"episode number":"710","publish date":"2016-02-10 8","book title":"Beyond Lies The Wub","book author":"Philip K. Dick","story link on wikipedia":"http://en.wikipedia.org/wiki/Beyond_Lies_the_Wub","author wikipedia entry":"https://en.wikipedia.org/wiki/Philip_K._Dick","pdf link 1":"BeyondLiesTheWubByPhilipK.Dick.pdf","pdf page count 1":"6","pdf country 1":"","pdf info 1":"Planet Stories, July 1952","pdf link 2":"","pdf page count 2":"","pdf country 2":"","pdf info 2":"","pdf link 3":"","pdf page count 3":"","pdf country 3":"","pdf info 3":"","pdf link 4":"","pdf page count 4":"","pdf country 4":"","pdf info 4":""},
 //
@@ -102,8 +101,32 @@ const pdf_pkd = [
 //
 // 	{"episode number":"677","publish date":"2016-02-10 8","book title":"A World Of Talent","book author":"Philip K. Dick","story link on wikipedia":"http://en.wikipedia.org/wiki/A_World_of_Talent","author wikipedia entry":"https://en.wikipedia.org/wiki/Philip_K._Dick","pdf link 1":"AWorldOfTalentByPhilipK.Dick.pdf","pdf page count 1":"42","pdf country 1":"","pdf info 1":"Galaxy Science Fiction, October 1954","pdf link 2":"","pdf page count 2":"","pdf country 2":"","pdf info 2":"","pdf link 3":"","pdf page count 3":"","pdf country 3":"","pdf info 3":"","pdf link 4":"","pdf page count 4":"","pdf country 4":"","pdf info 4":""}
 //
-//
+{"episode number":"711","publish date":"2016-02-10 8","book title":"Beyond The Door","book author":"Philip K. Dick","story link on wikipedia":"","author wikipedia entry":"https://en.wikipedia.org/wiki/Philip_K._Dick","pdf link 1":"BeyondTheDoorByPhilipK.Dick.pdf","pdf page count 1":"7","pdf country 1":"","pdf info 1":"Fantastic Universe, January 1954","pdf link 2":"","pdf page count 2":"","pdf country 2":"","pdf info 2":"","pdf link 3":"","pdf page count 3":"","pdf country 3":"","pdf info 3":"","pdf link 4":"","pdf page count 4":"","pdf country 4":"","pdf info 4":""},
 
+ {
+  "episode number": "4961",
+  "publish date": "2018-08-02 13",
+  "book title": "Beyond The Door",
+  "book author": "Paul Suter",
+  "story link on wikipedia": "",
+  "author wikipedia entry": "",
+  "pdf link 1": "BeyondTheDoorByPaulSuter.pdf",
+  "pdf page count 1": "12",
+  "pdf country 1": "",
+  "pdf info 1": "Weird Tales, April 1923",
+  "pdf link 2": "",
+  "pdf page count 2": "",
+  "pdf country 2": "",
+  "pdf info 2": "",
+  "pdf link 3": "",
+  "pdf page count 3": "",
+  "pdf country 3": "",
+  "pdf info 3": "",
+  "pdf link 4": "",
+  "pdf page count 4": "",
+  "pdf country 4": "",
+  "pdf info 4": ""
+ },
 
 	]
 
