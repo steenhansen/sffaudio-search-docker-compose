@@ -66,7 +66,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
                           sff_js_vars.vars_events.filterResetButton();
                           if (!found_author){
                              sff_js_vars.filter_names.nothingFound(sff_js_vars.NO_SUCH_AUTHOR);
-                          } ">Search authors for<br>...
+                          } ">Search authors for ...
         </button>
         <div id="search--column">
             <div id='search--for'>
@@ -90,7 +90,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
         <button id='do--story--filter'
                 onClick=" var search_term = document.getElementById('filter--author--text').value;
                           sff_js_vars.vars_events.filterResetButton();
-                          sff_js_vars.vars_events.bookSearch(search_term); ">Search stories for<br>...
+                          sff_js_vars.vars_events.bookSearch(search_term); ">Search stories for ...
         </button>
     </div>
     <div id='authors--stories--container'>

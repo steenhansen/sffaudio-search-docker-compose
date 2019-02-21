@@ -53,13 +53,13 @@
 
 [www.sffaudio.com--rsd-7](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=rsd&choice=1)
 
-[www.sffaudio.com--blog-1](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=4)
+[www.sffaudio.com--blog-1](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=1)
 
-[www.sffaudio.com--blog-2](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=3)
+[www.sffaudio.com--blog-2](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=2)
 
-[www.sffaudio.com--blog-3](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=2)
+[www.sffaudio.com--blog-3](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=3)
 
-[www.sffaudio.com--blog-4](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=1)
+[www.sffaudio.com--blog-4](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=4)
 
 
 

@@ -3,8 +3,8 @@ var light_background = graph_constants.LIGHT_BACKGROUND;
 var dark_background = graph_constants.DARK_BACKGROUND;
 var canvas_height = '400px;';
 
-module.exports =  function (graph_container_id) {
-var load_css_external = `
+module.exports = function (graph_container_id) {
+    var load_css_external = `
 <script>
 window.onerror = function (msg, url, lineNo, columnNo, error) {
     var message = [
@@ -34,6 +34,70 @@ ga('send', 'pageview');
 <script   src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.550/pdf.min.js"></script>
 
 <style>
+#do--author--filter {
+    flex-grow: 1;
+    margin: 2px;
+}
+#do--story--filter {
+    flex-grow: 1;
+    margin: 2px;
+}
+#authors--stories--container {
+    background-color: ${light_background}; /* a var */
+    padding-top:38px;
+}
+#filter--author--text {
+position:absolute;
+    width: 80px;
+    margin-left: -42px;
+}
+#search--row {
+position:absolute;            /*ipad hates this one */
+    display: flex; 
+    background-color: ${light_background}; /* a var */
+    width:100%;
+    top:27px;
+}
+
+#my--graph {
+    display: flex;
+    float: left;
+    width: 100%;
+    height: ${canvas_height};   /* a var */
+  
+}
+
+
+button {
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+
+
+
+
+ ::-webkit-scrollbar {
+    width: 12px !important;
+ }
+
+::-webkit-scrollbar-track {
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important;
+   -webkit-border-radius: 10px !important;
+   border-radius: 10px !important;
+ }
+
+ ::-webkit-scrollbar-thumb {
+   -webkit-border-radius: 10px !important;
+   border-radius: 10px !important;
+   background: #41617D !important; 
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5) !important; 
+
+ }
+ ::-webkit-scrollbar-thumb:window-inactive {
+   background: #41617D !important; 
+ }
+
 
 #sff--header {
     text-align: center;
@@ -42,14 +106,8 @@ ga('send', 'pageview');
 
 }
 
-#search--row {
-    display: flex;
-    background-color: ${light_background}; /* a var */
-}
 
-#authors--stories--container {
-    background-color: ${light_background}; /* a var */
-}
+
 
 #loading--graph{
       border-top: 3px solid ${dark_background};
@@ -82,13 +140,6 @@ ga('send', 'pageview');
     position: absolute;
 }
 
-#my--graph {
-    display: flex;
-    float: left;
-    width: 100%;
-  /*  height: 100%; */
-    height: ${canvas_height};  /* a var */
-}
 
 
 
@@ -234,15 +285,9 @@ ga('send', 'pageview');
     font-size: larger;
 }
 
-#do--story--filter {
-    flex-grow: 1;
-    margin: 4px;
-}
 
-#do--author--filter {
-    flex-grow: 1;
-    margin: 4px;
-}
+
+
 
 #search--column {
     text-align: center;
@@ -300,9 +345,7 @@ body.busy--cursor * {
     width: 20%;
 }
 
-#filter--author--text {
-    width: 140px;
-}
+
 
 .current__media {
     background-color: yellow;
@@ -456,7 +499,7 @@ body.busy--cursor * {
 </style>
 
 `;
-return load_css_external;
+    return load_css_external;
 
 }
 

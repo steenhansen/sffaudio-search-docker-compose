@@ -423,8 +423,6 @@ and (orientation: landscape) {
 
 
 
-
-
   .back-to-sff#back-link{  /* show back link if mobile */
     display: block;
     }

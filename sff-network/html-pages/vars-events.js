@@ -41,8 +41,8 @@ sff_js_vars.vars_events = (function () {
         } else {
             search_for_text = '"' + search_for + '"';
         }
-        var author_button = 'Search authors for\n' + search_for_text;
-        var story_button = 'Search stories for\n' + search_for_text;
+        var author_button = 'Search authors for ' + search_for_text;
+        var story_button = 'Search stories for ' + search_for_text;
         document.getElementById('do--author--filter').innerText = author_button;
         document.getElementById('do--story--filter').innerText = story_button;
     }
