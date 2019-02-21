@@ -1,7 +1,7 @@
 
 # Smoke Tests
 
-## API
+## API return json
 
 [sffaudio-search--larry-niven](https://sffaudio-search.herokuapp.com/author/larry-niven)
     
