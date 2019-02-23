@@ -48,6 +48,7 @@ and (orientation: portrait) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
+    div#search--row { position:absolute; } 
 }
 @media only screen 
 and (min-device-width: 640px) 
@@ -71,6 +72,7 @@ and (orientation: landscape) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }   
+    div#search--row { position:absolute; } 
 }
 
 /* Pixel 2 411x731 */
@@ -95,7 +97,8 @@ and (orientation: portrait) {
     div#my--graph { height: 100%; }
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
-    div#authors--stories--titles { height: 24px; }               
+    div#authors--stories--titles { height: 24px; } 
+    div#search--row { position:absolute; }               
 }
 @media only screen 
 and (min-device-width: 731px) 
@@ -119,6 +122,7 @@ and (orientation: landscape) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
+    div#search--row { position:absolute; }                   
 }
 
 /* Pixel 2 XL 823x411 */
@@ -144,6 +148,7 @@ and (orientation: portrait) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
+    div#search--row { position:absolute; }                   
 }
 @media only screen 
 and (min-device-width: 823px) 
@@ -167,7 +172,7 @@ and (orientation: landscape) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
-
+    div#search--row { position:absolute; }               
 }
 
 /* iPhone 5/SE 320x568 */
@@ -193,7 +198,7 @@ and (orientation: portrait) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
-
+    div#search--row { position:absolute; }               
 }
 @media only screen 
 and (min-device-width: 568px) 
@@ -217,6 +222,7 @@ and (orientation: landscape) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }    
+    div#search--row { position:absolute; }               
 }
   
 /* iPhone 6/7/8 375x667 */
@@ -242,6 +248,7 @@ and (orientation: portrait) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
+    div#search--row { position:absolute; }                   
 }
 @media only screen 
 and (min-device-width: 667px) 
@@ -265,6 +272,7 @@ and (orientation: landscape) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
+    div#search--row { position:absolute; }                   
 }
 
 /* iPhone 6/7/8 Plus 414x736 */
@@ -290,6 +298,7 @@ and (orientation: portrait) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
+    div#search--row { position:absolute; }                   
 }
 @media only screen 
 and (min-device-width: 736px) 
@@ -312,7 +321,8 @@ and (orientation: landscape) {
     div#my--graph { height: 100%; }
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
-    div#authors--stories--titles { height: 24px; }  
+    div#authors--stories--titles { height: 24px; } 
+    div#search--row { position:absolute; }                    
 }
   
 /* iPhone X 375x812 */
@@ -338,6 +348,7 @@ and (orientation: portrait) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
+    div#search--row { position:absolute; }                   
 }
 @media only screen 
 and (min-device-width: 812px) 
@@ -360,7 +371,8 @@ and (orientation: landscape) {
     div#my--graph { height: 100%; }
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
-    div#authors--stories--titles { height: 24px; }  
+    div#authors--stories--titles { height: 24px; } 
+    div#search--row { position:absolute; }                    
 }
 
 /* iPad 768x1024 */
@@ -386,6 +398,7 @@ and (orientation: portrait) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
+    div#search--row { position:absolute; }                  
 }
 @media only screen 
 and (min-device-height: 768px) 
@@ -409,6 +422,7 @@ and (orientation: landscape) {
     div#sff--header { height: 30px; }
     div#search--row { height: 43px; }
     div#authors--stories--titles { height: 24px; }  
+    div#search--row { position:absolute; }                   
 }
 
 

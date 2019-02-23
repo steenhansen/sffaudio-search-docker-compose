@@ -3,15 +3,15 @@
 
 ## API return json
 
-[sffaudio-search--larry-niven](https://sffaudio-search.herokuapp.com/author/larry-niven)
+[sffaudio-search--larry-niven](https://sffaudio-search.herokuapp.com/author/larry-niven)  -- niven json
     
-[sffaudio-search--bad-author](https://sffaudio-search.herokuapp.com/author/bad_author)
+[sffaudio-search--bad-author](https://sffaudio-search.herokuapp.com/author/bad_author)  -- bad author json
     
-[sffaudio-search--beyond-lies-the-wub](https://sffaudio-search.herokuapp.com/author/book/philip-k-dick/beyond-lies-the-wub)
+[sffaudio-search--beyond-lies-the-wub](https://sffaudio-search.herokuapp.com/author/book/philip-k-dick/beyond-lies-the-wub) beyond lies the wub json
     
-[sffaudio-search--bad-book](https://sffaudio-search.herokuapp.com/author/book/philip-k-dick/bad_book)
+[sffaudio-search--bad-book](https://sffaudio-search.herokuapp.com/author/book/philip-k-dick/bad_book)  -- bad_book json
     
-[sffaudio-search--bad-query](https://sffaudio-search.herokuapp.com/bad_query)
+[sffaudio-search--bad-query](https://sffaudio-search.herokuapp.com/bad_query) -- random good author
 
 
 ## PAGES
@@ -61,8 +61,9 @@
 
 [www.sffaudio.com--blog-4](https://www.sffaudio.com/search/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=4)
 
+[www.sffaudio.com--beyond-lies-the-wub](https://www.sffaudio.com/search/?book=beyond-the-door&author=philip-k-dick)  -- two authors and two books
 
-
+[www.sffaudio.com--the-covenant](https://sffaudio-search.herokuapp.com/?book=the-covenant&author=poul-anderson,isaac-asimov,robert-sheckley,murrayleinster,robert-bloch)  -- five authors in one book
 
 
 

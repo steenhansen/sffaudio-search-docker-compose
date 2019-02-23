@@ -19,7 +19,6 @@ sff_js_vars.author_post_procs = (function (post_close_svg, post_proxy) {
     my.startAuthorPost = function (author_post_url) {
         sff_js_vars.helpers.busyCursor();
         sff_js_vars.helpers.setDisplayNone('pdf--canvas');
-        //sff_js_vars.helpers.setDisplay('close--icon', 'none');
         document.getElementById('close--icon').src = post_close_svg;
         sff_js_vars.helpers.setDisplay('popup--container', 'block');
         sff_js_vars.helpers.setDisplay('pdf--controller', 'none');

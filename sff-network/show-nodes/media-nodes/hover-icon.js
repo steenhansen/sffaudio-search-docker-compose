@@ -1,7 +1,6 @@
 // hover-icon
 
 
-var media_sizes = rootAppRequire('./sff-network/show-nodes/media-nodes/media-sizes')
 var graph_constants = rootAppRequire('sff-network/graph-constants');
 var graph_icons = rootAppRequire('./sff-network/html-pages/graph-icons');
 var media_sizes = rootAppRequire('./sff-network/show-nodes/media-nodes/media-sizes')

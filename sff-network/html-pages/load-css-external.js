@@ -43,18 +43,17 @@ ga('send', 'pageview');
     margin: 2px;
 }
 #authors--stories--container {
-    background-color: ${light_background}; /* a var */
+    background-color: ${light_background};
     padding-top:38px;
 }
 #filter--author--text {
-position:absolute;
+    position:absolute;
     width: 80px;
     margin-left: -42px;
 }
 #search--row {
-position:absolute;            /*ipad hates this one */
     display: flex; 
-    background-color: ${light_background}; /* a var */
+    background-color: ${light_background}; 
     width:100%;
     top:27px;
 }
@@ -63,8 +62,7 @@ position:absolute;            /*ipad hates this one */
     display: flex;
     float: left;
     width: 100%;
-    height: ${canvas_height};   /* a var */
-  
+    height: ${canvas_height};  
 }
 
 
@@ -135,7 +133,7 @@ appearance: none;
 
 #stable-redraw-height {
     width: 0%;
-    height: ${canvas_height}; /* a var */
+    height: ${canvas_height};
     float: left;
     position: absolute;
 }
@@ -166,7 +164,7 @@ appearance: none;
 
 #${graph_container_id} {
     float: left;
-    background-color: ${dark_background}; /* a var */
+    background-color: ${dark_background}; 
 }
 
 
