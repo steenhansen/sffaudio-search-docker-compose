@@ -1,6 +1,4 @@
-<?php  // function-media_list.php
-
-
+<?php // function-media_list.php
 
 
 /*
@@ -312,7 +310,8 @@ EOT;
             return $matches_list;
         }
 
-        static function searchHtml($search_for){
+        static function searchHtml($search_for)
+        {
             $graph_ql_url = SffGraphQuery::graphQlUrl(GRAPH_URL, GRAPH_I_QL, $search_for);
             $matches_list = SffGraphQuery::jsonGraphQl($graph_ql_url);
             $search_regex = "/($search_for)/i";
@@ -334,14 +333,21 @@ if (!function_exists('media_list_component')) {
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
 
-        $search_for = SffGraphQuery::sanitizeSearch(@$_POST['search_term']);
-        if (strlen($search_for) > 2) {
-            $query_answer =SffGraphQuery::searchHtml($search_for);
+        if (isset($_POST['search_term'])) {
+            $search_term = $_POST['search_term'];
+        } else if (isset($_GET['search_term'])) {
+            $search_term = $_GET['search_term'];     // for https://www.sffaudio.com/search/?search_term=dick type links
         } else {
-            $empty_html =  SffGraphQuery::buildHtml([ '','','','' ]);
-            $query_answer =  SEARCH_STYLES . $empty_html;
+            $search_term = '';
         }
-       $query_html = "<div id='search_div' style='margin-top:16px; clear:both;'>$query_answer</div>";
+        $search_for = SffGraphQuery::sanitizeSearch($search_term);
+        if (strlen($search_for) > 2) {
+            $query_answer = SffGraphQuery::searchHtml($search_for);
+        } else {
+            $empty_html = SffGraphQuery::buildHtml(['', '', '', '']);
+            $query_answer = SEARCH_STYLES . $empty_html;
+        }
+        $query_html = "<div id='search_div' style='margin-top:16px; clear:both;'>$query_answer</div>";
         error_reporting(0);
         ini_set('display_errors', 0);
         return $query_html;
@@ -350,7 +356,7 @@ if (!function_exists('media_list_component')) {
 
 
 if (!shortcode_exists('media_list_component')) {
-        add_shortcode('media_list_component', media_list_component);
+    add_shortcode('media_list_component', media_list_component);
 }
 
 

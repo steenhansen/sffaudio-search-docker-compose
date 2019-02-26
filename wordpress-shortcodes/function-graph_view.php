@@ -298,7 +298,13 @@ if (!function_exists('graph_view_component')) {
         $get_book = @$_GET['book'];
         $get_view = @$_GET['view'];
         $get_choice = @$_GET['choice'];
-        $search_term = @$_POST['search_term'];
+        if (isset($_POST['search_term'])) {
+            $search_term = $_POST['search_term'];
+        } else if (isset($_GET['search_term'])) {
+            $search_term = $_GET['search_term'];     // for https://www.sffaudio.com/search/?search_term=dick type links
+        } else {
+            $search_term = '';
+        }
         $query_parameters = SffGraphSearch::getQueryParameters($get_author, $get_book, $get_view, $get_choice);
         $goto_heroku_address = SffGraphSearch::figureHerokuAddr($widget_url, $query_parameters, $search_term);
         SffGraphSearch::mobileRedirect(SffGraphSearch::PAGES_GOTO_MOBILE, $goto_heroku_address);
