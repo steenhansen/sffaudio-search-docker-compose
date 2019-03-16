@@ -294,6 +294,7 @@ EOT;
 
         static function jsonGraphQl($graph_ql_url)
         {
+			//print "xxx<br>$graph_ql_url<br>yyy";
             $curl_handle = curl_init($graph_ql_url);
             curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array('Accept: application/json'));

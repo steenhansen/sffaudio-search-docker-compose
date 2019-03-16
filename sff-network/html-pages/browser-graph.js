@@ -211,8 +211,8 @@ sff_js_vars.graph_procs = (function (graph_id, nodes_string, edges_string, graph
                         ajax_nodes = sff_js_vars.help_nodes[ajax_options.strip_author];
                         ajax_edges = sff_js_vars.HELP_ALL_EDGES;
                     }
-                    var no_php_search = '';
-                    sff_js_vars.graph_procs.loadGraph(graph_id, ajax_nodes, ajax_edges, ajax_options.graph_physics, no_php_search);
+                    var first_search = sff_php_vars.php_search;
+                    sff_js_vars.graph_procs.loadGraph(graph_id, ajax_nodes, ajax_edges, ajax_options.graph_physics, first_search);
                     sff_js_vars.graph_vars.graph_info.graph_type = ajax_options.graph_type;
                 });
         };
