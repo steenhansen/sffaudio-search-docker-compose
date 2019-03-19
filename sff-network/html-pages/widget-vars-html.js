@@ -61,6 +61,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
     <div id='search--row'>
         <button id='do--author--filter'
                 onClick=" var search_term = document.getElementById('filter--author--text').value;
+                          sff_js_vars.vars_events.wordPressSearch(search_term);
                           var found_author = sff_js_vars.vars_events.chooseIfSingleAuthor(search_term);
                           sff_js_vars.filter_names.showHideFilteredAuthors('filtered_media');
                           sff_js_vars.vars_events.filterResetButton();
@@ -89,6 +90,7 @@ function widgetHtml(graph_div_id, author_links, book_links) {
         </div>
         <button id='do--story--filter'
                 onClick=" var search_term = document.getElementById('filter--author--text').value;
+                          sff_js_vars.vars_events.wordPressSearch(search_term);
                           sff_js_vars.vars_events.filterResetButton();
                           sff_js_vars.vars_events.bookSearch(search_term); ">Search stories for ...
         </button>

@@ -286,6 +286,9 @@ if (!class_exists('SffGraphSearch')) {
     }
 }
 
+
+
+
 // https://www.sffaudio.com/search/
 if (!function_exists('graph_view_component')) {
     function graph_view_component()

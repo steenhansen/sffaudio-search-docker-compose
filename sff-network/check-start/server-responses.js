@@ -29,13 +29,18 @@ function fromWordpress(php_search) {
     return media_page(nodes_object, edges_object, graph_info, query_view, query_choice, empty_default_authors, php_search);
 }
 
+/*
+  in .htaccess
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET,PUT,POST,DELETE"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+ */
 function corsAll(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 
 }
-
 
 function wakeUpSleepingDb() {
     return data_repository.getDbVersion()
