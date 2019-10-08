@@ -4,7 +4,9 @@
  node reload-heroku /sff-network/build-nodes/test-obj-data/full-data/
  */
 
-
+// To reload on Heroku servers 
+//   heroku run bash -a=sffaudio-search   // to get into server
+//   node reload-heroku                   // program to run on Heroku server
 
 require('./sff-network/global-require');
 const heroku_environment = rootAppRequire('sff-network/check-start/heroku-environment');

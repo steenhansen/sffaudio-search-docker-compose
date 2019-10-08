@@ -110,7 +110,7 @@ class reloadBase {
                             console.log('after doCacheClear, maybe site down', e);
                         })
                         .finally(()=> {
-                            console.log('reload-db done');
+                            console.log('reload-db done');             // error is here
                         })
                         return;
                 }

@@ -8,8 +8,8 @@
     "dev-server": "node --inspect server-local config.local-neo4j.js"
   },
   "engines": {
-    "node": "8.11.3",
-    "npm": "5.7.1"
+    "node": "10.16.3",
+    "npm": "6.11.3"
   },
   "keywords": [],
   "author": "Steen Hansen <steen_hansen@yahoo.com> (https://www.jerkersearcher.com/)",
