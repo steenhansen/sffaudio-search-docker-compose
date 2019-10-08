@@ -17,6 +17,7 @@ const CachedAuthors = rootAppRequire('sff-network/build-nodes/cached-lists/cache
 
 var CircleCache = rootAppRequire('sff-network/circle-cache');
 
+graph_db.checkDbAlive();
 
 //     localhost:5000/?wordpress-start=philip-k-dick
 function fromWordpress(php_search) {

@@ -65,13 +65,6 @@ module.exports = function (_di_factory) {
                 } else {
                     var offset_minutes = 60 * tsv_variables.hours_offset + 1 * tsv_variables.post_early_min_rss
                     var derived_rows = variables_tsv.deriveAll(the_rows, the_media, tsv_variables, offset_minutes)
-
-
-        //        console.log('derived_rows', derived_rows)
-
-
-
-
                     var itunes_description_em_dash = miscMethods.replace2withMdash(variables_tsv._captured_variables.itunes_description)
                     var version_storage = di_factory.VersionStorageCreate(the_media, itunes_description_em_dash)
                     // var version_storage = new Error ('exception test - saveItemsToDb - 3') 

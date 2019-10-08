@@ -9,7 +9,6 @@ var reload_db = rootAppRequire('sff-network/build-nodes/graph-dbs/reload-file-db
 var Promise = require('bluebird')
 var fsAsync = Promise.promisifyAll(require("fs"))
 
-///////////////////////
 
 
 const serverResponse = rootAppRequire('sff-network/check-start/server-responses');

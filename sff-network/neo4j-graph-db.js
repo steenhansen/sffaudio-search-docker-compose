@@ -80,7 +80,7 @@ module.exports = function (version_num) {
         neo4j_session.run(test_sql)
             .catch(function (xxx) {
                 console.log('');
-                console.log('CHECK CONFIG SETTINGS FOR CHANGES');
+                console.log('Check that the Neo4j database is running.');
                 console.log('');
                 console.log('Stopping on error:', xxx);
                 process.exit();

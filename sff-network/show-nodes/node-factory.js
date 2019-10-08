@@ -52,8 +52,8 @@ module.exports = function (data_repository) {
             // Warning, if a book has two authors, and one podcast, then then viewing choice will be '2' NOT '1' as below
             // http://localhost:5000/?book=deus-irae&author=philip-k-dick,roger-zelazny&view=podcast&choice=2
             my.podcast_count++;
-            const {under_title, podcast_title, podcast_url, podcast_id, last_first_underscores} = media_node.properties;
-            new_node = new PodcastNode(node_id, db_version, podcast_title, podcast_url, podcast_id, under_title, last_first_underscores, my.podcast_count);
+            const {under_title, podcast_title, podcast_url, podcast_id, last_first_underscores, podcast_description} = media_node.properties;
+            new_node = new PodcastNode(node_id, db_version, podcast_title, podcast_url, podcast_id, under_title, last_first_underscores, my.podcast_count, podcast_description);
         } else if (node_group === 'L_RSD') {           
             my.rsd_count++;
             const {under_title, last_first_underscores, rsd_title, rsd_url, rsd_pdf_link, rsd_description, video_link} = media_node.properties;

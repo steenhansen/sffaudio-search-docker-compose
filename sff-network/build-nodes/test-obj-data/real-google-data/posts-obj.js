@@ -156,7 +156,7 @@
  {
   "id": "http://www.sffaudio.com/?p=654",
   "title": "Review",
-  "author": "Larry Weiner",
+  "author": "Radio Repertory Company of America",
   "book": "Anne Manx on Amazonia",
   "": ""
  },
@@ -926,14 +926,14 @@
  {
   "id": "http://www.sffaudio.com/?p=7729",
   "title": "Review",
-  "author": "Larry Weiner",
+  "author": "Radio Repertory Company of America",
   "book": "Anne Manx and the Empress Blair Project",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1103",
   "title": "Review",
-  "author": "Larry Weiner",
+  "author": "Radio Repertory Company of America",
   "book": "Anne Manx and the Trouble on Chromius",
   "": ""
  },
@@ -1611,23 +1611,23 @@
  },
  {
   "id": "http://www.sffaudio.com/?p=40311",
-  "title": "Review",
+  "title": "Review of Dark Adventure Audio Theatre: The Shadow Over Innsmouth",
   "author": "H.P. Lovecraft",
-  "book": "Dark Adventure Audio Theatre: The Shadow Over Innsmouth",
+  "book": "The Shadow Over Innsmouth",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=6145",
-  "title": "Review",
+  "title": "Review of Dark Adventure Radio Theatre: H.P. Lovecraft's The Dunwich Horror",
   "author": "H.P. Lovecraft",
-  "book": "Dark Adventure Radio Theatre: H.P. Lovecraft's The Dunwich Horror",
+  "book": "The Dunwich Horror",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=40149",
-  "title": "Review",
+  "title": "Review of Dark Adventure Radio Theatre: H.P. Lovecraft's The Shadow Out Of Time",
   "author": "H.P. Lovecraft",
-  "book": "Dark Adventure Radio Theatre: H.P. Lovecraft's The Shadow Out Of Time",
+  "book": "The Shadow Out Of Time",
   "": ""
  },
  {
@@ -3592,1289 +3592,1289 @@
  },
  {
   "id": "http://www.sffaudio.com/?p=1081",
-  "title": "",
+  "title": "Review",
   "author": "Greg Bear",
   "book": "Queen of Angels",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=54949",
-  "title": "",
+  "title": "Review",
   "author": "Anthony Ryan",
   "book": "Queen of Fire",
   "": ""
  },
  {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
-  "id": "",
-  "title": "",
-  "author": "",
-  "book": "",
-  "": ""
- },
- {
   "id": "http://www.sffaudio.com/?p=3648",
-  "title": "Review of Queen Of The Black Coast adapted from the story by Robert E. Howard",
-  "author": "review-of-queen-of-the-black-coast-adapted-from-the-story-by-robert-e-howard",
-  "book": "",
+  "title": "Review of adapted",
+  "author": "Robert E. Howard",
+  "book": "Queen Of The Black Coast",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=25405",
-  "title": "Review of Quicksilver by Neal Stephenson",
-  "author": "review-of-quicksilver-by-neal-stephenson",
-  "book": "",
+  "title": "Review",
+  "author": "Neal Stephenson",
+  "book": "Quicksilver",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=45403",
-  "title": "Review of Quitters, Inc. by Stephen King",
-  "author": "review-of-quitters-inc-by-stephen-king",
-  "book": "",
+  "title": "Review",
+  "author": "Stephen King",
+  "book": "Quitters, Inc.",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=51585",
-  "title": "Review of Raising Steam by Terry Pratchett",
-  "author": "review-of-raising-steam-by-terry-pratchett",
-  "book": "",
+  "title": "Review",
+  "author": "Terry Pratchett",
+  "book": "Raising Steam",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=461",
-  "title": "Review of Rally Cry: The Lost Regiment by William R. Forstchen",
-  "author": "review-of-rally-cry-the-lost-regiment-by-william-r-forstchen",
-  "book": "",
+  "title": "Review",
+  "author": "William R. Forstchen",
+  "book": "Rally Cry: The Lost Regiment",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=50004",
-  "title": "Review of Razor's Edge by Martha Wells",
-  "author": "review-of-razors-edge-by-martha-wells",
-  "book": "",
+  "title": "Review",
+  "author": "Martha Wells",
+  "book": "Razor's Edge",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=45353",
-  "title": "Review of Ready Player One by Ernest Cline",
-  "author": "review-of-ready-player-one-by-ernest-cline-2",
-  "book": "",
+  "title": "Review - Bryce L.",
+  "author": "Ernest Cline",
+  "book": "Ready Player One",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=32995",
-  "title": "Review of Ready Player One by Ernest Cline",
-  "author": "review-of-ready-player-one-by-ernest-cline",
-  "book": "",
+  "title": "Review by Jenny C",
+  "author": "Ernest Cline",
+  "book": "Ready Player One",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48992",
-  "title": "Review of Rebellion by B.V. Larson",
-  "author": "review-of-rebellion-by-b-v-larson",
-  "book": "",
+  "title": "Review",
+  "author": "B.V. Larson",
+  "book": "Rebellion",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=30962",
-  "title": "Review of Red Glove by Holly Black",
-  "author": "review-of-red-glove-by-holly-black",
-  "book": "",
+  "title": "Review",
+  "author": "Holly Black",
+  "book": "Red Glove",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=197",
-  "title": "Review of Red Mars by Kim Stanley Robinson",
-  "author": "red-mars-by-kim-stanley-robinson-read-by-richard",
-  "book": "",
+  "title": "Review",
+  "author": "Kim Stanley Robinson",
+  "book": "Red Mars",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=16302",
-  "title": "Review of Red Planet by Robert A. Heinlein",
-  "author": "review-of-red-planet-by-robert-a-heinlein",
-  "book": "",
+  "title": "Review",
+  "author": "Robert A. Heinlein",
+  "book": "Red Planet",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48830",
-  "title": "Review of Red Sparrow by Jason Matthews",
-  "author": "review-of-red-sparrow-by-jason-matthews",
-  "book": "",
+  "title": "Review",
+  "author": "Jason Matthews",
+  "book": "Red Sparrow",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=50518",
-  "title": "Review of Redshirts by John Scalzi",
-  "author": "review-of-redshirts-by-john-scalzi-2",
-  "book": "",
+  "title": "Review by Bryce L",
+  "author": "John Scalzi",
+  "book": "Redshirts",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48307",
-  "title": "Review of Redshirts by John Scalzi",
-  "author": "review-of-redshirts-by-john-scalzi",
-  "book": "",
+  "title": "Review by Rob Z",
+  "author": "John Scalzi",
+  "book": "Redshirts",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=191",
-  "title": "Review of Reflex by Steven Gould",
-  "author": "reflex-by-steven-gould-read-by-christine-marshall",
-  "book": "",
+  "title": "Review",
+  "author": "Steven Gould",
+  "book": "Reflex",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=50482",
-  "title": "Review of Revolting Rhymes & Dirty Beasts by Roald Dahl",
-  "author": "review-of-revolting-rhymes-dirty-beasts-by-roald-dahl",
-  "book": "",
+  "title": "Review",
+  "author": "Roald Dahl",
+  "book": "Revolting Rhymes & Dirty Beasts",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=986",
-  "title": "Review of Rings, Swords, And Monsters: Exploring Fantasy Literature by Michael D.C. Drout",
-  "author": "review-of-rings-swords-and-monsters-exploring-fantasy-literature-by-michael-dc-drout",
-  "book": "",
+  "title": "Review",
+  "author": "Michael D.C. Drout",
+  "book": "Rings, Swords, And Monsters: Exploring Fantasy Literature",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=401",
-  "title": "Review of Ringworld by Larry Niven",
-  "author": "ringworld-by-larry-niven-read-by-tom-parker-audib",
-  "book": "",
+  "title": "Review",
+  "author": "Larry Niven",
+  "book": "Ringworld",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=110",
-  "title": "Review of Ringworld’s Children by Larry Niven",
-  "author": "ringworld%e2%80%99s-children-by-larry-niven-read-by-barr",
-  "book": "",
+  "title": "Review",
+  "author": "Larry Niven",
+  "book": "Ringworld’s Children",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=54472",
-  "title": "Review of River of Blue Fire by Tad Williams",
-  "author": "review-of-river-of-blue-fire-by-tad-williams",
-  "book": "",
+  "title": "Review",
+  "author": "Tad Williams",
+  "book": "River of Blue Fire",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=43589",
-  "title": "Review of River Secrets by Shannon Hale",
-  "author": "review-of-river-secrets-by-shannon-hale",
-  "book": "",
-  "": ""
- },
- {
-  "id": "http://www.sffaudio.com/?p=43594",
-  "title": "Review of River Secrets by Shannon Hale:  River Se...",
-  "author": "259114981608550401",
-  "book": "",
+  "title": "Review",
+  "author": "Shannon Hale",
+  "book": "River Secrets",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=50721",
-  "title": "Review of Rivers by Michael Farris Smith",
-  "author": "review-of-rivers-by-michael-farris-smith",
-  "book": "",
+  "title": "Review",
+  "author": "Michael Farris Smith",
+  "book": "Rivers",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55900",
-  "title": "Review of Roadside Picnic by Arkady and Boris Strugatsky",
-  "author": "review-of-roadside-picnic-by-arkady-and-boris-strugatsky",
-  "book": "",
+  "title": "Review",
+  "author": "Arkady Strugatsky and Boris Strugatsky",
+  "book": "Roadside Picnic",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=22469",
-  "title": "Review of Rocannon's World by Ursula K. Le Guin",
-  "author": "review-of-rocannons-world-by-ursula-k-le-guin",
-  "book": "",
+  "title": "Review",
+  "author": "Ursula K. Le Guin",
+  "book": "Rocannon's World",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=52711",
-  "title": "Review of Romulus Buckle & the City of the Founders",
-  "author": "review-of-romulus-buckle-the-city-of-the-founders",
-  "book": "",
+  "title": "Review",
+  "author": "Richard Ellis Preston",
+  "book": "Romulus Buckle & the City of the Founders",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=52717",
-  "title": "Review of Romulus Buckle & the Engines of War",
-  "author": "review-of-romulus-buckle-the-engines-of-war",
-  "book": "",
+  "title": "Review",
+  "author": "Richard Ellis Preston",
+  "book": "Romulus Buckle & the Engines of War",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=51392",
-  "title": "Review of Rule Breaker by Lora Leigh",
-  "author": "review-of-rule-breaker-by-lora-leigh",
-  "book": "",
+  "title": "Review",
+  "author": "Lora Leigh",
+  "book": "Rule Breaker",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=47840",
-  "title": "Review of Sailing Alone Around The World by Joshua Slocum",
-  "author": "review-of-sailing-alone-around-the-world-by-joshua-slocum",
-  "book": "",
+  "title": "Review",
+  "author": "Joshua Slocum",
+  "book": "Sailing Alone Around The World",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=53584",
-  "title": "Review of Sand by Hugh Howey",
-  "author": "review-of-sand-by-hugh-howey",
-  "book": "",
+  "title": "Review",
+  "author": "Hugh Howey",
+  "book": "Sand",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55705",
-  "title": "Review of Saturn Run by John Sandford",
-  "author": "review-of-saturn-run-by-john-sandford",
-  "book": "",
+  "title": "Review",
+  "author": "John Sandford",
+  "book": "Saturn Run",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=435",
-  "title": "Review of Saturn's Race by Larry Niven and Steve Barnes",
-  "author": "review-of-saturns-race-by-larry-niven-and-steve-barnes",
-  "book": "",
+  "title": "Review",
+  "author": "Larry Niven and Steve Barnes",
+  "book": "Saturn's Race",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=17772",
-  "title": "Review of Saturn’s Children by Charles Stross",
-  "author": "review-of-saturns-children-by-charles-stross",
-  "book": "",
+  "title": "Review",
+  "author": "Charles Stross",
+  "book": "Saturn’s Children",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=207",
-  "title": "Review of Scary Stories with Alan Maitland by Various",
-  "author": "scary-stories-with-alan-maitland-by-various-perfo",
-  "book": "",
+  "title": "Review",
+  "author": "Edgar Allan Poe, Alfred Noyes, Charles Dickens, Robert W. Service, Rose Robert, and Ambrose Bierce",
+  "book": "Scary Stories with Alan Maitland",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=216",
-  "title": "Review of Scattered Suns: The Saga of the Seven Suns Book 4 by Kevin J. Anderson",
-  "author": "scattered-suns-the-saga-of-the-seven-suns-book-4",
-  "book": "",
+  "title": "Review",
+  "author": "Kevin J. Anderson",
+  "book": "Scattered Suns: The Saga of the Seven Suns Book 4",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1798",
-  "title": "Review of Sci Phi: The Journal of Science Fiction In Philosophy - January 2008 (Volume 1 Issue 1)",
-  "author": "review-of-sci-phi-the-journal-of-science-fiction-in-philosophy-january-2008-volume-1-issue-1",
-  "book": "",
+  "title": "Review",
+  "author": "Jason Rennie",
+  "book": "Sci Phi: The Journal of Science Fiction In Philosophy - January 2008 (Volume 1 Issue 1)",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=63",
-  "title": "Review of Sci-Fi Private Eye edited by Isaac Asimov and Martin H. Greenberg",
-  "author": "sci-fi-private-eye-edited-by-isaac-asimov-and-mar",
-  "book": "",
+  "title": "Review",
+  "author": "Isaac Asimov, Robert Silverberg, Poul Anderson, Fred Saberhagen, Edward Wellen and Philip K. Dick",
+  "book": "Sci-Fi Private Eye",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1092",
-  "title": "Review of Science Fiction: The Literature of the Technological Imagination by Eric S. Rabkin",
-  "author": "review-of-science-fiction-the-literature-of-the-technological-imagination-by-eric-rabkin",
-  "book": "",
+  "title": "Review",
+  "author": "Eric S. Rabkin",
+  "book": "Science Fiction: The Literature of the Technological Imagination",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=54958",
-  "title": "Review of Sea of Silver Light by Tad Williams",
-  "author": "review-of-sea-of-silver-light-by-tad-williams",
-  "book": "",
+  "title": "Review",
+  "author": "Tad Williams",
+  "book": "Sea of Silver Light",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=52026",
-  "title": "Review of Seal Team 13 by Evan Currie",
-  "author": "review-of-seal-team-13-by-evan-currie",
-  "book": "",
+  "title": "Review",
+  "author": "Evan Currie",
+  "book": "Seal Team 13",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55304",
-  "title": "Review of Seveneves by Neal Stephenson",
-  "author": "review-of-seveneves-by-neal-stephenson",
-  "book": "",
+  "title": "Review",
+  "author": "Neal Stephenson",
+  "book": "Seveneves",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1262",
-  "title": "Review of Shadow of the Giant by Orson Scott Card",
-  "author": "review-of-shadow-of-the-giant-by-orson-scott-card",
-  "book": "",
+  "title": "Review",
+  "author": "Orson Scott Card",
+  "book": "Shadow of the Giant",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=573",
-  "title": "Review of Shadow of the Hegemon by Orson Scott Card",
-  "author": "review-of-shadow-of-the-hegemon-by-orson-scott-card",
-  "book": "",
+  "title": "Review",
+  "author": "Orson Scott Card",
+  "book": "Shadow of the Hegemon",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=11469",
-  "title": "Review of Shards by Bruce Baugh",
-  "author": "review-of-shards-by-bruce-baugh",
-  "book": "",
+  "title": "Review",
+  "author": "Bruce Baugh",
+  "book": "Shards",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=53033",
-  "title": "Review of Shattered by Kevin Hearne",
-  "author": "review-of-shattered-by-kevin-hearne",
-  "book": "",
+  "title": "Review",
+  "author": "Kevin Hearne",
+  "book": "Shattered",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48322",
-  "title": "Review of She Returns from War by Lee Collins",
-  "author": "review-of-she-returns-from-war-by-lee-collins",
-  "book": "",
+  "title": "Review",
+  "author": "Lee Collins",
+  "book": "She Returns from War",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=52392",
-  "title": "Review of Siege Perilous from the Mongoliad Cycle",
-  "author": "review-of-siege-perilous-from-the-mongoliad-cycle",
-  "book": "",
+  "title": "Review",
+  "author": "E.D. deBirmingham",
+  "book": "Siege Perilous from the Mongoliad Cycle",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=18411",
-  "title": "Review of Silence Please by Arthur C. Clarke",
-  "author": "review-of-silence-please-by-arthur-c-clarke",
-  "book": "",
+  "title": "Review",
+  "author": "Arthur C. Clarke",
+  "book": "Silence Please",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=11997",
-  "title": "Review of Simon Bloom: The Octopus Effect by Michael Reisman",
-  "author": "review-of-simon-bloom-the-octopus-effect-by-michael-reisman",
-  "book": "",
+  "title": "Review",
+  "author": "Michael Reisman",
+  "book": "Simon Bloom: The Octopus Effect",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=795",
-  "title": "Review of Singularity by Bill DeSmedt",
-  "author": "review-of-singularity-by-bill-desmedt",
-  "book": "",
+  "title": "Review",
+  "author": "Bill DeSmedt",
+  "book": "Singularity",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=46396",
-  "title": "Review of Sinner by Mark Teppo",
-  "author": "review-of-sinner-by-mark-teppo",
-  "book": "",
+  "title": "Review",
+  "author": "Mark Teppo",
+  "book": "Sinner",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=16908",
-  "title": "Review of Sinner, Baker, Fabulist, Priest; Red Mask, Black Mask, Gentleman, Beast by Eugie Foster",
-  "author": "review-of-sinner-baker-fabulist-priest-red-mask-black-mask-gentleman-beast-by-eugie-foster",
-  "book": "",
+  "title": "Review",
+  "author": "Eugie Foster",
+  "book": "Sinner, Baker, Fabulist, Priest; Red Mask, Black Mask, Gentleman, Beast",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=273",
-  "title": "Review of Sir Gawain and the Green Knight, Translated by J.R.R. Tolkien",
-  "author": "sir-gawain-and-the-green-knight-translated-by-jr",
-  "book": "",
+  "title": "Review of Translation",
+  "author": "J.R.R. Tolkien",
+  "book": "Sir Gawain and the Green Knight",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=56826",
-  "title": "Review of Skeleton Crew by Stephen King",
-  "author": "review-of-skeleton-crew-by-stephen-king",
-  "book": "",
+  "title": "Review",
+  "author": "Stephen King",
+  "book": "Skeleton Crew",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=52438",
-  "title": "Review of Skin Game by Jim Butcher",
-  "author": "review-of-skin-game-by-jim-butcher",
-  "book": "",
+  "title": "Review",
+  "author": "Jim Butcher",
+  "book": "Skin Game",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=14729",
-  "title": "Review of Skybreaker by Kenneth Oppel",
-  "author": "review-of-skybreaker-by-kenneth-oppel",
-  "book": "",
+  "title": "Review",
+  "author": "Kenneth Oppel",
+  "book": "Skybreaker",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=5763",
-  "title": "Review of Slaughterhouse-Five by Kurt Vonnegut",
-  "author": "review-of-slaughterhouse-five-by-kurt-vonnegut",
-  "book": "",
+  "title": "Review",
+  "author": "Kurt Vonnegut",
+  "book": "Slaughterhouse-Five",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3502",
-  "title": "Review of Sleeping Beauty by Ross MacDonald",
-  "author": "review-sleeping-beauty-by-ross-macdonald",
-  "book": "",
+  "title": "Review",
+  "author": "Ross MacDonald",
+  "book": "Sleeping Beauty",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=53698",
-  "title": "Review of Slimy Underbelly by Kevin J. Anderson",
-  "author": "review-of-slimy-underbelly-by-kevin-j-anderson",
-  "book": "",
+  "title": "Review",
+  "author": "Kevin J. Anderson",
+  "book": "Slimy Underbelly",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=5427",
-  "title": "Review of Small Favor by Jim Butcher",
-  "author": "review-of-small-favor-by-jim-butcher",
-  "book": "",
+  "title": "Review",
+  "author": "Jim Butcher",
+  "book": "Small Favor",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=284",
-  "title": "Review of Snow Bank by Jeffrey Adams",
-  "author": "snow-bank-by-jeffrey-adams-performed-by-icebox-ra",
-  "book": "",
+  "title": "Review",
+  "author": "Jeffrey Adams",
+  "book": "Snow Bank",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1090",
-  "title": "Review of Snow Crash by Neal Stephenson",
-  "author": "review-of-snow-crash-by-neal-stephenson",
-  "book": "",
+  "title": "Review",
+  "author": "Neal Stephenson",
+  "book": "Snow Crash",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55710",
-  "title": "Review of Solar Express by L.E. Modesitt Jr.",
-  "author": "review-of-solar-express-by-l-e-modesitt-jr",
-  "book": "",
+  "title": "Review",
+  "author": "L.E. Modesitt Jr.",
+  "book": "Solar Express",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=82",
-  "title": "Review of Solution Unsatisfactory",
-  "author": "solution-unsatisfactory-adapted-by-daniel-taylor",
-  "book": "",
+  "title": "Review of Daniel Taylor Adaptation",
+  "author": "Robert A. Heinlein",
+  "book": "Solution Unsatisfactory",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=256",
-  "title": "Review of Something Wicked This Way Comes (with A Sound of Thunder) by Ray Bradbury",
-  "author": "something-wicked-this-way-comes-with-a-sound-of-t",
-  "book": "",
+  "title": "Review by Cory M",
+  "author": "Ray Bradbury",
+  "book": "Something Wicked This Way Comes",
+  "": ""
+ },
+ {
+  "id": "http://www.sffaudio.com/?p=256",
+  "title": "Review by Cory M",
+  "author": "Ray Bradbury",
+  "book": "A Sound of Thunder",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=107",
-  "title": "Review of Something Wicked This Way Comes by Ray Bradbury",
-  "author": "something-wicked-this-way-comes-by-ray-bradbury",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Ray Bradbury",
+  "book": "Something Wicked This Way Comes",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=30752",
-  "title": "Review of Song Bird from RRCA",
-  "author": "review-of-song-bird-from-rrca",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Radio Repertory Company of America",
+  "book": "Song Bird",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=921",
-  "title": "Review of Songmaster by Orson Scott Card",
-  "author": "review-of-songmaster-by-orson-scott-card",
-  "book": "",
+  "title": "Review by The Time Traveler",
+  "author": "Orson Scott Card",
+  "book": "Songmaster",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=49266",
-  "title": "Review of Sons of the Oak by David Farland",
-  "author": "review-of-sons-of-the-oak-by-david-farland",
-  "book": "",
+  "title": "Review by Charlene H",
+  "author": "David Farland",
+  "book": "Sons of the Oak",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=108",
-  "title": "Review of Soundings by Jeff Green",
-  "author": "soundings-radio-drama-by-jeff-green-1-mp3-cd-7",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Jeff Green",
+  "book": "Soundings",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1778",
-  "title": "Review of Space Boy by Orson Scott Card",
-  "author": "review-of-space-boy-by-orson-scott-card",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Orson Scott Card",
+  "book": "Space Boy",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=47608",
-  "title": "Review of Space Casey by Christiana Ellis",
-  "author": "review-of-space-casey-by-christiana-ellis",
-  "book": "",
+  "title": "Review by Julie D",
+  "author": "Christiana Ellis",
+  "book": "Space Casey",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=49139",
-  "title": "Review of Space Magic by David Levine",
-  "author": "review-of-space-magic-by-david-levine",
-  "book": "",
+  "title": "Review by Tom S",
+  "author": "David Levine",
+  "book": "Space Magic",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=231",
-  "title": "Review of Speaker for the Dead by Orson Scott Card",
-  "author": "speaker-for-the-dead-by-orson-scott-card-read-by",
-  "book": "",
+  "title": "Review by Mike H",
+  "author": "Orson Scott Card",
+  "book": "Speaker for the Dead",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=50201",
-  "title": "Review of Specter of the Past by Timothy Zahn",
-  "author": "review-of-specter-of-the-past-by-timothy-zahn",
-  "book": "",
+  "title": "Review by Tom S",
+  "author": "Timothy Zahn",
+  "book": "Specter of the Past",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=53176",
-  "title": "Review of Spell or High Water by Scott Meyer",
-  "author": "review-of-spell-or-high-water-by-scott-meyer",
-  "book": "",
+  "title": "Review by Rob Z",
+  "author": "Scott Meyer",
+  "book": "Spell or High Water",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55879",
-  "title": "Review of Sphere by Michael Crichton",
-  "author": "review-of-sphere-by-michael-crichton",
-  "book": "",
+  "title": "Review by Rob Z",
+  "author": "Michael Crichton",
+  "book": "Sphere",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3280",
-  "title": "Review of Spin by Robert Charles Wilson",
-  "author": "review-of-spin-by-robert-charles-wilson",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Robert Charles Wilson",
+  "book": "Spin",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1299",
-  "title": "Review of Star Sugeon by Alan E. Nourse",
-  "author": "review-of-star-sugeon-by-alan-e-nourse",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Alan E. Nourse",
+  "book": "Star Sugeon",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=12819",
-  "title": "Review of Star Trek by Alan Dean Foster",
-  "author": "review-of-star-trek-by-alan-dean-foster",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Alan Dean Foster",
+  "book": "Star Trek",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=470",
-  "title": "Review of Star Trek TNG: Q-Squared by Peter David",
-  "author": "review-of-star-trek-tng-q-squared-by-peter-david",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Peter David",
+  "book": "Star Trek TNG: Q-Squared",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1110",
-  "title": "Review of Star Trek: Captain's Blood by William Shatner, with Judith and Garfield Reeves-Stevens",
-  "author": "review-of-star-trek-captains-blood-by-william-shatner-with-judith-and-garfield-reeves-stevens",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "William Shatner",
+  "book": "Star Trek: Captain's Blood",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=613",
-  "title": "Review of Star Trek: Captain's Glory by Shatner with Reeves-Stevens",
-  "author": "review-of-star-trek-captains-glory-by-shatner-with-reeves-stevens",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "William Shatner",
+  "book": "Star Trek: Captain's Glory",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1101",
-  "title": "Review of Star Trek: New Frontier: Stone and Anvil by Peter David",
-  "author": "review-of-star-trek-new-frontier-stone-and-anvil-by-peter-david",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Peter David",
+  "book": "Star Trek: New Frontier: Stone and Anvil",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1094",
-  "title": "Review of Star Trek: The Next Generation: Genesis Force by John Vornholt",
-  "author": "review-of-star-trek-the-next-generation-genesis-force-by-john-vornholt",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "John Vornholt",
+  "book": "Star Trek: The Next Generation: Genesis Force",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=924",
-  "title": "Review of Star Trek: Vulcan's Soul Book II - Exiles",
-  "author": "review-of-star-trek-vulcans-soul-book-ii-exiles",
-  "book": "",
+  "title": "Review by Scott A",
+  "author": "Josepha Sherman and Susan Shwartz",
+  "book": "Star Trek: Vulcan's Soul Book II - Exiles",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1261",
-  "title": "Review of Star Trek: Vulcan's Soul by Josepha Sherman and Susan Shwartz",
-  "author": "review-of-star-trek-vulcans-soul-by-josepha-sherman-and-susan-shwartz",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Josepha Sherman and Susan Shwartz",
+  "book": "Star Trek: Vulcan's Soul",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=634",
-  "title": "Review of Star Trek: Vulcan's Soul: Exodus by Sherman and Shwartz",
-  "author": "review-of-star-trek-vulcans-soul-exodus-by-sherman-and-shwartz",
-  "book": "",
+  "title": "Review by Scott A",
+  "author": "Josepha Sherman and Susan Shwartz",
+  "book": "Star Trek: Vulcan's Soul: Exodus",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=56530",
-  "title": "Review of Star Wars: Bloodline",
-  "author": "review-of-star-wars-bloodline",
-  "book": "",
+  "title": "Review by Tom S",
+  "author": "Claudia Gray",
+  "book": "Star Wars: Bloodline",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48607",
-  "title": "Review of Star Wars: Dawn of the Jedi: Into the Void",
-  "author": "review-of-star-wars-dawn-of-the-jedi-into-the-void",
-  "book": "",
+  "title": "Review by Bryce L",
+  "author": "Tim Lebbon",
+  "book": "Star Wars: Dawn of the Jedi: Into the Void",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=33910",
-  "title": "Review of Star Wars: Heir to the Empire by Timothy Zahn",
-  "author": "review-of-star-wars-heir-to-the-empire-by-timothy-zahn",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Timothy Zahn",
+  "book": "Star Wars: Heir to the Empire",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=142",
-  "title": "Review of Star Wars: Labyrinth of Evil By James Luceno",
-  "author": "star-wars-labyrinth-of-evil-by-james-luceno-read",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "James Luceno",
+  "book": "Star Wars: Labyrinth of Evil",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=4144",
-  "title": "Review of Star Wars: Millennium Falcon by James Luceno",
-  "author": "review-of-star-wars-millennium-falcon-by-james-luceno",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "James Luceno",
+  "book": "Star Wars: Millennium Falcon",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=8466",
-  "title": "Review of Star Wars: Outcast by Aaron Allston",
-  "author": "review-of-star-wars-outcast-by-aaron-allston",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Aaron Allston",
+  "book": "Star Wars: Outcast",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=194",
-  "title": "Review of Star Wars: Revenge of the Sith by Matthew Stover",
-  "author": "star-wars-revenge-of-the-sith-by-matthew-stover",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Matthew Stover",
+  "book": "Star Wars: Revenge of the Sith",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=45720",
-  "title": "Review of Star Wars: Scoundrels by Timothy Zahn",
-  "author": "review-of-star-wars-scoundrels-by-timothy-zahn",
-  "book": "",
+  "title": "Review by Bryce L",
+  "author": "Timothy Zahn",
+  "book": "Star Wars: Scoundrels",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3853",
-  "title": "Review of Starman Jones by Robert A. Heinlein",
-  "author": "review-of-starman-jones-by-robert-a-heinlein",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Robert A. Heinlein",
+  "book": "Starman Jones",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=52586",
-  "title": "Review of Starship Grifters by Robert Kroese",
-  "author": "review-of-starship-grifters-by-robert-kroese",
-  "book": "",
+  "title": "Review by Casey H",
+  "author": "Robert Kroese",
+  "book": "Starship Grifters",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1066",
-  "title": "Review of Starship Troopers by Robert A. Heinlein",
-  "author": "starship-troopers-by-robert-a-heinlein-themes-sc",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Robert A. Heinlein",
+  "book": "Starship Troopers",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3686",
-  "title": "Review of Starship: Mercenary by Mike Resnick",
-  "author": "review-of-starship-mercenary-by-mike-resnick",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Mike Resnick",
+  "book": "Starship: Mercenary",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2607",
-  "title": "Review of Starship: Mutiny by Mike Resnick",
-  "author": "review-of-starship-mutiny-by-mike-resnick",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Mike Resnick",
+  "book": "Starship: Mutiny",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2651",
-  "title": "Review of Starship: Pirate by Mike Resnick",
-  "author": "review-of-starship-pirate-by-mike-resnick",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Mike Resnick",
+  "book": "Starship: Pirate",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=4114",
-  "title": "Review of Starship: Rebel by Mike Resnick",
-  "author": "review-of-starship-rebel-by-mike-resnick",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Mike Resnick",
+  "book": "Starship: Rebel",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=26840",
-  "title": "Review of Starstruck by Elaine Lee, Susan Norfleet and Dale Place",
-  "author": "review-of-starstruck-by-elaine-lee-susan-norfleet-and-dale-place",
-  "book": "",
+  "title": "Review by Tamahome",
+  "author": "Elaine Lee, Susan Norfleet and Dale Place",
+  "book": "Starstruck",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1096",
-  "title": "Review of Startide Rising by David Brin",
-  "author": "review-of-startide-rising-by-david-brin",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "David Brin",
+  "book": "Startide Rising",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=133",
-  "title": "Review of State Of Fear By Michael Crichton",
-  "author": "state-of-fear-by-michael-crichton-read-by-george",
-  "book": "",
+  "title": "Review by Barry",
+  "author": "Michael Crichton",
+  "book": "State Of Fear",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=39845",
-  "title": "Review of Steel by Richard Matheson (from Steel And Other Stories)",
-  "author": "review-of-steel-by-richard-matheson-from-steel-and-other-stories",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Richard Matheson",
+  "book": "Steel",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=52694",
-  "title": "Review of Steel World by B. V. Larson",
-  "author": "review-of-steel-world-by-b-v-larson",
-  "book": "",
+  "title": "Review by Casey H",
+  "author": "B. V. Larson",
+  "book": "Steel World",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=49449",
-  "title": "Review of Steelheart by Brandon Sanderson",
-  "author": "review-of-steelheart-by-brandon-sanderson",
-  "book": "",
+  "title": "Review by Seth W",
+  "author": "Brandon Sanderson",
+  "book": "Steelheart",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=4439",
-  "title": "Review of Steve, The First by Matt Watts",
-  "author": "review-of-steve-the-first",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Matt Watts",
+  "book": "Steve, The First",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3884",
-  "title": "Review of Stonefather by Orson Scott Card",
-  "author": "review-of-stonefather-by-orson-scott-card",
-  "book": "",
+  "title": "Review by Danielson Kid (age 14)",
+  "author": "Orson Scott Card",
+  "book": "Stonefather",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=611",
-  "title": "Review of Strawberry Automatic by T. Ray Gordon",
-  "author": "review-of-strawberry-automatic-by-t-ray-gordon",
-  "book": "",
+  "title": "Review by Jerry S",
+  "author": "T. Ray Gordon",
+  "book": "Strawberry Automatic",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=23313",
-  "title": "Review of Suck It Wonder Woman by Olivia Munn and Mac Montandon",
-  "author": "review-of-suck-it-wonder-woman-by-olivia-munn-and-mac-montandon",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Olivia Munn and Mac Montandon",
+  "book": "Suck It Wonder Woman",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=17308",
-  "title": "Review of Suicide is Painless by Don Norum",
-  "author": "review-of-suicide-is-painless-by-don-norum",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Don Norum",
+  "book": "Suicide is Painless",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=15802",
-  "title": "Review of Sunrise Alley by Catherine Asaro",
-  "author": "review-of-sunrise-alley-by-catherine-asaro",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Catherine Asaro",
+  "book": "Sunrise Alley",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1302",
-  "title": "Review of Super Pal and Jewels of the 11th Generation",
-  "author": "review-of-super-pal-and-jewels-of-the-11th-generation",
-  "book": "",
+  "title": "Review by Dani C",
+  "author": "Great Northern Audio Theatre",
+  "book": "Super Pal and Jewels of the 11th Generation",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=41659",
-  "title": "Review of Superman Lives! AUDIO DRAMA",
-  "author": "review-of-superman-lives-audio-drama",
-  "book": "",
+  "title": "Review by Abner S",
+  "author": "Time Warner AudioBooks",
+  "book": "Superman Lives!",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=661",
-  "title": "Review of Superman Returns by Marv Wolfman",
-  "author": "review-of-superman-returns-by-marv-wolfman",
-  "book": "",
+  "title": "Review by Jake B",
+  "author": "Marv Wolfman",
+  "book": "Superman Returns",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=536",
-  "title": "Review of Superman: UP, UP, and Away!",
-  "author": "review-of-superman-up-up-and-away",
-  "book": "",
+  "title": "Review by Jake B",
+  "author": "Radio Spirits",
+  "book": "Superman: UP, UP, and Away!",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=145",
-  "title": "Review of Survival: Species Imperative #1 by Juile E. Czerneda",
-  "author": "survival-species-imperative-1-by-juile-e-czerne",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Juile E. Czerneda",
+  "book": "Survival: Species Imperative #1",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48140",
-  "title": "Review of Swarm by B. V. Larson",
-  "author": "review-of-swarm-by-b-v-larson",
-  "book": "",
+  "title": "Review by Andrew L",
+  "author": "B. V. Larson",
+  "book": "Swarm",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=6086",
-  "title": "Review of Sword of the Lamb by M.K. Wren",
-  "author": "review-of-sword-of-the-lamb-by-mk-wren",
-  "book": "",
+  "title": "Review by Julie D",
+  "author": "M.K. Wren",
+  "book": "Sword of the Lamb",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=783",
-  "title": "Review of Taken Liberty by Steven H. Wilson",
-  "author": "review-of-taken-liberty-by-steven-h-wilson",
-  "book": "",
+  "title": "Review by Dani C",
+  "author": "Steven H. Wilson",
+  "book": "Taken Liberty",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=106",
-  "title": "Review of Tales From The Crypt",
-  "author": "tales-from-the-crypt-audio-drama-performed-by-t",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Highbridge Audio",
+  "book": "Tales From The Crypt",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=43182",
-  "title": "Review of Tales from the Hood: The Sisters Grimm by Michael Buckley",
-  "author": "review-of-tales-from-the-hood-the-sisters-grimm-by-michael-buckley",
-  "book": "",
+  "title": "Review by Charlene H",
+  "author": "Michael Buckley",
+  "book": "Review of Tales from the Hood: The Sisters Grimm by Michael Buckley",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=149",
-  "title": "Review of Tales of Kirinyaga #1 by Mike Resnick",
-  "author": "tales-of-kirinyaga-1-by-mike-resnick-read-by-pat",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Mike Resnick",
+  "book": "Tales of Kirinyaga #1",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=54125",
-  "title": "Review of Tales of Terror",
-  "author": "review-of-tales-of-terror",
-  "book": "",
+  "title": "Review by Julie D",
+  "author": "Brilliance Audio",
+  "book": "Tales of Terror",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=44764",
-  "title": "Review of Tales of the Red Panda: The Crime Cabal",
-  "author": "review-of-tales-of-the-red-panda-the-crime-cabal",
-  "book": "",
+  "title": "Review by Paul C",
+  "author": "Audible",
+  "book": "Tales of the Red Panda: The Crime Cabal",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1112",
-  "title": "Review of Tales with a Twist by Jerald Fine",
-  "author": "review-of-tales-with-a-twist-by-jerald-fine",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Jerald Fine",
+  "book": "Tales with a Twist",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=54312",
-  "title": "Review of Tarkin: Star Wars",
-  "author": "review-of-tarkin-star-wars",
-  "book": "",
+  "title": "Review by Tom S",
+  "author": "Random House Audio",
+  "book": "Tarkin: Star Wars",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1410",
-  "title": "Review of Tears of the Tin God",
-  "author": "review-of-tears-of-the-tin-god",
-  "book": "",
+  "title": "Reivew by Kurt D",
+  "author": "Apex Audio Theatre",
+  "book": "Tears of the Tin God",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=237",
-  "title": "Review of Technical Error by Arthur C. Clarke",
-  "author": "technical-error-by-arthur-c-clarke-read-by-david",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Arthur C. Clarke",
+  "book": "Technical Error",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=46586",
-  "title": "Review of Technomancer by B.V. Larson",
-  "author": "review-of-technomancer-by-b-v-larson",
-  "book": "",
+  "title": "Review by terpkristin",
+  "author": "B.V. Larson",
+  "book": "Technomancer",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=11051",
-  "title": "Review of Terminal Freeze by Lincoln Child",
-  "author": "review-of-terminal-freeze-by-lincoln-child",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Lincoln Child",
+  "book": "Terminal Freeze",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=51383",
-  "title": "Review of Terms of Enlistment by Marko Kloos",
-  "author": "review-of-terms-of-enlistment-by-marko-kloos",
-  "book": "",
+  "title": "Review by Casey H",
+  "author": "Marko Kloos",
+  "book": "Terms of Enlistment",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=28909",
-  "title": "Review of The Adjustment Bureau by Philip K. Dick",
-  "author": "review-of-the-adjustment-bureau-by-philip-k-dick",
-  "book": "",
+  "title": "Review by Jay",
+  "author": "Philip K. Dick",
+  "book": "The Adjustment Bureau",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=31237",
-  "title": "Review of The Adventures of Doc Savage",
-  "author": "review-of-the-adventures-of-doc-savage",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "RadioArchives.com",
+  "book": "The Adventures of Doc Savage",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=650",
-  "title": "Review of The Adventures of Red Cloud",
-  "author": "review-of-the-adventures-of-red-cloud",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Radio Repertory Company of America",
+  "book": "The Adventures of Red Cloud",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=644",
-  "title": "Review of The Adventures of Superman",
-  "author": "the-adventures-of-superman",
-  "book": "",
+  "title": "Review by Jake B",
+  "author": "BBC",
+  "book": "The Adventures of Superman",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=80",
-  "title": "Review of The Adventures of Superman",
-  "author": "the-adventures-of-superman-written-and-directed-b",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "BBC",
+  "book": "The Adventures of Superman",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=645",
-  "title": "Review of The Adventures of Superman: Doomsday and Beyond",
-  "author": "the-adventures-of-superman-doomsday-and-beyond",
-  "book": "",
+  "title": "Review by Jake B",
+  "author": "BBC",
+  "book": "The Adventures of Superman: Doomsday and Beyond",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55450",
-  "title": "Review of The Aeronaut's Windlass by Jim Butcher",
-  "author": "review-of-the-aeronauts-windlass-by-jim-butcher",
-  "book": "",
+  "title": "Review by Rob Z",
+  "author": "Jim Butcher",
+  "book": "The Aeronaut's Windlass by Jim Butcher",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1493",
-  "title": "Review of The Aftermath by Ben Bova",
-  "author": "review-of-the-aftermath-by-ben-bova",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Ben Bova",
+  "book": "The Aftermath",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48823",
-  "title": "Review of The Age Atomic by Adam Christopher",
-  "author": "review-of-the-age-atomic-by-adam-christopher",
-  "book": "",
+  "title": "Review byTom S",
+  "author": "Adam Christopher",
+  "book": "The Age Atomic",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=796",
-  "title": "Review of The Algebraist by Iain M. Banks",
-  "author": "review-of-the-algebraist-by-iain-m-banks",
-  "book": "",
+  "title": "Review by The Time Traveler",
+  "author": "Iain M. Banks",
+  "book": "The Algebraist",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=33905",
-  "title": "Review of The Alloy of Law by Brandon Sanderson",
-  "author": "review-of-the-alloy-of-law-by-brandon-sanderson",
-  "book": "",
+  "title": "Review by Jeff M",
+  "author": "Brandon Sanderson",
+  "book": "The Alloy of Law",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1095",
-  "title": "Review of The Andromeda Strain by Michael Crichton",
-  "author": "review-of-the-andromeda-strain-by-michael-crichton",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Michael Crichton",
+  "book": "The Andromeda Strain",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=442",
-  "title": "Review of The Answer by Philip Wylie",
-  "author": "review-of-the-answer-by-philip-wylie",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Philip Wylie",
+  "book": "The Answer",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=655",
-  "title": "Review of The Apocalypse of Bill Lizard by Roger Gregg",
-  "author": "review-of-the-apocalypse-of-bill-lizard",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Roger Gregg",
+  "book": "The Apocalypse of Bill Lizard",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=656",
-  "title": "Review of The Arbiter Chronicles: Series 1",
-  "author": "review-of-the-arbiter-chronicles-series-1",
-  "book": "",
-  "": ""
- },
- {
-  "id": "http://www.sffaudio.com/?p=577",
-  "title": "Review of the Audiofy Audiobook Chip",
-  "author": "review-of-the-audiofy-audiobook-chip",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Prometheus Radio Theatre",
+  "book": "The Arbiter Chronicles: Series 1",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=52606",
-  "title": "Review of The Beast of Calatrava",
-  "author": "review-of-the-beast-of-calatrava",
-  "book": "",
+  "title": "Review by Terpkristin",
+  "author": "Mark Teppo",
+  "book": "The Beast of Calatrava",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=662",
-  "title": "Review of The Best Christmas Ever by James Patrick Kelly",
-  "author": "review-of-the-best-christmas-ever-by-james-patrick-kelly",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "James Patrick Kelly",
+  "book": "The Best Christmas Ever",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=50285",
-  "title": "Review of the BFG by Roald Dahl",
-  "author": "review-of-the-bfg-by-roald-dahl",
-  "book": "",
+  "title": "Review by Marissa U",
+  "author": "Roald Dahl",
+  "book": "BFG",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=24415",
-  "title": "Review of The Big Time by Fritz Leiber",
-  "author": "review-of-the-big-time-by-fritz-leiber",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Fritz Leiber",
+  "book": "The Big Time",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=23584",
-  "title": "Review of The Blade Itself by Joe Abercrombie",
-  "author": "review-of-the-blade-itself-by-joe-abercrombie",
-  "book": "",
+  "title": "Review by Seth W",
+  "author": "Joe Abercrombie",
+  "book": "The Blade Itself",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=47242",
-  "title": "Review of The Blight of Muirwood",
-  "author": "review-of-the-blight-of-muirwood",
-  "book": "",
+  "title": "Review by Rob Z - Muirwood 3",
+  "author": "Jeff Wheeler",
+  "book": "The Blight of Muirwood",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=47085",
-  "title": "Review of The Blight of Muirwood by Jeff Wheeler",
-  "author": "review-of-the-blight-of-muirwood-by-jeff-wheeler",
-  "book": "",
+  "title": "Review by Rob Z - Muirwood 2",
+  "author": "Jeff Wheeler",
+  "book": "The Blight of Muirwood",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=55097",
-  "title": "Review of The Blumhouse Book of Nightmares: The Haunted City",
-  "author": "review-of-the-blumhouse-book-of-nightmares-the-haunted-city",
-  "book": "",
+  "title": "Review by Casey H",
+  "author": "Les Bohem, James DeMonaco, Christopher Denham, Scott Derrickson, C. Robert Cargill, Steve Faber, George Gallo, Ethan Hawke, William Joselyn, Sarah Langan, Nissar Modi, Mark Neveldine, Michael Olson, Eli Roth, Jeremy Slater, Dana Stevens, Scott Stewart and Simon Kurt Unsworth",
+  "book": "The Blumhouse Book of Nightmares: The Haunted City",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3730",
-  "title": "Review of The Book Of Lies by Brad Meltzer",
-  "author": "review-of-the-book-of-lies-by-brad-meltzer",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Brad Meltzer",
+  "book": "The Book Of Lies",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=29940",
-  "title": "Review of The Broken Sword by Poul Anderson",
-  "author": "review-of-the-broken-sword-by-poul-anderson",
-  "book": "",
+  "title": "Review by Brian M",
+  "author": "Poul Anderson",
+  "book": "The Broken Sword",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=667",
-  "title": "Review of The Callahan Chronicals by Spider Robinson",
-  "author": "review-of-the-callahan-chronicals-by-spider-robinson",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "Spider Robinson",
+  "book": "The Callahan Chronicals",
+  "": ""
+ },
+ {
+  "id": "http://www.sffaudio.com/?p=36281",
+  "title": "Review by Jesse W",
+  "author": "Philip K. Dick",
+  "book": "Beyond The Door",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=3044",
-  "title": "Review of The Cat Who Walks Through Walls by Robert A. Heinlein",
-  "author": "review-of-the-cat-who-walks-through-walls-by-robert-a-heinlein",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Robert A. Heinlein",
+  "book": "The Cat Who Walks Through Walls",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2381",
-  "title": "Review of The Caves Of Steel by Isaac Asimov",
-  "author": "review-of-the-caves-of-steel-by-isaac-asimov",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Isaac Asimov",
+  "book": "The Caves Of Steel",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1118",
-  "title": "Review of The Chief Designer by Andy Duncan",
-  "author": "review-of-the-chief-designer-by-andy-duncan",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "Andy Duncan",
+  "book": "The Chief Designer",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=1235",
-  "title": "Review of The Children of Men by P.D. James",
-  "author": "review-of-the-children-of-men-by-pd-james",
-  "book": "",
+  "title": "Review by Jesse W",
+  "author": "P.D. James",
+  "book": "The Children of Men",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=677",
-  "title": "Review of The City, Not Long After by Pat Murphy",
-  "author": "review-of-the-city-not-long-after-by-pat-murphy",
-  "book": "",
+  "title": "Review by Kurt D",
+  "author": "Pat Murphy",
+  "book": "The City, Not Long After",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=46746",
-  "title": "Review of The Colors of Space by Marion Zimmer Bradley",
-  "author": "review-of-the-colors-of-space-by-marion-zimmer-bradley",
-  "book": "",
+  "title": "Review by Tom S",
+  "author": "Marion Zimmer Bradley",
+  "book": "The Colors of Space",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=2714",
-  "title": "Review of The Communion Of The Saint by Alan David Justice",
-  "author": "review-of-the-communion-of-the-saint-by-alan-david-justice",
-  "book": "",
+  "title": "Review by Julie D",
+  "author": "Alan David Justice",
+  "book": "The Communion Of The Saint",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=54544",
-  "title": "Review of The Companions by R.A. Salvatore",
-  "author": "54544",
-  "book": "",
+  "title": "Review by Sarah R",
+  "author": "R.A. Salvatore",
+  "book": "The Companions",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=185",
-  "title": "Review of The Consciousness Plague by Paul Levinson",
-  "author": "the-consciousness-plague-by-paul-levinson-read-by",
-  "book": "",
+  "title": "Review by Mike H",
+  "author": "Paul Levinson",
+  "book": "The Consciousness Plague",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=45063",
-  "title": "Review of The Corpse-Rat King",
-  "author": "review-of-the-corpse-rat-king",
-  "book": "",
+  "title": "Review by Paul C",
+  "author": "Angry Robot",
+  "book": "The Corpse-Rat King",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=48355",
-  "title": "Review of The Crack in Space by Philip K. Dick",
-  "author": "review-of-the-crack-in-space-by-philip-k-dick",
-  "book": "",
+  "title": "Review by Dan VK",
+  "author": "Philip K. Dick",
+  "book": "The Crack In Space",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=18301",
-  "title": "Review of The Crossroads by L. Ron Hubbard",
-  "author": "review-of-the-crossroads-by-l-ron-hubbard",
-  "book": "",
+  "title": "Review by Scott D",
+  "author": "L. Ron Hubbard",
+  "book": "The Crossroads",
   "": ""
  },
  {
   "id": "http://www.sffaudio.com/?p=49595",
-  "title": "Review of The Crown Tower by Michael J. Sullivan",
-  "author": "review-of-the-crown-tower-by-michael-j-sullivan",
+  "title": "Review by Tom S",
+  "author": "Michael J. Sullivan",
+  "book": "The Crown Tower",
+  "": ""
+ },
+ {
+  "id": "http://www.sffaudio.com/?p=31862",
+  "title": "Review by Jesse W",
+  "author": "Philip K. Dick",
+  "book": "Piper In The Woods",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
+  "book": "",
+  "": ""
+ },
+ {
+  "id": "",
+  "title": "",
+  "author": "",
   "book": "",
   "": ""
  },
@@ -23937,7 +23937,7 @@
   "title": "",
   "author": "",
   "book": "",
-  "": "piper-in-the-woods-by-philip-k-dick-2"
+  "": ""
  },
  {
   "id": "",

@@ -11,6 +11,81 @@ module.exports = function (obj_dir) {
     var post_obj_file = obj_dir + 'posts-obj.js';
 
 
+    function makeEdgesNodes(media_items, build_repository) {
+        var podcast_build = rootAppRequire('./sff-network/build-nodes/media-types/podcast-build')(build_repository)
+        var rsd_build = rootAppRequire('./sff-network/build-nodes/media-types/rsd-build')(build_repository)
+        var pdf_build = rootAppRequire('./sff-network/build-nodes/media-types/pdf-build')(build_repository)
+        var AuthorBuild = rootAppRequire('./sff-network/build-nodes/media-types/author-build')(build_repository)
+        var author_build = new AuthorBuild();
+        var book_build = rootAppRequire('./sff-network/build-nodes/media-types/book-build')(build_repository)
+        let {book_list, author_list, podcast_descriptions, pdf_descriptions, rsd_descriptions}= media_items;
+        let story_wikis = book_build.findStoryWiki(pdf_descriptions);
+        let author_wikis = author_build.findAuthorWiki(pdf_descriptions);
+        let podcast_info = podcast_build.findPodcastInfo(podcast_descriptions);
+        let pdf_info = pdf_build.findPdfBooks(pdf_descriptions);
+        let rsd_info = rsd_build.findRsdBooks(rsd_descriptions);
+        for (let title_with_authors in  book_list) {
+            var under_title = book_list[title_with_authors].under_title;
+            var start_articles_reg_ex = /^(a_|an_|the_)/i;
+            var book_articles = under_title.split(start_articles_reg_ex)
+            if (book_articles.length > 1) {
+                var sorted_label = book_articles[2]
+            } else {
+                var sorted_label = book_articles[0]
+            }
+            book_list[title_with_authors].sorted_label = sorted_label;
+        }
+        const media_data = {book_list, author_list, story_wikis, author_wikis, podcast_info, pdf_info, rsd_info};
+        return media_data;
+    }
+
+
+
+    function buildPodcasts_b_8(build_repository, show_or_hide_seconds) {
+        var start_date = Date.now();
+        var podcast_build = rootAppRequire('./sff-network/build-nodes/media-types/podcast-build')(build_repository)
+        return allPdfRsdPodcastData(build_repository)
+            .then((media_items) => {
+                let {podcast_info} = media_items;
+                return podcast_build.addPodcasts(podcast_info)
+                    .then(()=> misc_helper.consoleTimeEnd(start_date, "buildPodcasts_b_8", show_or_hide_seconds))
+            })
+    }
+
+
+
+
+
+
+
+
+    function allPdfRsdPodcastData(build_repository) {
+        var rsd_csv = require(rsd_file);
+        var podcast_csv = require(podcast_file);
+        var pdf_csv = require(pdf_file);
+
+        const read_csv_google = rootAppRequire('sff-network/build-nodes/read-csv-google')(build_repository);
+
+        return read_csv_google.getFromCsvFile(podcast_csv, rsd_csv, pdf_csv)
+            .then((media_items) => {
+                return makeEdgesNodes(media_items, build_repository);
+            })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function buildAllAuthors_b_2(build_repository, show_or_hide_seconds) {
         var start_date = Date.now();
         var AuthorBuild = rootAppRequire('./sff-network/build-nodes/media-types/author-build')(build_repository)
@@ -43,18 +118,7 @@ module.exports = function (obj_dir) {
     }
 
 
-    function allPdfRsdPodcastData(build_repository) {
-        var rsd_csv = require(rsd_file);
-        var podcast_csv = require(podcast_file);
-        var pdf_csv = require(pdf_file);
 
-        const read_csv_google = rootAppRequire('sff-network/build-nodes/read-csv-google')(build_repository);
-
-        return read_csv_google.getFromCsvFile(podcast_csv, rsd_csv, pdf_csv)
-            .then((media_items) => {
-                return makeEdgesNodes(media_items, build_repository);
-            })
-    }
 
     function linkPdfToBook_c_1(build_repository, show_or_hide_seconds) {
         var start_date = Date.now();
@@ -132,16 +196,7 @@ module.exports = function (obj_dir) {
 
 ////////////////////
 
-    function buildPodcasts_b_8(build_repository, show_or_hide_seconds) {
-        var start_date = Date.now();
-        var podcast_build = rootAppRequire('./sff-network/build-nodes/media-types/podcast-build')(build_repository)
-        return allPdfRsdPodcastData(build_repository)
-            .then((media_items) => {
-                let {podcast_info} = media_items;
-                return podcast_build.addPodcasts(podcast_info)
-                    .then(()=> misc_helper.consoleTimeEnd(start_date, "buildPodcasts_b_8", show_or_hide_seconds))
-            })
-    }
+
 
 
     function buildPdfs_b_9(build_repository, show_or_hide_seconds) {
@@ -170,34 +225,7 @@ module.exports = function (obj_dir) {
 ////////////////////
 
 
-    function makeEdgesNodes(media_items, build_repository) {
-        var podcast_build = rootAppRequire('./sff-network/build-nodes/media-types/podcast-build')(build_repository)
-        var rsd_build = rootAppRequire('./sff-network/build-nodes/media-types/rsd-build')(build_repository)
-        var pdf_build = rootAppRequire('./sff-network/build-nodes/media-types/pdf-build')(build_repository)
-        var AuthorBuild = rootAppRequire('./sff-network/build-nodes/media-types/author-build')(build_repository)
-        var author_build = new AuthorBuild();
-        var book_build = rootAppRequire('./sff-network/build-nodes/media-types/book-build')(build_repository)
-        let {book_list, author_list, podcast_descriptions, pdf_descriptions, rsd_descriptions}= media_items;
-        let story_wikis = book_build.findStoryWiki(pdf_descriptions);
-        let author_wikis = author_build.findAuthorWiki(pdf_descriptions);
-        let podcast_info = podcast_build.findPodcastInfo(podcast_descriptions);
-        let pdf_info = pdf_build.findPdfBooks(pdf_descriptions);
-        let rsd_info = rsd_build.findRsdBooks(rsd_descriptions);
-        for (let title_with_authors in  book_list) {
-            var under_title = book_list[title_with_authors].under_title;
-            var start_articles_reg_ex = /^(a_|an_|the_)/i;
-            var book_articles = under_title.split(start_articles_reg_ex)
-            if (book_articles.length > 1) {
-                var sorted_label = book_articles[2]
-            } else {
-                var sorted_label = book_articles[0]
-            }
-            book_list[title_with_authors].sorted_label = sorted_label;
-        }
-        const media_data = {book_list, author_list, story_wikis, author_wikis, podcast_info, pdf_info, rsd_info};
-        return media_data;
-    }
-
+   
 
     function nextDbVersion_d_2(VersionRepository, next_db_version, show_or_hide_seconds) {
         var start_date = Date.now();

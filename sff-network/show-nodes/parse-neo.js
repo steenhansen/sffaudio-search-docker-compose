@@ -3,9 +3,6 @@
 
 require('../../sff-network/global-require')
 
-//console.log('global.rootAppRequire 11', rootAppRequire)
-
-
 function sortByValues(node_hash) {
     let the_nodes = Object.values(node_hash);
     the_nodes.sort(function (a, b) {

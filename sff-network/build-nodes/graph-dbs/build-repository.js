@@ -92,11 +92,11 @@ module.exports = class BuildRepository {
         return this.addVersionSql(sql, params);
     }
 
-    insertAPodcast(podcast_title, under_title, podcast_link, podcast_id, last_first_underscores) {
+    insertAPodcast(podcast_title, under_title, podcast_link, podcast_id, last_first_underscores, podcast_description) {
         var sql = `WITH {db_version} AS v_db_version
            MERGE (n_podcast:L_PODCAST { podcast_title: {podcast_title}, 	under_title : {under_title}, podcast_url : {podcast_link}, podcast_id : {podcast_id},
-            last_first_underscores : {last_first_underscores},db_version:v_db_version})`;
-        var params = {podcast_title, under_title, podcast_link, podcast_id, last_first_underscores};
+            last_first_underscores : {last_first_underscores}, podcast_description : {podcast_description},  db_version:v_db_version})`;
+        var params = {podcast_title, under_title, podcast_link, podcast_id, last_first_underscores, podcast_description };
         return this.addVersionSql(sql, params);
     }
 

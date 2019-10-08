@@ -1,4 +1,3 @@
-
 # SFFaudio-Search
 
 [SFFaudio-Search](https://sffaudio-search.herokuapp.com/) is a single page Node.js app that is injected into [SFFaudio.com](https://www.sffaudio.com/)'s WordPress [search](https://www.sffaudio.com/search/) page.
@@ -28,15 +27,19 @@ Four blog posts, a PDF, an RSD, an MP3, a Wikipedia story link, and a link back 
 #### After clicking on "RSD # 7" a user can play the associated MP3 while reading along with the PDF:
 ![visual explanation](https://github.com/steenhansen/sffaudio-search/blob/master/beyond-the-wub-rsd.png)
 
-
+To download dependencies:
+    > npm install
  
 To start the webserver:
     
-    >node server-local config.local-neo4j-YOURS.js
+    > node server-local config.local-neo4j-YOURS.js
 
 To populate the database from Google Sheets:
 
-    >node reload-local config.local-neo4j-YOURS.js 
+    > node reload-local config.local-neo4j-YOURS.js 
+
+To view books, authors, pdfs, podcasts:
+    http://localhost:5000/
 
 
 ## [Smoke Tests](/readme-smoke-tests.md)
@@ -45,3 +48,5 @@ To populate the database from Google Sheets:
 ## Created by
 
 [Steen Hansen](https://github.com/steenhansen)
+
+
