@@ -211,15 +211,16 @@ module.exports = function the_widget(nodes_object, edges_object, graph_object, r
     
     ${search_from_wordpress}
     
-      if (sff_js_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
+    if (window.sff_php_vars.js_is_desktop) {
+        if (sff_js_vars.graph_vars.graph_info.graph_type === '${AUTHOR_PAGE_TYPE}') {
             sff_js_vars.filter_names.colorAuthors();
-     } else {
-             sff_js_vars.filter_names.colorBooks();
-     }
-     sff_js_vars.graph_procs.doGraph(sff_php_vars.php_search);
-    
-     sff_js_vars.vars_events.wordPressSearch(sff_php_vars.php_search);
-   
+        } else {
+            sff_js_vars.filter_names.colorBooks();
+        }
+        sff_js_vars.graph_procs.doGraph(sff_php_vars.php_search);
+        sff_js_vars.vars_events.wordPressSearch(sff_php_vars.php_search);
+    }
+     
 // jsloader-css end    
 
 </script>
