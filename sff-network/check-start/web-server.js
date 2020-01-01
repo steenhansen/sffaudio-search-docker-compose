@@ -27,7 +27,7 @@ app.get(graph_constants.ROUTE_ERASE_CACHES, function (req, res, next) {
 app.get(graph_constants.ROUTE_WAKE_UP, function (req, res, next) {
     serverResponse.wakeUpSleepingDb()
         .then((db_version)=> {
-            var wake_up_message = "current db version = " + db_version
+            var wake_up_message = "<h6>current db version = " + db_version +"</h6>"      // so Clojure's Enlive can count 
             res.send(wake_up_message)
         })
         .catch(next);
