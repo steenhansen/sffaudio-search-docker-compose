@@ -1156,12 +1156,12 @@
           "integrity": "sha1-8Pm4zpLdVA+gdAiC44NaLgIux4o="
         },
         "set-value": {
-
-          "version": "3.0.1",
-          "resolved": "https://registry.npmjs.org/set-value/-/set-value-3.0.1.tgz",
-          "integrity": "sha512-w6n3GUPYAWQj4ZyHWzD7K2FnFXHx9OTwJYbWg+6nXjG8sCLfs9DGv+KlqglKIIJx+ks7MlFuwFW2RBPb+8V+xg==",
+          "version": "0.2.0",
+          "resolved": "https://registry.npmjs.org/set-value/-/set-value-0.2.0.tgz",
+          "integrity": "sha1-c7CmglwVjGoWqCu9yVd1vyqCX6s=",
           "requires": {
-            "is-plain-object": "^2.0.4"
+            "isobject": "^1.0.0",
+            "noncharacters": "^1.1.0"
           }
         }
       }
@@ -1696,9 +1696,9 @@
       }
     },
     "lodash": {
-      "version": "4.17.15",
-      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz",
-      "integrity": "sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A=="
+      "version": "4.17.19",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.19.tgz",
+      "integrity": "sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ=="
     },
     "log-symbols": {
       "version": "2.2.0",
