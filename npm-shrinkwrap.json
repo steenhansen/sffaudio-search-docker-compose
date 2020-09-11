@@ -1156,12 +1156,12 @@
           "integrity": "sha1-8Pm4zpLdVA+gdAiC44NaLgIux4o="
         },
         "set-value": {
-
-          "version": "3.0.1",
-          "resolved": "https://registry.npmjs.org/set-value/-/set-value-3.0.1.tgz",
-          "integrity": "sha512-w6n3GUPYAWQj4ZyHWzD7K2FnFXHx9OTwJYbWg+6nXjG8sCLfs9DGv+KlqglKIIJx+ks7MlFuwFW2RBPb+8V+xg==",
+          "version": "0.2.0",
+          "resolved": "https://registry.npmjs.org/set-value/-/set-value-0.2.0.tgz",
+          "integrity": "sha1-c7CmglwVjGoWqCu9yVd1vyqCX6s=",
           "requires": {
-            "is-plain-object": "^2.0.4"
+            "isobject": "^1.0.0",
+            "noncharacters": "^1.1.0"
           }
         }
       }
@@ -2106,9 +2106,9 @@
       }
     },
     "node-fetch": {
-      "version": "2.6.0",
-      "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.0.tgz",
-      "integrity": "sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA=="
+      "version": "2.6.1",
+      "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.1.tgz",
+      "integrity": "sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw=="
     },
     "noncharacters": {
       "version": "1.1.0",
