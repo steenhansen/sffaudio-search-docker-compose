@@ -1156,12 +1156,12 @@
           "integrity": "sha1-8Pm4zpLdVA+gdAiC44NaLgIux4o="
         },
         "set-value": {
-
-          "version": "3.0.1",
-          "resolved": "https://registry.npmjs.org/set-value/-/set-value-3.0.1.tgz",
-          "integrity": "sha512-w6n3GUPYAWQj4ZyHWzD7K2FnFXHx9OTwJYbWg+6nXjG8sCLfs9DGv+KlqglKIIJx+ks7MlFuwFW2RBPb+8V+xg==",
+          "version": "0.2.0",
+          "resolved": "https://registry.npmjs.org/set-value/-/set-value-0.2.0.tgz",
+          "integrity": "sha1-c7CmglwVjGoWqCu9yVd1vyqCX6s=",
           "requires": {
-            "is-plain-object": "^2.0.4"
+            "isobject": "^1.0.0",
+            "noncharacters": "^1.1.0"
           }
         }
       }
@@ -1426,9 +1426,9 @@
       "integrity": "sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4="
     },
     "ini": {
-      "version": "1.3.5",
-      "resolved": "https://registry.npmjs.org/ini/-/ini-1.3.5.tgz",
-      "integrity": "sha512-RZY5huIKCMRWDUqZlEi72f/lmXKMvuszcMBduliQ3nnWbx9X/ZBQO7DijMEYS9EhHBb2qacRUMtC7svLwe0lcw=="
+      "version": "1.3.7",
+      "resolved": "https://registry.npmjs.org/ini/-/ini-1.3.7.tgz",
+      "integrity": "sha512-iKpRpXP+CrP2jyrxvg1kMUpXDyRUFDWurxbnVT1vQPx+Wz9uCYsMIqYuSBLV+PAaZG/d7kRLKRFc9oDMsH+mFQ=="
     },
     "ipaddr.js": {
       "version": "1.9.0",
