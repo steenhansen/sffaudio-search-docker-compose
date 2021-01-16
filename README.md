@@ -48,11 +48,11 @@ Enter /server-content/ | *cd server-content*
 Launch program | *run-test-large&period;sh*
 View Neo4j database | *http://localhost:27474/browser*
 &nbsp; | Connect URL
-&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    *bolt://localhost:27687*
+&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://localhost:27687**
 &nbsp; | Username
-&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    *neo4j*
+&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **neo4j**
 &nbsp; | Password
-&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    *yer_password*
+&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **yer_password**
 View web page | http://localhost/ 
 
 If Neo4j has issues starting, then check /server-content/neo4j-data/logs/debug.log has 777 permissions.
@@ -63,8 +63,8 @@ If Neo4j has issues starting, then check /server-content/neo4j-data/logs/debug.l
 Steps | &nbsp;
 ------------ | -------------
 Create a Linode | [Make](https://cloud.linode.com/linodes/create) a 1GB Debian 10 Nanode
-FTP files to server | Copy local /server-content/ to /root/server-content/
-Set install files to be executable | install-1-docker-ce&period;sh & install-2-docker-compose&period;sh & install-3-check&period;sh
+FTP files to server | Copy local **/server-content/** to **/root/server-content/**
+Set install files to be executable | **install-1-docker-ce&period;sh** & **install-2-docker-compose&period;sh** & **install-3-check&period;sh**
 ssh into server | ssh root@192.53.120.71
 Enter /server-content/ | cd /root/server-content/
 Install Docker | ./install-1-docker-ce.sh
@@ -72,14 +72,14 @@ Install Docker-Compose | ./install-2-docker-compose.sh
 Launch program | ./run-test-small.sh
 View Neo4j database | http://192.53.120.71:27474/browser
 &nbsp; | Connect URL
-&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    *bolt://192.53.120.71:27687*
+&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://192.53.120.71:27687**
 &nbsp; | Username
-&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    *neo4j*
+&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **neo4j**
 &nbsp; | Password
-&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    *yer_password*
+&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **yer_password**
 View web page | http://192.53.120.71
 
-If run-production&period;sh is used to launch program, instead of run-test-small&period;sh then then there will be no Neo4j database browser at http://192.53.120.71:27474/browser
+If **run-production&period;sh** is used to launch program, instead of **run-test-small&period;sh** then then there will be no Neo4j database browser at http://192.53.120.71:27474/browser
 
 
 
