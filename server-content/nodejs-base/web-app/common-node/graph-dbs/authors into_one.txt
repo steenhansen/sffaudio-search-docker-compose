@@ -1,0 +1,484 @@
+
+1 record
+WITH 'philip_k_dick' AS v_strip_author 
+                        MATCH (n_root:L_ROOT)-[r_root_to_letter:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                          -[r_author_to_letter:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+                      WHERE n_author.strip_author=v_strip_author
+                          OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+                      RETURN *
+
+
+
+
+
+////////////////////
+
+
+WITH 'philip_k_dick' AS v_strip_author
+                        MATCH ()-[x:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                      WHERE n_book.strip_1_author=v_strip_author OR n_book.strip_2_author=v_strip_author
+                      RETURN *
+UNION
+
+
+ WITH 'philip_k_dick' AS v_strip_author
+                        MATCH ()-[x:L_AUTHOR_TO_POST]-  (n_book:L_AUTHOR_POST)
+                      WHERE n_book.strip_author=v_strip_author
+                      RETURN *  
+
+
+/////////////////////
+WITH 'philip_k_dick' AS v_strip_author
+                        MATCH ()-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                      WHERE n_book.strip_1_author=v_strip_author OR n_book.strip_2_author=v_strip_author
+                      RETURN *
+UNION
+
+
+ WITH 'philip_k_dick' AS v_strip_author
+                        MATCH ()-[:L_AUTHOR_TO_POST]-  (n_book:L_AUTHOR_POST)
+                      WHERE n_book.strip_author=v_strip_author
+                      RETURN *  
+
+
+
+/////////////////////
+WITH 'philip_k_dick' AS v_strip_author
+                        MATCH ()-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+                      RETURN *
+UNION
+
+
+ WITH 'philip_k_dick' AS v_strip_author
+                        MATCH ()-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+                      WHERE n_book_or_post.strip_author=v_strip_author
+                      RETURN *  
+
+
+
+
+///////////////////// below good
+WITH 'philip_k_dick' AS v_strip_author
+                        MATCH ()-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+                      RETURN *
+UNION
+
+
+ WITH 'philip_k_dick' AS v_strip_author
+                        MATCH ()-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+                      WHERE n_book_or_post.strip_author=v_strip_author
+                      RETURN *  
+
+
+
+
+
+
+/////////////////////
+
+
+
+
+
+
+WITH 'philip_k_dick' AS v_strip_author 
+                      MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                          -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+                      WHERE n_author.strip_author=v_strip_author
+                          OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+                      RETURN n_author,n_author_wiki,n_letter,n_root
+
+///////////////////// below good
+WITH 'philip_k_dick' AS v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+                      RETURN n_book_or_post
+UNION
+
+
+ WITH 'philip_k_dick' AS v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+                      WHERE n_book_or_post.strip_author=v_strip_author
+                      RETURN n_book_or_post 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////
+
+
+
+
+
+
+WITH 'philip_k_dick' AS v_strip_author 
+                      MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                          -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+                      WHERE n_author.strip_author=v_strip_author
+                          OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+
+                      RETURN n_author,n_author_wiki,n_letter,n_root, n_book_or_post
+
+///////////////////// below good
+WITH 'philip_k_dick' AS v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+                      RETURN n_book_or_post
+UNION
+
+
+ WITH 'philip_k_dick' AS v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+                      WHERE n_book_or_post.strip_author=v_strip_author
+                      RETURN n_book_or_post 
+
+
+
+
+
+
+WITH 'philip_k_dick' AS v_strip_author 
+                      MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                          -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+                      WHERE n_author.strip_author=v_strip_author
+                          OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                      WHERE n_book.strip_1_author=v_strip_author OR n_book.strip_2_author=v_strip_author
+
+                      RETURN n_author,n_author_wiki,n_letter,n_root, n_book
+
+
+
+
+
+WITH 'philip_k_dick' AS v_strip_author 
+                      MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                          -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+                      WHERE n_author.strip_author=v_strip_author
+                          OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+
+OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+                      WHERE n_book_or_post.strip_author=v_strip_author
+              
+
+                      RETURN n_author,n_author_wiki,n_letter,n_root, n_book_or_post
+
+////////
+
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+WHERE n_post.strip_author=v_strip_author
+WITH n_author, collect(n_post) as p_nodes
+
+//OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+//WHERE n_book.strip_1_author=v_strip_author OR n_book_or_post.n_book=v_strip_author
+//WITH n_author, collect(n_book) as b_nodes
+
+RETURN *
+
+
+
+
+
+
+
+
+////////
+
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+WHERE n_post.strip_author=v_strip_author
+  WITH n_author, collect(n_post) as p_nodes, 'philip_k_dick' AS v_strip_author
+  OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+  WHERE n_book.strip_1_author=v_strip_author OR n_book.n_book=v_strip_author
+RETURN *, collect(n_book) as b_nodes
+
+
+
+
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+WHERE n_post.strip_author=v_strip_author
+  WITH n_author, collect(n_post) as p_nodes, 'philip_k_dick' AS v_strip_author
+  OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+  WHERE n_book.strip_1_author=v_strip_author OR n_book.n_book=v_strip_author
+RETURN *, collect(n_book) as b_nodes
+
+////////////////////////////////////////////
+
+// below works
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+   WITH n_author, v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+
+return *
+
+///////////
+
+
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+   WITH n_author, v_strip_author
+    (                    MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+
+
+
+UNION
+
+
+ WITH  v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+                      WHERE n_book_or_post.strip_author=v_strip_author
+                      RETURN n_book_or_post 
+                      )
+return *
+
+
+
+////////////////////////////////////////////////////////////////////
+
+
+// below works
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+   WITH n_author, v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+  return n_book_or_post
+
+UNION
+
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+
+ WITH  n_author,v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+                      WHERE n_book_or_post.strip_author=v_strip_author
+                      RETURN n_book_or_post 
+                      
+////////////////////////////////////////////////////////////////////
+
+
+// below works
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+   WITH n_author_wiki, v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+  return n_author_wiki, n_book_or_post
+
+UNION
+
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+
+ WITH  n_author_wiki,v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+                      WHERE n_book_or_post.strip_author=v_strip_author
+                      RETURN n_author_wiki, n_book_or_post 
+
+
+
+////////////////////////////////////////////////////////////////////
+
+
+// below works
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+   WITH n_letter, n_author_wiki, v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+                      WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+  return v_strip_author, n_letter.first_char, n_author_wiki, n_book_or_post
+
+UNION
+
+WITH 'philip_k_dick' AS v_strip_author 
+MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                     -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+
+
+ WITH  n_letter, n_author_wiki,v_strip_author
+                        MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+                      WHERE n_book_or_post.strip_author=v_strip_author
+                      RETURN v_strip_author, n_letter.first_char,n_author_wiki, n_book_or_post 
+
+////////////////////////////////////////////////////////////////////
+
+
+// below works
+          WITH 'philip_k_dick' AS v_strip_author 
+         MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                              -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+         WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+              WITH n_root, n_letter, n_author_wiki, v_strip_author
+             MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+             WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+             RETURN n_root.root_caption, v_strip_author, n_letter.first_char, n_author_wiki.author_url, n_book_or_post
+UNION
+          WITH 'philip_k_dick' AS v_strip_author 
+         MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                              -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+         WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+              WITH  n_root, n_letter, n_author_wiki,v_strip_author
+             MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+             WHERE n_book_or_post.strip_author=v_strip_author
+            RETURN n_root.root_caption, v_strip_author, n_letter.first_char,n_author_wiki.author_url, n_book_or_post 
+
+
+
+          WITH 'philip_k_dick' AS v_strip_author 
+         MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                              -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+         WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+              WITH n_root, n_letter, n_author_wiki, v_strip_author
+             MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+             WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+             RETURN n_root, n_author, n_letter, n_author_wiki, n_book_or_post
+UNION
+          WITH 'philip_k_dick' AS v_strip_author 
+         MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                              -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+         WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+              WITH  n_root, n_letter, n_author_wiki,v_strip_author
+             MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+             WHERE n_book_or_post.strip_author=v_strip_author
+            RETURN n_root, n_author, n_letter,n_author_wiki, n_book_or_post 
+
+
+
+
+//// have duplicate authors          
+
+          WITH 'philip_k_dick' AS v_strip_author 
+         MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                              -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+         WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+              WITH n_root, n_letter, n_author_wiki, v_strip_author
+             MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+             WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+             RETURN n_root, n_author, n_letter, n_author_wiki, n_book_or_post
+UNION
+          WITH 'philip_k_dick' AS v_strip_author 
+         MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                              -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+         WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+              WITH  n_root, n_letter, n_author_wiki,v_strip_author
+             MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+             WHERE n_book_or_post.strip_author=v_strip_author
+            RETURN n_root, n_author, n_letter,n_author_wiki, n_book_or_post 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          WITH 'philip_k_dick' AS v_strip_author 
+         MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                              -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+         WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+              WITH n_root, n_letter, n_author_wiki, v_strip_author
+             MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book_or_post:L_BOOK)
+             WHERE n_book_or_post.strip_1_author=v_strip_author OR n_book_or_post.strip_2_author=v_strip_author
+             RETURN n_root, n_author, n_letter, n_author_wiki, n_book_or_post
+UNION
+          WITH 'philip_k_dick' AS v_strip_author 
+         MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                              -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+         WHERE n_author.strip_author=v_strip_author
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+              WITH  n_root, n_letter, n_author_wiki,v_strip_author
+             MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_book_or_post:L_AUTHOR_POST)
+             WHERE n_book_or_post.strip_author=v_strip_author
+            RETURN n_root, n_author, n_letter,n_author_wiki, n_book_or_post 
+
+
+            
+

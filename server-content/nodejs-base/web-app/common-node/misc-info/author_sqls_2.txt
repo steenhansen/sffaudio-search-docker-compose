@@ -1,0 +1,88 @@
+				        MATCH (n_version:L_VERSION) 
+			            RETURN '' AS r_author_to__, '' AS r_author_to_wiki, '' AS n_author, '' AS n_author_wiki, '' AS n_book_or_post,
+			                   n_version.current_version AS v_new_db_version
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_author.strip_author IN n_book.last_first_underscores
+                           AND n_author.db_version=v_new_db_version
+                        RETURN r_author_to__, '' AS r_author_to_wiki, n_author, '' AS n_author_wiki, n_book AS n_book_or_post, v_new_db_version
+              UNION             
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_author.db_version=v_new_db_version
+                        RETURN '' AS r_author_to__, r_author_to_wiki, n_author,  n_author_wiki, '' AS n_book_or_post, v_new_db_version
+               UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_post.strip_author=v_strip_author
+                           AND n_post.db_version=v_new_db_version
+                        RETURN r_author_to__, '' AS r_author_to_wiki, n_author, '' AS n_author_wiki, n_post AS n_book_or_post, v_new_db_version 
+						
+		
+{strip_author}
+
+				        MATCH (n_version:L_VERSION) 
+			            RETURN '' AS r_author_to__, '' AS r_author_to_wiki, '' AS n_author, '' AS n_author_wiki, '' AS n_book_or_post,
+			                   n_version.current_version AS v_new_db_version
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, {strip_author} AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_author.strip_author IN n_book.last_first_underscores
+                           AND n_author.db_version=v_new_db_version
+                        RETURN r_author_to__, '' AS r_author_to_wiki, n_author, '' AS n_author_wiki, n_book AS n_book_or_post, v_new_db_version
+              UNION             
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, {strip_author} AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_author.db_version=v_new_db_version
+                        RETURN '' AS r_author_to__, r_author_to_wiki, n_author,  n_author_wiki, '' AS n_book_or_post, v_new_db_version
+               UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, {strip_author} AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_post.strip_author=v_strip_author
+                           AND n_post.db_version=v_new_db_version
+                        RETURN r_author_to__, '' AS r_author_to_wiki, n_author, '' AS n_author_wiki, n_post AS n_book_or_post, v_new_db_version 
+
+
+///////////////////////////////////
+				        MATCH (n_version:L_VERSION) 
+			            RETURN '' AS r_author_to__, '' AS r_author_to_wiki, '' AS n_author, '' AS n_author_wiki, '' AS n_book_or_post,
+			                   n_version.current_version AS v_new_db_version
+				UNION
+                          WITH 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_author.strip_author IN n_book.last_first_underscores
+                           AND n_author.db_version=v_new_db_version
+                        RETURN r_author_to__, '' AS r_author_to_wiki, n_author, '' AS n_author_wiki, n_book AS n_book_or_post, v_new_db_version
+              UNION             
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_author.db_version=v_new_db_version
+                        RETURN '' AS r_author_to__, r_author_to_wiki, n_author,  n_author_wiki, '' AS n_book_or_post, v_new_db_version
+               UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_post.strip_author=v_strip_author
+                           AND n_post.db_version=v_new_db_version
+                        RETURN r_author_to__, '' AS r_author_to_wiki, n_author, '' AS n_author_wiki, n_post AS n_book_or_post, v_new_db_version 
+						
+						
+						
+						

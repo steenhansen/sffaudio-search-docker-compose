@@ -1,0 +1,168 @@
+philip_k_dick
+
+
+
+				MATCH (n_version:L_VERSION) 
+			            RETURN 1 AS r_author_to__, 2 AS r_author_to_wiki, 3 AS n_author, 4 AS n_author_wiki, n_version AS n_book_or_post
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_author.strip_author IN n_book.last_first_underscores
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN r_author_to__, r_author_to_wiki, n_author,  n_author_wiki, n_book AS n_book_or_post
+               UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[r_author_to__:L_AUTHOR_TO_POST]-  (n_post:L_AUTHOR_POST)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_post.strip_author=v_strip_author
+                           AND n_post.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN r_author_to__, r_author_to_wiki, n_author, n_author_wiki, n_post AS n_book_or_post  
+						
+						
+						
+				MATCH (n_version:L_VERSION) 
+			            RETURN  3 AS n_author, 4 AS n_author_wiki, n_version AS n_book_or_post
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_author.strip_author IN n_book.last_first_underscores
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN  n_author,  n_author_wiki, n_book AS n_book_or_post
+               UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_post:L_AUTHOR_POST)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_post.strip_author=v_strip_author
+                           AND n_post.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN n_author, n_author_wiki, n_post AS n_book_or_post  
+						
+						
+						
+						
+						
+						 MATCH (n_version:L_VERSION) 
+			            RETURN 'Get db_version when no matching author' AS n_author,
+      						   42 AS n_author_wiki, 99 AS n_book_or_post, n_version.current_version AS v_new_db_version
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_author.strip_author IN n_book.last_first_underscores
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN n_author,  n_author_wiki, n_book AS n_book_or_post, v_new_db_version
+               UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_post:L_AUTHOR_POST)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_post.strip_author=v_strip_author
+                           AND n_post.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN n_author, n_author_wiki, n_post AS n_book_or_post, v_new_db_version
+						
+						
+						
+						
+						
+						MATCH (n_version:L_VERSION) 
+			            RETURN 'Get db_version when no matching author' AS n_author,
+      						   42 AS n_author_wiki, 99 AS n_book_or_post, n_version.current_version AS v_new_db_version
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_author.strip_author IN n_book.last_first_underscores
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN n_author, n_author_wiki, n_book AS n_book_or_post, v_new_db_version
+               UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+                         WHERE n_author.strip_author=v_strip_author
+                           AND n_post.strip_author=v_strip_author
+                           AND n_post.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN n_author, n_author_wiki, n_post AS n_book_or_post, v_new_db_version
+
+
+
+
+
+//// good /////////////////						
+						MATCH (n_version:L_VERSION) 
+			            RETURN 'Get db_version when no matching author' AS n_author,
+      						   42 AS n_author_wiki, 99 AS n_book_or_post, n_version.current_version AS v_new_db_version
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+						   AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN n_author, n_author_wiki, n_book AS n_book_or_post, v_new_db_version
+               UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+                         WHERE n_author.strip_author=v_strip_author
+						   AND n_post.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN n_author, n_author_wiki, n_post AS n_book_or_post, v_new_db_version		
+
+
+						MATCH (n_version:L_VERSION) 
+			            RETURN 'Get db_version when no matching author' AS n_author,
+      						   '_42' AS n_author_wiki, '_99' AS n_book_or_post, n_version.current_version AS v_new_db_version
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+						   AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN n_author, n_author_wiki, n_book AS n_book_or_post, v_new_db_version
+               UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+                         WHERE n_author.strip_author=v_strip_author
+						   AND n_post.db_version=v_new_db_version
+                        RETURN n_author, '_71' AS n_author_wiki, n_post AS n_book_or_post, v_new_db_version		
+
+						
+						
+	MATCH (n_version:L_VERSION) 
+			            RETURN '' AS n_author, '' AS n_author_wiki, '' AS n_book_or_post,
+			                   n_version.current_version AS v_new_db_version
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_author.strip_author=v_strip_author
+						   AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+                        RETURN n_author, n_author_wiki, n_book AS n_book_or_post, v_new_db_version
+               UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'philip_k_dick' AS v_strip_author
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+                         WHERE n_author.strip_author=v_strip_author
+						   AND n_post.db_version=v_new_db_version
+                        RETURN n_author, '' AS n_author_wiki, n_post AS n_book_or_post, v_new_db_version		
+                        
+                        
+                        					

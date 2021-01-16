@@ -1,0 +1,32 @@
+
+# Production, no databse initialization, real db, with NO db browser:
+# docker-compose -f docker-compose.yml -f docker-compose.override.yml  config 
+
+
+ version: "3.9"  
+
+ services:
+  
+  neo4j-db: 
+    ports:     
+      - published: 0                          # NO external Neo4j db browser 
+        target: ${INSIDE_NEO4J_PORT}
+      - published: 0                          # NO outside connections
+        target: ${INSIDE_BOLT_PORT} 
+        
+  node-webserver:   
+    environment:    
+      START_LOAD_DB: NO_INIT_BUILD
+
+  update-db:    
+    labels:        
+      # ALL WORK:   @hourly   @monthly   @every 59m   @every 59s   @every 1h30m   @every 1h   @every 6h   @every 123456m
+
+      # ALL WORK:   @daily      @every 780m   @every 4320m   @every 1500m           
+      # ALL FAIL:   @every 1d   @every 13h    @every 3d      @every 1d1h            use above
+      ofelia.job-exec.datecron.schedule: "@daily"     
+    environment:            
+      START_LOAD_DB: NO_INIT_BUILD
+
+
+

@@ -1,0 +1,44 @@
+
+DELETE ALL CONTAINERS & IMAGES FOR A FRESH START:
+        REM delete all containers, FIRST
+        for /F %i in ('docker ps -a -q') do docker rm -f %i
+
+        REM delete all images, SECOND
+        for /F %i in ('docker images -a -q') do docker rmi -f %i
+
+        REM show what we have
+        docker images
+        docker ps -a
+
+
+SHOW SUBSTITUTED DOCKER-COMPOSE VALUES:
+        docker-compose config
+        docker-compose -f docker-compose.yml -f docker-compose.override.yml  config 
+
+BUILD IMAGES:
+        docker build .           
+
+
+START CONTAINERS:
+        docker-compose up -d
+
+
+STOP CONTAINERS:
+        docker-compose down        
+
+
+ENTER RUNNING CONTAINER:
+    docker exec -it node__webserver    /bin/bash 
+    docker exec -it neo4j__database    /bin/bash
+    docker exec -it update__db         /bin/bash
+    docker exec -it cron__jobs         /bin/bash
+
+
+SHOW LOGS:
+    docker logs neo4j__database
+    docker logs node__webserver
+    docker logs update__db
+    docker logs cron__jobs
+
+
+

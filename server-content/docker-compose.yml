@@ -1,0 +1,91 @@
+
+#   https://docs.docker.com/compose/compose-file/compose-file-v3/
+#   https://docs.docker.com/compose/reference/up/ 
+
+
+version: "3.9"      # current Linode max    
+
+services:
+  
+  neo4j-db:   
+    env_file:
+      - .env
+      - ./secret-passwords.env  
+    image: neo4j:3.4.9                             # code was written to this version
+    container_name: neo4j__database
+    volumes:
+      - ./neo4j-data/data:/data 
+      - ./neo4j-data/logs:/logs     
+    healthcheck:
+      test: wget ${IS_NEO4J_ALIVE_YET} -O -        # -O - indicates no saved file
+      interval: 5s
+      timeout: 5s
+      retries: 123 
+
+  base-nodejs:
+    build: .
+    image: base-nodejs:base-nodejs
+    container_name: base-nodejs
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+
+  node-webserver:   
+    env_file:
+      - .env
+      - ./secret-passwords.env
+    build: .
+    image: base-nodejs:node-webserver 
+    container_name: node__webserver
+    restart: always
+    entrypoint: ["node", "/nodejs-base/web-app/node__webserver/boot-web.js"]
+    depends_on:
+      neo4j-db:
+        condition: service_healthy 
+    volumes:         
+    - ./nodejs-base/web-app/:/nodejs-base/web-app        
+    ports:       
+      - published: ${OUTSIDE_HTML_PORT}
+        target: ${INSIDE_HTML_PORT}
+    healthcheck:
+      test: wget ${CRASHED_IF_NEW_DB_AVAILABLE} -O -
+      interval: 10s
+      timeout: 10s
+      retries: 99 
+
+  update-db:          
+    env_file:
+      - .env
+      - ./secret-passwords.env
+    build: .
+    image: base-nodejs:update-db
+    container_name: update__db      
+    entrypoint: ["node", "/nodejs-base/web-app/update__db/boot-cron.js"]
+    depends_on:
+      neo4j-db:
+        condition: service_healthy    
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.datecron.schedule:    
+      ofelia.job-exec.datecron.command: wget ${UPDATE_DB_FROM_GOOGLE_SHEETS} -O -
+    volumes:         
+    - ./nodejs-base/web-app/:/nodejs-base/web-app   
+    ports:       
+      - target: ${INSIDE_CRON_PORT}
+    healthcheck:
+      test: wget ${IS_CRON_ALIVE} -O -
+      interval: 10s
+      timeout: 10s
+      retries: 102 
+
+  ofelia:
+    image: mcuadros/ofelia:latest
+    depends_on:
+      - update-db
+    container_name: cron__jobs     
+    command: daemon --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+#    logging: 
+#      driver: none
+

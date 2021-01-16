@@ -1,0 +1,334 @@
+
+
+
+   MATCH (n_version:L_VERSION) 
+			            RETURN 1 AS r_author_to_book, 2 AS r_book_to__, 3 AS r_book_wiki_to_book, 4 AS r_alls, 5 AS n_alls, 6 AS n_author,
+			                   7 AS n_book, 8 AS n_book_wiki, n_version AS n_pdf_or_rsd_or_podcast
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title  
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH r_author_to_book,r_book_wiki_to_book, n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH  (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_PDF]-(n_pdf_or_rsd_or_podcast:L_PDF)-[r_alls:L_PDF_TO_PAGES]-(n_alls:L_PAGE_PDFS)
+                         WHERE  n_author.strip_author IN n_pdf_or_rsd_or_podcast.last_first_underscores 
+                           AND n_book.db_version=v_new_db_version
+                        RETURN r_author_to_book, r_book_to__, r_book_wiki_to_book, r_alls, n_alls, n_author, n_book, n_book_wiki, n_pdf_or_rsd_or_podcast
+                UNION                    
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH r_author_to_book, r_book_wiki_to_book, n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH  (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_PODCAST]-(n_pdf_or_rsd_or_podcast:L_PODCAST)-[r_alls:L_PODCASTS_TO_PAGES]-(n_alls:L_PAGE_PODCASTS)
+                         WHERE n_book.db_version=v_new_db_version 
+                        RETURN r_author_to_book, r_book_to__, r_book_wiki_to_book, r_alls, n_alls, n_author, n_book, n_book_wiki, n_pdf_or_rsd_or_podcast            
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH r_author_to_book, r_book_wiki_to_book, n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_RSD]-(n_pdf_or_rsd_or_podcast:L_RSD) -[r_alls:L_RSDS_TO_PAGES]-(n_alls:L_PAGE_RSDS)
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN r_author_to_book, r_book_to__, r_book_wiki_to_book, r_alls, n_alls,  n_author, n_book, n_book_wiki,  n_pdf_or_rsd_or_podcast  
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH r_author_to_book, r_book_wiki_to_book, n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_POST]-(n_pdf_or_rsd_or_podcast:L_BOOK_POST)   
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN r_author_to_book, r_book_to__, r_book_wiki_to_book, 'a' as r_alls, 'b' as n_alls,  n_author, n_book, n_book_wiki,  n_pdf_or_rsd_or_podcast     
+                    
+                    
+                    
+
+
+bad                MATCH (n_version:L_VERSION) 
+			            RETURN  5 AS n_alls, 6 AS n_author,
+			                   7 AS n_book, 8 AS n_book_wiki, n_version AS n_pdf_or_rsd_or_podcast
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title  
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH  n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH  (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_PDF]-(n_pdf_or_rsd_or_podcast:L_PDF)-[r_alls:L_PDF_TO_PAGES]-(n_alls:L_PAGE_PDFS)
+                         WHERE  n_author.strip_author IN n_pdf_or_rsd_or_podcast.last_first_underscores 
+                           AND n_book.db_version=v_new_db_version
+                        RETURN n_alls, n_author, n_book, n_book_wiki, n_pdf_or_rsd_or_podcast
+                UNION                    
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH  n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH  (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_PODCAST]-(n_pdf_or_rsd_or_podcast:L_PODCAST)-[r_alls:L_PODCASTS_TO_PAGES]-(n_alls:L_PAGE_PODCASTS)
+                         WHERE n_book.db_version=v_new_db_version 
+                        RETURN  n_alls, n_author, n_book, n_book_wiki, n_pdf_or_rsd_or_podcast            
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_RSD]-(n_pdf_or_rsd_or_podcast:L_RSD) -[r_alls:L_RSDS_TO_PAGES]-(n_alls:L_PAGE_RSDS)
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN n_alls,  n_author, n_book, n_book_wiki,  n_pdf_or_rsd_or_podcast  
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH  n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_POST]-(n_pdf_or_rsd_or_podcast:L_BOOK_POST)   
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN  'b' as n_alls,  n_author, n_book, n_book_wiki,  n_pdf_or_rsd_or_podcast     
+                                        
+                      
+
+                MATCH (n_version:L_VERSION) 
+			            RETURN  5 AS n_alls, 6 AS n_author,
+			                   7 AS n_book, 8 AS n_book_wiki, n_version AS n_pdf_or_rsd_or_podcast
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title  
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH  n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH  (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_PDF]-(n_pdf_or_rsd_or_podcast:L_PDF)-[r_alls:L_PDF_TO_PAGES]-(n_alls:L_PAGE_PDFS)
+                         WHERE  n_author.strip_author IN n_pdf_or_rsd_or_podcast.last_first_underscores 
+                           AND n_book.db_version=v_new_db_version
+                        RETURN n_alls, n_author, n_book, n_book_wiki, n_pdf_or_rsd_or_podcast
+                UNION                    
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH  (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_PODCAST]-(n_pdf_or_rsd_or_podcast:L_PODCAST)-[r_alls:L_PODCASTS_TO_PAGES]-(n_alls:L_PAGE_PODCASTS)
+                         WHERE n_book.db_version=v_new_db_version 
+                        RETURN  n_alls, n_author, n_book, '' AS n_book_wiki, n_pdf_or_rsd_or_podcast            
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_RSD]-(n_pdf_or_rsd_or_podcast:L_RSD) -[r_alls:L_RSDS_TO_PAGES]-(n_alls:L_PAGE_RSDS)
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN n_alls,  n_author, n_book, '' AS n_book_wiki,  n_pdf_or_rsd_or_podcast  
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[r_book_to__:L_BOOK_TO_POST]-(n_pdf_or_rsd_or_podcast:L_BOOK_POST)   
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN  'b' as n_alls,  n_author, n_book, '' AS n_book_wiki,  n_pdf_or_rsd_or_podcast     
+              
+
+bad  MATCH (n_version:L_VERSION) 
+			            RETURN  '' AS n_alls, '' AS n_author,
+			                   'Get db_version when no matching book' AS n_book, 
+			                   '' AS n_book_wiki, n_version AS n_pdf_or_rsd_or_podcast
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title  
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH  n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH  (n_book:L_BOOK)-[:L_BOOK_TO_PDF]-(n_pdf_or_rsd_or_podcast:L_PDF)-[:L_PDF_TO_PAGES]-(n_alls:L_PAGE_PDFS)
+                         WHERE  n_author.strip_author IN n_pdf_or_rsd_or_podcast.last_first_underscores 
+                           AND n_book.db_version=v_new_db_version
+                        RETURN n_alls, n_author, n_book, n_book_wiki, n_pdf_or_rsd_or_podcast
+                UNION                    
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH  (n_book:L_BOOK)-[:L_BOOK_TO_PODCAST]-(n_pdf_or_rsd_or_podcast:L_PODCAST)-[:L_PODCASTS_TO_PAGES]-(n_alls:L_PAGE_PODCASTS)
+                         WHERE n_book.db_version=v_new_db_version 
+                        RETURN  n_alls, n_author, n_book, '' AS n_book_wiki, n_pdf_or_rsd_or_podcast            
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_RSD]-(n_pdf_or_rsd_or_podcast:L_RSD) -[:L_RSDS_TO_PAGES]-(n_alls:L_PAGE_RSDS)
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN n_alls,  n_author, n_book, '' AS n_book_wiki,  n_pdf_or_rsd_or_podcast  
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_POST]-(n_pdf_or_rsd_or_podcast:L_BOOK_POST)   
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN  '' as n_alls,  n_author, n_book, '' AS n_book_wiki,  n_pdf_or_rsd_or_podcast     
+              
+
+
+
+         MATCH (n_version:L_VERSION) 
+			            RETURN  
+			                   'Get db_version when no matching book' AS n_book, '' AS n_author,
+			                   '' AS n_book_wiki, n_version AS n_pdf_or_rsd_or_podcast, '' AS n_alls
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title  
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH  n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH  (n_book:L_BOOK)-[:L_BOOK_TO_PDF]-(n_pdf_or_rsd_or_podcast:L_PDF)-[:L_PDF_TO_PAGES]-(n_alls:L_PAGE_PDFS)
+                         WHERE  n_author.strip_author IN n_pdf_or_rsd_or_podcast.last_first_underscores 
+                           AND n_book.db_version=v_new_db_version
+                        RETURN n_book,  n_author, n_book_wiki, n_pdf_or_rsd_or_podcast, n_alls
+                UNION                    
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH  (n_book:L_BOOK)-[:L_BOOK_TO_PODCAST]-(n_pdf_or_rsd_or_podcast:L_PODCAST)-[:L_PODCASTS_TO_PAGES]-(n_alls:L_PAGE_PODCASTS)
+                         WHERE n_book.db_version=v_new_db_version 
+                        RETURN    n_book, n_author,'' AS n_book_wiki, n_pdf_or_rsd_or_podcast,      n_alls      
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_RSD]-(n_pdf_or_rsd_or_podcast:L_RSD) -[:L_RSDS_TO_PAGES]-(n_alls:L_PAGE_RSDS)
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN n_book,  n_author,  '' AS n_book_wiki,  n_pdf_or_rsd_or_podcast  , n_alls
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_POST]-(n_pdf_or_rsd_or_podcast:L_BOOK_POST)   
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN  n_book,  n_author, '' AS n_book_wiki,  n_pdf_or_rsd_or_podcast, '' as n_alls   
+
+
+
+
+
+                MATCH (n_version:L_VERSION) 
+			            RETURN 'Get db_version when no matching book' AS n_book, '' AS n_author,
+			                   '' AS n_book_wiki, n_version AS n_pdf_or_rsd_or_podcast, '' AS n_page_alls
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title  
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_PDF]-(n_pdf_or_rsd_or_podcast:L_PDF)-[:L_PDF_TO_PAGES]-(n_page_alls:L_PAGE_PDFS)
+                         WHERE n_author.strip_author IN n_pdf_or_rsd_or_podcast.last_first_underscores 
+                           AND n_book.db_version=v_new_db_version
+                        RETURN n_book, n_author, n_book_wiki, n_pdf_or_rsd_or_podcast, n_page_alls
+                UNION                    
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_PODCAST]-(n_pdf_or_rsd_or_podcast:L_PODCAST)-[:L_PODCASTS_TO_PAGES]-(n_page_alls:L_PAGE_PODCASTS)
+                         WHERE n_book.db_version=v_new_db_version 
+                        RETURN n_book, n_author,'' AS n_book_wiki, n_pdf_or_rsd_or_podcast, n_page_alls      
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_RSD]-(n_pdf_or_rsd_or_podcast:L_RSD) -[:L_RSDS_TO_PAGES]-(n_page_alls:L_PAGE_RSDS)
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN n_book, n_author, '' AS n_book_wiki, n_pdf_or_rsd_or_podcast, n_page_alls
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_POST]-(n_pdf_or_rsd_or_podcast:L_BOOK_POST)   
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN n_book, n_author, '' AS n_book_wiki, n_pdf_or_rsd_or_podcast, '' as n_page_alls
+                        
+                        
+                        
+                        
+bad                MATCH (n_version:L_VERSION) 
+			            RETURN '' AS n_book, '' AS n_author, '' AS n_book_wiki, '' AS n_pdf_or_rsd_or_podcast, '' AS n_page_alls, 
+			                    n_version.current_version AS v_new_db_version
+				UNION
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title  
+                           AND n_book.db_version=v_new_db_version
+                OPTIONAL MATCH (n_book:L_BOOK)-[:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                          WITH n_book, n_author, n_book_wiki, v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_PDF]-(n_pdf_or_rsd_or_podcast:L_PDF)-[:L_PDF_TO_PAGES]-(n_page_alls:L_PAGE_PDFS)
+                         WHERE n_author.strip_author IN n_pdf_or_rsd_or_podcast.last_first_underscores 
+                           AND n_book.db_version=v_new_db_version
+                        RETURN n_book, n_author, n_book_wiki, n_pdf_or_rsd_or_podcast, n_page_alls, v_new_db_version
+                UNION                    
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_PODCAST]-(n_pdf_or_rsd_or_podcast:L_PODCAST)-[:L_PODCASTS_TO_PAGES]-(n_page_alls:L_PAGE_PODCASTS)
+                         WHERE n_book.db_version=v_new_db_version 
+                        RETURN n_book, n_author,'' AS n_book_wiki, n_pdf_or_rsd_or_podcast, n_page_alls, v_new_db_version      
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_RSD]-(n_pdf_or_rsd_or_podcast:L_RSD) -[:L_RSDS_TO_PAGES]-(n_page_alls:L_PAGE_RSDS)
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN n_book, n_author, '' AS n_book_wiki, n_pdf_or_rsd_or_podcast, n_page_alls, v_new_db_version
+                UNION 
+                         MATCH (n_version:L_VERSION) 
+                          WITH n_version.current_version as v_new_db_version, 'deus_irae' AS v_under_title
+                         MATCH (n_author:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                         WHERE n_book.under_title = v_under_title 
+                           AND n_book.db_version=v_new_db_version
+                         MATCH (n_book:L_BOOK)-[:L_BOOK_TO_POST]-(n_pdf_or_rsd_or_podcast:L_BOOK_POST)   
+                         WHERE n_book.db_version=v_new_db_version
+                        RETURN n_book, n_author, '' AS n_book_wiki, n_pdf_or_rsd_or_podcast, '' as n_page_alls, v_new_db_version      

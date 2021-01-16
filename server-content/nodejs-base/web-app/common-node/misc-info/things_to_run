@@ -1,0 +1,72 @@
+
+ node reload-db localDb-testData-every-type.config.js
+
+ node web-server localDb-testData-every-type.config.js
+
+
+c:
+cd \Program Files (x86)\Google\Chrome\Application\
+chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+
+
+
+
+C:\Program Files (x86)\Google\Chrome\Application\chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+
+
+
+
+
+curl -H "Origin: http://localhost:5000/" --verbose https://nyc3.digitaloceanspaces.com/sffaudio-usa/usa-pdfs/BeyondTheDoorByPhilipK.Dick.pdf
+
+
+node web-server 
+
+node reload-db
+
+
+
+
+
+
+node ./the-tests/create-unit-tests ../local-config-env 
+
+node ./the-tests/run-tests 
+
+
+ 
+ 
+
+
+
+////////////////////////////node ./common-node/graph-dbs/re-load ../local-config-env 
+
+
+
+
+
+node web-server 
+node web-server ../test-config-env
+    http://localhost:5000/author/book/philip_k_dick/adjustment_team
+    
+    
+    http://localhost:5000/author/philip_k_dick
+    
+    
+    
+WITH 'abc' AS v_strip_author
+                MATCH (n_author:L_AUTHOR)
+                WHERE  n_author.strip_author = v_strip_author
+                    RETURN *
+
+
+ MERGE (n_author:L_AUTHOR { author_name: 'abc', strip_author: 'abc',
+                                       sorted_label: 'abc', db_version:1})
+
+ MERGE (n_author:L_AUTHOR { author_name: 'abc', strip_author: 'abc',
+                                       sorted_label: 'abc', db_version:2})
+
+
+
+
+

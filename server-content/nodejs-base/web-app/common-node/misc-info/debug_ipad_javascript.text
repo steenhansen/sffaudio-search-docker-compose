@@ -1,0 +1,25 @@
+
+add fire-bug lite to ipad chrome
+https://www.hongkiat.com/blog/installing-firebug-browsers-ios/
+
+
+
+
+
+
+https://stackoverflow.com/questions/20408110/debug-ipad-safari-with-a-pc
+
+For some reason, I couldn't get it to connect to my iOS device until I downloaded the
+ ios-webkit-debug-proxy-win32 program and ran it. It opens a blank Command Prompt, but after I went back to WebIDE a
+
+
+https://github.com/google/ios-webkit-debug-proxy
+
+https://scoop.sh/
+
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=34595
+
+https://www.microsoft.com/en-ca/download/confirmation.aspx?id=20858
+
+
+System Update Readiness Tool 

@@ -1,0 +1,341 @@
+
+MATCH (n) RETURN count(*)
+
+
+MATCH (n)
+ WHERE  n.strip_author = 'philip_k_dick'
+  RETURN count(*)
+
+
+
+
+ WITH 'philip_k_dick' AS v_strip_author
+                MATCH (n_author:L_AUTHOR)
+                                    
+                WHERE  n_author.strip_author = v_strip_author
+               
+                    RETURN *
+                    
+                    
+                    
+
+                MATCH (n_author:L_AUTHOR)
+                    RETURN *
+                    
+                    
+
+profile
+
+ WITH 'philip_k_dick' AS v_strip_author,  'upon_the_dull_earth' AS v_under_title
+                MATCH (n_root:L_ROOT)-[r_root_to_letter:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                                     -[r_author_to_letter:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+                                     -[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                WHERE n_book.under_title = v_under_title  AND n_author.strip_author = v_strip_author
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                    WITH n_book, n_author, n_root, n_letter, n_book_wiki, v_strip_author
+                    MATCH  (n_book:L_BOOK)-[:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+                    WHERE n_pdf.strip_1_author=v_strip_author OR n_pdf.strip_2_author=v_strip_author
+                    RETURN n_root, n_letter, n_author, n_book, n_book_wiki,  n_pdf as n_pdf_or_rsd_or_podcast
+            UNION
+                WITH 'philip_k_dick' AS v_strip_author,  'upon_the_dull_earth' AS v_under_title
+                MATCH (n_root:L_ROOT)-[r_root_to_letter:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                                     -[r_author_to_letter:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+                                     -[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                WHERE n_book.under_title = v_under_title  AND n_author.strip_author = v_strip_author
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                    WITH n_book, n_author, n_root, n_letter, n_book_wiki, v_strip_author
+                    MATCH  (n_book:L_BOOK)-[:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+                    RETURN n_root, n_letter, n_author, n_book, n_book_wiki,  n_podcast as n_pdf_or_rsd_or_podcast
+            UNION
+                WITH 'philip_k_dick' AS v_strip_author,  'upon_the_dull_earth' AS v_under_title
+                MATCH (n_root:L_ROOT)-[r_root_to_letter:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                                     -[r_author_to_letter:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+                                     -[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                WHERE n_book.under_title = v_under_title  AND n_author.strip_author = v_strip_author
+                OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+                    WITH n_book, n_author, n_root, n_letter, n_book_wiki, v_strip_author
+                    MATCH  (n_book:L_BOOK)-[:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+                    RETURN n_root, n_letter, n_author, n_book, n_book_wiki, n_rsd as n_pdf_or_rsd_or_podcast
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MATCH (n_author:L_AUTHOR)
+RETURN n_author.sorted_label, n_author.author_name
+ORDER BY n_author.sorted_label
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MATCH (n_book:L_BOOK)
+ RETURN collect( {book_title:n_book.book_title, sorted_label:n_book.sorted_label})
+
+
+
+
+
+
+
+    WITH 'philip_k_dick' AS v_strip_author 
+             MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                                  -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+             WHERE n_author.strip_author=v_strip_author
+    OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+                  WITH n_author, n_root, n_letter, n_author_wiki, v_strip_author
+                 MATCH (:L_AUTHOR)-[:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+                 WHERE n_book.strip_1_author=v_strip_author OR n_book.strip_2_author=v_strip_author
+                RETURN n_root, n_author, n_letter, n_author_wiki, n_book AS n_book_or_post
+UNION
+              WITH 'philip_k_dick' AS v_strip_author 
+             MATCH (n_root:L_ROOT)-[:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+                                  -[:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+             WHERE n_author.strip_author=v_strip_author
+    OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]- (n_author_wiki:L_AUTHOR_WIKI)
+                  WITH n_author, n_root, n_letter, n_author_wiki,v_strip_author
+                 MATCH (:L_AUTHOR)-[:L_AUTHOR_TO_POST]-  (n_post:L_AUTHOR_POST)
+                 WHERE n_post.strip_author=v_strip_author
+                RETURN n_root, n_author,   n_letter,n_author_wiki, n_post AS n_book_or_post 
+
+
+
+
+
+
+
+             
+https://neo4j.com/docs/cypher-refcard/current/
+
+
+
+CREATE CONSTRAINT ON (p:Person)
+       ASSERT p.name IS UNIQUE
+
+       LIMIT $limitNumber
+
+////////////////////////////////////////
+       MATCH (n) RETURN n LIMIT 2222
+       
+       MATCH (n) RETURN COUNT(n)
+
+////////////////////////////////////////
+
+
+MATCH (n) where n.Name =~ '(?i).*lovecraft.*' return n.Name, n;
+
+
+MATCH (n)
+WHERE lower(n.strip_author) contains lower("lovecraft") 
+RETURN *
+
+
+green_meadow
+WITH 'ray_bradbury' AS v_strip_author
+	MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+	WHERE n_author.strip_author = v_strip_author
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_post:L_AUTHOR_TO_POST]-(n_post:L_AUTHOR_POST)
+	RETURN *
+	
+	
+	
+	
+
+WITH 'hp_lovecraft' AS v_strip_author
+	MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+	WHERE n_author.strip_author = v_strip_author
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+	RETURN *
+
+
+/authors/pkd
+AUTHOR - ONLY
+
+
+
+
+WITH 'philip_k_dick' AS v_strip_author
+	MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+	WHERE n_author.strip_author = v_strip_author
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+	RETURN *
+
+
+WITH 'martin_caidin' AS v_strip_author
+	MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+	WHERE n_author.strip_author = v_strip_author
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+	RETURN *
+
+
+WITH 'robert_s_johnson' AS v_strip_author
+	MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+	WHERE n_author.strip_author = v_strip_author 
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+	OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+	RETURN *
+
+///////////////////////////////////////////
+,  'philip_k_dick' AS v_strip_author
+WITH 'upon_the_dull_earth' AS v_under_title
+MATCH (n_book:L_BOOK)
+WHERE n_book.under_title = v_under_title
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+OPTIONAL MATCH  (n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+RETURN *
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////
+
+WITH 'thunderbolt' AS v_under_title
+MATCH (n_book:L_BOOK)
+WHERE n_book.strip_title = v_under_title
+	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(author_books:L_BOOK)
+	WHERE (n_author.strip_author  = n_book.strip_1_author OR n_author.strip_author  = n_book.strip_2_author)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+OPTIONAL MATCH  (n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+RETURN *
+
+
+WITH 'turning_wheel' AS v_under_title
+MATCH (n_book:L_BOOK)
+WHERE n_book.strip_title = v_under_title
+	OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_book:L_AUTHOR_TO_BOOK]-(author_books:L_BOOK)
+	WHERE (n_author.strip_author  = n_book.strip_1_author OR n_author.strip_author  = n_book.strip_2_author)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+OPTIONAL MATCH  (n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+RETURN *
+
+
+
+MATCH (n_book)
+WHERE n_book.strip_title contains lower("turning_wheel") 
+RETURN *
+
+
+
+
+
+
+
+
+
+
+
+
+,  'philip_k_dick' AS v_strip_author
+WITH 'upon_the_dull_earth' AS v_under_title
+MATCH (n_root:L_ROOT)-[r_root_to_letter:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+	                        -[r_author_to_letter:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+	                        -[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+WHERE n_book.under_title = v_under_title
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+OPTIONAL MATCH (n_author:L_AUTHOR)-[r_author_to_wiki:L_AUTHOR_TO_WIKI]-(n_author_wiki:L_AUTHOR_WIKI)
+OPTIONAL MATCH  (n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+RETURN *
+
+
+
+
+WITH 'upon_the_dull_earth' AS v_under_title,  'philip_k_dick' AS v_strip_author
+MATCH (n_root:L_ROOT)-[r_root_to_letter:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+	                        -[r_author_to_letter:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+	                        -[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+WHERE n_book.under_title = v_under_title  AND n_author.strip_author = v_strip_author
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+OPTIONAL MATCH  (n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+RETURN *
+
+
+
+
+
+
+
+
+WITH 'the_murders_in_the_rue_morgue' AS v_under_title,  'edgar_allan_poe' AS v_strip_author
+MATCH (n_root:L_ROOT)-[r_root_to_letter:L_ROOT_TO_LETTER]-(n_letter:L_LETTER)
+	                        -[r_author_to_letter:L_AUTHOR_TO_LETTER]-(n_author:L_AUTHOR)
+	                        -[r_author_to_book:L_AUTHOR_TO_BOOK]-(n_book:L_BOOK)
+WHERE n_book.under_title = v_under_title  AND n_author.strip_author = v_strip_author
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_podcast:L_BOOK_TO_PODCAST]-(n_podcast:L_PODCAST)
+OPTIONAL MATCH  (n_book:L_BOOK)-[r_book_to_pdf:L_BOOK_TO_PDF]-(n_pdf:L_PDF)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_wiki_to_book:L_BOOK_WIKI_TO_BOOK]-(n_book_wiki:L_BOOK_WIKI)
+OPTIONAL MATCH (n_book:L_BOOK)-[r_book_to_rsd:L_BOOK_TO_RSD]-(n_rsd:L_RSD)
+RETURN *
+
+
+

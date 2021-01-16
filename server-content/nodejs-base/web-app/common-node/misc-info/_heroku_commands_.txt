@@ -1,0 +1,45 @@
+
+
+cd into the git directory
+
+
+    heroku logs -a sffaudio-search
+
+    heroku run bash -a sffaudio-search
+    
+    node reload-heroku
+
+
+
+
+
+
+cors on digital ocean
+        
+      Origin: *
+         get: x
+        head: x
+
+
+
+
+
+
+
+https://help.heroku.com/sharing/89f4c0a7-74d6-4ce3-b9a3-3b321c557758
+
+
+
+ADD VIM:
+        https://gist.github.com/dvdbng/7375821b20f189c189ab1bd29392c98e
+
+        mkdir ~/vim
+        cd ~/vim
+        
+        # Staically linked vim version compiled from https://github.com/ericpruitt/static-vim
+        # Compiled on Jul 20 2017
+        curl 'https://s3.amazonaws.com/bengoa/vim-static.tar.gz' | tar -xz
+        
+        export VIMRUNTIME="$HOME/vim/runtime"
+        export PATH="$HOME/vim:$PATH"
+        cd -
