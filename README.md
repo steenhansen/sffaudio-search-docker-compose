@@ -99,7 +99,8 @@ If **run-production&period;sh** is used to launch program, instead of **run-test
 - If you get the below Neo4j message then delete the **/server-content/neo4j-data/data/dbms/auth** file if it exists and then restart. This occurs when the Neo4j password changes values in secret-passwords.env 
 
 ```
-    command failed: the provided initial password was not set because existing Neo4j users were detected at `/var/lib/neo4j/data/dbms/auth`
+    command failed: the provided initial password was not set because
+    existing Neo4j users were detected at `/var/lib/neo4j/data/dbms/auth`
 ```
 
 
