@@ -56,7 +56,7 @@ View Neo4j database | *http://localhost:27474/browser*
 &nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **yer_password**
 View web page | http://localhost/ 
 
-If Neo4j has issues starting, then check /server-content/neo4j-data/logs/debug.log has 777 permissions.
+
   
 ## Install on [Linode.com](https://www.linode.com/)
 
@@ -82,6 +82,25 @@ View web page | http://192.53.120.71
 
 If **run-production&period;sh** is used to launch program, instead of **run-test-small&period;sh** then then there will be no Neo4j database browser at http://192.53.120.71:27474/browser
 
+
+## Caveats
+- The Node.js Neo4j-driver used in this project is [1.7.7](https://www.npmjs.com/package/neo4j-driver/v/1.7.7), very old, the current version is 4.2.1 and is not backwards compatible
+- The [Neo4j Docker](https://hub.docker.com/_/neo4j) image used in this project is 3.4.9, very old, the current version is 4.2.2 and is not backwards compatible
+- Mobile css is not handled correctly anymore as this program's output was meant to be displayed inside of Wordpress pages
+
+## Issues  
+- If you get this Docker-Compose message about the neo4j__database/4bdd0d6a0524 container being unhealthy via the node-webserver container, then check that **/server-content/neo4j-data/logs/debug.log** exists and has 777 permissions
+  
+```
+    ERROR: node-webserver Container "4bdd0d6a0524" is unhealthy
+```
+
+
+- If you get the below Neo4j message then delete the **/server-content/neo4j-data/data/dbms/auth** file if it exists and then restart. This occurs when the Neo4j password changes values in secret-passwords.env 
+
+```
+    command failed: the provided initial password was not set because existing Neo4j users were detected at `/var/lib/neo4j/data/dbms/auth`
+```
 
 
 ## Created by
