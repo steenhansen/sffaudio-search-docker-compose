@@ -4,7 +4,7 @@
   
 
 
-# SFFaudio-Search, on Docker
+# SFFaudio-Search, on Docker-compose
 
   
 
