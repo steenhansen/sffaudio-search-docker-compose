@@ -83,6 +83,11 @@ View web page | http://192.53.120.71
 If **run-production&period;sh** is used to launch program, instead of **run-test-small&period;sh** then then there will be no Neo4j database browser at http://192.53.120.71:27474/browser
 
 
+		
+#### Containers on Docker Desktop:
+![visual explanation](https://github.com/steenhansen/sffaudio-search/blob/master/docker-compose.png)
+
+
 ## Caveats
 - The Node.js Neo4j-driver used in this project is [1.7.7](https://www.npmjs.com/package/neo4j-driver/v/1.7.7), very old, the current version is 4.2.1 and is not backwards compatible
 - The [Neo4j Docker](https://hub.docker.com/_/neo4j) image used in this project is 3.4.9, very old, the current version is 4.2.2 and is not backwards compatible
