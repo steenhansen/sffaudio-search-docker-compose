@@ -73,7 +73,7 @@ Install Docker-Compose | ./install-2-docker-compose.sh
 Launch program | ./run-test-small.sh
 View Neo4j database | http://192.53.120.71:27474/browser
 &nbsp; | Connect URL
-&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://192.53.120.71:27687**
+&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://192.53.120.71:27687** currently off
 &nbsp; | Username
 &nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **neo4j**
 &nbsp; | Password
