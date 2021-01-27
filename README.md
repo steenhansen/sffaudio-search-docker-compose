@@ -4,7 +4,7 @@
   
 
 
-# SFFaudio-Search, on Docker
+# SFFaudio-Search, with Docker-compose
 
   
 
@@ -45,8 +45,8 @@ Four blog posts, a PDF, an RSD, an MP3, a Wikipedia story link, and a link back 
 Steps | &nbsp;
 ------------ | -------------
 Get Docker | [Download](https://hub.docker.com/editions/community/docker-ce-desktop-windows/) Docker Desktop for Windows
-Enter /server-content/ | *cd server-content*
-Launch program | *run-test-large&period;sh*
+Enter /server-content/ | *$ cd C:/sffaudio-search-docker-compose-master/server-content/*
+Launch program | *$ run-test-large&period;sh*
 View Neo4j database | *http://localhost:27474/browser*
 &nbsp; | Connect URL
 &nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://localhost:27687**
@@ -66,14 +66,14 @@ Steps | &nbsp;
 Create a Linode | [Make](https://cloud.linode.com/linodes/create) a 1GB Debian 10 Nanode
 FTP files to server | Copy local **/server-content/** to **/root/server-content/**
 Set install files to be executable | **install-1-docker-ce&period;sh** & **install-2-docker-compose&period;sh** & **install-3-check&period;sh**
-ssh into server | ssh root@192.53.120.71
-Enter /server-content/ | cd /root/server-content/
-Install Docker | ./install-1-docker-ce.sh
-Install Docker-Compose | ./install-2-docker-compose.sh
-Launch program | ./run-test-small.sh
+ssh into server | $ ssh root@192.53.120.71
+Enter /server-content/ | $ cd /root/server-content/
+Install Docker | $ ./install-1-docker-ce.sh
+Install Docker-Compose | $ ./install-2-docker-compose.sh
+Launch program | $ ./run-test-small.sh
 View Neo4j database | http://192.53.120.71:27474/browser
 &nbsp; | Connect URL
-&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://192.53.120.71:27687**
+&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://192.53.120.71:27687** currently off
 &nbsp; | Username
 &nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **neo4j**
 &nbsp; | Password
