@@ -63,7 +63,7 @@ View web page | http://localhost/
 
 Steps | &nbsp;
 ------------ | -------------
-Create a Linode | [Make](https://cloud.linode.com/linodes/create) a 1GB Debian 10 Nanode
+Create a Linode | [Make](https://cloud.linode.com/linodes/create) a 1GB Debian 10 Linode
 FTP files to server | Copy local **/server-content/** to **/root/server-content/**
 Set install files to be executable | **install-1-docker-ce&period;sh** & **install-2-docker-compose&period;sh** & **install-3-check&period;sh**
 ssh into server | $ ssh root@192.53.120.71
