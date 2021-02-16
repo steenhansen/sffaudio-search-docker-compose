@@ -1,9 +1,10 @@
 #!/bin/bash
 
-#                               ./install-2-docker-ce.sh
+#                               ./install-1-docker-ce.sh
 
 # FROM  https://www.linode.com/docs/guides/how-to-install-docker-ce-on-debian-10/
 
+# Must be Unix LF, not Windows CRLF
 
 sudo apt remove docker docker-engine docker.io
 

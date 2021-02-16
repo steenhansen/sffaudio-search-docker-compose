@@ -1,6 +1,8 @@
 #!/bin/bash
 
-#                              ./install-4-check.sh
+#                              ./install-3-check.sh
+
+# Must be Unix LF, not Windows CRLF
 
 echo
 

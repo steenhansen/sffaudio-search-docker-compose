@@ -64,16 +64,19 @@ View web page | http://localhost/
 Steps | &nbsp;
 ------------ | -------------
 Create a Linode | [Make](https://cloud.linode.com/linodes/create) a 1GB Debian 10 Linode
-FTP files to server | Copy local **/server-content/** to **/root/server-content/**
+SFTP files to server | Copy local **/server-content/** to **/root/server-content/**
 Set install files to be executable | **install-1-docker-ce&period;sh** & **install-2-docker-compose&period;sh** & **install-3-check&period;sh**
+Set bash file to be executable | **/bash-scripts/set-time-zone&period;sh**
 ssh into server | $ ssh root@192.53.120.71
 Enter /server-content/ | $ cd /root/server-content/
-Install Docker | $ ./install-1-docker-ce.sh
+Install Docker | $ ./install-1-docker-ce.sh (had to run it twice)
 Install Docker-Compose | $ ./install-2-docker-compose.sh
-Launch program | $ ./run-test-small.sh
-View Neo4j database | http://192.53.120.71:27474/browser
+Change Neo4j password | not to **yer_password**
+Launch program | $ ./run-production.sh
+Watch container creation | $ docker ps -a
+View Neo4j database | http://192.53.120.71:27474/browser (currently off)
 &nbsp; | Connect URL
-&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://192.53.120.71:27687** currently off
+&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://192.53.120.71:27687** (currently off)
 &nbsp; | Username
 &nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **neo4j**
 &nbsp; | Password

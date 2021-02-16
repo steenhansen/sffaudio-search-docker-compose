@@ -9,9 +9,9 @@
   
   neo4j-db: 
     ports:     
-      - published: ${OUTSIDE_BROWSER_URI}   # http://localhost:27474/browser/ for Neo4j db browser 
+      - published: 0                          # NO external Neo4j db browser 
         target: ${INSIDE_NEO4J_PORT}
-      - published: ${OUTSIDE_BOLT_URI}  
+      - published: 0                          # NO outside connections
         target: ${INSIDE_BOLT_PORT} 
         
   node-webserver:   
