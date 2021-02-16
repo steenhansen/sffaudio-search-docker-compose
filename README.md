@@ -30,7 +30,7 @@ The data is held in Google Sheets for easy text editing; [PDF data](https://docs
 
 ![visual explanation](https://github.com/steenhansen/sffaudio-search/blob/master/beyond-the-wub-book.png)
 
-Four blog posts, a PDF, an RSD, an MP3, a Wikipedia story link, and a link back to the author.
+Four blog posts, a PDF, an RSD MP3, a Wikipedia story link, and a link back to the author.
 
 #### After clicking on "RSD # 7" a user can play the associated MP3 while reading along with the PDF:
 
