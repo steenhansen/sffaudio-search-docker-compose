@@ -13,7 +13,7 @@
 
   
 
-[SFFaudio-Search](http://192.53.120.71) was a single page Node.js app that was injected into [SFFaudio.com](https://www.sffaudio.com/)'s WordPress search page. It was discontinued because of human intervention needed for manual linking of text posts. It enabled fast and easy searching of SFFaudio's online content of [authors](http://192.53.120.71/?author=larry-niven), [stories](http://192.53.120.71/?book=beyond-lies-the-wub&author=philip-k-dick), [blog-posts](http://192.53.120.71/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=4), [PDFs](http://192.53.120.71/?book=beyond-lies-the-wub&author=philip-k-dick&view=pdf&choice=1), and [MP3s](http://192.53.120.71/?book=beyond-lies-the-wub&author=philip-k-dick&view=rsd&choice=1).
+[SFFaudio-Search](http://45.79.183.31) was a single page Node.js app that was injected into [SFFaudio.com](https://www.sffaudio.com/)'s WordPress search page. It was discontinued because of human intervention needed for manual linking of text posts. It enabled fast and easy searching of SFFaudio's online content of [authors](http://45.79.183.31/?author=larry-niven), [stories](http://45.79.183.31/?book=beyond-lies-the-wub&author=philip-k-dick), [blog-posts](http://45.79.183.31/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=4), [PDFs](http://45.79.183.31/?book=beyond-lies-the-wub&author=philip-k-dick&view=pdf&choice=1), and [MP3s](http://45.79.183.31/?book=beyond-lies-the-wub&author=philip-k-dick&view=rsd&choice=1).
 
   
 The data is held in Google Sheets for easy text editing; [PDF data](https://docs.google.com/spreadsheets/d/1sbQ8NR7hvcm4EjSlyhmte0rYtI_G3vnc1o5KLPAW2lc/),
@@ -66,23 +66,24 @@ Steps | &nbsp;
 Create a Linode | [Make](https://cloud.linode.com/linodes/create) a 2GB Debian 10 Linode for $10/month
 SFTP files to server | Copy local **/server-content/** to **/root/server-content/**
 Set install files to be executable | **install-1-docker-ce&period;sh** & **install-2-docker-compose&period;sh** & **install-3-check&period;sh**
+Set run files to be executable | **run-production&period;sh** & **run-test-large&period;sh** & **run-test-small&period;sh**
 Set bash file to be executable | **/bash-scripts/set-time-zone&period;sh**
-ssh into server | $ ssh root@192.53.120.71
+ssh into server | $ ssh root@45.79.183.31
 Enter /server-content/ | $ cd /root/server-content/
 Install Docker | $ ./install-1-docker-ce.sh (had to run it twice)
 Install Docker-Compose | $ ./install-2-docker-compose.sh
 Launch program | $ ./run-production.sh
 Watch container creation | $ docker ps -a
-View Neo4j database | http://192.53.120.71:27474/browser (currently off)
+View Neo4j database | http://45.79.183.31:27474/browser (currently off)
 &nbsp; | Connect URL
-&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://192.53.120.71:27687** (currently off)
+&nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **bolt://45.79.183.31:27687** (currently off)
 &nbsp; | Username
 &nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **neo4j**
 &nbsp; | Password
 &nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **yer_password**
-View web page | http://192.53.120.71
+View web page | http://45.79.183.31
 
-If **run-production&period;sh** is used to launch program, instead of **run-test-small&period;sh** then then there will be no Neo4j database browser at http://192.53.120.71:27474/browser
+If **run-production&period;sh** is used to launch program, instead of **run-test-small&period;sh** then then there will be no Neo4j database browser at http://45.79.183.31:27474/browser
 
 
 		
