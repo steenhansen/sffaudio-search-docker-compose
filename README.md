@@ -83,6 +83,11 @@ View Neo4j database | http://45.79.183.31:27474/browser (currently off)
 &nbsp; |   &nbsp;&nbsp;&nbsp;&nbsp;    **yer_password**
 View web page | http://45.79.183.31
 
+
+#### Docker ps -a on Linode:
+![visual explanation](https://github.com/steenhansen/sffaudio-search/blob/master/docker-ps-a.png)
+
+
 If **run-production&period;sh** is used to launch program, instead of **run-test-small&period;sh** then then there will be no Neo4j database browser at http://45.79.183.31:27474/browser
 
 
