@@ -45,7 +45,7 @@ Four blog posts, a PDF, an RSD MP3, a Wikipedia story link, and a link back to t
 Steps | &nbsp;
 ------------ | -------------
 Get Docker | [Download](https://hub.docker.com/editions/community/docker-ce-desktop-windows/) Docker Desktop for Windows
-Enter /server-content/ | *$ cd C:/sffaudio-search-docker-compose-master/server-content/*
+Enter /server-content/ | *$ cd server-content*
 Launch program | *$ run-test-large&period;sh*
 View Neo4j database | *http://localhost:27474/browser*
 &nbsp; | Connect URL
