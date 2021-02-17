@@ -73,7 +73,6 @@ Enter /server-content/ | $ cd /root/server-content/
 Install Docker | $ ./install-1-docker-ce.sh (had to run it twice)
 Install Docker-Compose | $ ./install-2-docker-compose.sh
 Launch program | $ ./run-production.sh
-Slowest step | "Creating neo4j__database"
 Watch container creation | $ docker ps -a
 View Neo4j database | http://45.79.183.31:27474/browser (currently off)
 &nbsp; | Connect URL
