@@ -21,7 +21,7 @@
   "dependencies": {
     "compression": "^1.7.4",
     "csv-parse": "^4.14.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "fs-readdir-promise": "^1.0.1",
     "fs-readfile-promise": "^3.0.1",
     "fs-writefile-promise": "^3.0.2",
