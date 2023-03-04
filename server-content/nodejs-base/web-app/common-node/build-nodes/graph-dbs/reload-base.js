@@ -100,6 +100,7 @@ class reloadBase {
                     current_db_version = 0;
                 }
 
+            //   <a name="fast-start"></a>
                     var dbIsCreated = ensureDbAlive(current_db_version);
                     var next_db_version = current_db_version + 1;
                     console.log('current_db_version', current_db_version)
