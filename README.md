@@ -6,12 +6,10 @@
 
 # SFFaudio-Search, with Docker-compose
 
-  
-
-[comment]: <>  ( Use https://stackedit.io/app# to edit )
-
-
 <a name='readme-start'></a> 
+<a name='s'></a> 
+
+<img src="./tall-search.webp" width="800">
 
 [SFFaudio-Search](http://45.79.183.31) was a single page Node.js app that was injected into [SFFaudio.com](https://www.sffaudio.com/)'s WordPress search page. It was discontinued because of human intervention needed for manual linking of text posts. It enabled fast and easy searching of SFFaudio's online content of [authors](http://45.79.183.31/?author=larry-niven), [stories](http://45.79.183.31/?book=beyond-lies-the-wub&author=philip-k-dick), [blog-posts](http://45.79.183.31/?book=beyond-lies-the-wub&author=philip-k-dick&view=post_book&choice=4), [PDFs](http://45.79.183.31/?book=beyond-lies-the-wub&author=philip-k-dick&view=pdf&choice=1), and [MP3s](http://45.79.183.31/?book=beyond-lies-the-wub&author=philip-k-dick&view=rsd&choice=1). Some books have two authors, such as [Wolfbane](http://45.79.183.31/?book=wolfbane&author=frederikpohl,cm-kornbluth).
 
